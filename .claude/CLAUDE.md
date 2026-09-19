@@ -169,9 +169,13 @@ Vercel deploy too. Reproduce by deleting `themes/*/kokofresh.{js,d.ts}` and
 package.json is the single source of truth; specifying both makes the action
 error out. Node is pinned via `engines` + `.nvmrc`.
 
-`vercel.json`: Mumbai region (`bom1`) since customers are in India; security
-headers; and **`sw.js` served with `max-age=0, must-revalidate`** — a cached
-service worker strands users on an old one indefinitely.
+`vercel.json`: security headers, and **`sw.js` served with
+`max-age=0, must-revalidate`** — a cached service worker strands users on an old
+one indefinitely.
+
+**No `regions` key.** Multi-region routing is plan-gated and fails the deploy on
+Hobby. Add `"regions": ["bom1"]` (Mumbai — customers are in India) only once the
+project is on Pro.
 
 ## Dev server port
 
