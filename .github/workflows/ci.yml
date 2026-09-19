@@ -38,6 +38,13 @@ jobs:
         # so a dependency can never drift in unreviewed.
         run: pnpm install --frozen-lockfile
 
+      # The theme is generated, not committed (see .gitignore), and
+      # app/providers.tsx imports it — so it must exist before typecheck, not
+      # just before build. Without this, CI fails on a module the developer's
+      # machine happens to have from an earlier build.
+      - name: Build theme
+        run: pnpm theme:build
+
       - name: Typecheck
         run: pnpm typecheck
 
