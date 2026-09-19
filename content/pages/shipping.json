@@ -1,0 +1,36 @@
+{
+  "title": "Shipping Policy",
+  "intro": "Every blend is ground after you order, so dispatch takes a little longer than a warehouse — and arrives far fresher.",
+  "sections": [
+    {
+      "heading": "Shipping charges",
+      "body": "<p>Shipping is <strong>free on orders of ₹399 and above</strong>.</p><p>Below ₹399, shipping is <strong>₹50 within Karnataka</strong> and <strong>₹70 for the rest of India</strong>.</p>"
+    },
+    {
+      "heading": "Dispatch and delivery",
+      "body": "<p>Your order is handcrafted and dispatched within <strong>48 hours</strong>. Delivery usually takes <strong>3–5 days</strong> after dispatch, depending on your location.</p>"
+    },
+    {
+      "heading": "Where we deliver",
+      "body": "<p>We ship across India. Delivery times to remote PIN codes may be slightly longer.</p>"
+    },
+    {
+      "heading": "Tracking your order",
+      "body": "<p>You will receive tracking details on WhatsApp as soon as your order is dispatched.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "question": "What are the shipping charges for KokoFresh orders?",
+      "answer": "Shipping is ₹50 for orders within Karnataka and ₹70 for the rest of India. Orders of ₹399 and above ship free."
+    },
+    {
+      "question": "Does KokoFresh offer free shipping?",
+      "answer": "Yes. Shipping is free on all orders of ₹399 and above at checkout."
+    },
+    {
+      "question": "What are KokoFresh delivery timelines?",
+      "answer": "Orders are ground fresh and dispatched within 48 hours, then delivered in 3–5 days depending on your location."
+    }
+  ]
+}

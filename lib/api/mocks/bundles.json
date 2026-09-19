@@ -1,0 +1,220 @@
+[
+  {
+    "id": "bundle-starter-kit",
+    "slug": "kokofresh-starter-kit",
+    "name": "KokoFresh Starter Kit",
+    "tagline": "Your first taste of Karnataka heritage",
+    "description": "Not sure where to start? Pick 2 signature masala blends and 2 chutney powders — jaggery is on us.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_f0d941cafbcc478ea3138c8e852cab20~mv2.jpeg/v1/fit/w_900,h_675,q_88/file.jpeg",
+      "alt": "KokoFresh Starter Kit",
+      "width": 900,
+      "height": 675
+    },
+    "price": {
+      "amount": 30000,
+      "currency": "INR"
+    },
+    "compareAtPrice": {
+      "amount": 37200,
+      "currency": "INR"
+    },
+    "savings": {
+      "amount": 7200,
+      "currency": "INR"
+    },
+    "savingsPercent": 19,
+    "itemCount": 5,
+    "rules": [
+      {
+        "collectionSlug": "signature-blends",
+        "label": "Signature Masala Blends",
+        "count": 2
+      },
+      {
+        "collectionSlug": "heritage-chutney-powders",
+        "label": "Chutney Powders",
+        "count": 2
+      }
+    ],
+    "includedSlugs": [
+      "jaggery-powder"
+    ],
+    "seo": {
+      "description": "Start your Karnataka spice journey. Pick 2 masalas and 2 chutney powders, jaggery included. Save ₹72."
+    },
+    "contents": [
+      "2 Masala",
+      "2 Chutney",
+      "1 Jaggery"
+    ],
+    "bestFor": "First-timers",
+    "lasts": "1–2 weeks",
+    "giftReady": "yes",
+    "fullDescription": "New to KokoFresh? Start here.\n\nThe KokoFresh Starter Kit is your no-risk introduction to authentic Karnataka flavors. Pick the masalas and chutneys that sound interesting, and discover what you love.\n\nThe Promise: By the time you finish this pack, you'll know exactly what to order next.",
+    "benefitsTitle": "Why You'll Love It",
+    "benefits": [
+      "Your first order with us",
+      "Small households",
+      "Trying before you commit to bigger packs",
+      "Gifting to curious friends"
+    ],
+    "quickPrep": {
+      "title": "Quick Prep Ideas",
+      "items": [
+        "Puliyogare rice in 15 minutes",
+        "Fresh rasam for weeknight comfort",
+        "Chutney powder with ghee on hot rice"
+      ],
+      "link": "/recipes"
+    }
+  },
+  {
+    "id": "bundle-festival-box",
+    "slug": "the-festival-box",
+    "name": "The Festival Box",
+    "tagline": "Festival-ready in one box",
+    "description": "Pick 3 signature masala blends and 3 chutney powders, with a millet porridge mix included.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_1ccffb910d7d4097ad53ed09179e1373~mv2.jpeg/v1/fit/w_900,h_675,q_88/file.jpeg",
+      "alt": "The Festival Box",
+      "width": 900,
+      "height": 675
+    },
+    "price": {
+      "amount": 50000,
+      "currency": "INR"
+    },
+    "compareAtPrice": {
+      "amount": 59000,
+      "currency": "INR"
+    },
+    "savings": {
+      "amount": 9000,
+      "currency": "INR"
+    },
+    "savingsPercent": 15,
+    "itemCount": 7,
+    "rules": [
+      {
+        "collectionSlug": "signature-blends",
+        "label": "Signature Masala Blends",
+        "count": 3
+      },
+      {
+        "collectionSlug": "heritage-chutney-powders",
+        "label": "Chutney Powders",
+        "count": 3
+      }
+    ],
+    "includedSlugs": [
+      "multi-millets-porridge-mix"
+    ],
+    "seo": {
+      "description": "Gift-ready Karnataka spice box. Pick 3 masalas and 3 chutney powders. Save ₹90."
+    },
+    "contents": [
+      "3 Masala",
+      "3 Chutney",
+      "1 Millet"
+    ],
+    "bestFor": "Gifting",
+    "lasts": "2–3 weeks",
+    "giftReady": "premium",
+    "fullDescription": "When you need everything, right now.\n\nThe Festival Box has you covered for Sankranti, Ugadi, weekend guests, or that last-minute pooja. Seven handcrafted essentials that take you from breakfast to prasadam.",
+    "benefitsTitle": "Perfect For",
+    "benefits": [
+      "Festival cooking (Ugadi, Diwali)",
+      "Gift giving (housewarmings, weddings)",
+      "Hosting weekend guests",
+      "When relatives are visiting",
+      "Gift-Ready: Comes in beautiful packaging"
+    ],
+    "testimonials": [
+      {
+        "quote": "Saved my Ugadi cooking!",
+        "author": "Priya, Bangalore"
+      },
+      {
+        "quote": "Best housewarming gift I've given",
+        "author": "Arun, Mumbai"
+      },
+      {
+        "quote": "Everything I needed in one box",
+        "author": "Lakshmi, Mysore"
+      }
+    ]
+  },
+  {
+    "id": "bundle-monthly-masala-pack",
+    "slug": "the-monthly-masala-pack",
+    "name": "The Monthly Masala Pack",
+    "tagline": "One order. One month. Done.",
+    "description": "Pick 4 signature masala blends and 4 chutney powders, with jaggery and millet mix included.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_a9d660364ccd4c898bd0b8c56048327d~mv2.jpeg/v1/fit/w_900,h_675,q_88/file.jpeg",
+      "alt": "The Monthly Masala Pack",
+      "width": 900,
+      "height": 675
+    },
+    "price": {
+      "amount": 65000,
+      "currency": "INR"
+    },
+    "compareAtPrice": {
+      "amount": 78400,
+      "currency": "INR"
+    },
+    "savings": {
+      "amount": 13400,
+      "currency": "INR"
+    },
+    "savingsPercent": 17,
+    "itemCount": 10,
+    "rules": [
+      {
+        "collectionSlug": "signature-blends",
+        "label": "Signature Masala Blends",
+        "count": 4
+      },
+      {
+        "collectionSlug": "heritage-chutney-powders",
+        "label": "Chutney Powders",
+        "count": 4
+      }
+    ],
+    "includedSlugs": [
+      "jaggery-powder",
+      "multi-millets-porridge-mix"
+    ],
+    "seo": {
+      "description": "A month of Karnataka masalas. Pick 4 masalas and 4 chutney powders. Save ₹134."
+    },
+    "contents": [
+      "4 Masala",
+      "4 Chutney",
+      "1 Jaggery",
+      "1 Millet"
+    ],
+    "bestFor": "Stock-up",
+    "lasts": "1 month",
+    "giftReady": "yes",
+    "fullDescription": "Stop running out. Start cooking freely.\n\nOne order at the start of the month. Ten essentials. Thirty days of authentic Karnataka meals without the stress of running out mid-week.",
+    "benefitsTitle": "Why Choose This",
+    "benefits": [
+      "Regular customers who order monthly",
+      "Families of 3-4 people",
+      "Anyone tired of weekly grocery runs",
+      "Meal preppers",
+      "Our Best Value: Biggest savings we offer"
+    ],
+    "smartMath": {
+      "items": [
+        "₹650 ÷ 30 days = ₹21.67 per day of authentic Karnataka cooking",
+        "Order monthly = Never compromise on weeknight dinners again"
+      ],
+      "footer": "Coming Soon: Subscribe & Save option - get it automatically every month at ₹625!"
+    },
+    "bestValue": true
+  }
+]

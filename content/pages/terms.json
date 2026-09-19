@@ -1,0 +1,22 @@
+{
+  "title": "Terms & Conditions",
+  "intro": "The basics of buying from KokoFresh.",
+  "sections": [
+    {
+      "heading": "Orders",
+      "body": "<p>Placing an order is an offer to buy. We confirm it once payment is received, or once you confirm a cash-on-delivery order.</p>"
+    },
+    {
+      "heading": "Pricing",
+      "body": "<p>All prices are in Indian Rupees and inclusive of GST. We may change prices at any time, but never after your order is confirmed.</p>"
+    },
+    {
+      "heading": "Freshness",
+      "body": "<p>Our blends contain no preservatives or anti-caking agents. Aroma is at its peak on arrival and fades gradually — this is expected of preservative-free spice.</p>"
+    },
+    {
+      "heading": "Contact",
+      "body": "<p>Questions about these terms can go to our support email or WhatsApp.</p>"
+    }
+  ]
+}

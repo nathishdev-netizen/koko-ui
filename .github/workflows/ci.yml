@@ -1,0 +1,49 @@
+name: CI
+
+# Runs on every push and PR. Vercel deploys independently; this is the gate that
+# tells you a change is sound, and it must pass the SAME checks that run locally
+# so "works on my machine" cannot happen.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A new push to the same branch cancels the previous run — no point spending
+# minutes on a commit that has already been superseded.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          # Caches the pnpm store, which is the slowest part of a cold run.
+          cache: pnpm
+
+      - name: Install
+        # --frozen-lockfile fails if the lockfile and package.json disagree,
+        # so a dependency can never drift in unreviewed.
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        # Also runs `pnpm theme:build`, so a broken theme fails here rather than
+        # at deploy time.
+        run: pnpm build

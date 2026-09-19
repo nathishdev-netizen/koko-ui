@@ -1,0 +1,11 @@
+{
+  "_note": "Commerce policy. Thresholds are display hints only — every total is computed by the pricing API, never here.",
+  "payment": {
+    "codEnabled": true,
+    "codNote": "Pay the delivery partner in cash when your order arrives."
+  },
+  "shipping": {
+    "freeThresholdPaise": 39900,
+    "note": "Free shipping over ₹399"
+  }
+}

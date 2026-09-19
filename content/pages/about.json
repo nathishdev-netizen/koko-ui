@@ -1,0 +1,28 @@
+{
+  "eyebrow": "Our story",
+  "title": "From Karnataka's kitchens to your table",
+  "lead": "KokoFresh began with a simple frustration: the masala on the shelf never smelled like the masala at home.",
+  "sections": [
+    {
+      "heading": "Ground after you order",
+      "body": "<p>Most spice powders are milled months before they reach you, then sit in a warehouse losing the aromatic oils that made them worth buying. We grind each blend only after your order is placed, in small batches, and pack it the same day.</p><p>It is slower. It is also the entire point.</p>"
+    },
+    {
+      "heading": "Whole spices, nothing else",
+      "body": "<p>Commercial powders are often bulked out with roasted lentils, rice flour or extra chilli to increase volume. We use whole spices sourced directly from farms &mdash; no fillers, no anti-caking agents, no preservatives, no colour.</p>"
+    },
+    {
+      "heading": "Crafted by women artisans",
+      "body": "<p>Every blend is roasted and stone-ground by skilled women artisans who have been making these recipes their whole lives. Stone grinding keeps the temperature low, which protects the natural oils that carry the aroma.</p>"
+    },
+    {
+      "heading": "Karnataka, specifically",
+      "body": "<p>Our recipes are regional, not generic. A Mysore rasam powder is pepper-forward. A Melkote puliyogare powder follows the temple recipe. Byadagi chillies for colour, Malnad pepper from the Western Ghats.</p>"
+    }
+  ],
+  "values": [
+    { "title": "Made to order", "body": "Ground and packed after you buy, never before." },
+    { "title": "No fillers", "body": "Whole spices only. Nothing added to bulk it out." },
+    { "title": "FSSAI licensed", "body": "Lab-tested for purity, every batch." }
+  ]
+}

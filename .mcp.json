@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "astryx": {
+      "type": "url",
+      "url": "https://astryx.atmeta.com/mcp"
+    }
+  }
+}

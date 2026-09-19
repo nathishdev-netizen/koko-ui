@@ -1,0 +1,65 @@
+[
+  {
+    "id": "rev-001",
+    "productSlug": "mysore-rasam-powder",
+    "rating": 5,
+    "title": "Tastes like my grandmother's",
+    "body": "The pepper comes through properly instead of just heat. I made rasam the day it arrived and the whole house smelled of it.",
+    "authorName": "Lakshmi N.",
+    "createdAt": "2026-08-30T10:12:00.000Z",
+    "status": "approved",
+    "isVerifiedPurchase": true
+  },
+  {
+    "id": "rev-002",
+    "productSlug": "mysore-rasam-powder",
+    "rating": 5,
+    "body": "Ordered twice now. No filler taste at all — you can tell it is only spices.",
+    "authorName": "Arun K.",
+    "createdAt": "2026-08-18T07:40:00.000Z",
+    "status": "approved",
+    "isVerifiedPurchase": true
+  },
+  {
+    "id": "rev-003",
+    "productSlug": "mysore-rasam-powder",
+    "rating": 4,
+    "title": "Very good, slightly mild",
+    "body": "Excellent aroma. I add a little extra pepper for my taste, but that is personal preference.",
+    "authorName": "Deepa S.",
+    "createdAt": "2026-07-22T16:05:00.000Z",
+    "status": "approved",
+    "isVerifiedPurchase": false
+  },
+  {
+    "id": "rev-004",
+    "productSlug": "mysore-sambar-powder",
+    "rating": 5,
+    "title": "Best sambar powder I have bought online",
+    "body": "Roasted properly — you can smell the difference the moment you open it. Will reorder.",
+    "authorName": "Ramesh P.",
+    "createdAt": "2026-09-02T09:30:00.000Z",
+    "status": "approved",
+    "isVerifiedPurchase": true
+  },
+  {
+    "id": "rev-005",
+    "productSlug": "mysore-sambar-powder",
+    "rating": 4,
+    "body": "Good quality and fresh. Delivery took a day longer than expected.",
+    "authorName": "Sunitha M.",
+    "createdAt": "2026-08-11T11:15:00.000Z",
+    "status": "approved",
+    "isVerifiedPurchase": true
+  },
+  {
+    "id": "rev-006",
+    "productSlug": "mysore-sambar-powder",
+    "rating": 5,
+    "body": "Waiting on moderation, should not appear on the site yet.",
+    "authorName": "Test User",
+    "createdAt": "2026-09-14T12:00:00.000Z",
+    "status": "pending",
+    "isVerifiedPurchase": false
+  }
+]

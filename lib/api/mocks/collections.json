@@ -1,0 +1,94 @@
+[
+  {
+    "id": "col-best-sellers",
+    "slug": "best-sellers",
+    "name": "Best Sellers",
+    "description": "The blends our customers reorder most — small-batch favourites from Karnataka kitchens.",
+    "heroImage": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_a2fa5b5008874ae79fe561eef62b4baf~mv2.jpg/v1/fit/w_1080,h_1080,q_90/file.jpg",
+      "alt": "Best Sellers",
+      "width": 1080,
+      "height": 1080
+    },
+    "seo": {
+      "title": "Best Selling Karnataka Spice Blends",
+      "description": "Shop KokoFresh best sellers — stone-ground masala, chutney powders and single-origin spices, freshly milled with no fillers or preservatives."
+    }
+  },
+  {
+    "id": "col-signature-blends",
+    "slug": "signature-blends",
+    "name": "Signature Blends",
+    "description": "Traditional Karnataka masala blends — sambar, rasam, bisibelebath and puliyogare — ground fresh in small batches.",
+    "heroImage": {
+      "url": "https://static.wixstatic.com/media/e7c120_6b48e92aaae74722ac1fbe16ad200fd5~mv2.jpeg",
+      "alt": "Signature Blends",
+      "width": 1080,
+      "height": 1080
+    },
+    "seo": {
+      "title": "Signature Karnataka Masala Blends",
+      "description": "Authentic Mysore sambar powder, rasam powder, bisibelebath and Melkote puliyogare powder. Stone-ground, preservative-free, made to order."
+    }
+  },
+  {
+    "id": "col-heritage-chutney-powders",
+    "slug": "heritage-chutney-powders",
+    "name": "Heritage Chutney Powders",
+    "description": "Chutney pudi the way Karnataka households make it — roasted whole, ground coarse, never bulked with fillers.",
+    "heroImage": {
+      "url": "https://static.wixstatic.com/media/e7c120_24211dca15ed4bb9a625a57527cb3788~mv2.jpeg",
+      "alt": "Heritage Chutney Powders",
+      "width": 1080,
+      "height": 1080
+    },
+    "seo": {
+      "title": "Heritage Chutney Powders (Chutney Pudi)",
+      "description": "Groundnut, bengal gram, curry leaves and flax seed chutney powders. Traditional Karnataka recipes, freshly roasted and stone-ground."
+    }
+  },
+  {
+    "id": "col-everyday-superfoods",
+    "slug": "everyday-superfoods",
+    "name": "Everyday Superfoods",
+    "description": "Wholesome everyday staples — unrefined jaggery, millet porridge mixes and pantry essentials.",
+    "heroImage": {
+      "url": "https://static.wixstatic.com/media/e7c120_32c0076bf79c4b188fe8a8afbc0a6bc6~mv2.jpeg",
+      "alt": "Everyday Superfoods",
+      "width": 1080,
+      "height": 1080
+    },
+    "seo": {
+      "title": "Everyday Superfoods & Natural Pantry Staples",
+      "description": "Natural jaggery powder, multi-millet porridge mix and wholesome pantry staples with nothing refined or artificial added."
+    }
+  },
+  {
+    "id": "col-single-origin-spices",
+    "slug": "single-origin-spices",
+    "name": "Single Origin Spices",
+    "description": "Traceable single-estate spices — Malnad pepper grown in the Western Ghats, milled fresh.",
+    "heroImage": {
+      "url": "https://static.wixstatic.com/media/e7c120_a8d7f3a98ed34adaa952f2447a0dbc17~mv2.jpeg",
+      "alt": "Single Origin Spices",
+      "width": 1080,
+      "height": 1080
+    },
+    "seo": {
+      "title": "Single Origin Spices from the Western Ghats",
+      "description": "Malnad black and white pepper powder from single-estate Western Ghats farms. Traceable, freshly milled, full of aroma."
+    }
+  },
+  {
+    "id": "col-coming-soon",
+    "slug": "coming-soon",
+    "name": "Coming Soon",
+    "description": "Blends in the works. Join the waitlist and we will tell you the moment they are milled.",
+    "heroImage": null,
+    "seo": {
+      "title": "Coming Soon",
+      "description": "New KokoFresh blends launching shortly — moringa, mint, fenugreek and cluster beans chutney powders.",
+      "robots": "noindex, follow"
+    }
+  }
+]

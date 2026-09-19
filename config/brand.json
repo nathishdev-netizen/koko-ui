@@ -1,0 +1,40 @@
+{
+  "id": "kokofresh",
+  "name": "KokoFresh",
+  "legalName": "CKGFlavorz FoodTech Pvt Ltd",
+  "tagline": "From Karnataka’s kitchens to your table",
+  "description": "Small-batch Karnataka spice blends, chutney powders and single-origin spices — stone-ground fresh, with no fillers, additives or preservatives.",
+  "url": "https://kokofresh.in",
+  "logo": {
+    "src": "/brand/kokofresh-logo.webp",
+    "width": 1080,
+    "height": 1080
+  },
+  "favicon": "/favicon.ico",
+  "ogImage": "/brand/og-default.jpg",
+  "themeName": "kokofresh",
+  "locale": "en-IN",
+  "currency": "INR",
+  "contact": {
+    "email": "help@kokofresh.in",
+    "phone": "+91 78927 76610",
+    "whatsapp": "+917892776610"
+  },
+  "legal": {
+    "entityName": "CKGFlavorz FoodTech Pvt Ltd",
+    "gstin": "29AALCC8084A1ZH",
+    "gstRatePercent": 5,
+    "address": {
+      "street": "112, 17th Main Road, MIG KHB Colony, 5th Block, Koramangala",
+      "locality": "Bengaluru",
+      "region": "Karnataka",
+      "postalCode": "560095",
+      "country": "IN"
+    }
+  },
+  "socials": {
+    "instagram": "https://www.instagram.com/koko_fresh_india",
+    "facebook": "https://www.facebook.com/people/Koko-Fresh/61572673627952/",
+    "youtube": "https://youtube.com/@kokofresh_in"
+  }
+}

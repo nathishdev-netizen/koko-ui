@@ -1,0 +1,22 @@
+{
+  "title": "Refund Policy",
+  "intro": "Our spices are ground fresh for each order, so we cannot restock returns. We will always make it right if something arrives wrong.",
+  "sections": [
+    {
+      "heading": "When we replace or refund",
+      "body": "<p>We replace or refund an order if it arrives <strong>damaged</strong>, if you receive the <strong>wrong item</strong>, or if there is a genuine quality issue with the blend.</p>"
+    },
+    {
+      "heading": "How to raise it",
+      "body": "<p>Contact us <strong>within 24 hours</strong> of delivery with your order number and a photo of the issue. An unboxing video helps us resolve damage claims faster.</p>"
+    },
+    {
+      "heading": "What we cannot accept",
+      "body": "<p>Because every pack is ground to order and food-grade, we cannot accept returns of opened or correctly delivered products.</p>"
+    },
+    {
+      "heading": "Refund timelines",
+      "body": "<p>Approved refunds are issued to the original payment method and typically reach you within <strong>5–7 working days</strong>.</p>"
+    }
+  ]
+}

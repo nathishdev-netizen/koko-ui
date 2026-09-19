@@ -1,0 +1,26 @@
+{
+  "title": "Privacy Policy",
+  "intro": "What we collect, why we collect it, and what we never do with it.",
+  "sections": [
+    {
+      "heading": "What we collect",
+      "body": "<p>Your name, email, phone number and delivery address when you place an order, and basic usage data that helps us keep the site working.</p>"
+    },
+    {
+      "heading": "Why we collect it",
+      "body": "<p>To process and deliver your order, send order updates on WhatsApp, and answer support requests. Nothing more.</p>"
+    },
+    {
+      "heading": "Payments",
+      "body": "<p>Card and UPI details are handled entirely by our payment gateway on their own secure page. <strong>We never see or store your payment details.</strong></p>"
+    },
+    {
+      "heading": "Sharing",
+      "body": "<p>We share your address with our delivery partner so your order can reach you. We do not sell your data to anyone.</p>"
+    },
+    {
+      "heading": "Your choices",
+      "body": "<p>You can ask us to correct or delete your data at any time by emailing us.</p>"
+    }
+  ]
+}

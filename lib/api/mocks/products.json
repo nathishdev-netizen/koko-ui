@@ -1,0 +1,1687 @@
+[
+  {
+    "id": "prod-001",
+    "slug": "mysore-sambar-powder",
+    "name": "Mysore Sambar Powder",
+    "shortDescription": "The Mysore sambar powder that anchors a South Indian kitchen — coriander, toor dal and Byadagi chillies roasted separately, then stone-ground.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_2def76e89841434783e5bab6be3838ae~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+      "alt": "Mysore Sambar Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_2def76e89841434783e5bab6be3838ae~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+        "alt": "Mysore Sambar Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 17073,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": "Bestseller",
+    "rating": 4.8,
+    "reviewCount": 42,
+    "spiceLevel": 3,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>The Mysore sambar powder that anchors a South Indian kitchen — coriander, toor dal and Byadagi chillies roasted separately, then stone-ground.</p>",
+    "variants": [
+      {
+        "id": "mysore-sambar-powder-100g",
+        "sku": "MYS-SAM-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 17073,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "mysore-sambar-powder-200g",
+        "sku": "MYS-SAM-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 31707,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "The Mysore sambar powder that anchors a South Indian kitchen — coriander, toor dal and Byadagi chillies roasted separately, then stone-ground."
+    }
+  },
+  {
+    "id": "prod-002",
+    "slug": "mysore-rasam-powder",
+    "name": "Mysore Rasam Powder",
+    "shortDescription": "Pepper-forward rasam powder built for light, drinkable saaru — Byadagi and Guntur chillies, black pepper, coriander and asafoetida.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_a2fa5b5008874ae79fe561eef62b4baf~mv2.jpg/v1/fit/w_1080,h_1080,q_90/file.jpg",
+      "alt": "Mysore Rasam Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_a2fa5b5008874ae79fe561eef62b4baf~mv2.jpg/v1/fit/w_1080,h_1080,q_90/file.jpg",
+        "alt": "Mysore Rasam Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 12000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "Regional Specialty",
+    "rating": 4.7,
+    "reviewCount": 6,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>Pepper-forward rasam powder built for light, drinkable saaru — Byadagi and Guntur chillies, black pepper, coriander and asafoetida.</p>",
+    "variants": [
+      {
+        "id": "mysore-rasam-powder-100g",
+        "sku": "MYS-RAS-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 12000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "mysore-rasam-powder-200g",
+        "sku": "MYS-RAS-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 20000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "story",
+        "title": "Our story",
+        "html": "<h4>AT KOKOFRESH</h4>\n<h4>FROM THE KITCHENS OF KARNATAKA</h4>\n<p>Rasam - or saaru as it is known in Karnataka - is one of the simplest and most comforting dishes in South Indian cooking. Unlike heavier gravies, rasam is meant to be light, aromatic, and restorative, especially when made with a traditional rasam powder.</p>\n<p>For generations, Karnataka households have prepared rasam using carefully balanced spice blends that highlight pepper, cumin, and coriander rather than overwhelming heat.</p>\n<p>Our Karnataka Traditional Rasam Powder follows that same philosophy - whole spices sourced from farms, gently roasted, stone-ground in small batches, and packed fresh to preserve the delicate aroma that defines authentic rasam.</p>\n<h4>WHY KARNATAKA RASAM POWDER IS SPECIAL:</h4>\n<ul><li>Pepper-forward warmth rather than chilli-heavy heat</li><li>Balanced spices designed for light, drinkable rasam</li><li>Minimal ingredients for clarity and digestibility</li><li>Traditional roasting that preserves aroma</li></ul>\n<h4>OUR PROMISE:</h4>\n<p>Whole spices are sourced directly from farms - never mixed with fillers. Each batch is roasted carefully and ground in small batches only after orders are placed to preserve freshness and authentic flavour.</p>\n<h4>NO HIDDEN INGREDIENTS:</h4>\n<p>Many commercial rasam powders add lentils, fillers, or excessive chilli powder to create bulk. We don't. Ever.</p>\n<h4>OUR RASAM POWDER IS:</h4>\n<ul><li>Made only with whole spices</li><li>Pepper-forward for traditional Karnataka flavour</li><li>Stone-ground to preserve natural oils and aroma</li><li>Free from fillers, additives, and preservatives</li><li>Packed fresh for maximum aroma</li></ul>\n<p><em>From Karnataka's kitchens to your table. No shortcuts. No additives. Just authentic, home-style goodness.</em></p>"
+      },
+      {
+        "key": "ways",
+        "title": "Ways to enjoy",
+        "html": "<h4>CLASSIC RASAM</h4><p>Boil with tamarind water, tomatoes, and add tempering for a comforting, soulful rasam.</p>\n<h4>RICE MIX</h4><p>Mix rasam with hot rice and a drizzle of ghee for a simple, soothing meal.</p>\n<h4>SOUP STYLE</h4><p>Enjoy as a light digestive drink after meals — warm, spiced, and comforting.</p>\n<h4>FLAVOUR BOOST</h4><p>Add a pinch while making curries or dals to enhance aroma and taste.</p>"
+      },
+      {
+        "key": "nutrition",
+        "title": "Nutrition",
+        "html": "<h4>Protein</h4><p>2.71g</p>\n<h4>Energy</h4><p>455.52 kcal</p>\n<h4>Total Carbohydrates</h4><p>65.09g</p>\n<h4>Total Fat</h4><p>20.48g</p>\n<h4>Cholesterol</h4><p>0g</p>\n<h4>Saturated Fatty Acids (SFA)</h4><p>0.0036g</p>\n<h4>Trans Fatty Acids (TFA)</h4><p>0g</p>\n<h4>Sodium</h4><p>1367.8 mg/kg</p>\n<h4>Calcium (as Ca)</h4><p>4407.8 mg/kg</p>\n<h4>Iron</h4><p>86.3 mg/kg</p>\n<h4>Potassium</h4><p>1523.9 mg/kg</p>\n<h4>Dietary Fiber</h4><p>2.9g</p>\n<h4>Total Sugars</h4><p>5.77g</p>"
+      },
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Pepper-forward rasam powder built for light, drinkable saaru — Byadagi and Guntur chillies, black pepper, coriander and asafoetida."
+    }
+  },
+  {
+    "id": "prod-003",
+    "slug": "bisibelebath-powder",
+    "name": "Bisibelebath Powder",
+    "shortDescription": "Everything bisibelebath needs in one blend — cinnamon, clove, marathi moggu and copra, roasted and ground to order.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_20171c85fa4c47f0b975af40d35647da~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Bisibelebath Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_20171c85fa4c47f0b975af40d35647da~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Bisibelebath Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 15000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.7,
+    "reviewCount": 18,
+    "spiceLevel": 3,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>Everything bisibelebath needs in one blend — cinnamon, clove, marathi moggu and copra, roasted and ground to order.</p>",
+    "variants": [
+      {
+        "id": "bisibelebath-powder-100g",
+        "sku": "BIS-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 15000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "bisibelebath-powder-200g",
+        "sku": "BIS-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 28000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Everything bisibelebath needs in one blend — cinnamon, clove, marathi moggu and copra, roasted and ground to order."
+    }
+  },
+  {
+    "id": "prod-004",
+    "slug": "vangi-bath-powder",
+    "name": "Vangi Bath Powder",
+    "shortDescription": "The brinjal rice blend from Karnataka kitchens — warm, nutty and fragrant with roasted copra and sesame.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_71ee2ab6142d42ebaa34b78bc3b0c230~mv2.jpg/v1/fit/w_1080,h_1080,q_90/file.jpg",
+      "alt": "Vangi Bath Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_71ee2ab6142d42ebaa34b78bc3b0c230~mv2.jpg/v1/fit/w_1080,h_1080,q_90/file.jpg",
+        "alt": "Vangi Bath Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 15000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 18292,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.6,
+    "reviewCount": 14,
+    "spiceLevel": 3,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>The brinjal rice blend from Karnataka kitchens — warm, nutty and fragrant with roasted copra and sesame.</p>",
+    "variants": [
+      {
+        "id": "vangi-bath-powder-100g",
+        "sku": "VAN-BAT-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 15000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 18292,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "vangi-bath-powder-200g",
+        "sku": "VAN-BAT-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 28000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 34146,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "The brinjal rice blend from Karnataka kitchens — warm, nutty and fragrant with roasted copra and sesame."
+    }
+  },
+  {
+    "id": "prod-005",
+    "slug": "melkote-puliyogare-powder",
+    "name": "Melkote Puliyogare Powder",
+    "shortDescription": "Tamarind rice powder in the Melkote temple style — deeply roasted, tangy and unmistakably aromatic.",
+    "image": null,
+    "images": [],
+    "priceFrom": {
+      "amount": 16000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "Temple Recipe",
+    "rating": 4.9,
+    "reviewCount": 27,
+    "spiceLevel": 3,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>Tamarind rice powder in the Melkote temple style — deeply roasted, tangy and unmistakably aromatic.</p>",
+    "variants": [
+      {
+        "id": "melkote-puliyogare-powder-100g",
+        "sku": "MEL-PUL-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 16000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "melkote-puliyogare-powder-200g",
+        "sku": "MEL-PUL-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 30000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Tamarind rice powder in the Melkote temple style — deeply roasted, tangy and unmistakably aromatic."
+    }
+  },
+  {
+    "id": "prod-006",
+    "slug": "menthya-hittu",
+    "name": "Menthya Hittu",
+    "shortDescription": "Fenugreek-forward hittu, the quiet workhorse of a Karnataka pantry. A spoonful lifts rice, curd or dosa.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_bd5beb4d7e734d369a3539f9fe0cb6b5~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Menthya Hittu",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_bd5beb4d7e734d369a3539f9fe0cb6b5~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Menthya Hittu",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 13000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.5,
+    "reviewCount": 9,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "signature-blends"
+    ],
+    "primaryCollectionSlug": "signature-blends",
+    "descriptionHtml": "<p>Fenugreek-forward hittu, the quiet workhorse of a Karnataka pantry. A spoonful lifts rice, curd or dosa.</p>",
+    "variants": [
+      {
+        "id": "menthya-hittu-100g",
+        "sku": "MEN-HIT-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 13000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "menthya-hittu-200g",
+        "sku": "MEN-HIT-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 24000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Fenugreek-forward hittu, the quiet workhorse of a Karnataka pantry. A spoonful lifts rice, curd or dosa."
+    }
+  },
+  {
+    "id": "prod-007",
+    "slug": "groundnut-chutney-powder",
+    "name": "Groundnut Chutney Powder",
+    "shortDescription": "Roasted groundnut chutney pudi ground coarse, the way it is made at home. Mix with hot rice and ghee.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_711c42c01ce94885a58df012831c364a~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Groundnut Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_711c42c01ce94885a58df012831c364a~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Groundnut Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 11000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 13414,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": "Bestseller",
+    "rating": 4.8,
+    "reviewCount": 38,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Roasted groundnut chutney pudi ground coarse, the way it is made at home. Mix with hot rice and ghee.</p>",
+    "variants": [
+      {
+        "id": "groundnut-chutney-powder-100g",
+        "sku": "GRO-CHU-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 11000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 13414,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "groundnut-chutney-powder-200g",
+        "sku": "GRO-CHU-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 20000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 24390,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Roasted groundnut chutney pudi ground coarse, the way it is made at home. Mix with hot rice and ghee."
+    }
+  },
+  {
+    "id": "prod-008",
+    "slug": "bengal-gram-chutney-powder",
+    "name": "Bengal Gram Chutney Powder",
+    "shortDescription": "Putani chutney pudi — roasted bengal gram, dry coconut and curry leaves, ground fresh with no fillers.",
+    "image": null,
+    "images": [],
+    "priceFrom": {
+      "amount": 11000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.6,
+    "reviewCount": 21,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Putani chutney pudi — roasted bengal gram, dry coconut and curry leaves, ground fresh with no fillers.</p>",
+    "variants": [
+      {
+        "id": "bengal-gram-chutney-powder-100g",
+        "sku": "BEN-GRA-CHU-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 11000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "bengal-gram-chutney-powder-200g",
+        "sku": "BEN-GRA-CHU-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 20000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Putani chutney pudi — roasted bengal gram, dry coconut and curry leaves, ground fresh with no fillers."
+    }
+  },
+  {
+    "id": "prod-009",
+    "slug": "roasted-bengal-gram-chutney-powder",
+    "name": "Roasted Bengal Gram Chutney Powder",
+    "shortDescription": "Hurigadale chutney pudi, roasted a shade darker for a nuttier, deeper flavour.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_3513b76c11f0486da39a4e24f4e322b1~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Roasted Bengal Gram Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_3513b76c11f0486da39a4e24f4e322b1~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Roasted Bengal Gram Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 11500,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.6,
+    "reviewCount": 16,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Hurigadale chutney pudi, roasted a shade darker for a nuttier, deeper flavour.</p>",
+    "variants": [
+      {
+        "id": "roasted-bengal-gram-chutney-powder-100g",
+        "sku": "ROA-BEN-GRA-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 11500,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "roasted-bengal-gram-chutney-powder-200g",
+        "sku": "ROA-BEN-GRA-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 21000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Hurigadale chutney pudi, roasted a shade darker for a nuttier, deeper flavour."
+    }
+  },
+  {
+    "id": "prod-010",
+    "slug": "curry-leaves-chutney-powder",
+    "name": "Curry Leaves Chutney Powder",
+    "shortDescription": "Fresh curry leaves dried slowly and ground with lentils — herbal, iron-rich and intensely fragrant.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_95fab1978e5c4d2f922a0419d2ffb00a~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Curry Leaves Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_95fab1978e5c4d2f922a0419d2ffb00a~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Curry Leaves Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 13000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 15853,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.7,
+    "reviewCount": 19,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Fresh curry leaves dried slowly and ground with lentils — herbal, iron-rich and intensely fragrant.</p>",
+    "variants": [
+      {
+        "id": "curry-leaves-chutney-powder-100g",
+        "sku": "CUR-LEA-CHU-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 13000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 15853,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "curry-leaves-chutney-powder-200g",
+        "sku": "CUR-LEA-CHU-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 24000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 29268,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Fresh curry leaves dried slowly and ground with lentils — herbal, iron-rich and intensely fragrant."
+    }
+  },
+  {
+    "id": "prod-011",
+    "slug": "flax-seed-chutney-powder",
+    "name": "Flax Seed Chutney Powder",
+    "shortDescription": "Agase chutney pudi — roasted flax seed ground with garlic and chilli. Nutty, earthy and rich in omega-3.",
+    "image": null,
+    "images": [],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "High Fibre",
+    "rating": 4.5,
+    "reviewCount": 12,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Agase chutney pudi — roasted flax seed ground with garlic and chilli. Nutty, earthy and rich in omega-3.</p>",
+    "variants": [
+      {
+        "id": "flax-seed-chutney-powder-100g",
+        "sku": "FLA-SEE-CHU-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "flax-seed-chutney-powder-200g",
+        "sku": "FLA-SEE-CHU-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Agase chutney pudi — roasted flax seed ground with garlic and chilli. Nutty, earthy and rich in omega-3."
+    }
+  },
+  {
+    "id": "prod-012",
+    "slug": "magaravalli-chutney-powder",
+    "name": "Magaravalli Chutney Powder",
+    "shortDescription": "Doddapatre chutney pudi, made from the ambrosial leaf grown in Karnataka backyards.",
+    "image": null,
+    "images": [],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.4,
+    "reviewCount": 7,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "heritage-chutney-powders"
+    ],
+    "primaryCollectionSlug": "heritage-chutney-powders",
+    "descriptionHtml": "<p>Doddapatre chutney pudi, made from the ambrosial leaf grown in Karnataka backyards.</p>",
+    "variants": [
+      {
+        "id": "magaravalli-chutney-powder-100g",
+        "sku": "MAG-CHU-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "magaravalli-chutney-powder-200g",
+        "sku": "MAG-CHU-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Doddapatre chutney pudi, made from the ambrosial leaf grown in Karnataka backyards."
+    }
+  },
+  {
+    "id": "prod-013",
+    "slug": "malnad-black-pepper-powder",
+    "name": "Malnad Black Pepper Powder",
+    "shortDescription": "Vine-ripened black pepper from single-estate Malnad farms in the Western Ghats, milled fresh to keep the piperine sharp.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_8dc41b22f26a41ec8e51a2fb3fc006c8~mv2.webp/v1/fit/w_1080,h_1080,q_90/file.webp",
+      "alt": "Malnad Black Pepper Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/e7c120_8dc41b22f26a41ec8e51a2fb3fc006c8~mv2.webp/v1/fit/w_1080,h_1080,q_90/file.webp",
+        "alt": "Malnad Black Pepper Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 18000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 21951,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": "Single Estate",
+    "rating": 4.9,
+    "reviewCount": 31,
+    "spiceLevel": 4,
+    "collectionSlugs": [
+      "single-origin-spices"
+    ],
+    "primaryCollectionSlug": "single-origin-spices",
+    "descriptionHtml": "<p>Vine-ripened black pepper from single-estate Malnad farms in the Western Ghats, milled fresh to keep the piperine sharp.</p>",
+    "variants": [
+      {
+        "id": "malnad-black-pepper-powder-100g",
+        "sku": "MAL-BLA-PEP-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 18000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 21951,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "malnad-black-pepper-powder-200g",
+        "sku": "MAL-BLA-PEP-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 34000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 41463,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Vine-ripened black pepper from single-estate Malnad farms in the Western Ghats, milled fresh to keep the piperine sharp."
+    }
+  },
+  {
+    "id": "prod-014",
+    "slug": "malnad-white-pepper-powder",
+    "name": "Malnad White Pepper Powder",
+    "shortDescription": "Water-retted Malnad white pepper — cleaner and more floral than black, with a heat that arrives late.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_a2e36c875102412f92b4d69994f69c1d~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Malnad White Pepper Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_a2e36c875102412f92b4d69994f69c1d~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Malnad White Pepper Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 22000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "Single Estate",
+    "rating": 4.8,
+    "reviewCount": 11,
+    "spiceLevel": 4,
+    "collectionSlugs": [
+      "single-origin-spices"
+    ],
+    "primaryCollectionSlug": "single-origin-spices",
+    "descriptionHtml": "<p>Water-retted Malnad white pepper — cleaner and more floral than black, with a heat that arrives late.</p>",
+    "variants": [
+      {
+        "id": "malnad-white-pepper-powder-100g",
+        "sku": "MAL-WHI-PEP-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 22000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "malnad-white-pepper-powder-200g",
+        "sku": "MAL-WHI-PEP-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 42000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Water-retted Malnad white pepper — cleaner and more floral than black, with a heat that arrives late."
+    }
+  },
+  {
+    "id": "prod-015",
+    "slug": "buttermilk-infused-sundried-chillies",
+    "name": "Buttermilk Infused Sundried Chillies",
+    "shortDescription": "Majjige menasinakai — chillies soaked in spiced buttermilk and sun-dried over days. Fry for seconds; eat with curd rice.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_5a4c225f6d1e49a3ac52ae97f8b22354~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Buttermilk Infused Sundried Chillies",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_5a4c225f6d1e49a3ac52ae97f8b22354~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Buttermilk Infused Sundried Chillies",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 15000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "Bestseller",
+    "rating": 4.9,
+    "reviewCount": 45,
+    "spiceLevel": 4,
+    "collectionSlugs": [
+      "best-sellers"
+    ],
+    "primaryCollectionSlug": "best-sellers",
+    "descriptionHtml": "<p>Majjige menasinakai — chillies soaked in spiced buttermilk and sun-dried over days. Fry for seconds; eat with curd rice.</p>",
+    "variants": [
+      {
+        "id": "buttermilk-infused-sundried-chillies-100g",
+        "sku": "BUT-INF-SUN-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 15000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "buttermilk-infused-sundried-chillies-200g",
+        "sku": "BUT-INF-SUN-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 28000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Majjige menasinakai — chillies soaked in spiced buttermilk and sun-dried over days. Fry for seconds; eat with curd rice."
+    }
+  },
+  {
+    "id": "prod-016",
+    "slug": "supari",
+    "name": "Supari",
+    "shortDescription": "House-blend mouth freshener, gently spiced and lightly sweet. The way a Karnataka meal is meant to end.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_1275d146a5c94a15a1fdb90f0a3b2984~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Supari",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_1275d146a5c94a15a1fdb90f0a3b2984~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Supari",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 9000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": {
+      "amount": 10975,
+      "currency": "INR"
+    },
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.6,
+    "reviewCount": 23,
+    "spiceLevel": 0,
+    "collectionSlugs": [
+      "best-sellers"
+    ],
+    "primaryCollectionSlug": "best-sellers",
+    "descriptionHtml": "<p>House-blend mouth freshener, gently spiced and lightly sweet. The way a Karnataka meal is meant to end.</p>",
+    "variants": [
+      {
+        "id": "supari-100g",
+        "sku": "SUP-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 9000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 10975,
+          "currency": "INR"
+        },
+        "inStock": true
+      },
+      {
+        "id": "supari-200g",
+        "sku": "SUP-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 16000,
+          "currency": "INR"
+        },
+        "compareAtPrice": {
+          "amount": 19512,
+          "currency": "INR"
+        },
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "House-blend mouth freshener, gently spiced and lightly sweet. The way a Karnataka meal is meant to end."
+    }
+  },
+  {
+    "id": "prod-017",
+    "slug": "jaggery-powder",
+    "name": "Jaggery Powder",
+    "shortDescription": "Unrefined sugarcane jaggery powder with no sulphur and nothing bleached. Dissolves clean into coffee, payasa or chutney.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_5a4c225f6d1e49a3ac52ae97f8b22354~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Jaggery Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_5a4c225f6d1e49a3ac52ae97f8b22354~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Jaggery Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 10000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": null,
+    "rating": 4.7,
+    "reviewCount": 29,
+    "spiceLevel": 0,
+    "collectionSlugs": [
+      "everyday-superfoods"
+    ],
+    "primaryCollectionSlug": "everyday-superfoods",
+    "descriptionHtml": "<p>Unrefined sugarcane jaggery powder with no sulphur and nothing bleached. Dissolves clean into coffee, payasa or chutney.</p>",
+    "variants": [
+      {
+        "id": "jaggery-powder-100g",
+        "sku": "JAG-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 10000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "jaggery-powder-200g",
+        "sku": "JAG-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 18000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Unrefined sugarcane jaggery powder with no sulphur and nothing bleached. Dissolves clean into coffee, payasa or chutney."
+    }
+  },
+  {
+    "id": "prod-018",
+    "slug": "multi-millets-porridge-mix",
+    "name": "Multi Millets Porridge Mix",
+    "shortDescription": "Seven millets roasted and ground for a porridge that actually keeps you full. For babies, elders and anyone in a hurry.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/51d20f_817a958e68d7486baaa9db477dc83adb~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Multi Millets Porridge Mix",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_817a958e68d7486baaa9db477dc83adb~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Multi Millets Porridge Mix",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 18000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": true,
+    "ribbon": "Wholesome",
+    "rating": 4.6,
+    "reviewCount": 17,
+    "spiceLevel": 0,
+    "collectionSlugs": [
+      "everyday-superfoods"
+    ],
+    "primaryCollectionSlug": "everyday-superfoods",
+    "descriptionHtml": "<p>Seven millets roasted and ground for a porridge that actually keeps you full. For babies, elders and anyone in a hurry.</p>",
+    "variants": [
+      {
+        "id": "multi-millets-porridge-mix-100g",
+        "sku": "MUL-MIL-POR-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 18000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      },
+      {
+        "id": "multi-millets-porridge-mix-200g",
+        "sku": "MUL-MIL-POR-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 34000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": true
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Seven millets roasted and ground for a porridge that actually keeps you full. For babies, elders and anyone in a hurry."
+    }
+  },
+  {
+    "id": "prod-019",
+    "slug": "moringa-chutney-powder",
+    "name": "Moringa Chutney Powder",
+    "shortDescription": "Drumstick leaf chutney pudi, dried and ground at low heat to hold on to the colour and the iron.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/0d9f8b_46b4a3d0a10f4b399b94d043ff3ccf22~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+      "alt": "Moringa Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_46b4a3d0a10f4b399b94d043ff3ccf22~mv2.png/v1/fit/w_1080,h_1080,q_90/file.png",
+        "alt": "Moringa Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": false,
+    "ribbon": "Coming Soon",
+    "rating": null,
+    "reviewCount": 0,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "coming-soon"
+    ],
+    "primaryCollectionSlug": "coming-soon",
+    "descriptionHtml": "<p>Drumstick leaf chutney pudi, dried and ground at low heat to hold on to the colour and the iron.</p>",
+    "variants": [
+      {
+        "id": "moringa-chutney-powder-100g",
+        "sku": "MOR-CHU-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      },
+      {
+        "id": "moringa-chutney-powder-200g",
+        "sku": "MOR-CHU-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Drumstick leaf chutney pudi, dried and ground at low heat to hold on to the colour and the iron.",
+      "robots": "noindex, follow"
+    }
+  },
+  {
+    "id": "prod-020",
+    "slug": "mint-chutney-powder-pudina-chutney-powder",
+    "name": "Mint Chutney Powder",
+    "shortDescription": "Pudina chutney pudi — mint dried slowly so the cooling note survives the grind.",
+    "image": null,
+    "images": [],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": false,
+    "ribbon": "Coming Soon",
+    "rating": null,
+    "reviewCount": 0,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "coming-soon"
+    ],
+    "primaryCollectionSlug": "coming-soon",
+    "descriptionHtml": "<p>Pudina chutney pudi — mint dried slowly so the cooling note survives the grind.</p>",
+    "variants": [
+      {
+        "id": "mint-chutney-powder-pudina-chutney-powder-100g",
+        "sku": "MIN-CHU-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      },
+      {
+        "id": "mint-chutney-powder-pudina-chutney-powder-200g",
+        "sku": "MIN-CHU-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Pudina chutney pudi — mint dried slowly so the cooling note survives the grind.",
+      "robots": "noindex, follow"
+    }
+  },
+  {
+    "id": "prod-021",
+    "slug": "fenugreek-chutney-powder-menthya-chutney-powder",
+    "name": "Fenugreek Chutney Powder",
+    "shortDescription": "Menthya chutney pudi, roasted to take the bitter edge off the fenugreek and leave the aroma behind.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_043fe86496a045fb88148206030e40c4~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+      "alt": "Fenugreek Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/e7c120_043fe86496a045fb88148206030e40c4~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+        "alt": "Fenugreek Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 13000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": false,
+    "ribbon": "Coming Soon",
+    "rating": null,
+    "reviewCount": 0,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "coming-soon"
+    ],
+    "primaryCollectionSlug": "coming-soon",
+    "descriptionHtml": "<p>Menthya chutney pudi, roasted to take the bitter edge off the fenugreek and leave the aroma behind.</p>",
+    "variants": [
+      {
+        "id": "fenugreek-chutney-powder-menthya-chutney-powder-100g",
+        "sku": "FEN-CHU-POW-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 13000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      },
+      {
+        "id": "fenugreek-chutney-powder-menthya-chutney-powder-200g",
+        "sku": "FEN-CHU-POW-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 24000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Menthya chutney pudi, roasted to take the bitter edge off the fenugreek and leave the aroma behind.",
+      "robots": "noindex, follow"
+    }
+  },
+  {
+    "id": "prod-022",
+    "slug": "cluster-beans-chutney-powder",
+    "name": "Cluster Beans Chutney Powder",
+    "shortDescription": "Gorikayi chutney pudi — an old Karnataka way of turning a plain vegetable into something worth keeping.",
+    "image": {
+      "url": "https://static.wixstatic.com/media/e7c120_9416dd1bb16c44d08c5468fedd8070d3~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+      "alt": "Cluster Beans Chutney Powder",
+      "width": 1080,
+      "height": 1080
+    },
+    "images": [
+      {
+        "url": "https://static.wixstatic.com/media/e7c120_9416dd1bb16c44d08c5468fedd8070d3~mv2.jpeg/v1/fit/w_1080,h_1080,q_90/file.jpeg",
+        "alt": "Cluster Beans Chutney Powder",
+        "width": 1080,
+        "height": 1080
+      }
+    ],
+    "priceFrom": {
+      "amount": 14000,
+      "currency": "INR"
+    },
+    "compareAtPriceFrom": null,
+    "inStock": false,
+    "ribbon": "Coming Soon",
+    "rating": null,
+    "reviewCount": 0,
+    "spiceLevel": 2,
+    "collectionSlugs": [
+      "coming-soon"
+    ],
+    "primaryCollectionSlug": "coming-soon",
+    "descriptionHtml": "<p>Gorikayi chutney pudi — an old Karnataka way of turning a plain vegetable into something worth keeping.</p>",
+    "variants": [
+      {
+        "id": "cluster-beans-chutney-powder-100g",
+        "sku": "CLU-BEA-CHU-100",
+        "label": "100g",
+        "weightGrams": 100,
+        "price": {
+          "amount": 14000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      },
+      {
+        "id": "cluster-beans-chutney-powder-200g",
+        "sku": "CLU-BEA-CHU-200",
+        "label": "200g",
+        "weightGrams": 200,
+        "price": {
+          "amount": 26000,
+          "currency": "INR"
+        },
+        "compareAtPrice": null,
+        "inStock": false
+      }
+    ],
+    "sections": [
+      {
+        "key": "storage",
+        "title": "Storage",
+        "html": "<h4>STORAGE TIPS:</h4>\n<ul><li>Transfer to an airtight glass or steel container immediately</li><li>Store in a cool, dry place away from direct sunlight</li><li>Do NOT refrigerate (condensation can affect the spice blend)</li><li>Keep away from moisture, steam, and strong odors</li><li>Best consumed within 180 days of packaging date</li></ul>\n<h4>WHY 180 DAYS?</h4>\n<p>Rasam powder contains freshly roasted spices that naturally release aromatic oils. Since we do not add preservatives or anti-caking agents, the aroma gradually reduces over time. After 180 days, it remains safe to consume, but the fragrance and flavour may begin to fade - a sign of preservative-free rasam powder.</p>\n<h4>IF AROMA REDUCES:</h4>\n<ol><li>Lightly dry roast before use to revive flavour, OR</li><li>Use slightly higher quantity while cooking, OR</li><li>Store tightly sealed to retain remaining freshness</li></ol>"
+      },
+      {
+        "key": "why-switch",
+        "title": "Why switch?",
+        "html": "<h4>REGULAR RASAM POWDER:</h4>\n<ul><li>Often chilli-heavy and harsh</li><li>Contains lentils or fillers</li><li>Ground months before sale</li><li>Aroma fades quickly</li></ul>\n<h4>KOKOFRESH RASAM POWDER:</h4>\n<ul><li>Pepper-forward, balanced flavour</li><li>Made only with pure spices</li><li>Ground fresh in small batches</li><li>Fresh roasting preserves fragrance</li></ul>\n<h4>NOT JUST BETTER - AUTHENTIC.</h4>\n<p>Real ingredients. Traditional process. Honest flavour - just the way rasam powder should be.</p>"
+      }
+    ],
+    "seo": {
+      "description": "Gorikayi chutney pudi — an old Karnataka way of turning a plain vegetable into something worth keeping.",
+      "robots": "noindex, follow"
+    }
+  }
+]

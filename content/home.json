@@ -1,0 +1,114 @@
+{
+  "announcement": {
+    "desktop": "Freshly Made Spices — Crafted Only After You Order. Taste the Difference!",
+    "mobile": "No Preservatives. No Adulteration. Only Freshly Ground Spices."
+  },
+  "hero": {
+    "eyebrow": "Premium Spices",
+    "cta": {
+      "label": "Shop Collection",
+      "href": "/shop"
+    },
+    "slides": [
+      {
+        "title": "Freshly Made",
+        "titleAccent": "To Your Order",
+        "body": "Every masala is crafted fresh when you order and delivered to your doorstep. Experience the real meaning of freshly ground spices."
+      },
+      {
+        "title": "Farm Traceable",
+        "titleAccent": "Ingredients",
+        "body": "Know exactly where your ingredients come from — offering complete transparency from farm to kitchen."
+      },
+      {
+        "title": "Authentic &",
+        "titleAccent": "Handcrafted",
+        "body": "Small batch roasted. Crafted by skilled women artisans. Pure, traditional, and full of flavor."
+      },
+      {
+        "title": "100% Pure",
+        "titleAccent": "Natural Ingredients",
+        "body": "No preservatives. No additives. No palm oil. Only clean, real, authentic spice blends."
+      }
+    ]
+  },
+  "trustBadges": [
+    {
+      "icon": "shield-check",
+      "label": "FSSAI Licensed"
+    },
+    {
+      "icon": "leaf",
+      "label": "Zero Preservatives"
+    },
+    {
+      "icon": "beaker",
+      "label": "Lab-Tested Purity"
+    }
+  ],
+  "brandQuote": {
+    "paragraphs": [
+      "KokoFresh, where we bring you the most authentic flavorz of India, straight from our home to yours. Our passion for purity and tradition is sealed in every pack of our exquisite spice powders.",
+      "We believe that the heart of any delicious meal lies in the quality of its ingredients — and we are dedicated to providing you with the finest, most flavorful spices to elevate your culinary creations."
+    ],
+    "signature": "From the Heart of KokoFresh",
+    "backdrop": {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/indian-spice-farm-harvest-ugGkK6QZQ1jAUGD5mfz543JeNpEiv2.jpg",
+      "alt": "Freshly harvested spices drying at a Karnataka farm"
+    }
+  },
+  "usp": {
+    "heading": "Not Your Average Masala",
+    "subheading": "We’re the spice brand that gets it — authentic flavorz, modern convenience, and that irresistible touch that makes your food (and your feed) shine.",
+    "items": [
+      {
+        "icon": "hand-heart",
+        "title": "Handcrafted Heritage",
+        "body": "Rooted in India’s spice traditions, every blend is carefully handcrafted to preserve authentic regional flavorz passed through generations.",
+        "stat": "Traditional Process"
+      },
+      {
+        "icon": "leaf",
+        "title": "100% Natural Ingredients",
+        "body": "No preservatives. No artificial colors. Only pure, farm-fresh spices sourced directly from the hands that nurture them.",
+        "stat": "Pure & Clean"
+      },
+      {
+        "icon": "package",
+        "title": "Sealed for Purity",
+        "body": "Air-tight, eco-conscious packaging ensures each spice stays as fresh and fragrant as the day it was ground.",
+        "stat": "Stay Fresh"
+      }
+    ]
+  },
+  "collections": {
+    "heading": "Explore Our Collections",
+    "subheading": "Curated categories for every taste and tradition",
+    "cta": {
+      "label": "Shop All",
+      "href": "/shop"
+    }
+  },
+  "bestSellers": {
+    "eyebrow": "Curated Collection",
+    "heading": "Our Best Sellers"
+  },
+  "socialProof": [
+    {
+      "value": "100K+",
+      "label": "Happy Customers"
+    },
+    {
+      "value": "4.9★",
+      "label": "Average Rating"
+    },
+    {
+      "value": "50M+",
+      "label": "Insta Views"
+    },
+    {
+      "value": "24/7",
+      "label": "Flavor Support"
+    }
+  ]
+}

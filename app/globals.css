@@ -1,0 +1,2456 @@
+/* Fontshare faces (Indian Type Foundry, free for commercial use), self-hosted
+   in public/fonts — refresh with `node scripts/fetch-fontshare.mjs`. Loaded
+   ahead of the reset so @font-face is registered before anything paints. */
+@import '../public/fonts/fontshare.css';
+
+/* Layer order matters: reset -> component base -> theme token overrides. */
+@import '@astryxdesign/core/reset.css';
+@import '@astryxdesign/core/astryx.css';
+@import '../themes/kokofresh/theme.css';
+
+/*
+ * Bridge next/font to the theme's font tokens.
+ *
+ * The built theme names families literally ("Poppins"), but next/font self-hosts
+ * them under generated names exposed as --font-body / --font-heading. Pointing
+ * the theme tokens at those variables is what makes the self-hosted files (and
+ * their CLS-preventing fallback metrics) actually apply. Without this the
+ * browser silently falls back.
+ */
+@layer astryx-theme {
+  /*
+   * Bound on every element, not just :root, so the tokens resolve against the
+   * nearest --font-heading / --font-body in scope. That makes a font set
+   * swappable per subtree (see the dev /type comparison page) — a :root-only
+   * binding would freeze one set for the whole document.
+   */
+  *,
+  ::before,
+  ::after {
+    --font-family-body: var(--font-body), ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-family-heading: var(--font-heading), Georgia, Cambria, 'Times New Roman', serif;
+  }
+}
+
+/*
+ * Site chrome.
+ *
+ * Every value here is a theme token — no literal colours, so a brand swap
+ * carries through automatically. Layout only; component appearance stays with
+ * Astryx.
+ */
+@layer components {
+  /* --- Announcement bar --- */
+  .kf-announcement {
+    background: var(--color-background-card);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    max-height: 3rem;
+    transition: max-height 200ms ease, opacity 200ms ease;
+  }
+
+  .kf-announcement[data-collapsed] {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-announcement {
+      transition: none;
+    }
+  }
+
+  .kf-announcement-inner {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: var(--spacing-1_5, 6px) var(--spacing-4, 16px);
+    text-align: center;
+  }
+
+  /* One DOM, CSS picks the copy — no JS width check, no layout shift. */
+  .kf-announcement-mobile {
+    display: inline;
+  }
+  .kf-announcement-desktop {
+    display: none;
+  }
+  @media (min-width: 640px) {
+    .kf-announcement-mobile {
+      display: none;
+    }
+    .kf-announcement-desktop {
+      display: inline;
+    }
+  }
+
+  /*
+   * AppShell's sticky header ships with z-index: 1, which page content can
+   * paint over while scrolling — cards were passing in front of it. Raise the
+   * shell header itself; a rule on .kf-header inside it cannot fix this,
+   * because the stacking context belongs to the ancestor.
+   */
+  [class*='astryx-app-shell-header'] {
+    z-index: 30;
+  }
+
+  /* --- Header --- */
+  .kf-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+
+  /*
+   * The wordmark takes the display serif so the brand reads in its own voice;
+   * nav items stay in the body sans. TopNavHeading only accepts a string, so
+   * this is targeted by its data attribute rather than a wrapper element.
+   */
+  .kf-header [class*='astryx-top-nav-heading'] {
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* Breathing room: separate the brand from the nav, and the nav from the
+     actions, so nothing reads as crowded. */
+  .kf-header [class*='astryx-top-nav'] {
+    --top-nav-gap: var(--spacing-6, 24px);
+  }
+
+  /* Nav items sit heavier, matching the live site's chrome. */
+  .kf-header [class*='astryx-top-nav-item'] {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  /* The announcement strip reads as a statement, not fine print. */
+  .kf-announcement-inner { font-weight: 600; }
+
+  /* Matches the IconButton ghost sizing beside it. */
+  .kf-theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--color-icon-secondary, var(--color-text-secondary));
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .kf-theme-toggle:hover {
+    background: var(--color-overlay-hover);
+    color: var(--color-text-primary);
+  }
+  .kf-theme-toggle svg { width: 18px; height: 18px; }
+  .kf-theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-theme-toggle { transition: none; }
+  }
+
+  .kf-counted-action {
+    position: relative;
+    display: inline-flex;
+  }
+
+  /* Badge is decorative (aria-hidden); the count lives in the button's
+     accessible name, so overlapping it is safe for screen readers. */
+  .kf-count-badge {
+    position: absolute;
+    top: -2px;
+    inset-inline-end: -2px;
+    pointer-events: none;
+  }
+
+  /* --- Footer --- */
+  .kf-footer {
+    position: relative;
+    background: #FDF4E3;
+    --color-text-primary: #3B2B13;
+    --color-text-secondary: #6B5D52;
+    --color-text-accent: #9A4600;
+    --color-border: #E7D4B5;
+    color: var(--color-text-primary);
+    border-top: 1px solid var(--color-border);
+    margin-block-start: var(--spacing-10, 40px);
+  }
+
+  .kf-footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 1;
+    background-image:
+      radial-gradient(rgba(59, 43, 19, 0.07) 1px, transparent 1px),
+      radial-gradient(rgba(59, 43, 19, 0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+  .kf-footer-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: var(--spacing-8, 32px) var(--spacing-4, 16px);
+  }
+
+  .kf-footer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .kf-footer-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--color-success);
+  }
+
+  /*
+   * ── SIZE SCALE ────────────────────────────────────────────────────────
+   * One scale, applied everywhere, so cards and controls line up across
+   * pages. Card padding was previously ad hoc (3/4/5/8) with no system.
+   *
+   *   card body padding  →  var(--kf-card-pad)      (16px)
+   *   section heading    →  h2 from the type scale
+   *   primary action     →  Button size="lg"
+   *   inline action      →  Button size="md" (Astryx default)
+   *   meta / chips       →  0.875rem
+   *
+   * Controls are all 44px tall so a stepper, a select and a button sit on the
+   * same baseline — that is the "cart / kg button / options" alignment.
+   */
+  :root {
+    --kf-card-pad: var(--spacing-4, 16px);
+    --kf-control-h: 44px;
+  }
+
+  /* Every interactive control in a buy row shares one height. The shop's sort
+     control is NOT one of them — it sits beside 36px chips, so the 44px buy-row
+     height made it the tallest thing in the filter bar. */
+  .kf-buy-row :is(button, select, input) {
+    min-height: var(--kf-control-h);
+  }
+  .kf-chip { min-height: 36px; }
+
+  /* --- Shop listing --- */
+  .kf-shop,
+  .kf-pdp { padding-block: clamp(2rem, 5vw, 3.5rem); }
+
+  /* Now carries four rows — search, collections, price, sort — so it stacks
+     rather than trying to fit everything on one line. */
+  .kf-filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3, 12px);
+    padding-block: var(--spacing-3, 12px);
+    border-block: 1px solid var(--color-border);
+  }
+  /* The sort row: count on the left, controls grouped on the right. Previously
+     `space-between` spread three items across 1200px, leaving wide gaps either
+     side of the sort control; `margin-inline-start: auto` on the sort pushes it
+     and everything after it into one group instead. */
+  .kf-filters > :last-child { width: 100%; }
+  .kf-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-inline-start: auto;
+  }
+  /* Both chip rows start at the same x. Without a matching label the category
+     row began at 0 while the price row began after "PRICE", so the two sets of
+     chips were visibly out of line. */
+  .kf-filter-row { display: flex; gap: var(--spacing-1_5, 6px); align-items: center; flex-wrap: wrap; }
+  /* Row label — sits on the chips' optical centre and reads as a field name,
+     not as another chip. */
+  .kf-filter-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    flex: 0 0 auto;
+    min-width: 42px;
+  }
+
+  /* Search — full width of the filter block, icon inset on the leading edge. */
+  /* Capped: a full-width search reads as a page-level control and swamped the
+     filter bar. 420px is wide enough for the longest product name. */
+  .kf-search { position: relative; display: flex; align-items: center; width: min(420px, 100%); }
+  .kf-search-icon {
+    position: absolute;
+    inset-inline-start: 12px;
+    width: 18px;
+    height: 18px;
+    color: var(--color-text-secondary);
+    pointer-events: none;
+  }
+  .kf-search-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 38px;
+    border: 2px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background-surface);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 0.9375rem;
+  }
+  .kf-search-input::placeholder { color: var(--color-text-secondary); }
+  .kf-search-input:focus-visible {
+    outline: none;
+    border-color: var(--color-text-primary);
+  }
+  /* The type=search clear affordance is drawn by the browser and does not
+     follow the palette; the Clear button covers it. */
+  .kf-search-input::-webkit-search-cancel-button { appearance: none; }
+
+  /* Shop heading row — title on the left, bundles CTA aligned to its end. */
+  .kf-shop-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4, 16px);
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .kf-shop-bundles,
+  .kf-bundle-strip-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 46px;
+    border-radius: 999px;
+    background: #33240F;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .kf-shop-bundles:hover,
+  .kf-bundle-strip-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-low);
+  }
+  .kf-gift-icon { width: 18px; height: 18px; flex: 0 0 auto; }
+
+  /*
+   * Bundle cross-sell strip. On the brand's dark ground rather than a bordered
+   * cream box: at the foot of a long cream grid another cream panel disappears,
+   * and this is the one thing on the page asking for a second click. It carries
+   * the same grain as the other brown surfaces.
+   */
+  .kf-bundle-strip {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-5, 20px);
+    align-items: center;
+    justify-content: space-between;
+    /*
+     * Full-bleed: breaks out of .kf-container to span the viewport, so the
+     * strip reads as a band across the page rather than another card in the
+     * grid. The negative margin is exactly the container's own gutter plus the
+     * space between the 80rem max-width and the viewport edge.
+     */
+    /* A top-level band, rendered as a sibling of .kf-container rather than
+       inside it — a breakout from within the centred container fought both the
+       container's max-width and the Astryx VStack's flex sizing. */
+    width: 100%;
+    /* Inner padding keeps the text on the container's grid even though the
+       background runs edge to edge. */
+    /* Background runs edge to edge; the text stays on the container's grid. */
+    padding-block: clamp(2.25rem, 5vw, 3.25rem);
+    padding-inline: max(clamp(16px, 4vw, 40px), calc((100% - 80rem) / 2 + clamp(16px, 4vw, 40px)));
+    margin-block-start: clamp(2.5rem, 6vw, 4rem);
+    border-radius: 0;
+    background: linear-gradient(115deg, #3A2912 0%, #33240F 55%, #2A1D0C 100%);
+    --color-text-primary: #F7EEDC;
+    --color-text-secondary: #CBB99D;
+    --color-text-accent: #F0A85C;
+    color: #F7EEDC;
+  }
+  .kf-bundle-strip .kf-eyebrow { color: #F0A85C; }
+  /* Grain, matching .kf-section--brown. */
+  .kf-bundle-strip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255, 246, 232, 0.05) 1px, transparent 1px),
+      radial-gradient(rgba(255, 246, 232, 0.028) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+  /* On the dark ground the CTA inverts — cream pill, brown label. */
+  .kf-bundle-strip .kf-bundle-strip-cta {
+    background: #F7EEDC;
+    color: #33240F;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-shop-bundles:hover,
+    .kf-bundle-strip-cta:hover { transform: none; }
+  }
+
+  /*
+   * Product grid — a card is the SAME SIZE regardless of how many results the
+   * filter returned. `auto-fill` (not `auto-fit`) keeps the empty tracks, so
+   * two results are two normal cards with space to their right rather than two
+   * stretched ones. `minmax(0, 260px)` caps the column so a wide screen adds
+   * columns instead of inflating the cards.
+   */
+  .kf-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 260px));
+    gap: var(--spacing-3, 12px);
+    justify-content: start;
+  }
+  /* Single column on a phone: a fixed 260px card there leaves dead space beside
+     it, and with one column per row there is no inconsistency to guard against. */
+  @media (max-width: 560px) {
+    .kf-product-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Same rule for the home page's bundle and collection grids: a card keeps its
+     size whether the section holds 3 items or 8. */
+  .kf-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 300px));
+    gap: var(--spacing-3, 12px);
+    justify-content: start;
+  }
+  .kf-card-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 360px));
+  }
+  @media (max-width: 560px) {
+    .kf-card-grid,
+    .kf-card-grid--wide { grid-template-columns: 1fr; }
+  }
+
+  /*
+   * Bundle steps — beads on a line. The rule is drawn behind the numbered discs
+   * with a pseudo-element on the track, so the four steps read as one journey
+   * rather than four unrelated cards. The line is hidden when the steps wrap to
+   * a single column, where it would point nowhere.
+   */
+  .kf-steps-track {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-4, 16px);
+  }
+  .kf-steps-track::before {
+    content: '';
+    position: absolute;
+    top: 21px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--color-border-emphasized) 0 8px,
+      transparent 8px 16px
+    );
+  }
+  .kf-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2, 8px);
+    text-align: center;
+    padding-inline: var(--spacing-2, 8px);
+  }
+  .kf-step-num {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #33240F;
+    color: #FFFFFF;
+    font-family: var(--font-family-heading);
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  .kf-step-title { font-size: 1rem; }
+
+  @media (max-width: 860px) {
+    .kf-steps-track { grid-template-columns: repeat(2, 1fr); row-gap: var(--spacing-5, 20px); }
+    .kf-steps-track::before { display: none; }
+  }
+  @media (max-width: 520px) {
+    .kf-steps-track { grid-template-columns: 1fr; }
+    .kf-step { flex-direction: row; text-align: start; align-items: flex-start; }
+  }
+
+  /* Comparison table — scrolls in its own container, never the page. */
+  .kf-compare-scroll {
+    overflow-x: auto;
+    border: 2px solid var(--color-border);
+    border-radius: 20px;
+    background: var(--color-background-surface);
+  }
+  .kf-compare {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+    font-size: 0.9375rem;
+  }
+  .kf-compare th,
+  .kf-compare td {
+    padding: 14px 18px;
+    text-align: start;
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-compare tbody tr:last-child th,
+  .kf-compare tbody tr:last-child td { border-block-end: 0; }
+  .kf-compare thead th {
+    background: var(--color-background-card);
+    font-family: var(--font-family-heading);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  /* The row label stays put while the values scroll under it. */
+  .kf-compare tbody th {
+    position: sticky;
+    inset-inline-start: 0;
+    background: var(--color-background-surface);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-secondary);
+  }
+  .kf-compare thead th:first-child {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    background: var(--color-background-card);
+  }
+  /* The column for the bundle being viewed. */
+  .kf-compare th[data-current],
+  .kf-compare td[data-current] {
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .kf-compare thead th[data-current] {
+    background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+  }
+  .kf-compare-current {
+    display: block;
+    margin-block-start: 3px;
+    font-family: var(--font-family-body);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-accent);
+  }
+
+  /* The hint only makes sense while the table actually scrolls. */
+  .kf-swipe-hint { display: none; }
+  @media (max-width: 700px) {
+    .kf-swipe-hint { display: block; }
+  }
+
+  /* Why-bundles trio. */
+  .kf-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-5, 20px);
+  }
+  .kf-why-title { font-size: 1.125rem; }
+  @media (max-width: 720px) {
+    .kf-why-grid { grid-template-columns: 1fr; }
+  }
+
+  .kf-bundles-foot { padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .kf-bundle-lower { padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .kf-steps { padding-block-start: var(--spacing-4, 16px); }
+
+  /* Bundle trust row. */
+  .kf-bundle-trust {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2, 8px) var(--spacing-5, 20px);
+    justify-content: center;
+    padding-block: var(--spacing-4, 16px);
+    border-block: 1px solid var(--color-border);
+  }
+  .kf-bundle-trust li { display: inline-flex; align-items: center; gap: 8px; }
+  .kf-trust-icon { width: 16px; height: 16px; color: var(--color-text-accent); flex: 0 0 auto; }
+
+  /* Filter chips: hairline pills, filled only when active. */
+  .kf-chip {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+  }
+  .kf-chip:hover { border-color: var(--color-border-emphasized); }
+  .kf-chip[data-active] {
+    /* Matches the primary button's ink brown so the page has ONE filled
+       control colour. White on #33240F is 15.0:1. */
+    background: #33240F;
+    border-color: #33240F;
+    color: #FFFFFF;
+  }
+  .kf-chip:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .kf-sort-select {
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    border-radius: 999px;
+    /* Sized to hold the longest option ("Price: low to high") without
+       ellipsising it. A tighter cap truncated the selected label, which is
+       worse than the small gap it saved. */
+    width: auto;
+    /* Room on the right for the chevron we draw ourselves. */
+    padding: 0 30px 0 14px;
+    height: 36px;
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    /* The native arrow cannot be positioned — same fix as .kf-weight-select. */
+    appearance: none;
+    background-color: var(--color-background-surface);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5L6 8l3.5-3.5' fill='none' stroke='%2333240F' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+    background-size: 11px 11px;
+  }
+  .kf-sort-select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  /* "View All Products" — clears the filters. Same brown pill as the other
+     primary actions, with the arrow in a lighter disc as the legacy had. */
+  .kf-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 12px 0 28px;
+    border-radius: 999px;
+    background: #33240F;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .kf-view-all:hover { transform: translateY(-1px); box-shadow: var(--shadow-low); }
+  .kf-view-all-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 160ms ease;
+  }
+  .kf-view-all:hover .kf-view-all-arrow { transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-view-all:hover { transform: none; }
+    .kf-view-all:hover .kf-view-all-arrow { transform: none; }
+  }
+
+  .kf-page-link {
+    color: var(--color-text-accent, var(--color-accent));
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+  .kf-page-link:hover { text-decoration: underline; }
+
+  /* --- Product detail --- */
+  .kf-pdp-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  @media (min-width: 860px) {
+    .kf-pdp-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+
+  .kf-pdp-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-muted);
+  }
+  .kf-pdp-img { object-fit: cover; }
+  .kf-pdp-placeholder { width: 100%; height: 100%; }
+
+  .kf-price--lg { font-size: clamp(1.9rem, 3vw, 2.4rem); }
+
+  /* Gallery thumbnails */
+  .kf-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: var(--color-background-muted);
+  }
+  .kf-thumb-img { object-fit: cover; }
+
+  /* PDP trust badges */
+  .kf-trust-badge {
+    display: flex;
+    gap: var(--spacing-2, 8px);
+    align-items: flex-start;
+    padding: var(--spacing-3, 12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-element, 8px);
+  }
+
+  /*
+   * Mobile sticky buy bar. Desktop keeps the action in the buy box, so this is
+   * hidden above 860px rather than duplicated.
+   */
+  .kf-sticky-buy {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    gap: var(--spacing-3, 12px);
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+    padding-bottom: calc(var(--spacing-3, 12px) + env(safe-area-inset-bottom));
+    background: var(--color-background-surface);
+    border-block-start: 1px solid var(--color-border);
+    box-shadow: var(--shadow-med);
+  }
+  @media (min-width: 860px) {
+    .kf-sticky-buy { display: none; }
+  }
+  /* Room for the bar so it never covers the last line of content. */
+  @media (max-width: 859px) {
+    .kf-pdp { padding-block-end: 6rem; }
+  }
+
+  /* Catalogue-authored HTML (nutrition tables, storage notes). */
+  .kf-rich { line-height: 1.7; color: var(--color-text-secondary); }
+  .kf-rich :is(h3, h4) {
+    font-size: 0.9375rem;
+    margin: var(--spacing-3, 12px) 0 var(--spacing-1, 4px);
+    color: var(--color-text-primary);
+  }
+  .kf-rich ul { padding-inline-start: 1.1rem; margin: 0; }
+  .kf-rich p { margin: 0 0 var(--spacing-2, 8px); }
+
+  /* --- Blog --- */
+  .kf-post-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    overflow: hidden;
+    background: var(--color-background-surface);
+    transition: border-color 220ms ease, transform 220ms ease;
+  }
+  .kf-post-card:hover {
+    border-color: var(--color-border-emphasized);
+    transform: translateY(-2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-post-card { transition: none; }
+    .kf-post-card:hover { transform: none; }
+  }
+
+  .kf-post-link {
+    display: block;
+    padding: var(--spacing-4, 16px);
+    color: inherit;
+    text-decoration: none;
+  }
+  .kf-post-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+  }
+
+  .kf-post-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-element, 8px);
+    background: var(--color-background-muted);
+  }
+  .kf-post-img { object-fit: cover; }
+
+  /* --- Article --- */
+  .kf-article {
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+    max-width: 48rem;
+  }
+
+  .kf-article-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-muted);
+  }
+  .kf-article-img { object-fit: cover; }
+
+  /*
+   * Long-form reading: a ~66ch measure, generous leading, and headings in the
+   * display serif so an article reads like the rest of the brand.
+   */
+  .kf-prose {
+    max-width: 66ch;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+  }
+  .kf-prose > * + * { margin-block-start: var(--spacing-4, 16px); }
+  .kf-prose p { margin: 0; text-wrap: pretty; }
+  .kf-prose :is(h2, h3, h4) {
+    font-family: var(--font-family-heading);
+    font-weight: 400;
+    line-height: 1.25;
+    margin-block-start: var(--spacing-8, 32px);
+  }
+  .kf-prose h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
+  .kf-prose h3 { font-size: clamp(1.3rem, 2.2vw, 1.5rem); }
+  .kf-prose :is(ul, ol) { padding-inline-start: 1.4rem; margin: 0; }
+  .kf-prose li + li { margin-block-start: var(--spacing-2, 8px); }
+  .kf-prose a { color: var(--color-text-accent, var(--color-accent)); }
+  .kf-prose blockquote {
+    margin: 0;
+    padding-inline-start: var(--spacing-4, 16px);
+    border-inline-start: 2px solid var(--color-accent);
+    font-family: var(--font-family-heading);
+    font-style: italic;
+    color: var(--color-text-secondary);
+  }
+  .kf-prose img { max-width: 100%; height: auto; border-radius: var(--radius-element, 8px); }
+
+  /* --- Account --- */
+  .kf-account-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    align-items: start;
+  }
+  @media (min-width: 860px) {
+    .kf-account-grid { grid-template-columns: 200px 1fr; }
+  }
+
+  .kf-account-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .kf-account-nav a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: var(--radius-element, 8px);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .kf-account-nav a:hover { background: var(--color-background-muted); }
+  .kf-account-nav a[data-active] {
+    background: var(--color-accent);
+    color: #2B1A0C;
+  }
+  .kf-account-nav a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Wishlist toggle sits over the product image. */
+  .kf-wish {
+    position: absolute;
+    top: 8px;
+    inset-inline-end: 8px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-background-surface) 88%, transparent);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: color 160ms ease, background 160ms ease;
+  }
+  .kf-wish:hover { background: var(--color-background-surface); }
+  .kf-wish[data-on] { color: var(--color-error); }
+  .kf-wish[data-on] svg { fill: currentColor; }
+  .kf-wish svg { width: 16px; height: 16px; }
+  .kf-wish:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* --- Cart & checkout --- */
+  .kf-summary {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-surface);
+    padding: var(--spacing-5, 20px);
+  }
+  @media (min-width: 960px) {
+    .kf-summary { position: sticky; top: var(--spacing-6, 24px); }
+  }
+
+  .kf-discount { color: var(--color-success); }
+
+  .kf-cart-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+  @media (min-width: 960px) {
+    .kf-cart-grid { grid-template-columns: 1fr 340px; }
+  }
+
+  .kf-cart-line {
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    gap: var(--spacing-3, 12px);
+    align-items: start;
+    padding-block: var(--spacing-4, 16px);
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .kf-cart-media {
+    position: relative;
+    width: 88px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius-element, 8px);
+    background: var(--color-background-muted);
+  }
+  .kf-cart-img { object-fit: cover; }
+
+  .kf-bundle-contents {
+    list-style: none;
+    margin: var(--spacing-1, 4px) 0 0;
+    padding: 0;
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* Free-shipping progress */
+  .kf-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-background-muted);
+    overflow: hidden;
+  }
+  .kf-progress-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--color-accent);
+    transition: width 320ms ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-progress-fill { transition: none; }
+  }
+
+  .kf-nudge-item {
+    display: flex;
+    gap: var(--spacing-2, 8px);
+    align-items: flex-start;
+  }
+  .kf-nudge-media {
+    position: relative;
+    width: 56px;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius-element, 8px);
+    background: var(--color-background-muted);
+  }
+  .kf-nudge-img { object-fit: cover; }
+
+  /* --- Reviews --- */
+  .kf-stars[data-size='md'] .kf-star { width: 20px; height: 20px; }
+
+  .kf-review-summary {
+    display: grid;
+    gap: var(--spacing-4, 16px);
+    align-items: center;
+  }
+  @media (min-width: 640px) {
+    .kf-review-summary { grid-template-columns: auto 1fr; gap: var(--spacing-8, 32px); }
+  }
+
+  .kf-review-average {
+    font-family: var(--font-family-heading);
+    font-size: 2.6rem;
+    line-height: 1;
+  }
+  .kf-review-bars { max-width: 320px; }
+  .kf-review-bar { flex: 1; min-width: 80px; }
+
+  /* Star picker */
+  .kf-rate { display: inline-flex; gap: 2px; }
+  .kf-rate-star {
+    border: 0;
+    background: none;
+    padding: 2px;
+    cursor: pointer;
+    line-height: 0;
+  }
+  .kf-rate-star svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--color-border-emphasized);
+    transition: fill 120ms ease;
+  }
+  .kf-rate-star[data-on] svg { fill: var(--color-warning); }
+  .kf-rate-star:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-rate-star svg { transition: none; }
+  }
+
+  /* --- Spin wheel --- */
+  .kf-wheel-wrap {
+    position: relative;
+    width: min(320px, 80vw);
+    aspect-ratio: 1;
+  }
+  .kf-wheel {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 6px solid var(--color-accent);
+    overflow: hidden;
+    background: var(--color-background-card);
+    /* Long ease-out so the wheel decelerates like a real one. */
+    transition: transform 3s cubic-bezier(0.17, 0.67, 0.2, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-wheel { transition: none; }
+  }
+  .kf-wheel-seg {
+    position: absolute;
+    inset: 0;
+    transform-origin: 50% 50%;
+    display: flex;
+    justify-content: center;
+    padding-block-start: 12px;
+  }
+  .kf-wheel-seg[data-alt] .kf-wheel-label { color: var(--color-text-accent, var(--color-accent)); }
+  .kf-wheel-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    max-width: 8ch;
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+  .kf-wheel-pin {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    translate: -50% 0;
+    width: 0;
+    height: 0;
+    border-inline: 10px solid transparent;
+    border-block-start: 18px solid var(--color-accent);
+  }
+
+  .kf-coupon-row { align-items: flex-end; }
+
+  /* --- Cart drawer --- */
+  .kf-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    border: 0;
+    padding: 0;
+    background: var(--color-overlay);
+    cursor: pointer;
+  }
+
+  .kf-drawer {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-end: 0;
+    z-index: 41;
+    width: min(420px, 100vw);
+    overflow-y: auto;
+    padding: var(--spacing-5, 20px);
+    background: var(--color-background-surface);
+    border-inline-start: 1px solid var(--color-border);
+    box-shadow: var(--shadow-high);
+    animation: kf-slide-in 240ms ease;
+  }
+  @keyframes kf-slide-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-drawer { animation: none; }
+  }
+
+  .kf-drawer-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4, 16px);
+  }
+  .kf-drawer-line {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: var(--spacing-3, 12px);
+    align-items: start;
+  }
+  .kf-drawer-media {
+    position: relative;
+    width: 64px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius-element, 8px);
+    background: var(--color-background-muted);
+  }
+
+  /* A text button that reads as a link, for inline row actions. */
+  .kf-link-button {
+    border: 0;
+    background: none;
+    padding: 0;
+    font: inherit;
+    font-size: 0.8125rem;
+    color: var(--color-text-accent, var(--color-accent));
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .kf-link-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Room for the mobile sticky bar. */
+  @media (max-width: 859px) {
+    .kf-shop { padding-block-end: 6rem; }
+  }
+
+  /* --- Bundle configurator --- */
+  .kf-bundle-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+    padding-block-start: var(--spacing-2, 8px);
+  }
+  @media (min-width: 960px) {
+    /* Card on the LEFT, picker on the right — the legacy layout. The rail is
+       narrow and fixed; the picker takes the rest. */
+    .kf-bundle-grid { grid-template-columns: 340px minmax(0, 1fr); }
+    .kf-bundle-summary { grid-column: 1; grid-row: 1; }
+    .kf-bundle-picker { grid-column: 2; grid-row: 1; }
+  }
+
+  .kf-bundle-summary {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-surface);
+    padding: var(--spacing-5, 20px);
+  }
+  @media (min-width: 960px) {
+    /*
+     * The rail holds still while the picker, About, FAQ and everything else
+     * scroll past it — the legacy `sticky top-24`. `align-self: start` is what
+     * lets it stick: a stretched grid item is full-height and cannot.
+     * max-height + overflow keep a tall rail reachable on a short viewport.
+     */
+    .kf-bundle-summary {
+      position: sticky;
+      top: var(--spacing-6, 24px);
+      align-self: start;
+      max-height: calc(100dvh - var(--spacing-10, 40px));
+      overflow-y: auto;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-bundle-summary { position: static; }
+  }
+
+  /*
+   * Bundle slots — "Blend 1", "Blend 2". Two per row, mirroring the legacy
+   * layout: a labelled card per slot reads as a box being filled, where a flat
+   * grid of every product reads as a catalogue.
+   */
+  .kf-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4, 16px) var(--spacing-4, 16px);
+  }
+  @media (max-width: 560px) {
+    .kf-slot-grid { grid-template-columns: 1fr; }
+  }
+
+  /*
+   * Motion, deliberately restrained. Native scroll-driven animations
+   * (`animation-timeline: view()`) run off the main thread, so this costs
+   * nothing in CWV and needs no JS. Unsupported browsers simply never run the
+   * animation and see the final state — the `@supports` guard means content is
+   * never left invisible.
+   *
+   * Durations sit in the 200-500ms band; anything slower reads as lag rather
+   * than polish.
+   */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes kf-rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: none; }
+      }
+      /* Each panel lifts into place as it enters. `both` holds the start frame
+         so nothing flashes at full opacity before its turn. */
+      .kf-panel,
+      .kf-compare-scroll,
+      .kf-steps .kf-step,
+      .kf-bundle-trust {
+        animation: kf-rise linear both;
+        animation-timeline: view();
+        /* Plays over the first third of the element's pass through the
+           viewport, then holds — it is a reveal, not a scroll-linked scrub. */
+        animation-range: entry 10% cover 28%;
+      }
+    }
+  }
+
+  .kf-slot { display: flex; flex-direction: column; gap: 8px; }
+  .kf-slot-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+  .kf-slot-card {
+    position: relative;
+    flex: 1;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: var(--spacing-4, 16px);
+    border-radius: 18px;
+    /* Dashed while empty — it reads as a space waiting to be filled. */
+    border: 2px dashed var(--color-border-emphasized);
+    background: var(--color-background-surface);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  }
+  .kf-slot-card:hover:not(:disabled) {
+    border-color: #33240F;
+    transform: translateY(-1px);
+  }
+  .kf-slot-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .kf-slot-card[data-filled] {
+    border-style: solid;
+    border-color: var(--color-border-emphasized);
+    background: var(--color-background-card);
+  }
+  /* The filled state settles in rather than snapping — confirms the click. */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes kf-settle {
+      0% { transform: scale(0.97); }
+      60% { transform: scale(1.01); }
+      100% { transform: scale(1); }
+    }
+    .kf-slot-card[data-filled] .kf-slot-media { animation: kf-settle 260ms ease-out; }
+    .kf-slot-check { animation: kf-settle 280ms ease-out 40ms both; }
+  }
+  .kf-slot-media,
+  .kf-slot-img { transition: transform 240ms ease; }
+  .kf-slot-card[data-filled]:hover .kf-slot-media { transform: scale(1.04); }
+  .kf-slot-card:disabled { cursor: default; }
+
+  .kf-slot-plus {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-background-muted);
+    color: var(--color-text-secondary);
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+  .kf-slot-media {
+    position: relative;
+    width: 100%;
+    height: 96px;
+    display: grid;
+    place-items: center;
+  }
+  .kf-slot-img { object-fit: contain; }
+  .kf-slot-initials {
+    font-family: var(--font-family-heading);
+    font-size: 1.75rem;
+    color: color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+  }
+  .kf-slot-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+  }
+  .kf-slot-hint { font-size: 0.75rem; color: var(--color-text-accent); }
+  .kf-slot-check {
+    position: absolute;
+    top: 10px;
+    inset-inline-end: 10px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #33240F;
+    color: #FFFFFF;
+  }
+  .kf-slot-check--inline { position: static; flex: 0 0 auto; }
+
+  /* Picker dialog. */
+  .kf-slot-options { list-style: none; margin: 0; padding: var(--spacing-2, 8px); display: grid; gap: 4px; }
+  .kf-slot-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+  .kf-slot-option:hover { background: var(--color-background-card); }
+  .kf-slot-option[data-selected] {
+    background: var(--color-background-card);
+    border-color: var(--color-border-emphasized);
+  }
+  .kf-slot-option:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+  .kf-slot-option-media {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--color-background-surface);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  /* Summary rail — bundle photo + what's included. */
+  .kf-summary-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-background-card);
+  }
+  .kf-summary-img { object-fit: contain; }
+  .kf-collection-rule {
+    margin: 0;
+    text-align: center;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kf-collection-rule::before,
+  .kf-collection-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+  .kf-included-box {
+    padding: var(--spacing-3, 12px);
+    border-radius: 14px;
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+  }
+  .kf-included-title {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  /* Restored: these base rules were lost when the pick-grid block was replaced,
+     which left the list SVGs unsized — they expanded to fill their column and
+     the page grew to 9000px. An SVG with no width collapses to its natural
+     aspect and fills available space; always size list icons explicitly. */
+  .kf-tick-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .kf-tick-list li { display: flex; align-items: flex-start; gap: 10px; }
+  .kf-list-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin-block-start: 2px;
+    color: var(--color-text-accent);
+  }
+
+  .kf-tick-list--sm { gap: 8px; font-size: 0.8125rem; }
+  .kf-tick-list--sm .kf-list-icon { width: 15px; height: 15px; }
+
+  .kf-pick { height: 100%; }
+  .kf-pick-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-background-muted);
+  }
+  /* `contain`, not `cover`: these are packet shots, and cropping cut the tops
+     and bottoms off the pouches. */
+  .kf-pick-img { object-fit: contain; padding: 8px; }
+  .kf-pick-placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      var(--color-background-card) 0%,
+      var(--color-background-muted) 100%
+    );
+    font-family: var(--font-family-heading);
+    font-size: 1.75rem;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+  }
+  .kf-pick-body { padding: var(--spacing-3, 12px); }
+
+  /* Dev-only typography comparison page. */
+  .kf-typeset {
+    padding-block: var(--spacing-6, 24px);
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-typeset:nth-child(even) { background: var(--color-background-card); }
+  .kf-typeset-row {
+    display: flex; gap: var(--spacing-3, 12px); align-items: baseline; flex-wrap: wrap;
+  }
+
+  .kf-capitalize {
+    text-transform: capitalize;
+  }
+}
+
+/*
+ * Home page sections.
+ *
+ * Colour comes entirely from theme tokens, so a brand swap carries through.
+ * These rules handle composition — rhythm, scale, editorial detail — which is
+ * the layer Astryx deliberately leaves to the page.
+ */
+@layer components {
+  .kf-container {
+    max-width: 80rem;
+    margin-inline: auto;
+    /* Gutters grow with the viewport: a flat 16px left the content pinned to
+       the edges of a wide screen. */
+    padding-inline: clamp(16px, 4vw, 40px);
+  }
+  .kf-container--narrow { max-width: 46rem; }
+
+  /*
+   * Luxury signals value by spending space. Sections run generously tall and
+   * text is capped near 62 characters so nothing feels crammed.
+   */
+  .kf-section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+
+  /*
+   * ── LIGHT BANDS ───────────────────────────────────────────────────────
+   * The site is one committed dark scheme. These bands invert a section to
+   * the warm cream ground for contrast and rhythm — so the page reads dark
+   * with light moments, not as two competing themes.
+   *
+   * A band re-points the text tokens too, so anything inside it (Astryx
+   * components included) picks up the dark-on-cream pairing automatically.
+   */
+  .kf-section--light {
+    background: var(--color-background-card);
+    --color-background-card: #FFFFFF;
+    --color-background-surface: #FFFFFF;
+    --color-background-muted: #F6E9D2;
+    --color-text-primary: #3B2B13;
+    --color-text-secondary: #6B5D52;
+    --color-text-accent: #9A4600;
+    --color-icon-primary: #3B2B13;
+    --color-icon-secondary: #6B5D52;
+    --color-border: #E7D4B5;
+    --color-border-emphasized: #C9B392;
+  }
+
+  /* Kept as an alias so existing --white sections keep working. */
+  .kf-section--white { background: var(--color-background-surface); }
+
+  /* Alternating grounds give rhythm without introducing new colour. The
+     near-invisible dot texture stops the flat fill reading as a default
+     background-color — tactility, not decoration. */
+  /*
+   * ── TEXTURE ───────────────────────────────────────────────────────────
+   * A fine dot grain over every ground, so a large flat colour reads as a
+   * surface rather than a default background-color. Two layers at different
+   * scales keep it from looking like a regular screen pattern.
+   *
+   * Applied to the page itself (so the dark ground is never bare) and again,
+   * slightly stronger, inside light bands where the cream can take more.
+   */
+
+  /*
+   * ── TEXTURE ───────────────────────────────────────────────────────────
+   * A fine two-layer dot grain over the whole page, so the cream ground reads
+   * as paper rather than a flat fill. Dark dots on a light ground; two scales
+   * offset from each other so it never looks like a regular screen pattern.
+   */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(51, 36, 15, 0.055) 1px, transparent 1px),
+      radial-gradient(rgba(51, 36, 15, 0.03) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+
+  /* Content sits above the grain. */
+  body > * { position: relative; z-index: 1; }
+
+  .kf-section--cream,
+  .kf-section--light {
+    position: relative;
+  }
+  .kf-section--cream { background: var(--color-background-card); }
+  .kf-section--light::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image:
+      radial-gradient(rgba(59, 43, 19, 0.045) 1px, transparent 1px),
+      radial-gradient(rgba(59, 43, 19, 0.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+  .kf-section--light > * { position: relative; z-index: 1; }
+
+  /* A single restrained metallic rule. Gold is rationed to hairlines and small
+     marks — never text or fills, which tips straight into gaudy. */
+  .kf-rule {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--color-accent);
+    opacity: 0.55;
+  }
+
+  .kf-center { display: flex; justify-content: center; }
+  .kf-center-text { text-align: center; }
+  .kf-measure { max-width: 46ch; }
+
+  .kf-sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+  }
+
+  /*
+   * Cormorant is a Garamond revival: it renders optically smaller and lighter
+   * than a grotesk at the same nominal size, so headings get a size bump and a
+   * tighter line-height. Weight stays at 500-600 — heavier grades muddy the
+   * high-contrast strokes that make it read as premium.
+   */
+  /*
+   * Luxury typography is contrast plus SPACE. A Didone's hairlines need room:
+   * generous line-height, no negative tracking, and a lighter grade than a
+   * grotesk would take. Tightening these is what makes a display serif look
+   * cheap.
+   */
+  :is(h1, h2, h3, h4) {
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.18;
+  }
+  h1 { font-size: clamp(2.6rem, 5.6vw, 4rem); }
+  h2 { font-size: clamp(1.85rem, 3.4vw, 2.5rem); }
+  h3 { font-size: clamp(1.1rem, 1.7vw, 1.3rem); }
+
+  /*
+   * ── TYPE ROLES ────────────────────────────────────────────────────────
+   * Three roles, two families. Use these helpers rather than setting
+   * font-family ad hoc, so the system stays consistent as pages are added.
+   *
+   *   (default)    DM Sans              body copy, buttons, labels, nav
+   *   headings     Cormorant roman      h1-h4, hero, section titles
+   *   .kf-accent   display ITALIC       signatures, taglines, short human lines
+   *   .kf-eyebrow  DM Sans caps         section kickers above a heading
+   *   .kf-numeric  tabular figures      prices, quantities, stats
+   *
+   * The accent is rationed on purpose: an accent face only works when it is
+   * used sparingly, so keep it to short, human moments — never body copy.
+   */
+  .kf-accent {
+    font-family: var(--font-family-heading);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .kf-numeric { font-variant-numeric: tabular-nums; }
+
+  /*
+   * Fontshare sets. These faces are declared in public/fonts/fontshare.css
+   * rather than loaded through next/font, so each set rebinds the two font
+   * tokens by class instead of by CSS variable.
+   */
+  .kf-fs-zodiak { --font-heading: 'Zodiak'; }
+  .kf-fs-gambetta { --font-heading: 'Gambetta'; }
+  .kf-fs-erode { --font-heading: 'Erode'; }
+  .kf-fs-bespoke-serif { --font-heading: 'Bespoke Serif'; }
+  .kf-fs-clash-display { --font-heading: 'Clash Display'; }
+  .kf-fs-cabinet-grotesk { --font-heading: 'Cabinet Grotesk'; }
+
+  .kf-fs-body-satoshi { --font-body: 'Satoshi'; }
+  .kf-fs-body-general-sans { --font-body: 'General Sans'; }
+  .kf-fs-body-switzer { --font-body: 'Switzer'; }
+
+  /* Accent sizes per context — the italic needs a size bump to hold its own. */
+  .kf-footer-tagline {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--color-text-secondary);
+  }
+  .kf-signature {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+  }
+  .kf-card-tagline {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-text-accent, var(--color-accent));
+  }
+
+  /*
+   * Dual-tone heading: the second half drops to a lighter tan, as on the live
+   * site ("Explore Our Collections"). Use <span class="kf-h-alt"> around the
+   * words that should recede.
+   */
+  .kf-h-alt { color: var(--color-border-emphasized); }
+
+  /* A brown section: the brand's dark ground, used for a section at a time
+     rather than the whole page. Re-points text tokens so anything inside
+     (Astryx components included) flips to light-on-brown automatically. */
+  .kf-section--brown {
+    position: relative;
+    background: #33240F;
+    --color-background-card: #40301A;
+    --color-background-surface: #40301A;
+    --color-background-muted: #2A1D0C;
+    --color-text-primary: #F7EEDC;
+    --color-text-secondary: #CBB99D;
+    --color-text-accent: #F0A85C;
+    --color-icon-primary: #F7EEDC;
+    --color-icon-secondary: #CBB99D;
+    --color-border: #4E3C24;
+    --color-border-emphasized: #6B553A;
+  }
+  .kf-section--brown .kf-h-alt { color: #C9A96E; }
+  .kf-section--brown::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255, 246, 232, 0.05) 1px, transparent 1px),
+      radial-gradient(rgba(255, 246, 232, 0.028) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+  .kf-section--brown > * { position: relative; z-index: 1; }
+
+  /* Uppercase eyebrow over the serif headline — the brand's editorial pairing. */
+  .kf-eyebrow {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-accent, var(--color-accent));
+  }
+
+  /* --- Hero --- */
+  .kf-hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: clamp(30rem, 62vh, 36rem);
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .kf-hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .kf-hero-img {
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 900ms ease;
+  }
+  .kf-hero-img[data-active] { opacity: 1; }
+  .kf-hero-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, #1A1410 82%, transparent) 0%,
+      color-mix(in srgb, #1A1410 52%, transparent) 45%,
+      color-mix(in srgb, #1A1410 22%, transparent) 100%
+    );
+  }
+  .kf-hero-content {
+    position: relative;
+    max-width: 80rem;
+    width: 100%;
+    margin-inline: auto;
+    padding: clamp(1.5rem, 5vw, 3.5rem) var(--spacing-4, 16px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3, 12px);
+    color: #FFF8E1;
+  }
+  .kf-hero-eyebrow { color: #F6E6CB; }
+  .kf-hero-content :is(h1, h2) {
+    color: #FFF8E1;
+    text-wrap: balance;
+    font-weight: 500;
+  }
+  .kf-hero-line { display: block; }
+  .kf-hero-accent { color: #F0A85C; }
+  .kf-hero-body {
+    margin: 0;
+    max-width: 44ch;
+    color: #F0E6D8;
+    line-height: 1.6;
+  }
+  .kf-hero-cta { margin-block-start: var(--spacing-1, 4px); }
+  .kf-hero-dots { display: flex; gap: 8px; margin-block-start: var(--spacing-2, 8px); }
+  .kf-hero-dot {
+    width: 28px; height: 4px; padding: 0; border: 0; border-radius: 2px;
+    background: color-mix(in srgb, #FFF8E1 40%, transparent);
+    cursor: pointer; transition: background 200ms ease, width 200ms ease;
+  }
+  .kf-hero-dot[data-active] { width: 44px; background: #F0A85C; }
+  .kf-hero-dot:focus-visible { outline: 2px solid #FFF8E1; outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-hero-img, .kf-hero-dot { transition: none; }
+  }
+
+  /* --- Trust strip --- */
+  .kf-trust {
+    background: var(--color-background-surface);
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-trust-list {
+    display: flex;
+    gap: clamp(1rem, 5vw, 3rem);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    list-style: none;
+    margin: 0;
+    padding: var(--spacing-3, 12px) var(--spacing-4, 16px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .kf-trust-list::-webkit-scrollbar { display: none; }
+  @media (min-width: 720px) {
+    .kf-trust-list { justify-content: center; }
+  }
+  .kf-trust-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    white-space: nowrap;
+    font-size: 0.875rem; font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+  .kf-trust-icon { width: 18px; height: 18px; color: var(--color-success); flex-shrink: 0; }
+
+  /* --- Prices --- */
+  .kf-price {
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+  .kf-price--sm { font-size: 1.125rem; }
+  .kf-price-was {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text-secondary);
+  }
+
+  /*
+   * Card surfaces.
+   *
+   * Astryx's ClickableCard already draws the border, radius and clipping, so
+   * the inner article must NOT add its own — a square 1px border inside a
+   * 30px-radius card cuts visible lines across the corners. The inner element
+   * stays transparent and borderless; hover styling goes on the Astryx card
+   * itself.
+   */
+  .kf-product,
+  .kf-bundle,
+  .kf-collection {
+    border: 0;
+    background: transparent;
+  }
+
+  /*
+   * Cards sit on WHITE rather than the cream ground. White is ~9% lighter than
+   * the page, so a card reads as a distinct object and its photography gets a
+   * neutral surround — cream-on-cream left the hairline doing all the work.
+   */
+  /* .kf-card-link IS the Astryx card element, not a wrapper around one, so
+     this targets it directly rather than as a descendant. The token resolves
+     per-context: white inside a light band, the dark surface outside one. */
+  .kf-card-link {
+    /* A faint top-light gradient over the surface colour: a card reads as a
+       lit object rather than a flat fill. Barely perceptible by design. */
+    background: var(--color-background-surface);
+    color: var(--color-text-primary);
+    /* The square product media fills the card's full width at the very top, so
+       without clipping it paints OVER the card's rounded top corners and the
+       border disappears along the top edge — visible as the border "hiding" on
+       hover, when the colour change draws the eye to it. */
+    overflow: hidden;
+  }
+
+  /* On a light band the same trick works in reverse — warm at the top. */
+  .kf-section--light .kf-card-link {
+    background:
+      linear-gradient(180deg, rgba(59, 43, 19, 0.02) 0%, rgba(59, 43, 19, 0) 40%),
+      var(--color-background-surface);
+  }
+
+  /* Depth on interaction only — Astryx puts a card-in-a-grid at elevation
+     `none`, and a resting shadow reads as Material rather than luxury. */
+  .kf-card-link {
+    transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .kf-card-link:hover,
+  .kf-card-link:focus-visible {
+    border-color: var(--color-border-emphasized);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-low);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-card-link { transition: none; }
+    .kf-card-link:hover,
+    .kf-card-link:focus-visible { transform: none; }
+  }
+
+  /* --- Bundle cards (matches the live site's layout) --- */
+  .kf-bundle-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-surface);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  }
+  .kf-bundle-card:hover {
+    border-color: var(--color-border-emphasized);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-low);
+  }
+  .kf-bundle-card:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-bundle-card { transition: none; }
+    .kf-bundle-card:hover { transform: none; }
+  }
+
+  /* The banner already carries the price and savings artwork, so it leads. */
+  .kf-bundle-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--color-background-muted);
+  }
+  .kf-bundle-banner-img { object-fit: cover; }
+
+  .kf-bundle-card > :last-child { flex: 1; }
+
+  .kf-bundle-tagline {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .kf-bundle-inside {
+    margin: 0;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  /* Veg mark — the green-dot-in-a-square required on Indian packaged food. */
+  .kf-veg {
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid #007500;
+    border-radius: 2px;
+    background: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+  .kf-veg::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #007500;
+  }
+
+  /* Notify me — same height and shape as Add to cart, so an unavailable card
+     keeps the grid's silhouette. Outlined rather than filled: it is a lesser
+     commitment than a purchase and should not out-shout a live buy button. */
+  .kf-notify-btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 0 12px;
+    border: 1.5px solid #33240F;
+    border-radius: 999px;
+    background: transparent;
+    color: #33240F;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .kf-notify-btn:hover { background: #33240F; color: #FFFFFF; }
+  .kf-notify-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .kf-notify-icon { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  /* Unavailable card: no link, so no pointer affordance and no hover lift. */
+  .kf-card-link--inert { cursor: default; }
+  .kf-card-link--inert:hover { transform: none; box-shadow: none; }
+
+  /* Out-of-stock marker, sized to sit where the buy row sits on other cards. */
+  /* Non-interactive chip — a label, not a control. */
+  .kf-chip-static {
+    padding: 3px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background-body);
+    font-size: 0.8125rem;
+    color: var(--color-text-primary);
+  }
+
+  .kf-bundle-label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .kf-bundle-cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--color-text-accent, var(--color-accent));
+  }
+
+  /* --- Bundle cards --- */
+  .kf-bundle { position: relative; display: flex; flex-direction: column; height: 100%; }
+  .kf-bundle-media {
+    position: relative; width: 100%; aspect-ratio: 4 / 3;
+    background: var(--color-background-muted);
+    overflow: hidden;
+  }
+  .kf-bundle-img { object-fit: cover; }
+  .kf-bundle-placeholder {
+    display: grid; place-items: center; height: 100%;
+    font-family: var(--font-family-heading);
+    font-size: 3rem; color: var(--color-border-emphasized);
+  }
+  .kf-bundle-save { position: absolute; top: 12px; inset-inline-start: 12px; }
+  .kf-bundle-save [class*='astryx-badge'] {
+    background: #33240F;
+    color: #F7EEDC;
+    font-weight: 600;
+  }
+  .kf-bundle-rules {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 0.875rem; color: var(--color-text-secondary);
+  }
+  .kf-bundle-included { color: var(--color-success); font-weight: 500; }
+
+  /* --- Product cards --- */
+  .kf-product { position: relative; display: flex; flex-direction: column; height: 100%; }
+  /*
+   * Cards in a grid must share one silhouette: the media is a fixed square, the
+   * body fills the remaining height, and the price is pinned to the bottom with
+   * margin-top:auto. Without this a two-line title makes one card taller than
+   * its neighbours and the price row stops lining up across the row.
+   */
+  .kf-product,
+  .kf-bundle,
+  .kf-collection { height: 100%; }
+
+  .kf-product > *,
+  .kf-bundle > *,
+  .kf-collection > * { min-width: 0; }
+
+  .kf-product > :last-child,
+  .kf-bundle > :last-child,
+  .kf-collection > :last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Price is the anchor: it sits on the same baseline in every card. */
+  .kf-product-foot,
+  .kf-bundle-foot { margin-block-start: auto; padding-block-start: var(--spacing-2, 8px); }
+  .kf-product-media {
+    position: relative; width: 100%; aspect-ratio: 1;
+    background: var(--color-background-muted);
+    background: var(--color-background-muted);
+    overflow: hidden;
+  }
+  .kf-product-img { object-fit: cover; }
+  .kf-product-placeholder {
+    display: grid; place-items: center; height: 100%;
+    background: linear-gradient(
+      135deg,
+      var(--color-background-card) 0%,
+      var(--color-background-muted) 100%
+    );
+    font-family: var(--font-family-heading);
+    font-size: 2.25rem; letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--color-text-primary) 26%, transparent);
+  }
+  .kf-product-ribbon { position: absolute; top: 10px; inset-inline-start: 10px; }
+  /*
+   * Astryx's Badge is a 20%-opacity tint, which is legible on a flat panel and
+   * unreadable over photography — "Bestseller" and "Single Estate" were washing
+   * out into the product shot. Repaint it as an opaque brown pill: white on
+   * #33240F is 15.0:1 and holds over any image.
+   */
+  .kf-product-ribbon [class*='astryx-badge'] {
+    background: #33240F;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(31, 21, 8, 0.28);
+  }
+
+  .kf-carousel-item {
+    flex: 0 0 auto;
+    width: 220px;
+    min-width: 220px;
+  }
+  @media (min-width: 768px) { .kf-carousel-item { width: 240px; min-width: 240px; } }
+
+  /* Card commerce row */
+  .kf-card-buy {
+    display: flex;
+    gap: var(--spacing-2, 8px);
+    align-items: center;
+    margin-block-start: var(--spacing-1, 4px);
+    /* The row must never exceed the card: flex children default to
+       min-width:auto and, with nowrap labels, refuse to shrink — which pushed
+       "Add to cart" past the card's edge. */
+    min-width: 0;
+    width: 100%;
+  }
+  .kf-card-buy > * { min-width: 0; }
+  /*
+   * Below ~1100px the grid's column cannot fit "100g" + icon + "Add to cart",
+   * and the label truncates to "Add to…". The legacy card solved this the same
+   * way: drop to the cart icon alone and let the accessible name carry the
+   * meaning. Above that width the full label returns.
+   */
+  .kf-card-buy [class*='astryx-button'] {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-inline: 6px;
+    font-size: 0.8125rem;
+  }
+  .kf-weight-select {
+    flex: 0 0 auto;
+    min-width: 0;
+    /* Just wide enough for "1000g" plus the chevron. Any wider and it steals
+       the room "Add to cart" needs, truncating the label to "Add to…". */
+    width: 68px;
+    padding: 0 18px 0 8px;
+    background-position: right 4px center;
+    background-size: 10px 10px;
+    font-size: 0.75rem;
+    height: 34px;
+    /* Room on the right for the chevron we draw ourselves. */
+    padding: 0 26px 0 10px;
+    border: 1px solid var(--color-border-emphasized);
+    border-radius: var(--radius-element, 8px);
+    background-color: var(--color-background-body);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 0.8125rem;
+    line-height: 32px;
+    /* The native arrow cannot be positioned, so replace it. */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%236A5A48' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px 12px;
+    cursor: pointer;
+  }
+  .kf-weight-select:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+  .kf-weight-static {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+  .kf-card-buy > :last-child { flex: 1; }
+
+  /* Discount chip */
+  .kf-off {
+    padding: 2px 7px;
+    border-radius: 4px;
+    /* A discount is not an error. Red/pink was foreign to the cream-and-brown
+       palette; the orange accent is free now that buttons are brown.
+       text-accent on the 12% tint is 5.44 — passes AA. */
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+    color: var(--color-text-accent);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .kf-unit-price {
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kf-stars { display: inline-flex; gap: 1px; }
+  .kf-star { width: 14px; height: 14px; fill: var(--color-border-emphasized); }
+  .kf-star[data-filled] { fill: var(--color-warning); }
+
+  /* Heat scale — chillies, the vernacular of the category. */
+  .kf-spice { display: inline-flex; gap: 1px; align-items: center; }
+  .kf-chilli {
+    width: 14px;
+    height: 14px;
+    color: var(--color-error);
+    flex-shrink: 0;
+  }
+  .kf-chilli-stem { color: var(--color-success); }
+
+  /*
+   * Pinned parallax: the backdrop is fixed to the VIEWPORT and revealed through
+   * the section like a window, so the copy scrolls over a stationary image.
+   * `clip-path` on the section turns `position: fixed` into a local pin —
+   * without it the fixed layer would show through the whole page.
+   *
+   * This is deliberately NOT `background-attachment: fixed`, which iOS Safari
+   * ignores outright, and not a transform drift, which reads as a jump.
+   */
+  .kf-pinned {
+    position: relative;
+    isolation: isolate;
+    clip-path: inset(0);
+  }
+  /* When a pinned backdrop is present the scrim below IS the ground, so the
+     flat brown fill must step aside — left opaque it would cover the fixed
+     image entirely. The token overrides from --brown still apply, so the text
+     colours are unchanged. */
+  .kf-pinned:has(.kf-pinned-media) { background: transparent; }
+  .kf-pinned-media {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .kf-pinned-img { object-fit: cover; }
+  /* The brown ground becomes a scrim over the photo so the quote keeps its
+     contrast — verified AA against the same text tokens as the flat section. */
+  .kf-pinned::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(31, 21, 8, 0.9) 0%,
+      rgba(31, 21, 8, 0.82) 50%,
+      rgba(31, 21, 8, 0.9) 100%
+    );
+  }
+  .kf-pinned-body { position: relative; z-index: 2; }
+  .kf-pinned.kf-section--brown::after { z-index: 1; }
+  /* The section AFTER a pinned one must paint its own ground. Sections are
+     transparent by default and inherit the page background, but the pinned
+     layer is `position: fixed` — it is painted relative to the viewport, so it
+     shows through any transparent box that overlaps it, appearing as a strip
+     of photo bleeding past the section's bottom edge. */
+  .kf-pinned + .kf-section { position: relative; background: var(--color-background-body); }
+
+  /* A fixed layer inside a clip-path is a compositing cost on mobile, and the
+     effect reads poorly in a short viewport — fall back to the flat ground. */
+  @media (max-width: 767px) {
+    .kf-pinned-media { display: none; }
+    /* Media hidden but still in the DOM, so :has() still matches — restore the
+       flat ground or the section would render with no background at all. */
+    .kf-pinned:has(.kf-pinned-media) { background: #33240F; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-pinned-media { position: absolute; }
+  }
+
+  .kf-story-quote {
+    margin: 0;
+    max-width: 52ch;
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: var(--color-text-primary);
+  }
+
+  /* USP cards: centred, large icon, pill badge — the live site's treatment. */
+  .kf-usp-card {
+    height: 100%;
+    padding: var(--spacing-6, 24px) var(--spacing-5, 20px);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-container, 24px);
+    background: var(--color-background-surface);
+  }
+  .kf-usp-icon {
+    width: 44px;
+    height: 44px;
+    color: var(--color-text-primary);
+    stroke-width: 1.5;
+  }
+  .kf-usp-pill {
+    margin: var(--spacing-2, 8px) 0 0;
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-background-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  /* --- Brand story: off-centre editorial split --- */
+  .kf-story-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+  @media (min-width: 860px) {
+    /* 1 : 2 — the title rail stays narrow so the body column leads. */
+    .kf-story-grid { grid-template-columns: 1fr 2fr; align-items: start; }
+  }
+
+  .kf-story-rail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3, 12px);
+  }
+
+  .kf-story-body { max-width: 62ch; }
+
+  .kf-story-lead,
+  .kf-story-para {
+    margin: 0 0 var(--spacing-4, 16px);
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.15rem, 1.9vw, 1.35rem);
+    line-height: 1.68;
+    text-wrap: pretty;
+    color: var(--color-text-primary);
+  }
+
+  /* Drop cap — an editorial signal that costs nothing and reads as considered. */
+  .kf-story-lead::first-letter {
+    float: left;
+    font-size: 3.4em;
+    line-height: 0.86;
+    padding: 0.08em 0.1em 0 0;
+    color: var(--color-text-accent, var(--color-accent));
+  }
+
+  .kf-story-sig {
+    margin: var(--spacing-5, 20px) 0 0;
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  /* --- Value props --- */
+  .kf-usp-icon { width: 28px; height: 28px; color: var(--color-accent); }
+  .kf-stat-pill {
+    margin: 0; align-self: flex-start;
+    padding: 4px 12px; border-radius: 999px;
+    background: var(--color-success-muted);
+    color: var(--color-text-primary);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  /* --- Collections --- */
+  .kf-collection { position: relative; display: flex; flex-direction: column; height: 100%; }
+  .kf-collection-media {
+    position: relative; width: 100%; aspect-ratio: 3 / 2;
+    background: var(--color-background-muted); overflow: hidden;
+  }
+  .kf-collection-img { object-fit: cover; transition: transform 400ms ease; }
+  .kf-collection:hover .kf-collection-img { transform: scale(1.04); }
+  .kf-collection-placeholder {
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      var(--color-background-card) 0%,
+      var(--color-background-muted) 100%
+    );
+  }
+  .kf-explore {
+    margin-block-start: auto; padding-block-start: 4px;
+    font-size: 0.875rem; font-weight: 600;
+    color: var(--color-text-accent, var(--color-accent));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kf-collection-img { transition: none; }
+    .kf-collection:hover .kf-collection-img { transform: none; }
+  }
+
+  /* --- Stats band: the one dark surface, closing the page --- */
+  .kf-stats {
+    position: relative;
+    background: var(--color-background-inverted);
+    padding-block: clamp(2rem, 5vw, 3rem);
+  }
+  .kf-stats::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 1;
+    background-image: radial-gradient(rgba(255, 246, 232, 0.05) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  .kf-stats > * { position: relative; z-index: 1; }
+  .kf-stats-grid {
+    margin: 0; display: grid; gap: var(--spacing-4, 16px);
+    grid-template-columns: repeat(2, 1fr); text-align: center;
+  }
+  @media (min-width: 768px) {
+    .kf-stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .kf-stat { display: flex; flex-direction: column-reverse; gap: 4px; }
+  .kf-stat-value :is(h1,h2,h3,h4,h5,h6) {
+    color: var(--color-background-card);
+    font-variant-numeric: tabular-nums;
+  }
+  .kf-stat-label {
+    font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-background-card) 78%, transparent);
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "_note": "Hero imagery. Swap these URLs for self-hosted assets before launch; they currently point at the legacy CDN.",
+  "slides": [
+    {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/fresh-masala-grinding-67YlV3a7WWaD1LwXvfDG7hBuGEot3E.jpg",
+      "alt": "Hands grinding fresh masala with a stone mortar and pestle"
+    },
+    {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/indian-spice-farm-harvest-ugGkK6QZQ1jAUGD5mfz543JeNpEiv2.jpg",
+      "alt": "Freshly harvested spices drying at a Karnataka farm"
+    },
+    {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/women-artisans-spices-b4lYC8QAIwE5cyUtXTrOXRqMUl7qNq.jpg",
+      "alt": "Women artisans sorting and roasting whole spices in small batches"
+    },
+    {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/pure-natural-spices-array-S2R8scxEfC2ENnYCuI6LmJaApZjsek.jpg",
+      "alt": "An array of pure ground spices in bowls"
+    }
+  ]
+}
