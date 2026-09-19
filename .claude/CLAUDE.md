@@ -155,8 +155,16 @@ so a navigation cannot be synthesised in a test.
 
 ## CI / deployment
 
-Repo: **github.com/nathishdev-netizen/koko-ui** (private). CI is
-`.github/workflows/ci.yml` — typecheck, lint, build on every push and PR.
+Repo: **github.com/nathishdev-netizen/koko-ui** (private).
+Live: **https://koko-ui.vercel.app** (Vercel, Hobby tier — SSO-protected).
+CI is `.github/workflows/ci.yml` — typecheck, lint, build on every push and PR.
+
+**Vercel blocks deploys on Next.js CVEs.** A build can complete successfully and
+the *deployment* still fail with "Vulnerable version of Next.js detected". The
+fix is to upgrade Next, not to change any config — check `pnpm audit` first
+rather than guessing at vercel.json. 15.5.4 shipped three criticals (including
+unauthenticated RCE); 15.5.25 is clean. Remaining audit findings are transitive
+inside Next (next>sharp, next>postcss) and are not ours to pin.
 
 **`pnpm theme:build` must run BEFORE typecheck, not just before build.**
 `app/providers.tsx` imports the generated theme, which is gitignored. A
