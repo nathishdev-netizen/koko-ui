@@ -153,6 +153,26 @@ apply to navigations. The honest test is to **kill the server** and reload.
 Also note a `fetch(url, {mode:'navigate'})` cannot be constructed from a page,
 so a navigation cannot be synthesised in a test.
 
+## CI / deployment
+
+Repo: **github.com/nathishdev-netizen/koko-ui** (private). CI is
+`.github/workflows/ci.yml` — typecheck, lint, build on every push and PR.
+
+**`pnpm theme:build` must run BEFORE typecheck, not just before build.**
+`app/providers.tsx` imports the generated theme, which is gitignored. A
+developer's machine has it lying around from an earlier build, so the omission
+is invisible locally and fails only in CI — and would have failed the first
+Vercel deploy too. Reproduce by deleting `themes/*/kokofresh.{js,d.ts}` and
+`theme.css`, then running `pnpm typecheck`.
+
+**Do not set `version:` on `pnpm/action-setup`.** `packageManager` in
+package.json is the single source of truth; specifying both makes the action
+error out. Node is pinned via `engines` + `.nvmrc`.
+
+`vercel.json`: Mumbai region (`bom1`) since customers are in India; security
+headers; and **`sw.js` served with `max-age=0, must-revalidate`** — a cached
+service worker strands users on an old one indefinitely.
+
 ## Dev server port
 
 `pnpm dev` and `pnpm start` are pinned to **port 3001** (`next dev -p 3001`).
