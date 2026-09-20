@@ -285,6 +285,18 @@ display scale and it overflowed the dialog's rounded corners for
 "Choose Signature Masala Blend 1". `.kf-picker-head` is a plain sticky header
 with a small-caps UI label and a close button.
 
+**Never write `position: relative` on `.kf-bundle-summary`.** The flash-sale
+badge was anchored with exactly that, later in the file than the sticky rule —
+and it silently overwrote `position: sticky`. The rail stopped pinning and
+nothing errored. Sticky IS a positioning context, so an absolutely-positioned
+badge anchors to it with no extra rule. If a child needs a positioning context
+on the rail, it already has one.
+
+**Heading icons are `0.8em`**, not `1.1em` — on a 20-28px heading the larger
+size read as a second glyph competing with the type. `.kf-build-title` also
+needs `.kf-bundle-picker` specificity, because the 28px step-heading rule
+otherwise reaches it (it is an h2 inside the picker) and inflates its icon.
+
 **Sticky elements must not animate.** Current guidance is to keep a sticky
 element's motion minimal — a sidebar that moves while it is meant to be the
 fixed reference reads as a glitch. The scroll reveal belongs to the cards

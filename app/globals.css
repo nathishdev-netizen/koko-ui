@@ -727,7 +727,7 @@
     border: 2px solid var(--color-border);
     background: var(--color-background-surface);
   }
-  .kf-build-title { font-size: 1.25rem; }
+  .kf-bundle-picker .kf-build-title { font-size: 1.25rem; }
   .kf-build-cta {
     display: flex;
     flex-direction: column;
@@ -1730,8 +1730,10 @@
   }
   .kf-heading-icon { justify-content: center; }
   .kf-panel-icon {
-    width: 1.1em;
-    height: 1.1em;
+    /* Smaller than the cap height so the icon reads as a marker beside the
+       heading, not a second glyph competing with it. */
+    width: 0.8em;
+    height: 0.8em;
     flex: 0 0 auto;
     color: var(--color-text-accent);
   }
@@ -1784,9 +1786,6 @@
     .kf-flash-sale { animation: kf-flash-glow 2.4s ease-out infinite; }
     .kf-flash-icon { animation: kf-spark 2.4s ease-in-out infinite; }
   }
-
-  /* The rail anchors the badge. */
-  .kf-bundle-summary { position: relative; }
 
   .kf-panel-title { font-size: 1.25rem; }
   .kf-panel-subtitle { font-size: 1rem; }
