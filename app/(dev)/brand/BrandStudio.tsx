@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from 'react';
 
 import { Button, Heading, Text, VStack } from '@/components/ui';
+import { FONT_SET_OPTIONS } from '@/themes/kokofresh/fonts';
 import { resetTheme, saveTheme } from './actions';
 
 /**
@@ -30,6 +31,15 @@ const SWATCHES: readonly Swatch[] = [
   { key: 'onInkSecondary', cssVar: '--kf-on-ink-secondary', label: 'Text on ink — dim', hint: 'Body copy on dark' },
   { key: 'onInkAccent', cssVar: '--kf-on-ink-accent', label: 'Accent on ink', hint: 'Eyebrows and highlights' },
   { key: 'onFill', cssVar: '--kf-on-fill', label: 'Text on fill', hint: 'Label inside a filled button' },
+  { key: 'accent', cssVar: '--color-accent', label: 'Accent', hint: 'Links, focus rings, chillies' },
+  { key: 'accentText', cssVar: '--color-text-accent', label: 'Accent — text', hint: 'Link text, discount chip' },
+];
+
+/** Corner shape presets. Pills stay pills; these are cards and panels. */
+const SHAPES: readonly { name: string; card: string; control: string }[] = [
+  { name: 'Round', card: '30px', control: '12px' },
+  { name: 'Soft', card: '12px', control: '8px' },
+  { name: 'Sharp', card: '4px', control: '3px' },
 ];
 
 /** Ready-made palettes, to show a rebrand in one click. */
@@ -40,6 +50,8 @@ const PRESETS: readonly { name: string; values: Record<string, string> }[] = [
       brandInk: '#33240F', brandInkSoft: '#3A2912', brandInkDeep: '#2A1D0C',
       brandInkRaised: '#40301A', onInk: '#F7EEDC', onInkSecondary: '#CBB99D',
       onInkAccent: '#F0A85C', onFill: '#FFFFFF',
+      accent: '#C25510', accentText: '#9A4600',
+      radiusCard: '30px', radiusControl: '12px', fontSet: 'prata',
     },
   },
   {
@@ -48,6 +60,8 @@ const PRESETS: readonly { name: string; values: Record<string, string> }[] = [
       brandInk: '#12408A', brandInkSoft: '#174C9E', brandInkDeep: '#0D2F66',
       brandInkRaised: '#1B4F9C', onInk: '#EAF2FF', onInkSecondary: '#B9CDEA',
       onInkAccent: '#7FB2FF', onFill: '#FFFFFF',
+      accent: '#1E63C8', accentText: '#154E9E',
+      radiusCard: '12px', radiusControl: '8px', fontSet: 'bodoniModa',
     },
   },
   {
@@ -56,6 +70,8 @@ const PRESETS: readonly { name: string; values: Record<string, string> }[] = [
       brandInk: '#1E3D2B', brandInkSoft: '#264A34', brandInkDeep: '#142A1D',
       brandInkRaised: '#2A5039', onInk: '#EAF3EC', onInkSecondary: '#B4CCBB',
       onInkAccent: '#86C79A', onFill: '#FFFFFF',
+      accent: '#2F7D4F', accentText: '#1F5E39',
+      radiusCard: '30px', radiusControl: '12px', fontSet: 'cormorant',
     },
   },
   {
@@ -64,6 +80,8 @@ const PRESETS: readonly { name: string; values: Record<string, string> }[] = [
       brandInk: '#5C1A2B', brandInkSoft: '#6B2033', brandInkDeep: '#3F111D',
       brandInkRaised: '#73243A', onInk: '#FBEDF0', onInkSecondary: '#DDB9C3',
       onInkAccent: '#E8869B', onFill: '#FFFFFF',
+      accent: '#A8324D', accentText: '#87263C',
+      radiusCard: '4px', radiusControl: '3px', fontSet: 'italiana',
     },
   },
 ];
@@ -101,19 +119,38 @@ export function BrandStudio({
       const v = values[s.key];
       if (v) root.style.setProperty(s.cssVar, v);
     }
+    if (values.radiusCard) root.style.setProperty('--kf-radius-card', values.radiusCard);
+    if (values.radiusControl) root.style.setProperty('--kf-radius-control', values.radiusControl);
     return () => {
       for (const s of SWATCHES) root.style.removeProperty(s.cssVar);
+      root.style.removeProperty('--kf-radius-card');
+      root.style.removeProperty('--kf-radius-control');
     };
   }, [values]);
 
   const ratio = contrast(values.brandInk ?? '#000000', values.onFill ?? '#FFFFFF');
   const passesAA = ratio >= 4.5;
 
-  const json = JSON.stringify(
-    Object.fromEntries(SWATCHES.map((s) => [s.key, values[s.key]])),
-    null,
-    2,
+  /**
+   * The full theme payload. Built from one place so the saved config and the
+   * displayed JSON can never drift — an earlier version listed only the colour
+   * swatches here, and shape, font and identity were silently dropped on save.
+   */
+  const payload: Record<string, string> = Object.fromEntries(
+    [
+      ...SWATCHES.map((sw) => sw.key),
+      'radiusCard',
+      'radiusControl',
+      'fontSet',
+      'brandName',
+      'tagline',
+      'logoSrc',
+    ]
+      .map((k) => [k, values[k]])
+      .filter(([, v]) => v),
   );
+
+  const json = JSON.stringify(payload, null, 2);
 
   return (
     <div className="kf-studio">
@@ -144,6 +181,82 @@ export function BrandStudio({
                     aria-hidden="true"
                   />
                   {p.name}
+                </button>
+              ))}
+            </div>
+          </VStack>
+
+          <VStack gap={2}>
+            <span className="kf-filter-label">Identity</span>
+            <label className="kf-field">
+              <span>Brand name</span>
+              <input
+                type="text"
+                className="kf-text-input"
+                value={values.brandName ?? ''}
+                placeholder="KokoFresh"
+                onChange={(e) => setValues((v) => ({ ...v, brandName: e.target.value }))}
+              />
+            </label>
+            <label className="kf-field">
+              <span>Tagline</span>
+              <input
+                type="text"
+                className="kf-text-input"
+                value={values.tagline ?? ''}
+                placeholder="From Karnataka's kitchens to your table"
+                onChange={(e) => setValues((v) => ({ ...v, tagline: e.target.value }))}
+              />
+            </label>
+            <label className="kf-field">
+              <span>Logo path or URL</span>
+              <input
+                type="text"
+                className="kf-text-input"
+                value={values.logoSrc ?? ''}
+                placeholder="/brand/kokofresh-logo.webp"
+                onChange={(e) => setValues((v) => ({ ...v, logoSrc: e.target.value }))}
+              />
+            </label>
+          </VStack>
+
+          <VStack gap={2}>
+            <span className="kf-filter-label">Typography</span>
+            <select
+              className="kf-text-input"
+              value={values.fontSet ?? 'prata'}
+              onChange={(e) => setValues((v) => ({ ...v, fontSet: e.target.value }))}
+            >
+              {FONT_SET_OPTIONS.map((f) => (
+                <option key={f.key} value={f.key}>
+                  {f.label}
+                </option>
+              ))}
+            </select>
+            <Text type="supporting" color="secondary">
+              Applies on save — fonts are self-hosted and loaded per set.
+            </Text>
+          </VStack>
+
+          <VStack gap={2}>
+            <span className="kf-filter-label">Corner shape</span>
+            <div className="kf-preset-row">
+              {SHAPES.map((sh) => (
+                <button
+                  key={sh.name}
+                  type="button"
+                  className="kf-preset"
+                  data-active={values.radiusCard === sh.card || undefined}
+                  onClick={() =>
+                    setValues((v) => ({ ...v, radiusCard: sh.card, radiusControl: sh.control }))
+                  }
+                >
+                  <span
+                    className="kf-shape-dot"
+                    style={{ borderRadius: sh.control }}
+                    aria-hidden="true"
+                  />
+                  {sh.name}
                 </button>
               ))}
             </div>
@@ -189,9 +302,7 @@ export function BrandStudio({
                 isDisabled={pending || !canPersist}
                 onClick={() =>
                   startTransition(async () => {
-                    const r = await saveTheme(
-                      Object.fromEntries(SWATCHES.map((sw) => [sw.key, values[sw.key]])),
-                    );
+                    const r = await saveTheme(payload);
                     setStatus(r);
                   })
                 }
@@ -237,8 +348,21 @@ export function BrandStudio({
       <div className="kf-studio-preview">
         <VStack gap={4}>
           <Text type="supporting" color="secondary">
-            Live preview — these are the real components, not mock-ups.
+            Live preview — the real storefront, not mock-ups. Save to apply the
+            pending changes to the framed page.
           </Text>
+
+          {/* The real home page. Colours and shape are CSS variables on :root,
+              so they do NOT cross into the frame — the frame shows the SAVED
+              theme, while the strip below previews what is pending. */}
+          <div className="kf-frame-wrap">
+            <iframe
+              src="/"
+              className="kf-frame"
+              title="Storefront preview"
+              loading="lazy"
+            />
+          </div>
 
           <div className="kf-demo-card">
             <VStack gap={3}>

@@ -66,7 +66,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const themeCss = themeToCss(config.theme);
 
   return (
-    <html lang={config.brand.locale} className={fontClassName()}>
+    <html lang={config.brand.locale} className={fontClassName(config.theme.fontSet)}>
       <head>
         {themeCss ? (
           <style

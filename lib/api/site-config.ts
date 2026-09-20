@@ -35,5 +35,24 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     const parsed = brandThemeSchema.safeParse(live.theme ?? {});
     return { ...live, theme: parsed.success ? parsed.data : await getLocalTheme() };
   }
-  return { brand, primaryNav, footerNav, theme: await getLocalTheme() };
+  const theme = await getLocalTheme();
+  return {
+    // Identity overrides are applied here rather than in each component, so
+    // the header, footer, PWA manifest and SEO all follow one source.
+    brand: applyIdentity(brand, theme),
+    primaryNav,
+    footerNav,
+    theme,
+  };
+}
+
+/** Overlays a theme's identity fields onto the brand config. */
+function applyIdentity(base: Brand, theme: BrandTheme): Brand {
+  if (!theme.brandName && !theme.tagline && !theme.logoSrc) return base;
+  return {
+    ...base,
+    ...(theme.brandName ? { name: theme.brandName } : {}),
+    ...(theme.tagline ? { tagline: theme.tagline } : {}),
+    ...(theme.logoSrc ? { logo: { ...base.logo, src: theme.logoSrc } } : {}),
+  };
 }

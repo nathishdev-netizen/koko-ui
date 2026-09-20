@@ -50,7 +50,13 @@ export const kokofreshTheme = defineTheme({
   // selector cannot win. `borderWidth` here is the supported route.
   components: {
     card: {
-      base: { borderWidth: '2px' },
+      // borderRadius points at the CSS variable so the brand studio's corner
+      // shape reaches Astryx's own card, which otherwise paints its own 30px
+      // and ignores a runtime change.
+      base: {
+        borderWidth: '2px',
+        borderRadius: 'var(--kf-radius-card, 30px)',
+      },
     },
     // Primary buttons take the brand's ink rather than the orange accent.
     // Scoped to the button here rather than changing --color-accent, which also

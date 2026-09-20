@@ -13,5 +13,5 @@
  * next/font self-hosts every set and emits size-adjusted fallback metrics, so
  * nothing shifts when the webfont arrives (CLS).
  */
-export { FONT_SET, FONT_SETS, fontClassName, isFontSetKey } from './fontSets';
+export { FONT_SET, FONT_SETS, FONT_SET_OPTIONS, fontClassName, isFontSetKey } from './fontSets';
 export type { FontSetKey } from './fontSets';

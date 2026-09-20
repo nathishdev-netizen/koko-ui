@@ -321,3 +321,13 @@ export function isFontSetKey(value: string | undefined): value is FontSetKey {
 export function fontClassName(key?: string): string {
   return FONT_SETS[isFontSetKey(key) ? key : FONT_SET].className;
 }
+
+/**
+ * Display labels for the brand studio's font picker. Derived from FONT_SETS so
+ * a newly added set appears in the UI automatically.
+ */
+export const FONT_SET_OPTIONS: readonly { key: FontSetKey; label: string }[] =
+  (Object.keys(FONT_SETS) as FontSetKey[]).map((key) => ({
+    key,
+    label: FONT_SETS[key].label ?? key,
+  }));

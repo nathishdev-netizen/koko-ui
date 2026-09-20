@@ -234,6 +234,27 @@ The Server Action re-checks the env flag itself: an action is a public
 endpoint, so guarding only the page would leave the mutation reachable in
 production while the UI was hidden.
 
+**The studio controls five things**, not just colour: brand colours, the accent
+pair (`--color-accent` / `--color-text-accent` — links, focus rings, discount
+chip, spice chillies), corner shape, the font pairing (any of the 20 sets in
+`fontSets.ts`), and identity (name, tagline, logo path).
+
+**Pill radii (999px) are deliberately NOT themeable.** A button or chip should
+stay pill-shaped whatever the brand; flattening those reads as broken rather
+than sharp. Only `--kf-radius-card` and `--kf-radius-control` are exposed.
+
+**Astryx's Card paints its own radius**, so `components.card.base.borderRadius`
+must point at `var(--kf-radius-card, 30px)` or a runtime shape change is
+ignored — the same trap as the button colour.
+
+**KokoFresh's card radius is 30px.** Tokenising it initially defaulted to 20px
+and silently restyled the whole site; the regression suite caught it. When
+tokenising a value, the default must reproduce the existing design exactly.
+
+**Build the save payload in ONE place.** An earlier version listed only the
+colour swatches, so shape, font and identity were silently dropped on save
+while still appearing in the previewed JSON.
+
 **`/brand` is the brand studio** — a live demo of the seam with colour pickers,
 four presets, a contrast readout and copyable JSON. It writes the same `--kf-*`
 properties the server injects, and previews the REAL components rather than

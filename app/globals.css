@@ -73,6 +73,15 @@
     --kf-veg-green: #007500;
 
     /*
+     * Corner shape. Pills (999px) are deliberately NOT tokenised: a button or
+     * chip should stay pill-shaped whatever the brand, and flattening those
+     * reads as broken rather than sharp. These two cover the surfaces that
+     * actually carry a brand's shape.
+     */
+    --kf-radius-card: 30px;
+    --kf-radius-control: 12px;
+
+    /*
      * Text and scrim over PHOTOGRAPHY (the hero). Distinct from the ink set:
      * a photo is not a flat brand surface, so these are tuned for legibility
      * over arbitrary imagery rather than to match a panel.
@@ -573,7 +582,7 @@
   .kf-compare-scroll {
     overflow-x: auto;
     border: 2px solid var(--color-border);
-    border-radius: 20px;
+    border-radius: var(--kf-radius-card);
     background: var(--color-background-surface);
   }
   .kf-compare {
@@ -1343,7 +1352,7 @@
     justify-content: center;
     gap: 8px;
     padding: var(--spacing-4, 16px);
-    border-radius: 18px;
+    border-radius: var(--kf-radius-card);
     /* Dashed while empty — it reads as a space waiting to be filled. */
     border: 2px dashed var(--color-border-emphasized);
     background: var(--color-background-surface);
@@ -1431,7 +1440,7 @@
     gap: 12px;
     padding: 10px 12px;
     border: 1px solid transparent;
-    border-radius: 12px;
+    border-radius: var(--kf-radius-control);
     background: transparent;
     font: inherit;
     text-align: start;
@@ -1450,7 +1459,7 @@
     flex: 0 0 auto;
     display: grid;
     place-items: center;
-    border-radius: 10px;
+    border-radius: var(--kf-radius-control);
     background: var(--color-background-surface);
     border: 1px solid var(--color-border);
     overflow: hidden;
@@ -1461,7 +1470,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
-    border-radius: 16px;
+    border-radius: var(--kf-radius-card);
     overflow: hidden;
     background: var(--color-background-card);
   }
@@ -1486,7 +1495,7 @@
   }
   .kf-included-box {
     padding: var(--spacing-3, 12px);
-    border-radius: 14px;
+    border-radius: var(--kf-radius-control);
     background: var(--color-background-card);
     border: 1px solid var(--color-border);
   }
@@ -1568,7 +1577,7 @@
 
   .kf-swatch-row {
     display: flex; align-items: center; gap: 12px;
-    padding: 8px 10px; border-radius: 12px;
+    padding: 8px 10px; border-radius: var(--kf-radius-control);
     border: 1px solid var(--color-border);
     background: var(--color-background-surface);
     cursor: pointer;
@@ -1588,7 +1597,7 @@
 
   .kf-contrast {
     display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
-    padding: 12px 14px; border-radius: 12px;
+    padding: 12px 14px; border-radius: var(--kf-radius-control);
     border: 1px solid var(--color-error);
     background: color-mix(in srgb, var(--color-error) 8%, transparent);
     font-size: 0.8125rem;
@@ -1599,14 +1608,53 @@
   }
 
   .kf-config-out {
-    margin: 0; padding: 14px; border-radius: 12px; overflow-x: auto;
+    margin: 0; padding: 14px; border-radius: var(--kf-radius-control); overflow-x: auto;
     background: var(--color-background-card);
     border: 1px solid var(--color-border);
     font-size: 0.75rem; line-height: 1.6;
   }
 
+  .kf-field { display: flex; flex-direction: column; gap: 5px; }
+  .kf-field > span {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+  .kf-text-input {
+    width: 100%; height: 38px; padding: 0 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--kf-radius-control);
+    background: var(--color-background-surface);
+    color: var(--color-text-primary);
+    font: inherit; font-size: 0.875rem;
+  }
+  .kf-text-input:focus-visible {
+    outline: 2px solid var(--color-accent); outline-offset: 1px;
+  }
+  select.kf-text-input { cursor: pointer; }
+
+  .kf-preset[data-active] {
+    border-color: var(--kf-brand-ink);
+    background: var(--color-background-card);
+    font-weight: 600;
+  }
+  .kf-shape-dot {
+    width: 14px; height: 14px; flex: 0 0 auto;
+    background: var(--kf-brand-ink);
+  }
+
+  /* Framed storefront preview. */
+  .kf-frame-wrap {
+    border: 2px solid var(--color-border);
+    border-radius: var(--kf-radius-card);
+    overflow: hidden;
+    background: var(--color-background-body);
+  }
+  .kf-frame {
+    display: block; width: 100%; height: 560px; border: 0;
+  }
+
   .kf-save-status {
-    margin: 0; padding: 10px 12px; border-radius: 10px;
+    margin: 0; padding: 10px 12px; border-radius: var(--kf-radius-control);
     font-size: 0.8125rem;
     border: 1px solid var(--color-error);
     background: color-mix(in srgb, var(--color-error) 8%, transparent);
@@ -1619,7 +1667,7 @@
   .kf-studio-preview { display: block; }
   .kf-demo-card {
     padding: var(--spacing-5, 20px);
-    border-radius: 20px;
+    border-radius: var(--kf-radius-card);
     border: 2px solid var(--color-border);
     background: var(--color-background-surface);
   }
@@ -1634,7 +1682,7 @@
     display: flex; flex-wrap: wrap; gap: var(--spacing-4, 16px);
     align-items: center; justify-content: space-between;
     padding: clamp(1.5rem, 4vw, 2rem);
-    border-radius: 20px;
+    border-radius: var(--kf-radius-card);
     background: linear-gradient(
       115deg,
       var(--kf-brand-ink-soft) 0%,
