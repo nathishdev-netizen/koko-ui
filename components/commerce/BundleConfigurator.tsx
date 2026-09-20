@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 
+import { GiftIcon, PackageIcon, SparklesIcon } from '@/components/icons';
 import { BundleSlot } from '@/components/commerce/BundleSlot';
 import {
   Badge,
@@ -115,6 +116,7 @@ export function BundleConfigurator({
           <div className="kf-build-card">
             <VStack gap={6}>
               <Heading level={2} className="kf-build-title">
+                <PackageIcon className="kf-panel-icon" aria-hidden="true" />
                 Build Your Bundle
               </Heading>
           {bundle.rules.map((rule, index) => {
@@ -190,6 +192,13 @@ export function BundleConfigurator({
         <VStack gap={4}>
           {/* The bundle's own photograph, as the legacy page led with: it shows
               what arrives, which a list of counts cannot. */}
+          {bundle.savingsPercent > 0 ? (
+            <p className="kf-flash-sale">
+              <SparklesIcon className="kf-flash-icon" aria-hidden="true" />
+              Flash Sale
+            </p>
+          ) : null}
+
           {bundle.image ? (
             <div className="kf-summary-media">
               <Image
@@ -211,7 +220,10 @@ export function BundleConfigurator({
           <p className="kf-collection-rule">Premium Collection</p>
 
           <div className="kf-included-box">
-            <p className="kf-included-title">What&rsquo;s Included</p>
+            <p className="kf-included-title">
+              <GiftIcon className="kf-included-icon" aria-hidden="true" />
+              What&rsquo;s Included
+            </p>
             <ul className="kf-tick-list kf-tick-list--sm">
               {bundle.rules.map((rule) => (
                 <li key={rule.collectionSlug}>

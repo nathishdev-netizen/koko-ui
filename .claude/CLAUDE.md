@@ -270,6 +270,21 @@ column (passed as `children`). That is also what gives the sticky rail enough
 height to hold against: with them outside, the grid ended early and the rail
 released mid-read.
 
+**Heading icons match the legacy set** (Lucide, in `components/icons`): Package
+on "Build Your Bundle", Info on "About This Bundle", Sparkles on the benefits
+list, ChefHat on "Quick Prep Ideas", TrendingDown on "Smart Shopping Math",
+Gift on "What's Included", HelpCircle on the FAQ. `.kf-panel-icon` sizes them
+to the heading (`1.1em`) so they scale with the type.
+
+**The flash-sale badge animates with a slow glow**, not the legacy
+`animate-pulse` strobe — 2.4s ring on the accent plus a gentle sparkle scale.
+Guarded by `prefers-reduced-motion`; static otherwise.
+
+**Do not use Astryx `DialogHeader` for a long label.** It renders the title at
+display scale and it overflowed the dialog's rounded corners for
+"Choose Signature Masala Blend 1". `.kf-picker-head` is a plain sticky header
+with a small-caps UI label and a close button.
+
 **Sticky elements must not animate.** Current guidance is to keep a sticky
 element's motion minimal — a sidebar that moves while it is meant to be the
 fixed reference reads as a glitch. The scroll reveal belongs to the cards

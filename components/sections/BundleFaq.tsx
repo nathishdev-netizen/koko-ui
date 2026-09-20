@@ -1,3 +1,4 @@
+import { HelpCircleIcon } from '@/components/icons';
 import { Heading, Text, VStack } from '@/components/ui';
 
 /**
@@ -44,7 +45,8 @@ export function BundleFaq() {
   return (
     <section aria-labelledby="bundle-faq">
       <VStack gap={5}>
-        <Heading level={2} id="bundle-faq" className="kf-center-text">
+        <Heading level={2} id="bundle-faq" className="kf-center-text kf-heading-icon">
+          <HelpCircleIcon className="kf-panel-icon" aria-hidden="true" />
           Frequently Asked Questions
         </Heading>
         <div className="kf-faq-grid">

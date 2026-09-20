@@ -1583,6 +1583,41 @@
   .kf-slot-check--inline { position: static; flex: 0 0 auto; }
 
   /* Picker dialog. */
+  .kf-picker-head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: var(--spacing-4, 16px) var(--spacing-4, 16px) var(--spacing-3, 12px);
+    background: var(--color-background-surface);
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-picker-title {
+    font-family: var(--font-family-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+  .kf-picker-close {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-background-card);
+    color: var(--color-text-primary);
+    cursor: pointer;
+  }
+  .kf-picker-close:hover { background: var(--color-background-muted); }
+  .kf-picker-close:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
   .kf-slot-options { list-style: none; margin: 0; padding: var(--spacing-2, 8px); display: grid; gap: 4px; }
   .kf-slot-option {
     width: 100%;
@@ -1684,6 +1719,75 @@
     background: var(--color-background-surface);
   }
   .kf-panel--tint { background: var(--color-background-card); }
+  /* Heading icons sit on the text baseline, sized to the heading. */
+  .kf-panel-title,
+  .kf-panel-subtitle,
+  .kf-build-title,
+  .kf-heading-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .kf-heading-icon { justify-content: center; }
+  .kf-panel-icon {
+    width: 1.1em;
+    height: 1.1em;
+    flex: 0 0 auto;
+    color: var(--color-text-accent);
+  }
+  .kf-included-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+  .kf-included-icon {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+    color: var(--color-text-accent);
+  }
+
+  /*
+   * Flash-sale badge. The legacy page used a hard `animate-pulse`; this is a
+   * slower glow on the accent, which reads as alive without the strobe. Motion
+   * is opt-out — under prefers-reduced-motion the badge is simply static.
+   */
+  .kf-flash-sale {
+    position: absolute;
+    top: 14px;
+    inset-inline-end: 14px;
+    z-index: 2;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .kf-flash-icon { width: 11px; height: 11px; flex: 0 0 auto; }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes kf-flash-glow {
+      0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent); }
+      50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-accent) 0%, transparent); }
+    }
+    @keyframes kf-spark {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(0.88); }
+    }
+    .kf-flash-sale { animation: kf-flash-glow 2.4s ease-out infinite; }
+    .kf-flash-icon { animation: kf-spark 2.4s ease-in-out infinite; }
+  }
+
+  /* The rail anchors the badge. */
+  .kf-bundle-summary { position: relative; }
+
   .kf-panel-title { font-size: 1.25rem; }
   .kf-panel-subtitle { font-size: 1rem; }
 

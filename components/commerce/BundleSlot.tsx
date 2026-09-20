@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { Dialog, DialogHeader, Text } from '@/components/ui';
+import { Dialog, Text } from '@/components/ui';
 import type { ProductSummary } from '@/lib/api/types';
 
 /**
@@ -80,7 +80,20 @@ export function BundleSlot({
 
       {isOpen ? (
         <Dialog isOpen={isOpen} onOpenChange={setIsOpen} purpose="info" padding={0} width={420}>
-          <DialogHeader title={`Choose ${label}`} />
+          {/* A plain header rather than DialogHeader: that renders the title
+              at display scale, which overflowed the dialog's rounded corners
+              for a label this long. This is a UI label, not a page heading. */}
+          <div className="kf-picker-head">
+            <span className="kf-picker-title">Choose {label}</span>
+            <button
+              type="button"
+              className="kf-picker-close"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close"
+            >
+              <CloseMark />
+            </button>
+          </div>
           <ul className="kf-slot-options">
             {products.map((product) => {
               const isSelected = selected?.slug === product.slug;
@@ -124,6 +137,20 @@ export function BundleSlot({
         </Dialog>
       ) : null}
     </div>
+  );
+}
+
+function CloseMark() {
+  return (
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+      <path
+        d="M4 4l8 8M12 4l-8 8"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }
 

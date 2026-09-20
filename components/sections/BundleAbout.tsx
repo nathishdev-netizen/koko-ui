@@ -1,3 +1,9 @@
+import {
+  ChefHatIcon,
+  InfoIcon,
+  SparklesIcon,
+  TrendingDownIcon,
+} from '@/components/icons';
 import { Heading, Text, VStack } from '@/components/ui';
 import type { Bundle } from '@/lib/api/types';
 
@@ -22,6 +28,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
         <section className="kf-panel" aria-labelledby="about-bundle">
           <VStack gap={3}>
             <Heading level={2} id="about-bundle" className="kf-panel-title">
+              <InfoIcon className="kf-panel-icon" aria-hidden="true" />
               About This Bundle
             </Heading>
             {bundle.fullDescription.split('\n\n').map((para) => (
@@ -33,6 +40,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
             {bundle.smartMath ? (
               <div className="kf-smart-math">
                 <Heading level={3} className="kf-panel-subtitle">
+                  <TrendingDownIcon className="kf-panel-icon" aria-hidden="true" />
                   Smart Shopping Math
                 </Heading>
                 <ul>
@@ -57,6 +65,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
           <section className="kf-panel" aria-labelledby="bundle-benefits">
             <VStack gap={3}>
               <Heading level={2} id="bundle-benefits" className="kf-panel-title">
+                <SparklesIcon className="kf-panel-icon" aria-hidden="true" />
                 {bundle.benefitsTitle ?? "Why You'll Love It"}
               </Heading>
               <ul className="kf-tick-list">
@@ -75,6 +84,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
           <section className="kf-panel" aria-labelledby="quick-prep">
             <VStack gap={3}>
               <Heading level={2} id="quick-prep" className="kf-panel-title">
+                <ChefHatIcon className="kf-panel-icon" aria-hidden="true" />
                 {bundle.quickPrep.title}
               </Heading>
               <ul className="kf-tick-list">
@@ -93,6 +103,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
           <section className="kf-panel kf-panel--tint" aria-labelledby="bundle-love">
             <VStack gap={3}>
               <Heading level={2} id="bundle-love" className="kf-panel-title">
+                <SparklesIcon className="kf-panel-icon" aria-hidden="true" />
                 Why People Love This
               </Heading>
               {bundle.testimonials.map((t) => (
