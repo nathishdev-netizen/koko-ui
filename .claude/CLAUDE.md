@@ -1108,11 +1108,13 @@ are derived from the profile URLs (`handleFromUrl`), never typed twice.
   the tallest middle section and sits between two light ones, so the change of
   light reads as deliberate; the CTA is too short to carry a band, the office
   section's white map card would fight a dark ground, and the form must stay
-  light to be legible. Its cards take `--color-background-card`, which the
-  --brown overrides already re-point at the raised ink — one declaration
-  serves both grounds. On brown that fill is only ~4% off the ground, so
-  `--kf-on-ink-border-strong` on the card edge is what separates it; contrast
-  verified 6.62-13.01 across all five text/ground pairs.
+  light to be legible. Its six cards are **warm cream
+  (`--kf-light-surface`), not white and not the raised ink** — paper over the
+  photograph. Letting them follow the section's ground made them ~4% off the
+  brown and they read as faint rectangles; pure white read as a hole punched
+  in the band. The `--brown` overrides have to be undone PER PROPERTY (fill,
+  border, question colour, answer colour) because they cascade into anything
+  inside the section. Contrast on the cream: 12.48 question / 5.80 answer.
   An earlier pass put three `--light` sections in a row (form → FAQ → office)
   and they flattened into one slab — hence one of them going dark.
 - The map is a plain lazy `<iframe>`; `X-Frame-Options` in vercel.json only
