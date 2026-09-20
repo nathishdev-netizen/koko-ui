@@ -12,14 +12,17 @@ import type { Review, ReviewSummary } from '@/lib/api/types';
 export function ReviewList({
   reviews,
   summary,
+  hasHeading = true,
 }: {
   reviews: readonly Review[];
   summary: ReviewSummary;
+  /** Off inside the PDP tabs, where the tab label already says "Reviews". */
+  hasHeading?: boolean;
 }) {
   if (summary.total === 0 || summary.average === null) {
     return (
       <VStack gap={1}>
-        <Heading level={2}>Reviews</Heading>
+        {hasHeading ? <Heading level={2}>Reviews</Heading> : null}
         <Text color="secondary">
           No reviews yet. If you have cooked with this blend, we would like to hear
           about it.
@@ -32,7 +35,7 @@ export function ReviewList({
 
   return (
     <VStack gap={4}>
-      <Heading level={2}>Reviews</Heading>
+      {hasHeading ? <Heading level={2}>Reviews</Heading> : null}
 
       <div className="kf-review-summary">
         <VStack gap={1}>

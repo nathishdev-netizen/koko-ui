@@ -32,6 +32,7 @@ export { NavIcon } from '@astryxdesign/core/NavIcon';
 export { Field } from '@astryxdesign/core/Field';
 export { NumberInput } from '@astryxdesign/core/NumberInput';
 export { RadioList, RadioListItem } from '@astryxdesign/core/RadioList';
+export { Tab, TabList } from '@astryxdesign/core/TabList';
 export { TextArea } from '@astryxdesign/core/TextArea';
 export { TextInput } from '@astryxdesign/core/TextInput';
 export { Pagination } from '@astryxdesign/core/Pagination';

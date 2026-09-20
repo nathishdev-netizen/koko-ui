@@ -5,9 +5,8 @@ import { ProductBuyBox } from '@/components/commerce/ProductBuyBox';
 import { ProductGallery } from '@/components/commerce/ProductGallery';
 import { ProductTrust } from '@/components/commerce/ProductTrust';
 import { ProductGrid } from '@/components/commerce/ProductGrid';
-import { ProductSections } from '@/components/commerce/ProductSections';
+import { ProductTabs } from '@/components/commerce/ProductTabs';
 import { ChilliIcon } from '@/components/icons';
-import { ReviewList } from '@/components/reviews/ReviewList';
 import {
   BreadcrumbItem,
   Breadcrumbs,
@@ -155,14 +154,17 @@ export default async function ProductPage({
             </VStack>
           </div>
 
-          {product.sections.length > 0 ? (
-            <VStack gap={3}>
-              <Heading level={2}>About this blend</Heading>
-              <ProductSections sections={product.sections} />
-            </VStack>
-          ) : null}
-
-          <ReviewList reviews={reviews} summary={reviewSummary} />
+          {/* Story / ways / nutrition / storage / why switch / reviews, as the
+              legacy page had them: tabs in one card. Reviews lives here too,
+              so it is not repeated below. */}
+          <VStack gap={3}>
+            <Heading level={2}>About this blend</Heading>
+            <ProductTabs
+              sections={product.sections}
+              reviews={reviews}
+              reviewSummary={reviewSummary}
+            />
+          </VStack>
 
           {others.length > 0 ? (
             <VStack gap={3}>

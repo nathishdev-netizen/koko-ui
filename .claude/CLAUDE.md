@@ -765,14 +765,27 @@ correctly sized — a timing artefact, not a bug.
 - **Each trust badge carries its OWN icon** — Truck / ShieldCheck / ChefHat,
   the legacy set. Two of the three were `LeafIcon`, so "Free Delivery" and
   "Authentic Recipe" showed the same mark.
-- **Product sections are OPEN cards (`ProductSections.tsx`), stacked full
-  width.** They were a collapsed `CollapsibleGroup` — five clicks to learn
-  what the blend is. Icons key off the section key (story→Award, ways→ChefHat,
-  nutrition→Sparkles, storage→ShieldCheck, why-switch→TrendingDown) with an
-  Info fallback, so a section the backend invents later still renders.
-  **Do not put these in a multi-column grid**: they are wildly uneven ("Our
-  story" runs several screens, "Storage" is two lines) and side by side left
-  enormous empty tails. Body copy is capped at 68ch.
+- **Product sections are TABS (`ProductTabs.tsx`), matching legacy** — story /
+  ways to enjoy / nutrition / storage / why switch, **and Reviews as the last
+  tab**, in one bordered card. Reviews is NOT also rendered as a section below;
+  that would repeat the whole block.
+  Tabs are right for this content specifically because the sections are wildly
+  uneven: "Our story" runs several screens while "Storage" is two lines. Two
+  other layouts were tried and rejected — a collapsed `CollapsibleGroup` (five
+  clicks to learn what the blend is) and a multi-column card grid (short
+  sections left enormous empty tails beside the long one). Stacked full-width
+  cards worked but buried the reviews and made the page 4600px.
+  Built on Astryx `TabList`/`Tab` (both from `@astryxdesign/core/TabList` —
+  there is no separate `/Tab` module). `role="tablist"` + `panelId` gives the
+  WAI-ARIA tabs pattern and arrow-key navigation for free, and the strip
+  scrolls with an arrow affordance on mobile rather than wrapping. Icons key
+  off the section key (story→Award, ways→ChefHat, nutrition→Sparkles,
+  storage→ShieldCheck, why-switch→TrendingDown, reviews→Star) with an Info
+  fallback, so a section the backend invents later still renders. Panel copy
+  is capped at 68ch. A product with only two sections renders three tabs
+  cleanly — verified on mysore-sambar-powder.
+- `ReviewList` takes `hasHeading` — off inside the tabs, where the tab label
+  already says "Reviews".
 - The "Handcrafted by women artisans…" note and the three trust badges already
   existed in `ProductTrust`; only the icons were wrong.
 
