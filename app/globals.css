@@ -1155,13 +1155,20 @@
   .kf-contact-faq-grid { gap: var(--spacing-5, 20px); }
   .kf-contact-faq-card {
     padding: var(--spacing-6, 24px);
-    /* Light card on the section's warm ground — each answer reads as its own
-       object rather than as a bordered box drawn on the page. */
-    background: var(--kf-on-fill);
+    /* Each answer reads as its own object rather than as a bordered box drawn
+       on the page. On the brown ground `--color-background-card` is already
+       re-pointed at the raised ink by the --brown overrides, so this one
+       declaration serves both grounds. */
+    background: var(--color-background-card);
     border-color: var(--color-border);
     transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
   }
   .kf-contact-faq-card:hover { border-color: var(--color-border-emphasized); box-shadow: 0 14px 32px rgba(59, 43, 19, 0.08); transform: translateY(-2px); }
+  /* On brown the raised-ink fill is only ~4% off the ground, so the card edge
+     is what separates it — same call as the bundle panels. Depth here is a
+     hairline, never a resting shadow. */
+  .kf-section--brown .kf-contact-faq-card { border-color: var(--kf-on-ink-border-strong); }
+  .kf-section--brown .kf-contact-faq-card:hover { box-shadow: 0 14px 32px rgba(0, 0, 0, 0.26); }
   .kf-contact-faq-q { margin: 0 0 10px; font-family: var(--font-family-heading); font-size: 1.25rem; line-height: 1.3; color: var(--color-text-primary); }
   .kf-contact-faq-a { margin: 0; color: var(--color-text-secondary); line-height: 1.65; }
 

@@ -1095,9 +1095,16 @@ are derived from the profile URLs (`handleFromUrl`), never typed twice.
   or a section taller than the viewport scrolls away before the cover arrives
   and the effect never lands. Degrades to two ordinary sections below 900px
   and under `prefers-reduced-motion`.
-- **Contact FAQ cards are white on the warm ground**, not a `--light` band.
-  Three `--light` sections in a row (form → FAQ → office) flattened into one
-  slab; putting only the CARDS on white is what makes each answer read as its
-  own object.
+- **Quick Answers is the page's one dark moment** (`kf-section--brown`). It is
+  the tallest middle section and sits between two light ones, so the change of
+  light reads as deliberate; the CTA is too short to carry a band, the office
+  section's white map card would fight a dark ground, and the form must stay
+  light to be legible. Its cards take `--color-background-card`, which the
+  --brown overrides already re-point at the raised ink — one declaration
+  serves both grounds. On brown that fill is only ~4% off the ground, so
+  `--kf-on-ink-border-strong` on the card edge is what separates it; contrast
+  verified 6.62-13.01 across all five text/ground pairs.
+  An earlier pass put three `--light` sections in a row (form → FAQ → office)
+  and they flattened into one slab — hence one of them going dark.
 - The map is a plain lazy `<iframe>`; `X-Frame-Options` in vercel.json only
   governs who may frame US, so embedding Google is unaffected.

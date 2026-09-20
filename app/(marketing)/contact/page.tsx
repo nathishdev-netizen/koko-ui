@@ -172,7 +172,10 @@ export default function ContactPage() {
       </div>
 
       {/* Quick Answers */}
-      <section className="kf-section kf-contact-faq" aria-labelledby="faq-title">
+      {/* Quick Answers is the page's one dark moment — it is the tallest
+          middle section, and its six cards flip to the raised-ink surface
+          from the --brown token overrides alone. */}
+      <section className="kf-section kf-section--brown kf-contact-faq" aria-labelledby="faq-title">
         <div className="kf-container">
           <div className="kf-about-values-head">
             <Heading level={2} id="faq-title" className="kf-about-h2 kf-about-h2--xl">
