@@ -728,6 +728,16 @@ and its last widget sat below the fold while pinned. Trimmed to ~819px (slide
 media capped at 170px, widget padding 16px). It pins while the article scrolls
 and releases when the grid ends — correct; a short post pins briefly.
 
+**The related strip is a brown, grained band** (`kf-section kf-section--brown`),
+not cream — it plays the same role as the shop's "Save More with Bundles" and
+takes the same treatment, so the post page does not run cream → cream → cream
+into the footer. The section's token overrides flip the cards to the dark
+surface by themselves; no per-card colour rules. Title is dual-tone via
+`.kf-h-alt` on the trailing word, split in the component so `content/blog.json`
+stays the single source. The grid is `auto-fit, minmax(260px, 360px)` with
+`justify-content: center`: two posts sit centred rather than left-aligned
+beside an empty third column.
+
 **Share buttons use the destinations' brand colours** (WhatsApp green, X blue)
 — a deliberate exception to the no-literal-hex rule. A WhatsApp button reads as
 WhatsApp because it is green; theming it would defeat the affordance.

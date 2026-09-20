@@ -6,7 +6,15 @@ import type { BlogPostSummary } from '@/lib/api/types';
 
 import { tagLabel } from './format';
 
-/** "You Might Also Enjoy" — three related posts on a tinted band. */
+/**
+ * "You Might Also Enjoy" — related posts on the brand's dark ground.
+ *
+ * Same role as the shop's "Save More with Bundles" strip: a cross-sell at the
+ * foot of the page, so it takes the same treatment — one dark, textured moment
+ * before the footer rather than a third cream band in a row. The title gets
+ * the site's dual-tone split (trailing word in gold), and the grid centres
+ * when there are fewer than three posts instead of leaving a hole.
+ */
 export function RelatedPosts({
   posts,
   title,
@@ -15,11 +23,19 @@ export function RelatedPosts({
   title: string;
 }) {
   if (posts.length === 0) return null;
+  // "You Might Also Enjoy" -> lead "You Might Also", tail "Enjoy".
+  const words = title.trim().split(/\s+/);
+  const tail = words.pop() ?? '';
+  const lead = words.join(' ');
   return (
-    <section className="kf-related" aria-labelledby="related-posts">
+    <section
+      className="kf-section kf-section--brown kf-related"
+      aria-labelledby="related-posts"
+    >
       <div className="kf-container">
         <Heading level={2} id="related-posts" className="kf-related-title">
-          {title}
+          {lead}{lead ? ' ' : ''}
+          <span className="kf-h-alt">{tail}</span>
         </Heading>
         <div className="kf-related-grid">
           {posts.map((post) => (
