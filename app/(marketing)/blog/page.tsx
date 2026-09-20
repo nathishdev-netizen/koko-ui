@@ -1,24 +1,33 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 
-import { Grid, Heading, HStack, Text, VStack } from '@/components/ui';
+import { BlogGrid } from '@/components/blog/BlogGrid';
+import { BlogListingHero } from '@/components/blog/BlogListingHero';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { getPosts } from '@/lib/api/blog';
+import content from '@/content/blog.json';
+import { getAllTags, getPosts } from '@/lib/api/blog';
 import { breadcrumbJsonLd, buildMetadata } from '@/lib/seo';
 
 // Real ISR. The legacy blog shipped revalidate = 0 + force-dynamic.
+//
+// This page reads NO searchParams on purpose: doing so opts the route out of
+// prerendering, and the listing would be server-rendered on every hit instead
+// of served from the CDN. Tag filtering lives at /blog/tag/[tag], which is
+// itself static — and gives every tag a canonical URL for search.
 export const revalidate = 900;
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Spice notes & kitchen stories',
+  title: 'Spice Blog — Recipes, Tips & Masala Stories',
   description:
-    'How Karnataka blends are made, how to store them, and how to cook with them — from the KokoFresh kitchen.',
+    'Discover authentic Karnataka recipes, spice science, kitchen tips, and behind-the-scenes stories from the KokoFresh kitchen.',
   path: '/blog',
 });
 
 export default async function BlogPage() {
-  const posts = await getPosts({ pageSize: 24 });
+  const [tags, posts] = await Promise.all([
+    getAllTags(),
+    // Everything at once: "Load more" reveals client-side, as legacy did.
+    getPosts({ pageSize: 60 }),
+  ]);
 
   return (
     <>
@@ -29,62 +38,14 @@ export default async function BlogPage() {
         ])}
       />
 
-      <div className="kf-container kf-shop">
-        <VStack gap={5}>
-          <VStack gap={1.5}>
-            <p className="kf-eyebrow">From the kitchen</p>
-            <Heading level={1}>Spice notes</Heading>
-            <span className="kf-rule" aria-hidden="true" />
-            <Text color="secondary" className="kf-measure">
-              How these blends are made, how to keep them fragrant, and what to cook
-              with them.
-            </Text>
-          </VStack>
+      <BlogListingHero
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        subtitle={content.hero.subtitle}
+      />
 
-          {posts.items.length === 0 ? (
-            <Text color="secondary">No posts yet.</Text>
-          ) : (
-            <Grid gap={4} columns={{ minWidth: 280, repeat: 'fit' }}>
-              {posts.items.map((post) => (
-                <article key={post.slug} className="kf-post-card">
-                  <Link href={`/blog/${post.slug}`} className="kf-post-link">
-                    <VStack gap={2}>
-                      {post.coverImage ? (
-                        <div className="kf-post-media">
-                          <Image
-                            src={post.coverImage.url}
-                            alt=""
-                            fill
-                            sizes="(max-width: 640px) 100vw, 380px"
-                            className="kf-post-img"
-                          />
-                        </div>
-                      ) : null}
-
-                      <HStack gap={1.5} vAlign="center" wrap="wrap">
-                        <Text type="supporting" color="secondary">
-                          <time dateTime={post.publishedAt}>
-                            {new Date(post.publishedAt).toLocaleDateString('en-IN', {
-                              day: 'numeric',
-                              month: 'long',
-                              year: 'numeric',
-                            })}
-                          </time>
-                        </Text>
-                        <Text type="supporting" color="secondary">
-                          · {post.readingMinutes} min read
-                        </Text>
-                      </HStack>
-
-                      <Heading level={2}>{post.title}</Heading>
-                      <Text color="secondary">{post.excerpt}</Text>
-                    </VStack>
-                  </Link>
-                </article>
-              ))}
-            </Grid>
-          )}
-        </VStack>
+      <div className="kf-container kf-blog-page">
+        <BlogGrid posts={posts.items} tags={tags} activeTag={null} empty={content.empty} />
       </div>
     </>
   );

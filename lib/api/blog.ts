@@ -9,14 +9,14 @@ const RESOURCE = 'blog' as const;
 const mockPosts = postsJson as unknown as readonly BlogPost[];
 
 export async function getPosts(
-  params: { page?: number; pageSize?: number } = {},
+  params: { page?: number; pageSize?: number; tag?: string } = {},
 ): Promise<Paginated<BlogPostSummary>> {
   const page = params.page ?? 1;
   const pageSize = params.pageSize ?? 12;
 
   if (isLive(RESOURCE)) {
     return request<Paginated<BlogPostSummary>>('/blog', {
-      searchParams: { page, pageSize },
+      searchParams: { page, pageSize, tag: params.tag },
       // Real ISR. The legacy blog shipped `revalidate = 0` plus
       // `dynamic = "force-dynamic"` — dev config in production, which defeated
       // generateStaticParams and hit the backend on every request.
@@ -26,7 +26,10 @@ export async function getPosts(
   }
 
   await mockDelay();
-  const sorted = [...mockPosts].sort(
+  const pool = params.tag
+    ? mockPosts.filter((post) => post.tags.includes(params.tag!))
+    : mockPosts;
+  const sorted = [...pool].sort(
     (a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt),
   );
   const start = (page - 1) * pageSize;
@@ -69,6 +72,45 @@ export async function getAllPostSlugs(): Promise<readonly string[]> {
     return all;
   }
   return mockPosts.map((post) => post.slug);
+}
+
+/** Every tag in use, alphabetical — feeds the listing's filter pills. */
+export async function getAllTags(): Promise<readonly string[]> {
+  if (isLive(RESOURCE)) {
+    return request<readonly string[]>('/blog/tags', { revalidate: 900, tags: ['blog'] });
+  }
+  return [...new Set(mockPosts.flatMap((post) => post.tags))].sort();
+}
+
+/**
+ * Posts related to one, ranked by how many tags they share. Falls back to the
+ * newest posts so the "You might also enjoy" strip is never empty on a
+ * thinly-tagged post.
+ */
+export async function getRelatedPosts(
+  slug: string,
+  limit = 3,
+): Promise<readonly BlogPostSummary[]> {
+  if (isLive(RESOURCE)) {
+    return request<readonly BlogPostSummary[]>(
+      `/blog/${encodeURIComponent(slug)}/related`,
+      { searchParams: { limit }, revalidate: 900, tags: ['blog', `post:${slug}`] },
+    );
+  }
+  await mockDelay();
+  const current = mockPosts.find((post) => post.slug === slug);
+  if (!current) return [];
+  const mine = new Set(current.tags);
+  return [...mockPosts]
+    .filter((post) => post.slug !== slug)
+    .map((post) => ({ post, shared: post.tags.filter((t) => mine.has(t)).length }))
+    .sort(
+      (a, b) =>
+        b.shared - a.shared ||
+        Date.parse(b.post.publishedAt) - Date.parse(a.post.publishedAt),
+    )
+    .slice(0, limit)
+    .map(({ post }) => toSummary(post));
 }
 
 function toSummary(post: BlogPost): BlogPostSummary {

@@ -1,11 +1,21 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { BreadcrumbItem, Breadcrumbs, Heading, HStack, Text, VStack } from '@/components/ui';
+import { PostComments } from '@/components/blog/PostComments';
+import { PostHero } from '@/components/blog/PostHero';
+import { PostSidebar } from '@/components/blog/PostSidebar';
+import { RelatedPosts } from '@/components/blog/RelatedPosts';
+import { ShareButtons } from '@/components/blog/ShareButtons';
+import { tagLabel } from '@/components/blog/format';
+import { BreadcrumbItem, Breadcrumbs } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { getAllPostSlugs, getPost } from '@/lib/api/blog';
-import { blogPostingJsonLd, breadcrumbJsonLd, withSeoOverrides } from '@/lib/seo';
+import { brand } from '@/config/brand';
+import content from '@/content/blog.json';
+import { getAllPostSlugs, getPost, getRelatedPosts } from '@/lib/api/blog';
+import { getComments } from '@/lib/api/comments';
+import { getProducts } from '@/lib/api/products';
+import { absoluteUrl, blogPostingJsonLd, breadcrumbJsonLd, withSeoOverrides } from '@/lib/seo';
 
 export const revalidate = 900;
 
@@ -47,7 +57,16 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
+  // Sidebar, discussion and related posts all resolve through lib/api, so they
+  // swap to Frappe without touching this page.
+  const [related, comments, blends] = await Promise.all([
+    getRelatedPosts(post.slug, 3),
+    getComments(post.slug),
+    getProducts({ collection: 'signature-blends', pageSize: 6 }),
+  ]);
+
   const path = `/blog/${post.slug}`;
+  const url = absoluteUrl(path);
   const trail = [
     { name: 'Home', path: '/' },
     { name: 'Blog', path: '/blog' },
@@ -65,59 +84,57 @@ export default async function BlogPostPage({
         ]}
       />
 
-      <div className="kf-container kf-article">
-        <VStack gap={5}>
-          <Breadcrumbs label="Breadcrumb" variant="supporting">
-            {trail.map((crumb, i) => (
-              <BreadcrumbItem
-                key={crumb.path}
-                href={i === trail.length - 1 ? undefined : crumb.path}
-              >
-                {crumb.name}
-              </BreadcrumbItem>
-            ))}
-          </Breadcrumbs>
+      <div className="kf-container kf-post-page">
+        <Breadcrumbs label="Breadcrumb" variant="supporting">
+          {trail.map((crumb, i) => (
+            <BreadcrumbItem
+              key={crumb.path}
+              href={i === trail.length - 1 ? undefined : crumb.path}
+            >
+              {crumb.name}
+            </BreadcrumbItem>
+          ))}
+        </Breadcrumbs>
 
-          <VStack gap={2}>
-            <p className="kf-eyebrow">{post.tags[0] ?? 'Spice notes'}</p>
-            <Heading level={1}>{post.title}</Heading>
-            <span className="kf-rule" aria-hidden="true" />
-            <HStack gap={1.5} vAlign="center" wrap="wrap">
-              <Text type="supporting" color="secondary">
-                <time dateTime={post.publishedAt}>
-                  {new Date(post.publishedAt).toLocaleDateString('en-IN', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </time>
-              </Text>
-              <Text type="supporting" color="secondary">
-                · {post.author.name} · {post.readingMinutes} min read
-              </Text>
-            </HStack>
-          </VStack>
+        <PostHero post={post} />
 
-          {post.coverImage ? (
-            <div className="kf-article-media">
-              <Image
-                src={post.coverImage.url}
-                alt={post.coverImage.alt || ''}
-                fill
-                sizes="(max-width: 860px) 100vw, 760px"
-                className="kf-article-img"
-                priority
-              />
-            </div>
-          ) : null}
+        <div className="kf-post-layout">
+          <article className="kf-post-main">
+            {post.tags.length > 0 ? (
+              <nav className="kf-post-tags" aria-label="Post topics">
+                {post.tags.map((tag) => (
+                  <Link key={tag} href={`/blog/tag/${encodeURIComponent(tag)}`} className="kf-chip">
+                    {tagLabel(tag)}
+                  </Link>
+                ))}
+              </nav>
+            ) : null}
 
-          {/* Sanitised HTML authored in the CMS. */}
-          <div
-            className="kf-prose"
-            dangerouslySetInnerHTML={{ __html: post.html }}
+            <ShareButtons title={post.title} url={url} />
+
+            {/* Sanitised HTML authored in the CMS. */}
+            <div className="kf-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+
+            <PostComments postSlug={post.slug} comments={comments} copy={content.comments} />
+
+            <footer className="kf-post-footer">
+              <span className="kf-post-footer-rule" aria-hidden="true" />
+              <ShareButtons title={post.title} url={url} />
+              <Link href="/blog" className="kf-post-back">
+                ← Back to all posts
+              </Link>
+            </footer>
+          </article>
+
+          <PostSidebar
+            products={blends.items}
+            instagramUrl={brand.socials?.instagram}
+            copy={content.sidebar}
           />
-        </VStack>
+        </div>
       </div>
+
+      <RelatedPosts posts={related} title={content.related.title} />
     </>
   );
 }

@@ -370,6 +370,31 @@ export type ReviewSummary = {
   readonly distribution: Readonly<Record<1 | 2 | 3 | 4 | 5, number>>;
 };
 
+// ── Blog comments ──────────────────────────────────────────────────────────
+
+/**
+ * A reader comment on a post. Same moderation discipline as reviews: only
+ * `approved` comments are ever returned, so a pending or rejected one is
+ * invisible to everyone until a human has looked at it.
+ */
+export type Comment = {
+  readonly id: string;
+  readonly postSlug: string;
+  readonly authorName: string;
+  readonly body: string;
+  readonly createdAt: string;
+  readonly status: 'pending' | 'approved' | 'rejected';
+};
+
+export type CommentSubmission = {
+  readonly postSlug: string;
+  /** Email or Indian mobile — the legacy form accepted either in one field. */
+  readonly contact: string;
+  readonly body: string;
+  /** Honeypot: must be empty. A bot that fills every field trips it. */
+  readonly website?: string;
+};
+
 export type ReviewSubmission = {
   readonly productSlug: string;
   readonly rating: number;

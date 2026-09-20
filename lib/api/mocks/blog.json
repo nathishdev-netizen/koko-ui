@@ -3,27 +3,54 @@
     "slug": "what-makes-mysore-rasam-powder-different",
     "title": "What makes Mysore rasam powder different",
     "excerpt": "Karnataka rasam leans on pepper, not chilli. Here is why that one choice changes the whole bowl.",
-    "coverImage": null,
+    "coverImage": {
+      "url": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/fresh-masala-grinding-67YlV3a7WWaD1LwXvfDG7hBuGEot3E.jpg",
+      "alt": "Hands grinding fresh masala with a stone mortar and pestle",
+      "width": 1600,
+      "height": 1000
+    },
     "publishedAt": "2026-08-28T06:00:00.000Z",
     "updatedAt": "2026-09-02T09:15:00.000Z",
-    "author": { "name": "KokoFresh Kitchen", "avatar": null },
-    "tags": ["rasam", "karnataka", "spice-notes"],
+    "author": {
+      "name": "KokoFresh Kitchen",
+      "avatar": null
+    },
+    "tags": [
+      "rasam",
+      "karnataka",
+      "spice-notes"
+    ],
     "readingMinutes": 4,
     "html": "<p>Rasam &mdash; <em>saaru</em> in Karnataka &mdash; is meant to be light and drinkable, not a heavy gravy. The difference comes down to one decision: pepper leads, chilli supports.</p><h3>Pepper first</h3><p>A Mysore-style blend is built around black pepper and cumin, with just enough Byadagi chilli for colour. Byadagi is deep red but mild, so you get the look of heat without the burn.</p><h3>Why fillers ruin it</h3><p>Many commercial powders bulk out the blend with roasted lentils. That thickens the rasam and mutes the aroma. A true rasam powder is only spices.</p><h3>Getting it right at home</h3><p>Boil tamarind water with tomato, stir in a spoon of powder near the end, and finish with a ghee tempering. Adding the powder too early cooks off the aroma you paid for.</p>",
     "seo": {
       "title": "Mysore Rasam Powder: why pepper matters more than chilli",
       "description": "Karnataka rasam is pepper-forward, not chilli-heavy. What goes into an authentic Mysore rasam powder, why fillers ruin it, and how to use it.",
-      "keywords": ["mysore rasam powder", "karnataka rasam", "pepper rasam"]
+      "keywords": [
+        "mysore rasam powder",
+        "karnataka rasam",
+        "pepper rasam"
+      ]
     }
   },
   {
     "slug": "how-to-store-spice-powders",
     "title": "How to store spice powders so they stay fragrant",
     "excerpt": "Freshly ground masala loses aroma faster than you think. Six habits that keep it alive for months.",
-    "coverImage": null,
+    "coverImage": {
+      "url": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/pure-natural-spices-array-S2R8scxEfC2ENnYCuI6LmJaApZjsek.jpg",
+      "alt": "An array of pure ground spices in bowls",
+      "width": 1600,
+      "height": 1000
+    },
     "publishedAt": "2026-08-14T06:00:00.000Z",
-    "author": { "name": "KokoFresh Kitchen", "avatar": null },
-    "tags": ["storage", "kitchen-notes"],
+    "author": {
+      "name": "KokoFresh Kitchen",
+      "avatar": null
+    },
+    "tags": [
+      "storage",
+      "kitchen-notes"
+    ],
     "readingMinutes": 3,
     "html": "<p>Preservative-free masala has a shorter, honest shelf life. Aroma is the first thing to go, and it goes quietly.</p><h3>Airtight, always</h3><p>Move the powder into a glass or steel jar the day it arrives. Every time a pouch is opened and resealed, some aroma leaves with the air.</p><h3>Do not refrigerate</h3><p>The fridge feels sensible and is not. Condensation forms each time the jar comes out, and moisture clumps the powder and dulls the oils.</p><h3>Keep it away from the stove</h3><p>A shelf right above the hob is the worst place in the kitchen: heat and steam both age the blend.</p><h3>If the aroma fades</h3><p>Dry roast a spoonful for a few seconds before use. It will not be new again, but it wakes up considerably.</p>",
     "seo": {
@@ -34,10 +61,22 @@
     "slug": "byadagi-vs-guntur-chillies",
     "title": "Byadagi vs Guntur: choosing your chilli",
     "excerpt": "One brings colour, the other brings heat. Most Karnataka blends use both, in a particular ratio.",
-    "coverImage": null,
+    "coverImage": {
+      "url": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/indian-spice-farm-harvest-ugGkK6QZQ1jAUGD5mfz543JeNpEiv2.jpg",
+      "alt": "Freshly harvested spices drying at a Karnataka farm",
+      "width": 1600,
+      "height": 1000
+    },
     "publishedAt": "2026-07-30T06:00:00.000Z",
-    "author": { "name": "KokoFresh Kitchen", "avatar": null },
-    "tags": ["chilli", "spice-notes", "karnataka"],
+    "author": {
+      "name": "KokoFresh Kitchen",
+      "avatar": null
+    },
+    "tags": [
+      "chilli",
+      "spice-notes",
+      "karnataka"
+    ],
     "readingMinutes": 5,
     "html": "<p>Ask why one sambar is glowing red and another is merely brown, and the answer is usually the chilli.</p><h3>Byadagi: colour without burn</h3><p>Grown in northern Karnataka, Byadagi is wrinkled, deep red and remarkably mild. It is used for colour, and it is why a Karnataka sambar looks richer than its heat suggests.</p><h3>Guntur: the heat</h3><p>Guntur, from Andhra Pradesh, is the opposite &mdash; sharp, direct heat and far less colour.</p><h3>The ratio</h3><p>Most household blends sit somewhere near three parts Byadagi to one part Guntur. Shift it toward Guntur and you get a hotter, duller-looking blend; shift it the other way and it looks striking but tastes flat.</p>",
     "seo": {

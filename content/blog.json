@@ -1,0 +1,38 @@
+{
+  "_note": "Blog listing copy. White-label: a tenant edits this, or the backend returns it on /site-config.",
+  "hero": {
+    "eyebrow": "The KokoFresh Journal",
+    "title": "Spice Stories & Recipes",
+    "subtitle": "Fresh from the KokoFresh kitchen."
+  },
+  "empty": {
+    "title": "First post coming soon…",
+    "body": "Our team is cooking up some great content. Check back shortly!"
+  },
+  "sidebar": {
+    "story": {
+      "badge": "Artisanal & Fresh",
+      "title": "Crafted with Love",
+      "body": "Every single packet of spice is ground-to-order by our women artisans in Mysore. We use traditional Karnataka recipes with zero preservatives, artificial colors, or additives.",
+      "cta": "Our Story →"
+    },
+    "follow": {
+      "title": "Follow KokoFresh",
+      "body": "Follow our spice journey, recipes, and behind-the-scenes on Instagram!",
+      "cta": "Follow @koko_fresh_india"
+    },
+    "products": {
+      "title": "Fresh Spice Blends"
+    }
+  },
+  "related": {
+    "title": "You Might Also Enjoy"
+  },
+  "comments": {
+    "title": "Discussion",
+    "empty": "Be the first to share your thoughts on this post!",
+    "formTitle": "Leave a Comment",
+    "formNote": "Note: Hateful comments or spam will be moderated.",
+    "pending": "Thanks! Your comment is awaiting moderation and will appear once approved."
+  }
+}

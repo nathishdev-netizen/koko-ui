@@ -688,6 +688,64 @@ reads as lag, not polish. Slot selection settles with a 260ms scale confirm.
 the unsized icons expanded to fill their column — the page went from 3.4k to
 9008px tall with giant tick marks.
 
+## Blog — parity with the legacy journal
+
+Rebuilt against `../KokoFresh_website-main/components/blog/*` (8 components,
+841 lines) and its `.blog-*` CSS. Listing: masthead band → tag pills →
+featured lead card (spans the grid, image beside text) → 3-col grid →
+"Load More Posts". Post: breadcrumb → boxed 480px photo hero under a scrim →
+article beside a **sticky 340px sidebar** (product slider · brand story ·
+follow) → share row top AND bottom → discussion → related strip.
+Copy lives in `content/blog.json` (white-label).
+
+**Tag filtering is a static route, `/blog/tag/[tag]`, NOT `?tag=`.** The
+first cut read `searchParams`, and the build showed `/blog` flip from `○`
+(static) to `ƒ` (dynamic): reading searchParams opts a route out of
+prerendering, so the listing would be server-rendered on every hit instead of
+served from the CDN — a CWV regression. Per-tag pages use
+`generateStaticParams`, stay `●`, and give every tag a canonical URL for
+search. An unknown tag is a 404, not an empty listing. This is still a
+deliberate divergence from legacy, whose client-state filter made filtered
+views unshareable and invisible to search. "Load more" stays client-side over
+the already-fetched list (9, then +6) exactly as legacy did: revealing more
+posts costs no request. `getPosts` takes `pageSize: 60` so the whole list is
+there.
+
+**Check the route symbols in the build output after touching a page.** `○`/`●`
+is prerendered; `ƒ` means it went dynamic. A page silently going dynamic is
+easy to miss and costs the CDN.
+
+**Comments follow the reviews discipline.** `lib/api/comments.ts` returns only
+`approved`; a submission lands `pending` and is NOT appended to the visible
+list — the reader is told it awaits moderation, which is the truth. `cmt-004`
+in the fixtures is a rejected spam entry and must never render (verified: the
+storage post shows 1, not 2). The form carries an off-screen honeypot field;
+a filled one resolves silently so a bot cannot tell it was caught.
+`'comments'` had to be added to `ApiResource` in `lib/api/client.ts`.
+
+**The sidebar must clear a laptop viewport.** It measured 878px against 863px
+and its last widget sat below the fold while pinned. Trimmed to ~819px (slide
+media capped at 170px, widget padding 16px). It pins while the article scrolls
+and releases when the grid ends — correct; a short post pins briefly.
+
+**Share buttons use the destinations' brand colours** (WhatsApp green, X blue)
+— a deliberate exception to the no-literal-hex rule. A WhatsApp button reads as
+WhatsApp because it is green; theming it would defeat the affordance.
+
+**Article prose is full column width**, overriding `.kf-prose`'s 66ch. Legacy
+parity, and the share row / comments / form span the column, so a narrower
+text measure left an uneven right edge. Judgment call; revisit if long posts
+read poorly.
+
+**Posts need cover images.** None of the three mock posts had one and the whole
+design is image-led. Covers are assigned from `content/hero-media.json`
+thematically. A post without a cover renders an empty media box — give it one.
+
+**Verifying images in screenshots:** await `img.decode()` on every card image
+before capturing. next/image's first-time optimisation of a new width made the
+featured card look blank in a capture while the DOM showed it complete and
+correctly sized — a timing artefact, not a bug.
+
 ## Size & icon consistency rules
 
 - **Heat = chillies, not dots.** `ChilliIcon` in `components/icons`, rendered
