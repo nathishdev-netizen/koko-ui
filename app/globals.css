@@ -558,8 +558,12 @@ html,
      categories then "Shop All". Two tracks keep the pairing obvious at every
      width rather than reflowing to 3 + 1. */
   .kf-card-grid--quad {
-    grid-template-columns: repeat(2, minmax(220px, 300px));
-    justify-content: center;
+    /* Two columns of a fixed four, so the cards take the container rather than
+       the 300px cap the variable-length grids need — at that width they left
+       most of a 1200px row empty and read as small. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4, 16px);
+    justify-content: stretch;
   }
   @media (max-width: 560px) {
     .kf-card-grid--quad { grid-template-columns: 1fr; }
