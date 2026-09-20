@@ -36,8 +36,11 @@ export function BundleConfigurator({
   bundle,
   catalogue,
   included,
+  children,
 }: {
   bundle: Bundle;
+  /** Cards that stack below the builder, inside the scrolling column. */
+  children?: React.ReactNode;
   /** Products eligible for each rule, keyed by collection slug. */
   catalogue: Readonly<Record<string, readonly ProductSummary[]>>;
   /** Auto-added items the customer does not choose. */
@@ -92,7 +95,28 @@ export function BundleConfigurator({
   return (
     <div className="kf-bundle-grid">
       <div className="kf-bundle-picker">
-        <VStack gap={8}>
+        <VStack gap={4}>
+          {/* Price card — the legacy page leads the right column with this, so
+              the saving is visible before any picking starts. */}
+          <div className="kf-price-card">
+            <HStack gap={3} vAlign="end" wrap="wrap">
+              <span className="kf-price kf-price--xl kf-numeric">
+                {formatMoney(bundle.price)}
+              </span>
+              <span className="kf-price-was kf-numeric">
+                {formatMoney(bundle.compareAtPrice)}
+              </span>
+            </HStack>
+            <p className="kf-save-pill">
+              You save {formatMoney(bundle.savings)} ({bundle.savingsPercent}% OFF)
+            </p>
+          </div>
+
+          <div className="kf-build-card">
+            <VStack gap={6}>
+              <Heading level={2} className="kf-build-title">
+                Build Your Bundle
+              </Heading>
           {bundle.rules.map((rule, index) => {
             const state = progress[index]!;
             const options = catalogue[rule.collectionSlug] ?? [];
@@ -134,6 +158,30 @@ export function BundleConfigurator({
             );
           })}
 
+
+              <div className="kf-build-cta">
+                <Button
+                  label={
+                    complete
+                      ? 'Add Customized Bundle to Cart'
+                      : `Pick ${required - picks.length} more`
+                  }
+                  variant="primary"
+                  size="lg"
+                  // Disabled until the selection is valid: the legacy version
+                  // let you click and then toasted a wrong item count.
+                  isDisabled={!complete}
+                />
+                <Text type="supporting" color="secondary">
+                  {validation.ok
+                    ? 'Ground fresh after you order · delivered in 3–5 days'
+                    : validation.message}
+                </Text>
+              </div>
+            </VStack>
+          </div>
+
+          {children}
         </VStack>
       </div>
 
@@ -209,38 +257,6 @@ export function BundleConfigurator({
             ))}
           </VStack>
 
-          <Divider />
-
-          <HStack gap={2} vAlign="end" wrap="wrap">
-            <span className="kf-price kf-numeric">{formatMoney(bundle.price)}</span>
-            <span className="kf-price-was kf-numeric">
-              {formatMoney(bundle.compareAtPrice)}
-            </span>
-            <Badge variant="green" label={`Save ${formatMoney(bundle.savings)}`} />
-          </HStack>
-
-          <Button
-            label={
-              complete
-                ? 'Add Customized Bundle to Cart'
-                : `Pick ${required - picks.length} more`
-            }
-            variant="primary"
-            size="lg"
-            // Disabled until the selection is valid: the legacy version let you
-            // click and then showed a toast with the wrong item count.
-            isDisabled={!complete}
-          />
-
-          {!validation.ok ? (
-            <Text type="supporting" color="secondary">
-              {validation.message}
-            </Text>
-          ) : (
-            <Text type="supporting" color="secondary">
-              Ground fresh after you order · delivered in 3–5 days
-            </Text>
-          )}
         </VStack>
       </aside>
     </div>

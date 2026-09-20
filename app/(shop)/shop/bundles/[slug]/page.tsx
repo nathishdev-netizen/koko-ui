@@ -129,20 +129,23 @@ export default async function BundlePage({
           {/* The lower content is passed INTO the configurator so it lands in
               the scrolling column beside the sticky rail — the legacy layout,
               where the bundle card stays put while everything else moves. */}
+          {/* Trust badges and the content panels stack INSIDE the scrolling
+              column, as the legacy page does — which is also what gives the
+              sticky rail enough height to hold against while you read. */}
           <BundleConfigurator
             bundle={bundle}
             catalogue={catalogue}
             included={included}
-          />
-        </VStack>
-
-        {/* Outside the configurator on purpose: the sticky rail should hold
-            only while there are picks to make. Past that, this content gets
-            the container's full width rather than the picker column's. */}
-        <div className="kf-bundle-lower">
-          <VStack gap={10}>
+          >
             <BundleTrust />
             <BundleAbout bundle={bundle} />
+          </BundleConfigurator>
+        </VStack>
+
+        {/* Full width: a comparison table and a FAQ grid are page-level
+            content, not part of the builder column. */}
+        <div className="kf-bundle-lower">
+          <VStack gap={10}>
             <BundleCompare bundles={allBundles} currentSlug={bundle.slug} />
             <BundleFaq />
           </VStack>

@@ -690,6 +690,54 @@
     font-weight: 800;
   }
 
+  /*
+   * Right-column cards. The legacy page stacks the right side as distinct
+   * cards rather than loose content on the page ground — it gives the column a
+   * rhythm and makes each block feel like a deliberate step.
+   */
+  .kf-price-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-3, 12px);
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border-emphasized);
+    background: linear-gradient(
+      135deg,
+      var(--color-background-surface) 0%,
+      var(--color-background-card) 100%
+    );
+  }
+  .kf-price--xl { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); }
+  .kf-save-pill {
+    margin: 0;
+    padding: 7px 14px;
+    border-radius: var(--kf-radius-control);
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .kf-build-card {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+  }
+  .kf-build-title { font-size: 1.25rem; }
+  .kf-build-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-block-start: var(--spacing-4, 16px);
+    border-block-start: 1px solid var(--color-border);
+  }
+  /* The CTA is the page's primary action — full width inside its card. */
+  .kf-build-cta [class*='astryx-button'] { width: 100%; }
+
   .kf-bundle-lower {
     padding-block: clamp(2.5rem, 6vw, 4rem);
     /* Capped independently of the wide container: long-form copy and a FAQ
@@ -700,19 +748,37 @@
   }
   .kf-steps { padding-block-start: var(--spacing-4, 16px); }
 
-  /* Bundle trust row. */
+  /* Trust badges — three cards in a row, as the legacy page had. */
   .kf-bundle-trust {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-2, 8px) var(--spacing-5, 20px);
-    justify-content: center;
-    padding-block: var(--spacing-4, 16px);
-    border-block: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-3, 12px);
   }
-  .kf-bundle-trust li { display: inline-flex; align-items: center; gap: 8px; }
+  @media (max-width: 560px) {
+    .kf-bundle-trust { grid-template-columns: 1fr; }
+  }
+  .kf-bundle-trust li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: var(--spacing-4, 16px) var(--spacing-3, 12px);
+    border-radius: var(--kf-radius-card);
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .kf-bundle-trust .kf-trust-icon {
+    width: 34px;
+    height: 34px;
+    padding: 8px;
+    border-radius: 50%;
+    background: var(--color-background-surface);
+    box-shadow: 0 1px 3px rgba(31, 21, 8, 0.1);
+  }
   .kf-trust-icon { width: 16px; height: 16px; color: var(--color-text-accent); flex: 0 0 auto; }
 
   /* Filter chips: hairline pills, filled only when active. */
@@ -1338,6 +1404,12 @@
       top: var(--spacing-6, 24px);
       align-self: start;
     }
+    /*
+     * The rail itself is deliberately NOT animated. Current guidance on sticky
+     * elements is to keep their motion minimal — a sidebar that moves while it
+     * is meant to be the fixed reference point reads as a glitch. The reveal
+     * belongs to the cards scrolling past it.
+     */
   }
   @media (prefers-reduced-motion: reduce) {
     .kf-bundle-summary { position: static; }
@@ -1396,7 +1468,10 @@
       .kf-panel,
       .kf-compare-scroll,
       .kf-steps .kf-step,
-      .kf-bundle-trust {
+      .kf-faq-card,
+      .kf-price-card,
+      .kf-build-card,
+      .kf-bundle-trust li {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the
@@ -1586,6 +1661,84 @@
      which left the list SVGs unsized — they expanded to fill their column and
      the page grew to 9000px. An SVG with no width collapses to its natural
      aspect and fills available space; always size list icons explicitly. */
+  /*
+   * Content panels below the builder — restored: an earlier CSS block
+   * replacement dropped these, and About/Why/Quick Prep rendered as loose text
+   * on the page ground instead of the cards the legacy page stacks.
+   */
+  .kf-about-grid {
+    display: grid;
+    gap: var(--spacing-4, 16px);
+    align-items: start;
+  }
+  @media (min-width: 1100px) {
+    .kf-about-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .kf-panel {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+  }
+  .kf-panel--tint { background: var(--color-background-card); }
+  .kf-panel-title { font-size: 1.25rem; }
+  .kf-panel-subtitle { font-size: 1rem; }
+
+  .kf-smart-math {
+    margin-block-start: var(--spacing-2, 8px);
+    padding: var(--spacing-4, 16px);
+    border-radius: var(--kf-radius-control);
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+  }
+  .kf-smart-math ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+  .kf-smart-math li { position: relative; padding-inline-start: 16px; font-size: 0.9375rem; }
+  .kf-smart-math li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-text-accent);
+  }
+  .kf-smart-footer {
+    margin: 12px 0 0;
+    padding-block-start: 10px;
+    border-block-start: 1px solid var(--color-border);
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: var(--color-text-accent);
+  }
+  .kf-best-value {
+    margin: 0;
+    align-self: center;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .kf-testimonial {
+    margin: 0;
+    padding: var(--spacing-4, 16px);
+    border-radius: var(--kf-radius-control);
+    background: var(--color-background-surface);
+    border: 1px solid var(--color-border);
+  }
+  .kf-testimonial blockquote { margin: 0; font-style: italic; font-size: 0.9375rem; }
+  .kf-testimonial figcaption {
+    margin-block-start: 8px;
+    text-align: end;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-accent);
+  }
+
   .kf-tick-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
   .kf-tick-list li { display: flex; align-items: flex-start; gap: 10px; }
   .kf-list-icon {

@@ -259,6 +259,22 @@ compare, FAQ) is rendered OUTSIDE `BundleConfigurator`, so the rail scrolls away
 once there are no picks left to make. Rendering it inside made the rail follow
 the reader down a long article, which is not what a summary rail is for.
 
+**The right column is a STACK OF CARDS**, matching legacy: price card (with the
+save pill) · "Build Your Bundle" card holding the steps AND the
+"Add Customized Bundle to Cart" CTA · three trust cards · About / Why / Quick
+Prep panels. Loose content on the page ground was the wrong read — the cards
+give the column rhythm and make each block feel like a step.
+
+The trust badges and content panels render INSIDE the configurator's scrolling
+column (passed as `children`). That is also what gives the sticky rail enough
+height to hold against: with them outside, the grid ended early and the rail
+released mid-read.
+
+**Sticky elements must not animate.** Current guidance is to keep a sticky
+element's motion minimal — a sidebar that moves while it is meant to be the
+fixed reference reads as a glitch. The scroll reveal belongs to the cards
+passing it, never to the rail.
+
 **A sticky rail taller than the viewport scrolls away regardless.** The rail hit
 873px against a 913px viewport and released mid-pick. Fixed by trimming its
 contents (image capped at 160px, tighter gaps, 22px heading) to ~718px rather
