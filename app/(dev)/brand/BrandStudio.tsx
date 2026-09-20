@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 
 import { Button, Heading, Text, VStack } from '@/components/ui';
-import { FONT_SET_OPTIONS } from '@/themes/kokofresh/fonts';
+import { FONT_SETS, FONT_SET_OPTIONS, fontClassName } from '@/themes/kokofresh/fonts';
 import { resetTheme, saveTheme } from './actions';
 
 /**
@@ -112,21 +112,72 @@ export function BrandStudio({
   const [pending, startTransition] = useTransition();
   const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null);
 
-  // Writes straight to :root, exactly as the server-injected <style> does.
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
+  /**
+   * Writes the pending theme into a document as inline custom properties —
+   * exactly what the server-injected <style> does, so the preview and the saved
+   * result cannot disagree.
+   */
+  const paint = useCallback(
+    (doc: Document | null | undefined) => {
+      if (!doc) return;
+      const root = doc.documentElement;
+      for (const sw of SWATCHES) {
+        const v = values[sw.key];
+        if (v) root.style.setProperty(sw.cssVar, v);
+      }
+      if (values.radiusCard) root.style.setProperty('--kf-radius-card', values.radiusCard);
+      if (values.radiusControl) {
+        root.style.setProperty('--kf-radius-control', values.radiusControl);
+      }
+
+      // Identity is markup, not style. In the framed preview we can still
+      // reflect it, because the frame is same-origin — so the demo shows the
+      // real name rather than making you save to see it.
+      if (doc !== document && values.brandName) {
+        for (const el of doc.querySelectorAll('[class*=top-nav-heading]')) {
+          el.textContent = values.brandName;
+        }
+      }
+
+      // Fonts are next/font classes on <html>, not custom properties, so the
+      // class list is swapped rather than a variable set. Every set's classes
+      // are removed first so switching does not stack them.
+      if (values.fontSet) {
+        for (const key of Object.keys(FONT_SETS)) {
+          for (const cls of fontClassName(key).split(' ')) {
+            if (cls) root.classList.remove(cls);
+          }
+        }
+        for (const cls of fontClassName(values.fontSet).split(' ')) {
+          if (cls) root.classList.add(cls);
+        }
+      }
+    },
+    [values],
+  );
+
+  // The studio's own chrome.
   useEffect(() => {
+    paint(document);
     const root = document.documentElement;
-    for (const s of SWATCHES) {
-      const v = values[s.key];
-      if (v) root.style.setProperty(s.cssVar, v);
-    }
-    if (values.radiusCard) root.style.setProperty('--kf-radius-card', values.radiusCard);
-    if (values.radiusControl) root.style.setProperty('--kf-radius-control', values.radiusControl);
     return () => {
-      for (const s of SWATCHES) root.style.removeProperty(s.cssVar);
+      for (const sw of SWATCHES) root.style.removeProperty(sw.cssVar);
       root.style.removeProperty('--kf-radius-card');
       root.style.removeProperty('--kf-radius-control');
     };
-  }, [values]);
+  }, [paint]);
+
+  /**
+   * The framed storefront. CSS variables do not cross a document boundary, so
+   * the parent writes them into the frame directly — same-origin, so this is
+   * allowed. Without it the preview would only ever show the SAVED theme, which
+   * is useless while you are choosing colours.
+   */
+  useEffect(() => {
+    paint(frameRef.current?.contentDocument);
+  }, [paint]);
 
   const ratio = contrast(values.brandInk ?? '#000000', values.onFill ?? '#FFFFFF');
   const passesAA = ratio >= 4.5;
@@ -234,7 +285,7 @@ export function BrandStudio({
               ))}
             </select>
             <Text type="supporting" color="secondary">
-              Applies on save — fonts are self-hosted and loaded per set.
+              Self-hosted and loaded per set — no extra network request.
             </Text>
           </VStack>
 
@@ -348,19 +399,19 @@ export function BrandStudio({
       <div className="kf-studio-preview">
         <VStack gap={4}>
           <Text type="supporting" color="secondary">
-            Live preview — the real storefront, not mock-ups. Save to apply the
-            pending changes to the framed page.
+            Live preview — the real storefront, updating as you change things.
+            Colours, shape, type and the brand name all update as you edit.
           </Text>
 
-          {/* The real home page. Colours and shape are CSS variables on :root,
-              so they do NOT cross into the frame — the frame shows the SAVED
-              theme, while the strip below previews what is pending. */}
           <div className="kf-frame-wrap">
             <iframe
+              ref={frameRef}
               src="/"
               className="kf-frame"
               title="Storefront preview"
-              loading="lazy"
+              // Paint on load too: the effect above can run before the frame's
+              // document exists, and on every later navigation inside it.
+              onLoad={() => paint(frameRef.current?.contentDocument)}
             />
           </div>
 

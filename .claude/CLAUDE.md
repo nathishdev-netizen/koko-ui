@@ -251,6 +251,14 @@ ignored — the same trap as the button colour.
 and silently restyled the whole site; the regression suite caught it. When
 tokenising a value, the default must reproduce the existing design exactly.
 
+**The framed preview updates live.** CSS variables do not cross a document
+boundary, so the parent writes them into the iframe directly (same-origin).
+Fonts are next/font classes on `<html>`, so the class list is swapped — every
+set's classes are removed first or they stack. The brand name is markup rather
+than style, but the frame is same-origin so its text is updated too. Without
+all three, the preview only ever showed the SAVED theme, which is useless while
+you are choosing.
+
 **Build the save payload in ONE place.** An earlier version listed only the
 colour swatches, so shape, font and identity were silently dropped on save
 while still appearing in the previewed JSON.
