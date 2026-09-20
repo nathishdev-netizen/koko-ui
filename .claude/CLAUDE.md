@@ -631,6 +631,21 @@ Use `.kf-product-grid` / `.kf-card-grid` instead — plain CSS grid with
 space to their right. The `max` in `minmax` is what caps the card; without it
 `auto-fill` still stretches.
 
+**A grid whose count does not divide by its column count needs
+`.kf-card-grid--centred`.** Five collections in three columns rendered as
+3 + 2, left-aligned, with a card-sized hole on the right.
+
+`justify-content: center` on the grid does NOT fix this: with explicit tracks
+the two leftover cards still occupy tracks 1 and 2, so the row sits
+left-of-centre (measured 138/450 either side). The centred variant switches to
+flex, which centres the ITEMS rather than the track set — 294/294 after the
+fix. `flex: 0 1 300px` (360px for `--wide`) reproduces the grid's sizing, so
+the equal-card-size rule still holds for any count the backend returns.
+
+Applied to the home page's collection and bundle grids, both centred-heading
+marketing sections. `justify-content: start` stays the default everywhere
+else — the shop grid sits beside left-aligned content and must not centre.
+
 Applies to: the shop/collection/PDP product grid, and the home page's bundle and
 collection grids. Fixed-count content (footer columns, trust badges, value
 props) can keep `repeat: 'fit'` — there is no variable count to guard against.

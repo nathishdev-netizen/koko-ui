@@ -528,6 +528,24 @@ html,
     gap: var(--spacing-3, 12px);
     justify-content: start;
   }
+  /* A count that does not divide by the column count leaves a hole on the
+     right of the last row — 5 collections in 3 columns read as 3 + 2 with a
+     card-sized gap.
+     `justify-content: center` alone does NOT fix this: with explicit tracks
+     the two leftover cards still occupy tracks 1 and 2, so centring the track
+     set leaves them left-of-centre. Flex centres the items themselves, and
+     `flex: 0 1 300px` reproduces the grid's sizing, so every card keeps the
+     same width for any count the backend returns. */
+  .kf-card-grid--centred {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .kf-card-grid--centred > * { flex: 0 1 300px; max-width: 300px; }
+  .kf-card-grid--wide.kf-card-grid--centred > * { flex: 0 1 360px; max-width: 360px; }
+  @media (max-width: 560px) {
+    .kf-card-grid--centred > * { flex-basis: 100%; max-width: none; }
+  }
   .kf-card-grid--wide {
     grid-template-columns: repeat(auto-fill, minmax(260px, 360px));
   }

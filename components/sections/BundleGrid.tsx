@@ -42,7 +42,7 @@ export function BundleGrid({
             </VStack>
           ) : null}
 
-          <div className="kf-card-grid kf-card-grid--wide">
+          <div className="kf-card-grid kf-card-grid--wide kf-card-grid--centred">
             {bundles.map((bundle) => (
               <a
                 key={bundle.slug}

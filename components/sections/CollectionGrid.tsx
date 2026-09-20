@@ -39,7 +39,7 @@ export function CollectionGrid({
             <Text color="secondary">{subheading}</Text>
           </VStack>
 
-          <div className="kf-card-grid">
+          <div className="kf-card-grid kf-card-grid--centred">
             {collections.map((collection) => (
               <ClickableCard
                 className="kf-card-link"
