@@ -30,5 +30,13 @@
     "body": "BUY CHEAP SPICES NOW http://example.invalid",
     "createdAt": "2026-09-03T02:00:00.000Z",
     "status": "rejected"
+  },
+  {
+    "id": "cmt-005",
+    "postSlug": "how-to-temper-spices-without-burning-them",
+    "authorName": "Deepa",
+    "body": "The off-the-heat tip fixed years of bitter rasam. I always tipped the powder straight into hot ghee and wondered why it tasted burnt.",
+    "createdAt": "2026-09-13T11:20:00.000Z",
+    "status": "approved"
   }
 ]

@@ -1,5 +1,30 @@
 [
   {
+    "slug": "how-to-temper-spices-without-burning-them",
+    "title": "How to temper spices without burning them",
+    "excerpt": "Oggarane takes about forty seconds and most of it is waiting. The order matters more than the heat.",
+    "coverImage": {
+      "url": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/women-artisans-spices-b4lYC8QAIwE5cyUtXTrOXRqMUl7qNq.jpg",
+      "alt": "Women artisans sorting and roasting whole spices in small batches",
+      "width": 1600,
+      "height": 1000
+    },
+    "publishedAt": "2026-09-11T06:00:00.000Z",
+    "author": {
+      "name": "KokoFresh Kitchen",
+      "avatar": null
+    },
+    "tags": [
+      "kitchen-notes",
+      "spice-notes"
+    ],
+    "readingMinutes": 3,
+    "html": "<p>Tempering — <em>oggarane</em> in Kannada, tadka almost everywhere else — is where a blend either blooms or scorches. It takes under a minute, and nearly all of that is waiting for the right moment.</p><h3>Start with the fat, not the flame</h3><p>Ghee for rasam and sambar, coconut oil on the coast, a neutral oil for everything else. Medium heat. If the oil smokes, it is already too hot for what follows.</p><h3>Whole spices first, in order</h3><p>Mustard seeds go in alone and must crackle before anything else joins them. Then urad dal until it turns golden, then a dried Byadagi chilli and curry leaves. Each one needs less time than the last.</p><h3>Ground powder goes in last — or off the heat</h3><p>This is the step most people get wrong. Ground masala burns in seconds. Take the pan off the flame, stir the powder in, and let the residual heat do the work. A burnt powder turns bitter and there is no rescuing it.</p><h3>Into the dish immediately</h3><p>Tempering waits for no one. Pour it over the rasam or dal the moment the curry leaves stop spitting, and cover the pot for a minute so the aroma stays in the food rather than the kitchen.</p>",
+    "seo": {
+      "description": "How to temper spices (oggarane) without burning them: the right fat, whole spices in order, and why ground masala goes in last, off the heat."
+    }
+  },
+  {
     "slug": "what-makes-mysore-rasam-powder-different",
     "title": "What makes Mysore rasam powder different",
     "excerpt": "Karnataka rasam leans on pepper, not chilli. Here is why that one choice changes the whole bowl.",
