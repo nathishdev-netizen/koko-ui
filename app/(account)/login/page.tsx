@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 
 import { LoginForm } from '@/components/account/LoginForm';
-import { Card, Heading, Text, VStack } from '@/components/ui';
+import { LeafIcon, ShieldCheckIcon, SparklesIcon } from '@/components/icons';
+import { Heading } from '@/components/ui';
+import { brand } from '@/config/brand';
 import { getSession } from '@/lib/api/session';
 
 export const metadata: Metadata = {
@@ -10,6 +12,17 @@ export const metadata: Metadata = {
   robots: 'noindex, nofollow',
 };
 
+const REASONS = [
+  { Icon: SparklesIcon, text: 'Track every order from grind to doorstep' },
+  { Icon: LeafIcon, text: 'Save your favourite blends and reorder in a tap' },
+  { Icon: ShieldCheckIcon, text: 'No password to remember — we email you a link' },
+] as const;
+
+/**
+ * Sign in. The legacy site had no login screen of its own (it bounced to a
+ * Wix-hosted page), so this follows the marketing pages' treatment: dual-tone
+ * heading, the warm card, brown pill button.
+ */
 export default async function LoginPage({
   searchParams,
 }: {
@@ -27,23 +40,36 @@ export default async function LoginPage({
   if (customer) redirect(safeNext);
 
   return (
-    <div className="kf-container kf-shop">
-      <VStack gap={4} hAlign="center">
-        <VStack gap={1.5} hAlign="center" className="kf-center-text">
-          <p className="kf-eyebrow">Welcome back</p>
-          <Heading level={1}>Sign in</Heading>
-          <span className="kf-rule" aria-hidden="true" />
-        </VStack>
+    <section className="kf-section kf-login">
+      <div className="kf-container">
+        <div className="kf-login-grid">
+          <div className="kf-login-copy">
+            <Heading level={1} className="kf-about-h2 kf-about-h2--xl">
+              Welcome <span className="kf-h-alt">back</span>
+            </Heading>
+            <p className="kf-login-lead">
+              Sign in to {brand.name} to follow your orders, keep your blends close and
+              check out faster next time.
+            </p>
+            <ul className="kf-login-reasons">
+              {REASONS.map(({ Icon, text }) => (
+                <li key={text}>
+                  <Icon className="kf-login-reason-icon" aria-hidden="true" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <Card padding={6} width="100%">
-          <VStack gap={3}>
-            <Text type="supporting" color="secondary">
+          <div className="kf-login-card">
+            <h2 className="kf-login-card-title">Sign in</h2>
+            <p className="kf-login-card-note">
               We will email you a sign-in link — no password to remember.
-            </Text>
+            </p>
             <LoginForm next={safeNext} />
-          </VStack>
-        </Card>
-      </VStack>
-    </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

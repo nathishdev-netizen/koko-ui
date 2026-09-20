@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { z } from 'zod';
 
-import { Button, Text, TextInput, VStack } from '@/components/ui';
+import { ArrowRightIcon, MailIcon } from '@/components/icons';
 
 const emailSchema = z.email('Enter a valid email address.');
 
@@ -21,43 +21,51 @@ export function LoginForm({ next }: { next: string }) {
 
   if (sent) {
     return (
-      <VStack gap={1}>
-        <Text weight="medium">Check your inbox</Text>
-        <Text type="supporting" color="secondary">
-          We sent a sign-in link to {email}.
-        </Text>
-      </VStack>
+      <div className="kf-login-sent" role="status">
+        <span className="kf-login-sent-icon" aria-hidden="true">
+          <MailIcon />
+        </span>
+        <p className="kf-info-value">Check your inbox</p>
+        <p className="kf-info-muted">We sent a sign-in link to {email}.</p>
+      </div>
     );
   }
 
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const parsed = emailSchema.safeParse(email);
+    if (!parsed.success) {
+      setError(parsed.error.issues[0]?.message);
+      return;
+    }
+    setError(undefined);
+    // The request itself lands with the auth endpoint in Phase 10.
+    setSent(true);
+  }
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        const parsed = emailSchema.safeParse(email);
-        if (!parsed.success) {
-          setError(parsed.error.issues[0]?.message);
-          return;
-        }
-        setError(undefined);
-        // The request itself lands with the auth endpoint in Phase 10.
-        setSent(true);
-      }}
-      noValidate
-    >
-      <VStack gap={3}>
-        <TextInput
-          label="Email"
+    <form className="kf-login-form" onSubmit={onSubmit} noValidate>
+      <label className="kf-field kf-contact-field" data-invalid={error ? '' : undefined}>
+        <span>Email *</span>
+        <input
+          className="kf-text-input"
           type="email"
-          value={email}
-          onChange={setEmail}
+          name="email"
           autoComplete="email"
-          isRequired
-          status={error ? { type: 'error', message: error } : undefined}
+          placeholder="your.email@example.com"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            if (error) setError(undefined);
+          }}
         />
-        <input type="hidden" name="next" value={next} />
-        <Button label="Email me a link" variant="primary" size="lg" type="submit" />
-      </VStack>
+        {error ? <em className="kf-contact-error">{error}</em> : null}
+      </label>
+      <input type="hidden" name="next" value={next} />
+      <button type="submit" className="kf-pill-btn kf-pill-btn--primary kf-login-submit">
+        Email me a link
+        <ArrowRightIcon className="kf-pill-btn-icon" aria-hidden="true" />
+      </button>
     </form>
   );
 }

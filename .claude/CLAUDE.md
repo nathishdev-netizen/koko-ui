@@ -810,6 +810,37 @@ Checkout posts to `/api/v1/checkout` (Frappe) which returns a hosted gateway URL
   `lib/api/cart`, so the cart stays server-owned.
 - `NEXT_PUBLIC_SEED_CART=1` seeds a dev cart for reviewing these screens.
 
+## Account & sign-in — legacy profile look
+
+The legacy `/profile` was ONE 881-line page; our routes (`/account`,
+`/account/orders`, `/wishlist`, `/addresses`) are kept and only the styling
+moves across, so deep links and the layout auth guard survive.
+
+- **The identity card lives in `app/(account)/account/layout.tsx`**, so every
+  account screen opens with it: avatar tile + presence dot, name, "Welcome
+  back! Manage your account and orders", and the "✓ Verified Customer" badge.
+- **`.kf-profile-panel` + `.kf-panel-mark`** reproduce the legacy panels —
+  the small vertical gradient bar beside each heading is the legacy detail.
+- **The presence dot uses `--color-success`**, not a brand token. It is a
+  status signal, so it must not follow a tenant palette — same reasoning as
+  the FSSAI veg mark.
+- **The active nav pill is brown, not the accent.** It shipped as
+  `--color-accent` and was the only filled ORANGE control on the site; one
+  filled colour per page (see the button-colour note).
+- **No invented data.** The overview shows the address from the most recent
+  order, labelled "Shipping Address" — NOT a "default address", which we have
+  no endpoint for. Legacy read `contact.info.addresses.items[0]`.
+- **`/login` has no legacy design to match** — the old site bounced to a
+  Wix-hosted page, so the screen follows the marketing pages: dual-tone
+  heading, reasons list, warm card, brown pill button. It stays `ƒ` because
+  it reads `?next=`, and the open-redirect guard is unchanged.
+
+**Never run two `pnpm dev` servers against this repo at once.** They share
+`.next`, and starting a second one (to review the signed-out state on another
+port) made the first serve 404s for every route. `NEXT_DIST_DIR` is not a real
+Next variable and does not separate them. To review signed-out screens, restart
+the single server with `NEXT_PUBLIC_MOCK_SIGNED_IN=0` instead.
+
 ## Phase 7 notes — account
 
 Security fixes carried over from the legacy audit, all verified:
