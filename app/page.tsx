@@ -49,7 +49,13 @@ export default async function HomePage() {
   }));
 
   // Collections shown as browsable categories — "coming soon" is not one.
-  const browsable = collections.filter((c) => c.slug !== 'coming-soon');
+  // Best Sellers is excluded too: it has its own section directly above, and
+  // the legacy home page showed exactly these four before "Shop All".
+  // Capped at 4 so the grid is always a full 2x2 — five left a hole in the
+  // last row, and a backend that adds a sixth must not reintroduce one.
+  const browsable = collections
+    .filter((c) => c.slug !== 'coming-soon' && c.slug !== 'best-sellers')
+    .slice(0, 4);
 
   const websiteJsonLd = {
     '@context': 'https://schema.org',

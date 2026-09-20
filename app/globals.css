@@ -253,12 +253,30 @@ html,
     display: inline-flex;
   }
 
-  /* Badge is decorative (aria-hidden); the count lives in the button's
-     accessible name, so overlapping it is safe for screen readers. */
+  /* The count is decorative (aria-hidden); it lives in the button's
+     accessible name, so overlapping the icon is safe for screen readers.
+     NOT Astryx `Badge`: that renders a ~20%-opacity tint, so the number was a
+     pale blob washing into the cart icon — the same trap documented for
+     product ribbons. A counter must be an opaque disc. */
   .kf-count-badge {
     position: absolute;
-    top: -2px;
-    inset-inline-end: -2px;
+    top: -3px;
+    inset-inline-end: -3px;
+    display: grid;
+    place-items: center;
+    min-width: 17px;
+    height: 17px;
+    padding-inline: 4px;
+    border-radius: 999px;
+    /* Rings the disc against the header so it reads as a separate object
+       wherever it sits over the icon. */
+    border: 2px solid var(--color-background-surface);
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
     pointer-events: none;
   }
 
@@ -536,6 +554,17 @@ html,
      set leaves them left-of-centre. Flex centres the items themselves, and
      `flex: 0 1 300px` reproduces the grid's sizing, so every card keeps the
      same width for any count the backend returns. */
+  /* The home collections grid is a fixed 2x2, as the legacy page had: four
+     categories then "Shop All". Two tracks keep the pairing obvious at every
+     width rather than reflowing to 3 + 1. */
+  .kf-card-grid--quad {
+    grid-template-columns: repeat(2, minmax(220px, 300px));
+    justify-content: center;
+  }
+  @media (max-width: 560px) {
+    .kf-card-grid--quad { grid-template-columns: 1fr; }
+  }
+
   .kf-card-grid--centred {
     display: flex;
     flex-wrap: wrap;

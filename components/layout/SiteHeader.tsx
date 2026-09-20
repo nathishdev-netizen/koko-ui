@@ -8,7 +8,6 @@ import { AnnouncementBar } from './AnnouncementBar';
 import { SearchOverlay } from './SearchOverlay';
 import { CartIcon, HeartIcon, UserIcon } from '@/components/icons';
 import {
-  Badge,
   HStack,
   Icon,
   IconButton,
@@ -173,7 +172,7 @@ function CountedAction({
       />
       {count > 0 ? (
         <span className="kf-count-badge" aria-hidden="true">
-          <Badge label={String(count)} variant="orange" />
+          {count > 9 ? '9+' : count}
         </span>
       ) : null}
     </span>

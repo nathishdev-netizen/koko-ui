@@ -526,6 +526,13 @@ shows — so a product lands in the band the customer actually sees.
 Search state still lives in the URL like every other filter; the input keeps
 local state only so typing is not a route push per keystroke.
 
+**The header cart counter is NOT Astryx `Badge`.** It rendered a
+~20%-opacity tint, so the number was a pale blob washing into the cart icon —
+the same trap as product ribbons over photography. `.kf-count-badge` is now an
+opaque brown disc with white text and a 2px ring in the header colour, so it
+reads as a separate object wherever it overlaps the icon. Counts above 9 show
+"9+" rather than widening the disc.
+
 ## Badges over photography
 
 **Astryx's `Badge` is a ~20%-opacity tint.** That is legible on a flat panel and
@@ -631,9 +638,16 @@ Use `.kf-product-grid` / `.kf-card-grid` instead — plain CSS grid with
 space to their right. The `max` in `minmax` is what caps the card; without it
 `auto-fill` still stretches.
 
-**A grid whose count does not divide by its column count needs
-`.kf-card-grid--centred`.** Five collections in three columns rendered as
-3 + 2, left-aligned, with a card-sized hole on the right.
+**The home collections grid is a fixed 2x2 of FOUR categories**
+(`.kf-card-grid--quad`), matching the legacy home page: Signature Blends,
+Heritage Chutney Powders, Everyday Superfoods, Single Origin Spices, then
+"Shop All". Best Sellers is excluded — it has its own section directly above —
+and the list is `.slice(0, 4)` so a backend that adds a sixth collection
+cannot reintroduce a ragged last row.
+
+**`.kf-card-grid--centred` remains for variable-length grids.** Five
+collections in three columns rendered as 3 + 2, left-aligned, with a
+card-sized hole on the right.
 
 `justify-content: center` on the grid does NOT fix this: with explicit tracks
 the two leftover cards still occupy tracks 1 and 2, so the row sits
