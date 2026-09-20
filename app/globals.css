@@ -9,6 +9,26 @@
 @import '../themes/kokofresh/theme.css';
 
 /*
+ * The design is a SINGLE light scheme — the warmth is the brand, and it must
+ * not change with the viewer's OS. The generated theme ships
+ * `color-scheme: light dark` with 22 `light-dark()` pairs whose halves differ,
+ * so under a dark-mode OS they flipped: most visibly
+ * `--color-background-inverted`, which turned the stats band's dark ground
+ * near-white and dropped its text contrast from 13.97 to 1.19 — invisible.
+ *
+ * Two selectors are needed, and both must stay UNLAYERED (an unlayered rule
+ * outranks every layered one regardless of source order — inside
+ * `@layer astryx-theme` the theme's own declarations win on order):
+ *  - `html` pins the document;
+ *  - `[data-astryx-theme]` pins the SCOPED root. The colour tokens are
+ *    declared on `:scope` inside `@scope ([data-astryx-theme="kokofresh"])`,
+ *    and `light-dark()` there resolves against that element's own
+ *    `color-scheme`, which `html` does not supply.
+ */
+html,
+[data-astryx-theme] { color-scheme: light; }
+
+/*
  * Bridge next/font to the theme's font tokens.
  *
  * The built theme names families literally ("Poppins"), but next/font self-hosts
@@ -4384,8 +4404,13 @@
   .kf-stats {
     position: relative;
     background: var(--color-background-inverted);
-    padding-block: clamp(2rem, 5vw, 3rem);
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
   }
+  /* The section above already ends in its own 96px of padding; together with
+     the band's the join read as a void rather than a change of surface. */
+  .kf-section:has(+ .kf-stats) { padding-block-end: clamp(1.5rem, 4vw, 2.5rem); }
+  /* And the footer follows immediately — no cream strip between them. */
+  .kf-stats + .kf-footer { margin-block-start: 0; }
   .kf-stats::after {
     content: '';
     position: absolute;

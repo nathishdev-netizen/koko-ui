@@ -1019,6 +1019,43 @@ wrapper around one. `ClickableCard` puts className on the card itself, so
 
 All six text/ground pairs pass AA on both white and cream.
 
+## The colour scheme is PINNED to light — do not remove it
+
+`globals.css` carries, **unlayered**, immediately after the theme import:
+
+```css
+html,
+[data-astryx-theme] { color-scheme: light; }
+```
+
+Without it the stats band was invisible under a dark-mode OS: it paints with
+`--color-background-inverted`, one of **22 `light-dark()` pairs in the
+generated theme whose halves still differ**, so a dark-mode viewer got a
+near-white ground under the band's cream text — contrast **1.19**. Pinned, it
+is **13.97** in both schemes.
+
+Three things make this easy to break again:
+
+1. **It must stay unlayered.** Inside `@layer astryx-theme` the generated
+   theme's own `:root { color-scheme: light dark }` wins on source order; an
+   unlayered rule outranks every layered one regardless of order.
+2. **Both selectors are required.** The colour tokens are declared on
+   `:scope` inside `@scope ([data-astryx-theme="kokofresh"])`, and
+   `light-dark()` there resolves against THAT element's `color-scheme` — an
+   `html` rule alone does not reach it.
+3. **It is invisible in light mode.** Nothing looks wrong unless you emulate
+   `prefers-color-scheme: dark`. `scratchpad/darkguard.mjs` checks it; run it
+   after touching theme or token CSS. (It is a separate script because
+   `Emulation.setEmulatedMedia` mid-run hangs the main regression suite.)
+
+Fixing this properly means regenerating the theme with both halves of every
+`light-dark()` equal; the pin is the safety net either way.
+
+**The stats band joins its neighbours directly.** `.kf-section:has(+ .kf-stats)`
+trims the preceding section's bottom padding (96px read as a void above the
+band), and `.kf-stats + .kf-footer` zeroes the footer's top margin, which was
+showing a cream strip between the dark band and the footer.
+
 ## Palette & texture — current state
 
 **Light, warm, single scheme.** Both halves of every `light-dark()` pair hold
