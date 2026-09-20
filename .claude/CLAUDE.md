@@ -351,6 +351,28 @@ Always on in development; in production only when
 `NEXT_PUBLIC_ENABLE_BRAND_STUDIO=1`, so it can be shown to a client on a real
 deployment without leaving a config surface public by default.
 
+## Header — search and sign-in
+
+- **The search icon had NO handler at all.** It was an `IconButton` with
+  neither `onClick` nor `href` — decorative. (`/shop` has its own working
+  search box; only the header icon was dead.) It now opens `SearchOverlay`.
+- **`SearchOverlay` reproduces the legacy `ProductSearch`**: popular searches
+  and the shop categories in the empty state, live results debounced 250ms,
+  arrow-key navigation and Enter to open the highlighted product. Categories
+  come from `config/nav.json` via the layout, so they cannot drift from the
+  menu. An in-flight response is discarded if a newer query started, or a slow
+  request for "ra" would overwrite results for "rasam".
+- **Search state is deliberately NOT in the URL here.** This is a
+  jump-to-product affordance, not a filtered view; Enter with nothing
+  highlighted falls through to `/shop?q=`, which IS linkable and
+  server-rendered.
+- **Sign-in was invisible** — a bare user icon labelled only "Account". The
+  header now shows `.kf-account-link`: "Sign in" → `/login` when signed out,
+  the customer's FIRST name → `/account` when signed in. The label is
+  visually hidden below 720px, where it would crowd the icon row.
+- `app/layout.tsx` calls `getSession()` for this. Verified it does NOT force
+  the home page dynamic — it stays `○`.
+
 ## Dev server port
 
 `pnpm dev` and `pnpm start` are pinned to **port 3001** (`next dev -p 3001`).

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 import { AnnouncementBar } from './AnnouncementBar';
+import { SearchOverlay } from './SearchOverlay';
 import { CartIcon, HeartIcon, UserIcon } from '@/components/icons';
 import {
   Badge,
@@ -27,6 +28,10 @@ type Props = {
   /** Wishlist count is still static until Phase 7. */
   cartCount?: number;
   wishlistCount?: number;
+  /** Signed-in customer's first name, for the account label. Null = signed out. */
+  customerName?: string | null;
+  /** Shop categories, offered in the search panel's empty state. */
+  searchCategories?: readonly { label: string; href: string }[];
 };
 
 /**
@@ -44,12 +49,15 @@ export function SiteHeader({
   navItems,
   announcement,
   wishlistCount = 0,
+  customerName = null,
+  searchCategories = [],
 }: Props) {
   const pathname = usePathname();
   // Live count from the cart, so the badge reflects what is actually in it.
   const { cart } = useCart();
   const cartCount = cart.itemCount;
   const [cartOpen, setCartOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href);
@@ -97,6 +105,7 @@ export function SiteHeader({
             <IconButton
               label="Search products"
               variant="ghost"
+              onClick={() => setSearchOpen(true)}
               icon={<Icon icon="search" />}
             />
 
@@ -107,12 +116,13 @@ export function SiteHeader({
               icon={<HeartIcon />}
             />
 
-            <IconButton
-              label="Account"
-              variant="ghost"
-              href="/login"
-              icon={<UserIcon />}
-            />
+            <a
+              className="kf-account-link"
+              href={customerName ? '/account' : '/login'}
+            >
+              <UserIcon aria-hidden="true" />
+              <span>{customerName ?? 'Sign in'}</span>
+            </a>
 
             <CountedAction
               label="Cart"
@@ -125,6 +135,11 @@ export function SiteHeader({
       />
 
       <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <SearchOverlay
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        categories={searchCategories}
+      />
     </div>
   );
 }

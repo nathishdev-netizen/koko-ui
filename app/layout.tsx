@@ -10,6 +10,7 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { AppShell } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { brand } from '@/config/brand';
+import { getSession } from '@/lib/api/session';
 import { getSiteConfig } from '@/lib/api/site-config';
 import { organizationJsonLd, siteUrl } from '@/lib/seo';
 import { fontClassName } from '@/themes/kokofresh/fonts';
@@ -58,6 +59,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   // Resolved server-side. Today this is the local config; when tenant
   // resolution lands it becomes a per-tenant fetch with no change here.
   const config = await getSiteConfig();
+  // Header shows "Sign in" or the customer's first name. Session comes from the
+  // httpOnly cookie, so no identity is ever readable from client JS.
+  const { customer } = await getSession();
+  // Shop categories power the search panel's empty state.
+  const shopCategories = (
+    config.primaryNav.find((item) => item.href === '/shop')?.children ?? []
+  ).map((child) => ({ label: child.label, href: child.href }));
 
   // Rendered into <head>, so the tenant's palette is in the FIRST HTML
   // response — the colours are correct at first paint, with no flash of the
@@ -89,6 +97,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 brand={config.brand}
                 navItems={config.primaryNav}
                 announcement={homeContent.announcement}
+                customerName={customer ? customer.name.split(' ')[0] : null}
+                searchCategories={shopCategories}
               />
             }
           >

@@ -1069,6 +1069,117 @@
   /* Story / ways to enjoy / nutrition / storage as OPEN cards. Behind an
      accordion (or the legacy's tabs) most readers never open them, and they
      are the merchandising — same call as the bundle FAQ. */
+  /* ── Header search + sign-in ────────────────────────────────────────────
+   * The search icon previously had no handler at all — it was decorative.
+   * It now opens a panel with live results, matching the legacy overlay.
+   */
+  .kf-account-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background 160ms ease;
+  }
+  .kf-account-link:hover { background: var(--color-background-muted); }
+  .kf-account-link svg { width: 20px; height: 20px; flex: 0 0 auto; }
+  /* Below the tablet breakpoint the label would crowd the icon row; the icon
+     alone still reaches the same destination. */
+  @media (max-width: 720px) {
+    .kf-account-link span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .kf-account-link { padding: 0 8px; }
+  }
+
+  .kf-search-panel { display: flex; flex-direction: column; max-height: 78dvh; }
+  .kf-search-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-search-mark { flex: 0 0 auto; color: var(--color-text-secondary); }
+  .kf-search-field {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 1.0625rem;
+    color: var(--color-text-primary);
+  }
+  .kf-search-field:focus { outline: 0; }
+  .kf-search-field::placeholder { color: var(--color-text-secondary); }
+  /* The native clear affordance sits oddly against a borderless field. */
+  .kf-search-field::-webkit-search-cancel-button { appearance: none; }
+
+  .kf-search-body { padding: var(--spacing-5, 20px); overflow-y: auto; }
+  .kf-search-note { margin: 0; color: var(--color-text-secondary); font-size: 0.9375rem; }
+  .kf-search-group + .kf-search-group { margin-block-start: var(--spacing-5, 20px); }
+  .kf-search-group-title {
+    margin: 0 0 10px;
+    font-family: var(--font-family-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+  .kf-search-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .kf-search-chip {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-background-surface);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .kf-search-chip:hover { border-color: var(--kf-brand-ink); background: var(--color-background-muted); }
+
+  .kf-search-results { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .kf-search-result {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px;
+    border: 0;
+    border-radius: var(--kf-radius-control);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+  .kf-search-result[data-highlighted] { background: var(--color-background-muted); }
+  .kf-search-thumb {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    border-radius: var(--kf-radius-control);
+    background: var(--color-background-muted);
+    overflow: hidden;
+  }
+  .kf-search-result-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .kf-search-result-name { font-weight: 600; }
+  .kf-search-result-price { font-size: 0.875rem; color: var(--color-text-secondary); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-account-link, .kf-search-chip { transition: none; }
+  }
+
   /* ── Gallery lightbox + ⓘ popovers ──────────────────────────────────────
    * Clicking the main image opens a full-screen view, as the legacy PDP did.
    */
