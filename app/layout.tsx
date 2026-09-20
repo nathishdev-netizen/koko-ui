@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Providers } from './providers';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { themeToCss } from '@/config/theme';
 import { Parallax } from '@/components/layout/Parallax';
 import { ServiceWorker } from '@/components/layout/ServiceWorker';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -58,8 +59,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   // resolution lands it becomes a per-tenant fetch with no change here.
   const config = await getSiteConfig();
 
+  // Rendered into <head>, so the tenant's palette is in the FIRST HTML
+  // response — the colours are correct at first paint, with no flash of the
+  // wrong brand and no layout shift. Values are strict-hex validated in
+  // config/theme.ts, which is what makes this safe to inline.
+  const themeCss = themeToCss(config.theme);
+
   return (
     <html lang={config.brand.locale} className={fontClassName()}>
+      <head>
+        {themeCss ? (
+          <style
+            id="kf-brand-theme"
+            dangerouslySetInnerHTML={{ __html: themeCss }}
+          />
+        ) : null}
+      </head>
       <body>
         {/* Organization schema is rendered on every page — site-wide identity. */}
         <JsonLd data={organizationJsonLd()} />

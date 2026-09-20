@@ -52,14 +52,19 @@ export const kokofreshTheme = defineTheme({
     card: {
       base: { borderWidth: '2px' },
     },
-    // Primary buttons take the brand's ink brown rather than the orange accent.
+    // Primary buttons take the brand's ink rather than the orange accent.
     // Scoped to the button here rather than changing --color-accent, which also
-    // drives links, icons, focus rings and the spice-heat chillies — those stay
-    // orange. White on #33240F is 15.0:1.
+    // drives links, icons, focus rings and the spice-heat chillies.
+    //
+    // These reference the CSS variables from globals.css, NOT literal hexes:
+    // the theme is compiled at build time, so a literal here would not follow a
+    // tenant's runtime colour override and the buttons would stay brown while
+    // the rest of the page rebranded. The var() fallback keeps the build
+    // self-contained if the token is ever absent.
     button: {
       'variant:primary': {
-        backgroundColor: '#33240F',
-        color: '#FFFFFF',
+        backgroundColor: 'var(--kf-brand-ink, #33240F)',
+        color: 'var(--kf-on-fill, #FFFFFF)',
       },
       // Secondary ships a translucent dark fill that reads as grey against the
       // cream ground. An outlined brown button pairs with the primary instead.
@@ -69,8 +74,8 @@ export const kokofreshTheme = defineTheme({
         // with nothing to read as a button. Give it a real outline.
         borderWidth: '2px',
         borderStyle: 'solid',
-        borderColor: '#33240F',
-        color: '#33240F',
+        borderColor: 'var(--kf-brand-ink, #33240F)',
+        color: 'var(--kf-brand-ink, #33240F)',
       },
     },
   },

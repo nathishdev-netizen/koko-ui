@@ -185,6 +185,40 @@ one indefinitely.
 Hobby. Add `"regions": ["bom1"]` (Mumbai — customers are in India) only once the
 project is on Pro.
 
+## White-label — runtime theming
+
+**The seam:** `config/theme.json` -> `config/theme.ts` -> `getSiteConfig()` ->
+a `<style>` block in `app/layout.tsx`'s `<head>`.
+
+Colours are **server-rendered into the first HTML response**, so a tenant's
+palette is correct at first paint — no flash of the wrong brand, no CLS, and no
+rebuild to change a colour. Editing `config/theme.json` rebrands the site with
+no code change. When Frappe returns a `theme` object on `/site-config`, it
+overrides the local file with no further work.
+
+**Every `--kf-*` value is re-validated as strict 6-digit hex before injection.**
+That is the security control: it blocks `#000;} body{display:none}`,
+`</style><script>`, and `url(javascript:…)`. A malformed tenant theme falls back
+to the local default rather than failing the page. Never relax that regex —
+these values go straight into a stylesheet.
+
+**Rule: NO literal hex outside the `:root` brand block in globals.css.** All 75
+that had accumulated are now tokens (`--kf-brand-ink`, `--kf-on-ink`, …). A
+hardcoded colour is a colour that will not follow a brand change.
+
+**The Astryx theme must reference the CSS variables, not literals.**
+`components.button` in `kokofreshTheme.ts` is compiled at BUILD time, so a
+literal there does not follow a runtime override — the buttons stayed brown
+while the rest of the page went blue. It now uses
+`var(--kf-brand-ink, #33240F)`; the fallback keeps the build self-contained.
+
+**`--kf-veg-green` is exempt.** The FSSAI vegetarian mark is a legal standard in
+India; its green is specified, not chosen, and must never follow a tenant
+palette. Same reasoning would apply to any future certification mark.
+
+Verified end to end: setting `brandInk` to `#12408A` turned every button, chip,
+ribbon and the bundle strip blue, while the veg marks stayed green.
+
 ## Dev server port
 
 `pnpm dev` and `pnpm start` are pinned to **port 3001** (`next dev -p 3001`).

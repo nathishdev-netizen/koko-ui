@@ -1,0 +1,11 @@
+{
+  "_note": "Brand surface colours. Edit here, or let the backend return a `theme` object on /site-config to override per tenant. Any key may be omitted — omitted keys keep the built-in default.",
+  "brandInk": "#33240F",
+  "brandInkSoft": "#3A2912",
+  "brandInkDeep": "#2A1D0C",
+  "brandInkRaised": "#40301A",
+  "onInk": "#F7EEDC",
+  "onInkSecondary": "#CBB99D",
+  "onInkAccent": "#F0A85C",
+  "onFill": "#FFFFFF"
+}

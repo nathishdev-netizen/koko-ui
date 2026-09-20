@@ -30,6 +30,71 @@
     --font-family-body: var(--font-body), ui-sans-serif, system-ui, -apple-system, sans-serif;
     --font-family-heading: var(--font-heading), Georgia, Cambria, 'Times New Roman', serif;
   }
+
+  /*
+   * ── BRAND SURFACE TOKENS ────────────────────────────────────────────────
+   *
+   * The white-label seam. Astryx's own tokens describe a LIGHT page; these
+   * describe the brand's own marks and its INVERSE (dark) surface, which
+   * Astryx has no vocabulary for.
+   *
+   * Overridable at runtime: the server injects a <style> block resetting these
+   * on :root, so a tenant's colours are present in the first HTML response —
+   * no flash, no CLS, no rebuild. The defaults below are KokoFresh's, so the
+   * site renders correctly even with no tenant config at all.
+   *
+   * Rule: NO literal hex outside this block. A hardcoded colour is a colour
+   * that will not follow a brand change.
+   */
+  :root {
+    /* The brand's ink — filled buttons, chips, ribbons, dark grounds. */
+    --kf-brand-ink: #33240F;
+    --kf-brand-ink-soft: #3A2912;
+    --kf-brand-ink-deep: #2A1D0C;
+    --kf-brand-ink-raised: #40301A;
+
+    /* Text and marks ON the ink. */
+    --kf-on-ink: #F7EEDC;
+    --kf-on-ink-secondary: #CBB99D;
+    --kf-on-ink-accent: #F0A85C;
+    --kf-on-ink-border: #4E3C24;
+    --kf-on-ink-border-strong: #6B553A;
+    --kf-on-ink-gold: #C9A96E;
+
+    /* Text on a filled accent/ink control. Not always pure white for a brand
+       whose ink is light, hence a token rather than a literal. */
+    --kf-on-fill: #FFFFFF;
+
+    /*
+     * NOT a brand colour: the FSSAI vegetarian mark is a legal standard in
+     * India and its green is specified, not chosen. It must never follow a
+     * tenant's palette.
+     */
+    --kf-veg-green: #007500;
+
+    /*
+     * Text and scrim over PHOTOGRAPHY (the hero). Distinct from the ink set:
+     * a photo is not a flat brand surface, so these are tuned for legibility
+     * over arbitrary imagery rather than to match a panel.
+     */
+    --kf-on-media: #FFF8E1;
+    --kf-on-media-soft: #F6E6CB;
+    --kf-media-scrim: #1A1410;
+
+    /*
+     * A LIGHT brand surface that re-points Astryx's text tokens (used where a
+     * section inverts back to cream inside a dark run).
+     */
+    --kf-light-ink: #3B2B13;
+    --kf-light-ink-secondary: #6B5D52;
+    --kf-light-accent: #9A4600;
+    --kf-light-border: #E7D4B5;
+    --kf-light-border-strong: #C9B392;
+    --kf-light-surface: #FDF4E3;
+    --kf-light-muted: #F6E9D2;
+    --kf-light-on-fill: #F0E6D8;
+    --kf-on-accent-fill: #2B1A0C;
+  }
 }
 
 /*
@@ -171,11 +236,11 @@
   /* --- Footer --- */
   .kf-footer {
     position: relative;
-    background: #FDF4E3;
-    --color-text-primary: #3B2B13;
-    --color-text-secondary: #6B5D52;
-    --color-text-accent: #9A4600;
-    --color-border: #E7D4B5;
+    background: var(--kf-light-surface);
+    --color-text-primary: var(--kf-light-ink);
+    --color-text-secondary: var(--kf-light-ink-secondary);
+    --color-text-accent: var(--kf-light-accent);
+    --color-border: var(--kf-light-border);
     color: var(--color-text-primary);
     border-top: 1px solid var(--color-border);
     margin-block-start: var(--spacing-10, 40px);
@@ -329,8 +394,8 @@
     padding: 0 20px;
     height: 46px;
     border-radius: 999px;
-    background: #33240F;
-    color: #FFFFFF;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
     font-weight: 600;
     font-size: 0.875rem;
     text-decoration: none;
@@ -376,13 +441,13 @@
     padding-inline: max(clamp(16px, 4vw, 40px), calc((100% - 80rem) / 2 + clamp(16px, 4vw, 40px)));
     margin-block-start: clamp(2.5rem, 6vw, 4rem);
     border-radius: 0;
-    background: linear-gradient(115deg, #3A2912 0%, #33240F 55%, #2A1D0C 100%);
-    --color-text-primary: #F7EEDC;
-    --color-text-secondary: #CBB99D;
-    --color-text-accent: #F0A85C;
-    color: #F7EEDC;
+    background: linear-gradient(115deg, var(--kf-brand-ink-soft) 0%, var(--kf-brand-ink) 55%, var(--kf-brand-ink-deep) 100%);
+    --color-text-primary: var(--kf-on-ink);
+    --color-text-secondary: var(--kf-on-ink-secondary);
+    --color-text-accent: var(--kf-on-ink-accent);
+    color: var(--kf-on-ink);
   }
-  .kf-bundle-strip .kf-eyebrow { color: #F0A85C; }
+  .kf-bundle-strip .kf-eyebrow { color: var(--kf-on-ink-accent); }
   /* Grain, matching .kf-section--brown. */
   .kf-bundle-strip::after {
     content: '';
@@ -398,8 +463,8 @@
   }
   /* On the dark ground the CTA inverts — cream pill, brown label. */
   .kf-bundle-strip .kf-bundle-strip-cta {
-    background: #F7EEDC;
-    color: #33240F;
+    background: var(--kf-on-ink);
+    color: var(--kf-brand-ink);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -487,8 +552,8 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #33240F;
-    color: #FFFFFF;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
     font-family: var(--font-family-heading);
     font-size: 1.25rem;
     line-height: 1;
@@ -618,10 +683,10 @@
   .kf-chip:hover { border-color: var(--color-border-emphasized); }
   .kf-chip[data-active] {
     /* Matches the primary button's ink brown so the page has ONE filled
-       control colour. White on #33240F is 15.0:1. */
-    background: #33240F;
-    border-color: #33240F;
-    color: #FFFFFF;
+       control colour. White on var(--kf-brand-ink) is 15.0:1. */
+    background: var(--kf-brand-ink);
+    border-color: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
   }
   .kf-chip:focus-visible {
     outline: 2px solid var(--color-accent);
@@ -664,8 +729,8 @@
     height: 52px;
     padding: 0 12px 0 28px;
     border-radius: 999px;
-    background: #33240F;
-    color: #FFFFFF;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
     font-weight: 600;
     font-size: 0.9375rem;
     text-decoration: none;
@@ -892,7 +957,7 @@
   .kf-account-nav a:hover { background: var(--color-background-muted); }
   .kf-account-nav a[data-active] {
     background: var(--color-accent);
-    color: #2B1A0C;
+    color: var(--kf-on-accent-fill);
   }
   .kf-account-nav a:focus-visible {
     outline: 2px solid var(--color-accent);
@@ -1288,7 +1353,7 @@
     transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
   }
   .kf-slot-card:hover:not(:disabled) {
-    border-color: #33240F;
+    border-color: var(--kf-brand-ink);
     transform: translateY(-1px);
   }
   .kf-slot-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
@@ -1352,8 +1417,8 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #33240F;
-    color: #FFFFFF;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
   }
   .kf-slot-check--inline { position: static; flex: 0 0 auto; }
 
@@ -1527,16 +1592,16 @@
    */
   .kf-section--light {
     background: var(--color-background-card);
-    --color-background-card: #FFFFFF;
-    --color-background-surface: #FFFFFF;
-    --color-background-muted: #F6E9D2;
-    --color-text-primary: #3B2B13;
-    --color-text-secondary: #6B5D52;
-    --color-text-accent: #9A4600;
-    --color-icon-primary: #3B2B13;
-    --color-icon-secondary: #6B5D52;
-    --color-border: #E7D4B5;
-    --color-border-emphasized: #C9B392;
+    --color-background-card: var(--kf-on-fill);
+    --color-background-surface: var(--kf-on-fill);
+    --color-background-muted: var(--kf-light-muted);
+    --color-text-primary: var(--kf-light-ink);
+    --color-text-secondary: var(--kf-light-ink-secondary);
+    --color-text-accent: var(--kf-light-accent);
+    --color-icon-primary: var(--kf-light-ink);
+    --color-icon-secondary: var(--kf-light-ink-secondary);
+    --color-border: var(--kf-light-border);
+    --color-border-emphasized: var(--kf-light-border-strong);
   }
 
   /* Kept as an alias so existing --white sections keep working. */
@@ -1703,19 +1768,19 @@
      (Astryx components included) flips to light-on-brown automatically. */
   .kf-section--brown {
     position: relative;
-    background: #33240F;
-    --color-background-card: #40301A;
-    --color-background-surface: #40301A;
-    --color-background-muted: #2A1D0C;
-    --color-text-primary: #F7EEDC;
-    --color-text-secondary: #CBB99D;
-    --color-text-accent: #F0A85C;
-    --color-icon-primary: #F7EEDC;
-    --color-icon-secondary: #CBB99D;
-    --color-border: #4E3C24;
-    --color-border-emphasized: #6B553A;
+    background: var(--kf-brand-ink);
+    --color-background-card: var(--kf-brand-ink-raised);
+    --color-background-surface: var(--kf-brand-ink-raised);
+    --color-background-muted: var(--kf-brand-ink-deep);
+    --color-text-primary: var(--kf-on-ink);
+    --color-text-secondary: var(--kf-on-ink-secondary);
+    --color-text-accent: var(--kf-on-ink-accent);
+    --color-icon-primary: var(--kf-on-ink);
+    --color-icon-secondary: var(--kf-on-ink-secondary);
+    --color-border: var(--kf-on-ink-border);
+    --color-border-emphasized: var(--kf-on-ink-border-strong);
   }
-  .kf-section--brown .kf-h-alt { color: #C9A96E; }
+  .kf-section--brown .kf-h-alt { color: var(--kf-on-ink-gold); }
   .kf-section--brown::after {
     content: '';
     position: absolute;
@@ -1763,9 +1828,9 @@
     position: absolute; inset: 0;
     background: linear-gradient(
       to top,
-      color-mix(in srgb, #1A1410 82%, transparent) 0%,
-      color-mix(in srgb, #1A1410 52%, transparent) 45%,
-      color-mix(in srgb, #1A1410 22%, transparent) 100%
+      color-mix(in srgb, var(--kf-media-scrim) 82%, transparent) 0%,
+      color-mix(in srgb, var(--kf-media-scrim) 52%, transparent) 45%,
+      color-mix(in srgb, var(--kf-media-scrim) 22%, transparent) 100%
     );
   }
   .kf-hero-content {
@@ -1777,31 +1842,31 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3, 12px);
-    color: #FFF8E1;
+    color: var(--kf-on-media);
   }
-  .kf-hero-eyebrow { color: #F6E6CB; }
+  .kf-hero-eyebrow { color: var(--kf-on-media-soft); }
   .kf-hero-content :is(h1, h2) {
-    color: #FFF8E1;
+    color: var(--kf-on-media);
     text-wrap: balance;
     font-weight: 500;
   }
   .kf-hero-line { display: block; }
-  .kf-hero-accent { color: #F0A85C; }
+  .kf-hero-accent { color: var(--kf-on-ink-accent); }
   .kf-hero-body {
     margin: 0;
     max-width: 44ch;
-    color: #F0E6D8;
+    color: var(--kf-light-on-fill);
     line-height: 1.6;
   }
   .kf-hero-cta { margin-block-start: var(--spacing-1, 4px); }
   .kf-hero-dots { display: flex; gap: 8px; margin-block-start: var(--spacing-2, 8px); }
   .kf-hero-dot {
     width: 28px; height: 4px; padding: 0; border: 0; border-radius: 2px;
-    background: color-mix(in srgb, #FFF8E1 40%, transparent);
+    background: color-mix(in srgb, var(--kf-on-media) 40%, transparent);
     cursor: pointer; transition: background 200ms ease, width 200ms ease;
   }
-  .kf-hero-dot[data-active] { width: 44px; background: #F0A85C; }
-  .kf-hero-dot:focus-visible { outline: 2px solid #FFF8E1; outline-offset: 3px; }
+  .kf-hero-dot[data-active] { width: 44px; background: var(--kf-on-ink-accent); }
+  .kf-hero-dot:focus-visible { outline: 2px solid var(--kf-on-media); outline-offset: 3px; }
 
   @media (prefers-reduced-motion: reduce) {
     .kf-hero-img, .kf-hero-dot { transition: none; }
@@ -1973,9 +2038,9 @@
   .kf-veg {
     width: 13px;
     height: 13px;
-    border: 1.5px solid #007500;
+    border: 1.5px solid var(--kf-veg-green);
     border-radius: 2px;
-    background: #FFFFFF;
+    background: var(--kf-on-fill);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1986,7 +2051,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #007500;
+    background: var(--kf-veg-green);
   }
 
   /* Notify me — same height and shape as Add to cart, so an unavailable card
@@ -2002,17 +2067,17 @@
     gap: 6px;
     min-height: 34px;
     padding: 0 12px;
-    border: 1.5px solid #33240F;
+    border: 1.5px solid var(--kf-brand-ink);
     border-radius: 999px;
     background: transparent;
-    color: #33240F;
+    color: var(--kf-brand-ink);
     font: inherit;
     font-size: 0.8125rem;
     font-weight: 600;
     cursor: pointer;
     transition: background 160ms ease, color 160ms ease;
   }
-  .kf-notify-btn:hover { background: #33240F; color: #FFFFFF; }
+  .kf-notify-btn:hover { background: var(--kf-brand-ink); color: var(--kf-on-fill); }
   .kf-notify-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
   .kf-notify-icon { width: 15px; height: 15px; flex: 0 0 auto; }
 
@@ -2060,8 +2125,8 @@
   }
   .kf-bundle-save { position: absolute; top: 12px; inset-inline-start: 12px; }
   .kf-bundle-save [class*='astryx-badge'] {
-    background: #33240F;
-    color: #F7EEDC;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-ink);
     font-weight: 600;
   }
   .kf-bundle-rules {
@@ -2121,11 +2186,11 @@
    * Astryx's Badge is a 20%-opacity tint, which is legible on a flat panel and
    * unreadable over photography — "Bestseller" and "Single Estate" were washing
    * out into the product shot. Repaint it as an opaque brown pill: white on
-   * #33240F is 15.0:1 and holds over any image.
+   * var(--kf-brand-ink) is 15.0:1 and holds over any image.
    */
   .kf-product-ribbon [class*='astryx-badge'] {
-    background: #33240F;
-    color: #FFFFFF;
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
     border: 0;
     border-radius: 999px;
     padding: 4px 11px;
@@ -2295,7 +2360,7 @@
     .kf-pinned-media { display: none; }
     /* Media hidden but still in the DOM, so :has() still matches — restore the
        flat ground or the section would render with no background at all. */
-    .kf-pinned:has(.kf-pinned-media) { background: #33240F; }
+    .kf-pinned:has(.kf-pinned-media) { background: var(--kf-brand-ink); }
   }
   @media (prefers-reduced-motion: reduce) {
     .kf-pinned-media { position: absolute; }

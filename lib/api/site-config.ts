@@ -8,6 +8,7 @@
  */
 import { brand, type Brand } from '@/config/brand';
 import { footerNav, primaryNav, type NavItem } from '@/config/nav';
+import { brandTheme, brandThemeSchema, type BrandTheme } from '@/config/theme';
 import { isLive, request } from './client';
 
 const RESOURCE = 'siteConfig' as const;
@@ -16,14 +17,22 @@ export type SiteConfig = {
   readonly brand: Brand;
   readonly primaryNav: readonly NavItem[];
   readonly footerNav: readonly { title: string; items: readonly NavItem[] }[];
+  /** Brand surface colours, rendered to CSS custom properties by the layout. */
+  readonly theme: BrandTheme;
 };
 
 export async function getSiteConfig(): Promise<SiteConfig> {
   if (isLive(RESOURCE)) {
-    return request<SiteConfig>('/site-config', {
+    const live = await request<SiteConfig>('/site-config', {
       revalidate: 3600,
       tags: ['site-config'],
     });
+    // The theme is injected into a <style> tag, so it is re-validated here
+    // rather than trusted: strict hex parsing is what stops a compromised or
+    // careless backend from breaking out of the stylesheet. A malformed theme
+    // falls back to the local default instead of failing the page.
+    const parsed = brandThemeSchema.safeParse(live.theme ?? {});
+    return { ...live, theme: parsed.success ? parsed.data : brandTheme };
   }
-  return { brand, primaryNav, footerNav };
+  return { brand, primaryNav, footerNav, theme: brandTheme };
 }
