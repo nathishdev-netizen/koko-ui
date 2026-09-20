@@ -70,7 +70,12 @@ export function CollectionGrid({
                     <Text type="supporting" color="secondary" maxLines={3}>
                       {collection.description}
                     </Text>
-                    <span className="kf-explore">Explore →</span>
+                    <span className="kf-explore">
+                      Explore
+                      <span className="kf-explore-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </span>
                   </VStack>
                 </article>
               </ClickableCard>

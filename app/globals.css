@@ -2972,6 +2972,59 @@ html,
            viewport, then holds — it is a reveal, not a scroll-linked scrub. */
         animation-range: entry 10% cover 28%;
       }
+
+      /* ── Section headings rise with their content ──────────────────────
+       * A heading that snaps in while its cards drift up reads as two
+       * unrelated events; giving the heading the same motion one beat
+       * earlier makes the section arrive as a whole.
+       */
+      @keyframes kf-rise-soft {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: none; }
+      }
+      .kf-section > .kf-container > .astryx-v-stack > .kf-center-text,
+      .kf-about-values-head,
+      .kf-process-head,
+      .kf-blog-hero-inner {
+        animation: kf-rise-soft linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 22%;
+      }
+
+      /* ── Staggered cards ───────────────────────────────────────────────
+       * Cards in a row share one timeline, so they would otherwise reveal in
+       * perfect unison — which reads mechanical. A few tens of ms between
+       * them turns a block into a sweep. Applied per-position rather than
+       * with JS, so it stays free.
+       */
+      .kf-card-grid > *:nth-child(2),
+      .kf-product-grid > *:nth-child(2),
+      .kf-values-grid > *:nth-child(2),
+      .kf-contact-grid > *:nth-child(2) { animation-range: entry 10% cover 32%; }
+      .kf-card-grid > *:nth-child(3),
+      .kf-product-grid > *:nth-child(3),
+      .kf-values-grid > *:nth-child(3),
+      .kf-contact-grid > *:nth-child(3) { animation-range: entry 10% cover 36%; }
+      .kf-card-grid > *:nth-child(4),
+      .kf-product-grid > *:nth-child(4),
+      .kf-contact-grid > *:nth-child(4) { animation-range: entry 10% cover 40%; }
+
+      /* ── Media settles ─────────────────────────────────────────────────
+       * A photograph easing out of a slight scale as it enters gives the
+       * image weight. Kept very small — a large scale reads as a zoom effect
+       * rather than the picture arriving.
+       */
+      @keyframes kf-settle {
+        from { opacity: 0; transform: scale(1.04); }
+        to { opacity: 1; transform: none; }
+      }
+      .kf-about-media-img,
+      .kf-collection-media,
+      .kf-post-hero-media {
+        animation: kf-settle linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+      }
     }
   }
 
@@ -3958,6 +4011,76 @@ html,
     .kf-card-link:focus-visible { transform: none; }
   }
 
+  /* ── Hover: media zoom inside the clipped card ─────────────────────────
+   * The canonical recipe: the card already clips (`overflow: hidden`), so the
+   * image scales inside its frame rather than growing the card. Transform and
+   * opacity only — both composite, so this never triggers layout.
+   * Hover is on the CARD, not the image, so crossing into the caption keeps
+   * the zoom held rather than snapping back.
+   */
+  /* Collection and blog cards already zoomed; product and bundle cards did
+     not, so the catalogue felt inert next to them. */
+  .kf-product-img,
+  .kf-bundle-img {
+    transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .kf-card-link:hover .kf-product-img,
+  .kf-card-link:focus-visible .kf-product-img,
+  .kf-card-link:hover .kf-bundle-img,
+  .kf-card-link:focus-visible .kf-bundle-img {
+    transform: scale(1.06);
+  }
+
+  /* The "Explore →" arrow travels on hover — a small directional cue that the
+     card leads somewhere. */
+  .kf-explore { display: inline-flex; align-items: center; gap: 6px; transition: color 220ms ease; }
+  /* The arrow is its own element so it can travel; as a bare character inside
+     the label it could not move independently. */
+  .kf-explore-arrow { transition: transform 260ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .kf-card-link:hover .kf-explore-arrow,
+  .kf-card-link:focus-visible .kf-explore-arrow { transform: translateX(4px); }
+
+  /* ── Hover: icons ──────────────────────────────────────────────────────
+   * Icons in trust rows, value cards and info rows lift and warm on hover.
+   * The card is the hover target so the whole tile responds as one object.
+   */
+  .kf-trust-icon,
+  .kf-info-icon svg,
+  .kf-login-reason-icon,
+  .kf-contact-info-icon,
+  .kf-footer-icon {
+    transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), color 220ms ease;
+  }
+  .kf-trust-badge:hover .kf-trust-icon,
+  .kf-info-row:hover .kf-info-icon svg,
+  .kf-contact-info li:hover .kf-contact-info-icon {
+    transform: scale(1.12) translateY(-1px);
+    color: var(--color-text-accent);
+  }
+
+  /* Pill buttons already lift; their icon nudges forward with the label so the
+     button reads as one moving object rather than a box with a static glyph. */
+  .kf-pill-btn-icon { transition: transform 240ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+  .kf-pill-btn:hover .kf-pill-btn-icon { transform: translateX(3px); }
+  /* The Instagram/WhatsApp marks are circular, so rotation reads as wobble —
+     they scale instead. */
+  .kf-pill-btn--outline:hover .kf-pill-btn-icon,
+  .kf-contact-action:hover .kf-pill-btn-icon { transform: scale(1.1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-product-img, .kf-bundle-img, .kf-explore, .kf-explore-arrow, .kf-trust-icon,
+    .kf-info-icon svg, .kf-login-reason-icon, .kf-contact-info-icon,
+    .kf-footer-icon, .kf-pill-btn-icon { transition: none; }
+    /* Killing the transition is enough to remove the motion. Repeating the
+       :hover selectors here with `transform: none` made Lightning CSS fold
+       them into the positive rule and DROP the :hover half from the bundle,
+       so the effects never applied for anyone. Do not reintroduce them. */
+    .kf-product-img, .kf-bundle-img, .kf-collection-img,
+    .kf-explore-arrow, .kf-pill-btn-icon,
+    .kf-trust-icon, .kf-info-icon svg, .kf-contact-info-icon,
+    .kf-login-reason-icon, .kf-footer-icon { transform: none !important; }
+  }
+
   /* --- Bundle cards (matches the live site's layout) --- */
   .kf-bundle-card {
     display: flex;
@@ -4451,7 +4574,10 @@ html,
     background: var(--color-background-muted); overflow: hidden;
   }
   .kf-collection-img { object-fit: cover; transition: transform 400ms ease; }
-  .kf-collection:hover .kf-collection-img { transform: scale(1.04); }
+  /* The hover target is the Astryx card (`.kf-card-link`), not this inner
+     article — keyed on `.kf-collection` the zoom never fired. */
+  .kf-card-link:hover .kf-collection-img,
+  .kf-card-link:focus-visible .kf-collection-img { transform: scale(1.06); }
   .kf-collection-placeholder {
     height: 100%;
     background: linear-gradient(
@@ -4467,7 +4593,7 @@ html,
   }
   @media (prefers-reduced-motion: reduce) {
     .kf-collection-img { transition: none; }
-    .kf-collection:hover .kf-collection-img { transform: none; }
+    .kf-collection-img { transform: none !important; }
   }
 
   /* --- Stats band: the one dark surface, closing the page --- */

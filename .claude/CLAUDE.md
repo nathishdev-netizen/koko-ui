@@ -729,6 +729,40 @@ without them renders nothing. The compare table repeats here with
 
 CTA reads **"Add Customized Bundle to Cart"** when complete, as legacy did.
 
+## Motion — hover and reveal (added after the animation pass)
+
+**Never repeat a `:hover` selector with `transform: none` inside the
+reduced-motion block.** Lightning CSS folds the two rules together and drops
+the `:hover` half from the bundle entirely, so the effect never applies for
+ANYONE — it looks like the CSS was ignored. Disable the `transition` instead,
+and if a transform must be cancelled use a plain (non-`:hover`) selector with
+`!important`. Cost me a long debug; the source looked correct throughout.
+
+**Testing hover in headless needs a real mouse event.**
+`CSS.forcePseudoState` did nothing here, and reading the rule back through the
+CSSOM returns NOT FOUND because the stylesheet is cross-origin to the probe.
+`Input.dispatchMouseEvent({type:'mouseMoved'})` over the element works —
+`scratchpad/hover5.mjs` does this for both motion modes. Headless also
+defaults to `prefers-reduced-motion: reduce`, so always emulate
+`no-preference` explicitly or every effect reads as dead.
+
+What was added:
+- Section headings and the process/values heads rise with their content
+  (`kf-rise-soft`), one beat ahead of the cards, so a section arrives whole.
+- Cards stagger by position via `animation-range` on `:nth-child(2..4)` — no
+  JS, so it stays free.
+- Photographs settle out of a 1.04 scale as they enter (`kf-settle`).
+- Product and bundle images zoom on card hover (collection and blog cards
+  already did). The collection zoom was keyed on `.kf-collection`, the inner
+  article, which is never the hover target — it had silently never fired.
+- Icons in trust/value/info rows scale and warm; pill-button icons travel.
+- The collection card's "Explore →" arrow is its own element so it can move;
+  as a bare character in the label it could not.
+
+Verified: nothing is left invisible on any page after scrolling
+(`scratchpad/reveal-safety.mjs`), and every effect is inert under reduced
+motion.
+
 ## Motion
 
 Reveals use **native CSS scroll-driven animation** (`animation-timeline: view()`)
