@@ -259,7 +259,19 @@ compare, FAQ) is rendered OUTSIDE `BundleConfigurator`, so the rail scrolls away
 once there are no picks left to make. Rendering it inside made the rail follow
 the reader down a long article, which is not what a summary rail is for.
 
-**Slots use three fixed tracks**, not `auto-fit`. With `auto-fit` a 2-pick step
+**A sticky rail taller than the viewport scrolls away regardless.** The rail hit
+873px against a 913px viewport and released mid-pick. Fixed by trimming its
+contents (image capped at 160px, tighter gaps, 22px heading) to ~718px rather
+than giving it `overflow-y: auto` — a rail you must scroll to read the price
+defeats the point of pinning it. Sticky also cannot outlive its container, so
+the rail correctly releases when `.kf-bundle-grid` ends.
+
+**Step headings are 28px, not the theme default 40px.** Prata is a
+high-contrast display face; at 40px "1. Pick 4 Signature Masala Blends" was
+nearly the size of the 64px page title and crowded the slots. The face stays —
+only the scale changes, so the page keeps one voice.
+
+**Slots use four fixed tracks**, not `auto-fit`. With `auto-fit` a 2-pick step
 stretched its tiles to ~500px; with a fixed max they sat at 260px and left a
 dead column. Three tracks keep every slot ~276px across all bundles, and a
 2-pick step simply leaves one track empty.

@@ -139,7 +139,7 @@ export function BundleConfigurator({
 
       {/* Summary rail — sticky on desktop so the action stays reachable. */}
       <aside className="kf-bundle-summary" aria-label="Your bundle">
-        <VStack gap={4}>
+        <VStack gap={3}>
           {/* The bundle's own photograph, as the legacy page led with: it shows
               what arrives, which a list of counts cannot. */}
           {bundle.image ? (

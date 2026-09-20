@@ -1306,21 +1306,37 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-container, 24px);
     background: var(--color-background-surface);
-    padding: var(--spacing-5, 20px);
+    padding: var(--spacing-4, 16px);
+  }
+  /* The bundle name is a rail heading, not a page heading — at display scale
+     it alone took 122px of the height the rail needs to stay pinned. */
+  .kf-bundle-summary h2 { font-size: 1.375rem; line-height: 1.2; }
+
+  /*
+   * Step headings are instructions, not display moments. At the theme's
+   * default they rendered 40px — nearly the 64px page title — which crowded
+   * the slots and made the column feel congested. The display face stays; only
+   * the scale changes, so the page keeps one voice.
+   */
+  .kf-bundle-picker h2 {
+    font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
+    line-height: 1.25;
   }
   @media (min-width: 960px) {
     /*
-     * The rail holds still while the picker, About, FAQ and everything else
-     * scroll past it — the legacy `sticky top-24`. `align-self: start` is what
-     * lets it stick: a stretched grid item is full-height and cannot.
-     * max-height + overflow keep a tall rail reachable on a short viewport.
+     * The rail holds still while the picker scrolls past it — the legacy
+     * `sticky top-24`. `align-self: start` is what lets it stick at all: a
+     * stretched grid item is full-height and cannot.
+     *
+     * A sticky element TALLER than the viewport scrolls away regardless, so the
+     * contents are trimmed to fit (see .kf-summary-media below) rather than
+     * given their own scrollbar — a rail you have to scroll to read the price
+     * defeats the point of pinning it.
      */
     .kf-bundle-summary {
       position: sticky;
       top: var(--spacing-6, 24px);
       align-self: start;
-      max-height: calc(100dvh - var(--spacing-10, 40px));
-      overflow-y: auto;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -1345,11 +1361,11 @@
      * one line and no tile grows absurdly wide.
      */
     /*
-     * Three tracks: a 2-pick step fills two of them and leaves one gap rather
-     * than stretching two tiles across the whole column. Keeps every slot the
-     * same size across bundles while using the width sensibly.
+     * Four tracks: 4 picks fill one row instead of orphaning the last tile,
+     * and a 2- or 3-pick step simply leaves tracks empty rather than
+     * stretching its tiles across the column.
      */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--spacing-4, 16px);
   }
   @media (max-width: 1100px) {
@@ -1525,7 +1541,10 @@
   .kf-summary-media {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    /* Capped so the whole rail clears a laptop viewport and can stay pinned.
+       At 4/3 the rail reached 873px and scrolled away mid-pick. */
+    aspect-ratio: 16 / 9;
+    max-height: 160px;
     border-radius: var(--kf-radius-card);
     overflow: hidden;
     background: var(--color-background-card);
@@ -1550,7 +1569,7 @@
     background: var(--color-border);
   }
   .kf-included-box {
-    padding: var(--spacing-3, 12px);
+    padding: var(--spacing-2_5, 10px) var(--spacing-3, 12px);
     border-radius: var(--kf-radius-control);
     background: var(--color-background-card);
     border: 1px solid var(--color-border);
