@@ -119,52 +119,57 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Choose Your Vibe */}
-      <section className="kf-section kf-contact-methods" aria-labelledby="methods-title">
-        <div className="kf-container">
-          <div className="kf-about-values-head">
-            <Heading level={2} id="methods-title" className="kf-about-h2 kf-about-h2--xl">
-              {methods.titleLead} <span className="kf-h-alt">{methods.titleAlt}</span>
-            </Heading>
-            <Text color="secondary" className="kf-about-values-sub">
-              {methods.subtitle}
-            </Text>
+      {/* Choose Your Vibe sticks while the form slides up over it. The two are
+          wrapped together because a sticky element is pinned for the height of
+          its CONTAINING BLOCK — without the wrapper that is the page, and the
+          vibe cards stay pinned behind every later section. See globals.css. */}
+      <div className="kf-stack">
+        <section className="kf-section kf-contact-methods kf-stack-under" aria-labelledby="methods-title">
+          <div className="kf-container">
+            <div className="kf-about-values-head">
+              <Heading level={2} id="methods-title" className="kf-about-h2 kf-about-h2--xl">
+                {methods.titleLead} <span className="kf-h-alt">{methods.titleAlt}</span>
+              </Heading>
+              <Text color="secondary" className="kf-about-values-sub">
+                {methods.subtitle}
+              </Text>
+            </div>
+            <div className="kf-contact-grid">
+              {cards.map(({ key, Icon, highlight, title, body, href, action, external }) => (
+                <article key={key} className="kf-value-card kf-contact-card">
+                  <Icon className="kf-value-icon" aria-hidden="true" />
+                  <span className="kf-contact-highlight">{highlight}</span>
+                  <h3 className="kf-value-title">{title}</h3>
+                  <p className="kf-value-body">{body}</p>
+                  <a
+                    href={href}
+                    className="kf-pill-btn kf-pill-btn--primary kf-contact-action"
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {key === 'whatsapp' ? <MessageCircleIcon className="kf-pill-btn-icon" aria-hidden="true" /> : null}
+                    {action}
+                  </a>
+                </article>
+              ))}
+            </div>
           </div>
-          <div className="kf-contact-grid">
-            {cards.map(({ key, Icon, highlight, title, body, href, action, external }) => (
-              <article key={key} className="kf-value-card kf-contact-card">
-                <Icon className="kf-value-icon" aria-hidden="true" />
-                <span className="kf-contact-highlight">{highlight}</span>
-                <h3 className="kf-value-title">{title}</h3>
-                <p className="kf-value-body">{body}</p>
-                <a
-                  href={href}
-                  className="kf-pill-btn kf-pill-btn--primary kf-contact-action"
-                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                >
-                  {key === 'whatsapp' ? <MessageCircleIcon className="kf-pill-btn-icon" aria-hidden="true" /> : null}
-                  {action}
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Drop Us a Line */}
-      <section className="kf-section kf-section--light kf-contact-form-section" aria-labelledby="form-title">
-        <div className="kf-container kf-container--narrow">
-          <div className="kf-about-values-head">
-            <Heading level={2} id="form-title" className="kf-about-h2 kf-about-h2--xl">
-              {form.titleLead} <span className="kf-h-alt">{form.titleAlt}</span>
-            </Heading>
-            <Text color="secondary" className="kf-about-values-sub">
-              {form.subtitle}
-            </Text>
+        {/* Drop Us a Line */}
+        <section className="kf-section kf-section--light kf-contact-form-section kf-stack-over" aria-labelledby="form-title">
+          <div className="kf-container kf-container--narrow">
+            <div className="kf-about-values-head">
+              <Heading level={2} id="form-title" className="kf-about-h2 kf-about-h2--xl">
+                {form.titleLead} <span className="kf-h-alt">{form.titleAlt}</span>
+              </Heading>
+              <Text color="secondary" className="kf-about-values-sub">
+                {form.subtitle}
+              </Text>
+            </div>
+            <ContactForm copy={form} />
           </div>
-          <ContactForm copy={form} />
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Quick Answers */}
       <section className="kf-section kf-contact-faq" aria-labelledby="faq-title">

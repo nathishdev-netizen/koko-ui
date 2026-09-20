@@ -1028,6 +1028,71 @@
     .kf-process-step[data-active] .kf-process-num { transform: none; }
   }
 
+  /* ── Stacking sections ──────────────────────────────────────────────────
+   * A section that STICKS to the top of the viewport while the next section
+   * scrolls up and covers it — the card-stack/overlap effect, distinct from
+   * `.kf-pinned` (which fixes a photograph behind a scrolling scrim).
+   *
+   * Used as a PAIR on adjacent siblings:
+   *   <section class="... kf-stack-under">   the one that holds still
+   *   <section class="... kf-stack-over">    the one that slides over it
+   *
+   * Requirements, each of which was needed in practice:
+   *  - the over-section must paint an OPAQUE background, or the section it is
+   *    covering shows through and both read at once;
+   *  - z-index only orders siblings that both create a stacking context, so
+   *    the under-section takes `position: sticky` (which makes one) and the
+   *    over-section takes `position: relative` + a higher z-index;
+   *  - the under-section must not be taller than the viewport, or it scrolls
+   *    away before the cover arrives and the effect never lands. It is capped
+   *    at 100dvh and centres its own content, so a tall section simply sits
+   *    tighter rather than breaking.
+   */
+  /* The wrapper bounds how long the sticky section stays pinned: a sticky
+     element is pinned for the height of its containing block, so without this
+     the under-section is the page's child and stays behind every later
+     section. Ending the wrapper after the over-section releases it exactly
+     when the cover has finished passing. */
+  .kf-stack { position: relative; }
+  .kf-stack-under {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    max-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .kf-stack-over {
+    position: relative;
+    z-index: 1;
+    /* Sections are transparent by default; this pair needs an opaque ground. */
+    background: var(--color-background-body);
+    /* A soft edge sells the overlap: the covering section arrives as a card. */
+    border-start-start-radius: var(--kf-radius-card);
+    border-start-end-radius: var(--kf-radius-card);
+    box-shadow: 0 -18px 44px rgba(59, 43, 19, 0.14);
+  }
+  .kf-stack-over.kf-section--light { background: var(--kf-on-fill); }
+
+  /* Below the tablet breakpoint the sticky section eats most of a short
+     viewport and the overlap reads as content getting cut off, so the pair
+     degrades to two ordinary stacked sections. Same call as `.kf-pinned`. */
+  @media (max-width: 900px), (prefers-reduced-motion: reduce) {
+    .kf-stack-under {
+      position: static;
+      max-height: none;
+      display: block;
+      overflow: visible;
+    }
+    .kf-stack-over {
+      border-start-start-radius: 0;
+      border-start-end-radius: 0;
+      box-shadow: none;
+    }
+  }
+
   /* ── Contact page ───────────────────────────────────────────────────────
    * Legacy order: hero → four "vibe" cards → form → FAQ → office + map → CTA.
    * Reuses the About page's heading, pill-button, value-card and stat-card
@@ -1090,7 +1155,10 @@
   .kf-contact-faq-grid { gap: var(--spacing-5, 20px); }
   .kf-contact-faq-card {
     padding: var(--spacing-6, 24px);
-    background: var(--color-background-surface);
+    /* Light card on the section's warm ground — each answer reads as its own
+       object rather than as a bordered box drawn on the page. */
+    background: var(--kf-on-fill);
+    border-color: var(--color-border);
     transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
   }
   .kf-contact-faq-card:hover { border-color: var(--color-border-emphasized); box-shadow: 0 14px 32px rgba(59, 43, 19, 0.08); transform: translateY(-2px); }

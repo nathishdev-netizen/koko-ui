@@ -1082,5 +1082,22 @@ are derived from the profile URLs (`handleFromUrl`), never typed twice.
 - `.kf-pill-btn` (`--primary` / `--outline` / `--sm`, `-icon`) is the shared
   rounded CTA used by About and Contact — it was `.kf-about-btn` and was
   renamed the moment a second page needed it.
+- **`.kf-stack-under` / `.kf-stack-over` — the section-overlap effect.** The
+  first section STICKS at `top: 0` while the next scrolls up and covers it
+  (Choose Your Vibe → Drop Us a Line). Distinct from `.kf-pinned`, which fixes
+  a photograph behind a scrolling scrim — this one has no image at all.
+  Three requirements, each hit in practice:
+  the pair MUST be wrapped in `.kf-stack`, because a sticky element is pinned
+  for the height of its containing block — unwrapped, that is the page and the
+  vibe cards stayed pinned behind Quick Answers and every later section;
+  the over-section needs an OPAQUE background or the section beneath shows
+  through; and the under-section is capped at `100dvh` with centred content,
+  or a section taller than the viewport scrolls away before the cover arrives
+  and the effect never lands. Degrades to two ordinary sections below 900px
+  and under `prefers-reduced-motion`.
+- **Contact FAQ cards are white on the warm ground**, not a `--light` band.
+  Three `--light` sections in a row (form → FAQ → office) flattened into one
+  slab; putting only the CARDS on white is what makes each answer read as its
+  own object.
 - The map is a plain lazy `<iframe>`; `X-Frame-Options` in vercel.json only
   governs who may frame US, so embedding Google is unaffected.
