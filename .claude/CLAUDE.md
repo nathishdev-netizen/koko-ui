@@ -978,6 +978,12 @@ and the grids. Do not reintroduce it.
 
 Deliberately NOT `background-attachment: fixed` — iOS Safari ignores it.
 
+**A `--light` section after a pinned one keeps its white.**
+`.kf-pinned + .kf-section` exists to make the next box opaque; it was setting
+`background-body` unconditionally, which flattened the contact page's office
+section from white to warm. `.kf-pinned + .kf-section--light` restores it.
+The rule only needs opacity — a section that declares its own ground keeps it.
+
 **Two gotchas, both hit in practice:**
 
 1. `.kf-section--brown` paints an opaque `#33240F`, which would cover the fixed
@@ -1095,7 +1101,10 @@ are derived from the profile URLs (`handleFromUrl`), never typed twice.
   or a section taller than the viewport scrolls away before the cover arrives
   and the effect never lands. Degrades to two ordinary sections below 900px
   and under `prefers-reduced-motion`.
-- **Quick Answers is the page's one dark moment** (`kf-section--brown`). It is
+- **Quick Answers is the page's one dark moment** — `kf-section--brown`
+  PLUS `kf-pinned`, so a spice photograph sits fixed behind the brown scrim
+  and the cards scroll over a stationary image (the backdrop is content, in
+  `content/pages/contact.json` under `faq.backdrop`). It is
   the tallest middle section and sits between two light ones, so the change of
   light reads as deliberate; the CTA is too short to carry a band, the office
   section's white map card would fight a dark ground, and the form must stay

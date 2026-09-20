@@ -3655,6 +3655,10 @@
      shows through any transparent box that overlaps it, appearing as a strip
      of photo bleeding past the section's bottom edge. */
   .kf-pinned + .kf-section { position: relative; background: var(--color-background-body); }
+  /* ...but a section that already declares its own ground keeps it. The rule
+     above only needs to make the box OPAQUE; forcing the body colour on a
+     --light band flattened the contact page's office section to warm. */
+  .kf-pinned + .kf-section--light { background: var(--kf-on-fill); }
 
   /* A fixed layer inside a clip-path is a compositing cost on mobile, and the
      effect reads poorly in a short viewport — fall back to the flat ground. */

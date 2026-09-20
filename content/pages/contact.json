@@ -105,7 +105,11 @@
         "q": "How should I store my spices to maintain their freshness?",
         "a": "For the best aroma and potency, store your KokoFresh masalas in a cool, dark, and dry place away from direct sunlight. Our resealable packs are designed to lock in freshness, but an airtight container is always ideal."
       }
-    ]
+    ],
+    "backdrop": {
+      "image": "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/pure-natural-spices-array-S2R8scxEfC2ENnYCuI6LmJaApZjsek.jpg",
+      "alt": ""
+    }
   },
   "office": {
     "titleLead": "Come Say",

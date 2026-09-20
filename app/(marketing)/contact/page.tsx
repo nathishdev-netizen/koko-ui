@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 import {
   ClockIcon,
@@ -172,11 +173,16 @@ export default function ContactPage() {
       </div>
 
       {/* Quick Answers */}
-      {/* Quick Answers is the page's one dark moment — it is the tallest
-          middle section, and its six cards flip to the raised-ink surface
-          from the --brown token overrides alone. */}
-      <section className="kf-section kf-section--brown kf-contact-faq" aria-labelledby="faq-title">
-        <div className="kf-container">
+      {/* Quick Answers is the page's one dark moment: a pinned photograph
+          behind the brown scrim, the cards scrolling over a stationary image
+          — the same mechanism as the home brand story and the About story.
+          Its six cards flip to the raised-ink surface from the --brown token
+          overrides alone. */}
+      <section className="kf-section kf-section--brown kf-pinned kf-contact-faq" aria-labelledby="faq-title">
+        <div className="kf-pinned-media" aria-hidden="true">
+          <Image src={faq.backdrop.image} alt="" fill sizes="100vw" className="kf-pinned-img" />
+        </div>
+        <div className="kf-container kf-pinned-body">
           <div className="kf-about-values-head">
             <Heading level={2} id="faq-title" className="kf-about-h2 kf-about-h2--xl">
               {faq.titleLead} <span className="kf-h-alt">{faq.titleAlt}</span>
