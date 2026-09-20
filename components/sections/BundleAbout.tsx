@@ -53,8 +53,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
         </section>
       ) : null}
 
-      <VStack gap={5}>
-        {bundle.benefits?.length ? (
+      {bundle.benefits?.length ? (
           <section className="kf-panel" aria-labelledby="bundle-benefits">
             <VStack gap={3}>
               <Heading level={2} id="bundle-benefits" className="kf-panel-title">
@@ -72,7 +71,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
           </section>
         ) : null}
 
-        {bundle.quickPrep ? (
+      {bundle.quickPrep ? (
           <section className="kf-panel" aria-labelledby="quick-prep">
             <VStack gap={3}>
               <Heading level={2} id="quick-prep" className="kf-panel-title">
@@ -90,7 +89,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
           </section>
         ) : null}
 
-        {bundle.testimonials?.length ? (
+      {bundle.testimonials?.length ? (
           <section className="kf-panel kf-panel--tint" aria-labelledby="bundle-love">
             <VStack gap={3}>
               <Heading level={2} id="bundle-love" className="kf-panel-title">
@@ -104,8 +103,7 @@ export function BundleAbout({ bundle }: { bundle: Bundle }) {
               ))}
             </VStack>
           </section>
-        ) : null}
-      </VStack>
+      ) : null}
     </div>
   );
 }

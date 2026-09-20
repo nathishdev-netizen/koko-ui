@@ -275,6 +275,14 @@ element's motion minimal — a sidebar that moves while it is meant to be the
 fixed reference reads as a glitch. The scroll reveal belongs to the cards
 passing it, never to the rail.
 
+**The rail is the page's anchor card** — 4:3 bundle photograph, 26px heading,
+2px border and a soft gradient. It was briefly shrunk to help it stay pinned;
+that is no longer necessary now the right column carries the trust cards and
+content panels, and the bigger card is the better design.
+
+**About / Why / Quick Prep stack one after another**, full width of the column.
+Side by side halved the measure and made the reading order ambiguous.
+
 **A sticky rail taller than the viewport scrolls away regardless.** The rail hit
 873px against a 913px viewport and released mid-pick. Fixed by trimming its
 contents (image capped at 160px, tighter gaps, 22px heading) to ~718px rather

@@ -1369,14 +1369,18 @@
   }
 
   .kf-bundle-summary {
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-container, 24px);
-    background: var(--color-background-surface);
-    padding: var(--spacing-4, 16px);
+    border: 2px solid var(--color-border);
+    border-radius: var(--kf-radius-card);
+    /* A soft gradient, as the legacy card had — it reads as a physical card
+       rather than a flat panel. */
+    background: linear-gradient(
+      160deg,
+      var(--color-background-card) 0%,
+      var(--color-background-surface) 55%
+    );
+    padding: var(--spacing-5, 20px);
   }
-  /* The bundle name is a rail heading, not a page heading — at display scale
-     it alone took 122px of the height the rail needs to stay pinned. */
-  .kf-bundle-summary h2 { font-size: 1.375rem; line-height: 1.2; }
+  .kf-bundle-summary h2 { font-size: 1.625rem; line-height: 1.2; }
 
   /*
    * Step headings are instructions, not display moments. At the theme's
@@ -1616,10 +1620,10 @@
   .kf-summary-media {
     position: relative;
     width: 100%;
-    /* Capped so the whole rail clears a laptop viewport and can stay pinned.
-       At 4/3 the rail reached 873px and scrolled away mid-pick. */
-    aspect-ratio: 16 / 9;
-    max-height: 160px;
+    /* The bundle photograph is the rail's anchor — it shows what arrives.
+       The column below is long enough now that the rail can be generous and
+       still stay pinned. */
+    aspect-ratio: 4 / 3;
     border-radius: var(--kf-radius-card);
     overflow: hidden;
     background: var(--color-background-card);
@@ -1666,13 +1670,12 @@
    * replacement dropped these, and About/Why/Quick Prep rendered as loose text
    * on the page ground instead of the cards the legacy page stacks.
    */
+  /* One panel after another, full width of the column — side by side made the
+     measure short and the reading order ambiguous. */
   .kf-about-grid {
     display: grid;
     gap: var(--spacing-4, 16px);
     align-items: start;
-  }
-  @media (min-width: 1100px) {
-    .kf-about-grid { grid-template-columns: 1fr 1fr; }
   }
   .kf-panel {
     padding: clamp(1.25rem, 3vw, 1.75rem);
