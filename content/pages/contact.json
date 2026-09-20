@@ -1,0 +1,68 @@
+{
+  "_note": "Contact page copy, carried over verbatim from the legacy site. Addresses, numbers and social links come from config/brand.json — never here.",
+  "hero": {
+    "title": "Let’s Talk Spices",
+    "subtitleLead": "Got Questions? We've Got",
+    "subtitleAlt": "Answers",
+    "subtitleEmoji": "🌶️",
+    "lead": "Whether you need cooking tips, have feedback, or just want to chat about spices — we’re always up for a flavorful conversation."
+  },
+  "methods": {
+    "titleLead": "Choose Your",
+    "titleAlt": "Vibe",
+    "subtitle": "Pick the way you want to connect. We're everywhere you are.",
+    "whatsapp": { "highlight": "Most Instant", "title": "WhatsApp Us", "body": "Get instant replies to your questions. We're active and ready to help!", "message": "Hi KokoFresh! I have a question about your products." },
+    "social": { "highlight": "Most Fun", "title": "Social DMs", "body": "Slide into our DMs on Instagram or Twitter. We're pretty active." },
+    "email": { "highlight": "Most Detailed", "title": "Email Us", "body": "For detailed questions or business inquiries. We reply within 24 hours." },
+    "phone": { "highlight": "Most Personal", "title": "Call Us", "body": "Sometimes you just need to talk it out. We get it." }
+  },
+  "form": {
+    "titleLead": "Drop Us a",
+    "titleAlt": "Line",
+    "subtitle": "Fill out the form below and we'll get back to you faster than you can say \"garam masala\"",
+    "firstName": { "label": "First Name", "placeholder": "What should we call you?" },
+    "lastName": { "label": "Last Name", "placeholder": "(Optional)" },
+    "email": { "label": "Email Address", "placeholder": "your.email@example.com" },
+    "phone": { "label": "Phone", "placeholder": "+91 98765 43210" },
+    "topic": { "label": "What's This About?", "placeholder": "Choose your topic..." },
+    "topics": ["Product Questions", "Order Support", "Recipe Help", "Business Inquiry", "Feedback & Suggestions", "Press & Media", "Just Saying Hi!"],
+    "message": { "label": "Tell Us More", "placeholder": "Spill the tea... or should we say, spill the spices? 🌶️" },
+    "newsletter": "Yes, I want to receive recipe tips, new product updates, and exclusive offers!",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "success": "✅ Thank you! Your message has been submitted.",
+    "error": "Something went wrong. Please try again, or reach us on WhatsApp."
+  },
+  "faq": {
+    "titleLead": "Quick",
+    "titleAlt": "Answers",
+    "subtitle": "The questions everyone asks (and the answers that'll save you time)",
+    "items": [
+      { "q": "What does ‘KokoFresh’ mean for your masalas?", "a": "Freshness is our promise. We grind spices in small batches and label each pack with the Date of Blending so you always enjoy pure, aromatic flavor." },
+      { "q": "How fast is delivery across India?", "a": "We deliver anywhere in India within 2–4 business days. Orders above ₹500 get free shipping, so your favorite spices reach you faster." },
+      { "q": "Are your spices organic and where are they sourced from?", "a": "Our spices come from trusted partner farms that follow clean and sustainable farming. We believe in honest, farm-to-packet freshness." },
+      { "q": "Do you supply for restaurants or bulk orders?", "a": "Yes! We love partnering with chefs, cafes, and caterers. Just write to us at help@kokofresh.in for bulk orders or quotes." },
+      { "q": "Are your masalas free from artificial colours and preservatives?", "a": "Absolutely. Our promise is 100% pure, natural spices. We never add artificial colours, preservatives, or fillers. What you get is just the authentic, unadulterated flavour of premium quality ingredients." },
+      { "q": "How should I store my spices to maintain their freshness?", "a": "For the best aroma and potency, store your KokoFresh masalas in a cool, dark, and dry place away from direct sunlight. Our resealable packs are designed to lock in freshness, but an airtight container is always ideal." }
+    ]
+  },
+  "office": {
+    "titleLead": "Come Say",
+    "titleAlt": "Hi",
+    "hqLabel": "Our HQ",
+    "hoursLabel": "Office Hours",
+    "emailsLabel": "Email Addresses",
+    "generalLabel": "General",
+    "businessLabel": "Business",
+    "pressLabel": "Press",
+    "mapTitle": "CKGFlavorz FoodTech Office Location",
+    "mapBadge": "Find Us Here"
+  },
+  "cta": {
+    "titleLead": "Still Have",
+    "titleAlt": "Questions?",
+    "body": "Don’t be shy! We love talking about spices almost as much as we love making them. Reach out and let’s start a conversation.",
+    "button": "DM Us on Instagram",
+    "responseTime": "✨ Response time: Usually under 2 hours ✨"
+  }
+}

@@ -175,18 +175,18 @@ export default function AboutPage() {
           </Heading>
           <Text className="kf-about-cta-body">{cta.body}</Text>
           <div className="kf-about-cta-row">
-            <Link href={cta.primary.href} className="kf-about-btn kf-about-btn--primary">
+            <Link href={cta.primary.href} className="kf-pill-btn kf-pill-btn--primary">
               {cta.primary.label}
-              <ArrowRightIcon className="kf-about-btn-icon" aria-hidden="true" />
+              <ArrowRightIcon className="kf-pill-btn-icon" aria-hidden="true" />
             </Link>
             {brand.socials?.instagram ? (
               <a
                 href={brand.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="kf-about-btn kf-about-btn--outline"
+                className="kf-pill-btn kf-pill-btn--outline"
               >
-                <InstagramIcon className="kf-about-btn-icon" aria-hidden="true" />
+                <InstagramIcon className="kf-pill-btn-icon" aria-hidden="true" />
                 {cta.secondary.label}
               </a>
             ) : null}

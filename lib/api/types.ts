@@ -395,6 +395,23 @@ export type CommentSubmission = {
   readonly website?: string;
 };
 
+export type ContactSubmission = {
+  readonly firstName: string;
+  readonly lastName?: string;
+  readonly email: string;
+  readonly phone: string;
+  readonly topic: string;
+  readonly message: string;
+  readonly newsletter: boolean;
+  /** Honeypot: must be empty. A bot that fills every field trips it. */
+  readonly website?: string;
+};
+
+export type ContactReceipt = {
+  readonly id: string;
+  readonly receivedAt: string;
+};
+
 export type ReviewSubmission = {
   readonly productSlug: string;
   readonly rating: number;

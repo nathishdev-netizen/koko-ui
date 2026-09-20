@@ -23,7 +23,8 @@ export type ApiResource =
   | 'referral'
   | 'siteConfig'
   | 'promotions'
-  | 'comments';
+  | 'comments'
+  | 'contact';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
 

@@ -18,7 +18,15 @@
   "contact": {
     "email": "help@kokofresh.in",
     "phone": "+91 78927 76610",
-    "whatsapp": "+917892776610"
+    "whatsapp": "+917892776610",
+    "businessEmail": "business@kokofresh.com",
+    "pressEmail": "press@kokofresh.com",
+    "hours": [
+      "Monday – Friday: 9:00 AM – 6:00 PM IST",
+      "Saturday: 10:00 AM – 4:00 PM IST",
+      "Sunday: Closed (we're grinding spices)"
+    ],
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.243859362772!2d77.6278958153479!3d12.935432919215295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15d1a6edc6db%3A0xb1d6f26a9a7b6ef4!2sCKGFlavorz%20FoodTech%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
   },
   "legal": {
     "entityName": "CKGFlavorz FoodTech Pvt Ltd",
@@ -35,6 +43,7 @@
   "socials": {
     "instagram": "https://www.instagram.com/koko_fresh_india",
     "facebook": "https://www.facebook.com/people/Koko-Fresh/61572673627952/",
-    "youtube": "https://youtube.com/@kokofresh_in"
+    "youtube": "https://youtube.com/@kokofresh_in",
+    "twitter": "https://x.com/KOKOFresh_IN"
   }
 }

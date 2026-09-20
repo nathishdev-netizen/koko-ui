@@ -43,6 +43,12 @@ const brandSchema = z.object({
     phone: z.string().min(1),
     /** E.164, for WhatsApp deep links. */
     whatsapp: z.string().min(1),
+    businessEmail: z.email().optional(),
+    pressEmail: z.email().optional(),
+    /** Office hours, one line each, shown verbatim on /contact. */
+    hours: z.array(z.string().min(1)).optional(),
+    /** Google Maps embed URL for the HQ. Absent = no map on /contact. */
+    mapEmbedUrl: z.url().optional(),
   }),
   legal: z.object({
     entityName: z.string().min(1),
@@ -61,6 +67,7 @@ const brandSchema = z.object({
     instagram: z.url().optional(),
     facebook: z.url().optional(),
     youtube: z.url().optional(),
+    twitter: z.url().optional(),
   }),
 });
 

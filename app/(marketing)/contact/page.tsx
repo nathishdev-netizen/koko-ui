@@ -1,34 +1,65 @@
 import type { Metadata } from 'next';
 
-import { ContactForm } from '@/components/sections/ContactForm';
 import {
-  BreadcrumbItem,
-  Breadcrumbs,
-  Card,
-  Heading,
-  Link,
-  Text,
-  VStack,
-} from '@/components/ui';
+  ClockIcon,
+  InstagramIcon,
+  MailIcon,
+  MapPinIcon,
+  MessageCircleIcon,
+  PhoneIcon,
+  XIcon,
+  YoutubeIcon,
+} from '@/components/icons';
+import { ContactForm } from '@/components/sections/ContactForm';
+import { BreadcrumbItem, Breadcrumbs, Heading, Text } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { brand } from '@/config/brand';
+import content from '@/content/pages/contact.json';
 import { absoluteUrl, breadcrumbJsonLd, buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Contact KokoFresh',
+  title: 'Contact Us | Customer Support & Bulk Orders | KokoFresh',
   description:
-    'Questions about an order, bulk enquiries or anything else — reach the KokoFresh team on WhatsApp, phone or email.',
+    'Questions about our masalas? Need bulk orders? WhatsApp, email, or call us—we respond within 24 hours. Bangalore-based with India-wide delivery.',
   path: '/contact',
 });
 
+/** "@koko_fresh_india" from an Instagram/X/YouTube profile URL. */
+function handleFromUrl(url: string): string {
+  const segment = new URL(url).pathname.split('/').filter(Boolean).pop() ?? '';
+  return `@${segment.replace(/^@/, '')}`;
+}
+
+/**
+ * Contact — the legacy page's six sections, in order: hero → "Choose Your
+ * Vibe" (four ways to reach us) → "Drop Us a Line" form → "Quick Answers"
+ * FAQ → "Come Say Hi" office + map → "Still Have Questions?" CTA.
+ *
+ * Every number, address, handle and hour comes from `config/brand.json`;
+ * the copy lives in `content/pages/contact.json`.
+ */
 export default function ContactPage() {
   const trail = [
     { name: 'Home', path: '/' },
     { name: 'Contact', path: '/contact' },
   ];
+  const { hero, methods, form, faq, office, cta } = content;
+  const { contact, legal, socials } = brand;
+  const address = legal.address;
+  const waNumber = contact.whatsapp.replace(/[^0-9]/g, '');
+  const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(methods.whatsapp.message)}`;
+  const socialLinks = [
+    socials.instagram ? { href: socials.instagram, label: handleFromUrl(socials.instagram), Icon: InstagramIcon } : null,
+    socials.twitter ? { href: socials.twitter, label: handleFromUrl(socials.twitter), Icon: XIcon } : null,
+    socials.youtube ? { href: socials.youtube, label: handleFromUrl(socials.youtube), Icon: YoutubeIcon } : null,
+  ].filter((s): s is NonNullable<typeof s> => s !== null);
 
-  const address = brand.legal.address;
-  const waLink = `https://wa.me/${brand.contact.whatsapp.replace(/[^0-9]/g, '')}`;
+  const cards = [
+    { key: 'whatsapp', Icon: MessageCircleIcon, ...methods.whatsapp, href: waLink, action: contact.phone, external: true },
+    { key: 'social', Icon: InstagramIcon, ...methods.social, href: socials.instagram ?? '#', action: socials.instagram ? handleFromUrl(socials.instagram) : brand.name, external: true },
+    { key: 'email', Icon: MailIcon, ...methods.email, href: `mailto:${contact.email}`, action: contact.email, external: false },
+    { key: 'phone', Icon: PhoneIcon, ...methods.phone, href: `tel:${contact.whatsapp}`, action: contact.phone, external: false },
+  ];
 
   return (
     <>
@@ -41,8 +72,9 @@ export default function ContactPage() {
             name: brand.name,
             image: absoluteUrl(brand.logo.src),
             url: absoluteUrl('/'),
-            telephone: brand.contact.phone,
-            email: brand.contact.email,
+            telephone: contact.phone,
+            email: contact.email,
+            sameAs: Object.values(socials).filter(Boolean),
             address: {
               '@type': 'PostalAddress',
               streetAddress: address.street,
@@ -52,75 +84,221 @@ export default function ContactPage() {
               addressCountry: address.country,
             },
           },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faq.items.map((item) => ({
+              '@type': 'Question',
+              name: item.q,
+              acceptedAnswer: { '@type': 'Answer', text: item.a },
+            })),
+          },
         ]}
       />
 
-      <div className="kf-container kf-shop">
-        <VStack gap={5}>
+      {/* Hero */}
+      <section className="kf-about-hero kf-contact-hero">
+        <div className="kf-container">
           <Breadcrumbs label="Breadcrumb" variant="supporting">
             {trail.map((crumb, i) => (
-              <BreadcrumbItem
-                key={crumb.path}
-                href={i === trail.length - 1 ? undefined : crumb.path}
-              >
+              <BreadcrumbItem key={crumb.path} href={i === trail.length - 1 ? undefined : crumb.path}>
                 {crumb.name}
               </BreadcrumbItem>
             ))}
           </Breadcrumbs>
-
-          <VStack gap={2}>
-            <p className="kf-eyebrow">Get in touch</p>
-            <Heading level={1}>Contact us</Heading>
-            <span className="kf-rule" aria-hidden="true" />
-            <Text color="secondary" className="kf-measure">
-              Order questions, bulk enquiries, or a recipe you want help with — we
-              read everything.
-            </Text>
-          </VStack>
-
-          <div className="kf-cart-grid">
-            <Card padding={5}>
-              <ContactForm />
-            </Card>
-
-            <VStack gap={3}>
-              <Card padding={4}>
-                <VStack gap={2}>
-                  <Text type="label">Fastest: WhatsApp</Text>
-                  <Link href={waLink} target="_blank" rel="noopener noreferrer">
-                    {brand.contact.phone}
-                  </Link>
-                  <Text type="supporting" color="secondary">
-                    Order updates and support, usually answered same day.
-                  </Text>
-                </VStack>
-              </Card>
-
-              <Card padding={4}>
-                <VStack gap={2}>
-                  <Text type="label">Email</Text>
-                  <Link href={`mailto:${brand.contact.email}`}>
-                    {brand.contact.email}
-                  </Link>
-                </VStack>
-              </Card>
-
-              <Card padding={4}>
-                <VStack gap={2}>
-                  <Text type="label">Address</Text>
-                  <Text type="supporting" color="secondary">
-                    {brand.legal.entityName}
-                    <br />
-                    {address.street}
-                    <br />
-                    {address.locality} {address.postalCode}, {address.region}
-                  </Text>
-                </VStack>
-              </Card>
-            </VStack>
+          <div className="kf-about-hero-inner">
+            <Heading level={1} className="kf-about-hero-title">
+              {hero.title}
+            </Heading>
+            <p className="kf-contact-sub">
+              {hero.subtitleLead} <span className="kf-h-alt">{hero.subtitleAlt}</span>{' '}
+              <span aria-hidden="true">{hero.subtitleEmoji}</span>
+            </p>
+            <p className="kf-about-lead">{hero.lead}</p>
           </div>
-        </VStack>
-      </div>
+        </div>
+      </section>
+
+      {/* Choose Your Vibe */}
+      <section className="kf-section kf-contact-methods" aria-labelledby="methods-title">
+        <div className="kf-container">
+          <div className="kf-about-values-head">
+            <Heading level={2} id="methods-title" className="kf-about-h2 kf-about-h2--xl">
+              {methods.titleLead} <span className="kf-h-alt">{methods.titleAlt}</span>
+            </Heading>
+            <Text color="secondary" className="kf-about-values-sub">
+              {methods.subtitle}
+            </Text>
+          </div>
+          <div className="kf-contact-grid">
+            {cards.map(({ key, Icon, highlight, title, body, href, action, external }) => (
+              <article key={key} className="kf-value-card kf-contact-card">
+                <Icon className="kf-value-icon" aria-hidden="true" />
+                <span className="kf-contact-highlight">{highlight}</span>
+                <h3 className="kf-value-title">{title}</h3>
+                <p className="kf-value-body">{body}</p>
+                <a
+                  href={href}
+                  className="kf-pill-btn kf-pill-btn--primary kf-contact-action"
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {key === 'whatsapp' ? <MessageCircleIcon className="kf-pill-btn-icon" aria-hidden="true" /> : null}
+                  {action}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Drop Us a Line */}
+      <section className="kf-section kf-section--light kf-contact-form-section" aria-labelledby="form-title">
+        <div className="kf-container kf-container--narrow">
+          <div className="kf-about-values-head">
+            <Heading level={2} id="form-title" className="kf-about-h2 kf-about-h2--xl">
+              {form.titleLead} <span className="kf-h-alt">{form.titleAlt}</span>
+            </Heading>
+            <Text color="secondary" className="kf-about-values-sub">
+              {form.subtitle}
+            </Text>
+          </div>
+          <ContactForm copy={form} />
+        </div>
+      </section>
+
+      {/* Quick Answers */}
+      <section className="kf-section kf-contact-faq" aria-labelledby="faq-title">
+        <div className="kf-container">
+          <div className="kf-about-values-head">
+            <Heading level={2} id="faq-title" className="kf-about-h2 kf-about-h2--xl">
+              {faq.titleLead} <span className="kf-h-alt">{faq.titleAlt}</span>
+            </Heading>
+            <Text color="secondary" className="kf-about-values-sub">
+              {faq.subtitle}
+            </Text>
+          </div>
+          <div className="kf-faq-grid kf-contact-faq-grid">
+            {faq.items.map((item) => (
+              <article key={item.q} className="kf-faq-card kf-contact-faq-card">
+                <h3 className="kf-contact-faq-q">{item.q}</h3>
+                <p className="kf-contact-faq-a">{item.a}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Come Say Hi */}
+      <section className="kf-section kf-section--light kf-contact-office" aria-labelledby="office-title">
+        <div className="kf-container">
+          <div className="kf-contact-office-grid">
+            <div className="kf-contact-office-copy">
+              <Heading level={2} id="office-title" className="kf-about-h2 kf-about-h2--xl">
+                {office.titleLead} <span className="kf-h-alt">{office.titleAlt}</span>
+              </Heading>
+              <ul className="kf-contact-info">
+                <li>
+                  <MapPinIcon className="kf-contact-info-icon" aria-hidden="true" />
+                  <div>
+                    <h3>{office.hqLabel}</h3>
+                    <p>
+                      {legal.entityName}
+                      <br />
+                      {address.street}
+                      <br />
+                      {address.locality} {address.postalCode}
+                    </p>
+                  </div>
+                </li>
+                {contact.hours?.length ? (
+                  <li>
+                    <ClockIcon className="kf-contact-info-icon" aria-hidden="true" />
+                    <div>
+                      <h3>{office.hoursLabel}</h3>
+                      <p>
+                        {contact.hours.map((line, i) => (
+                          <span key={line}>
+                            {i > 0 ? <br /> : null}
+                            {line}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  </li>
+                ) : null}
+                <li>
+                  <MailIcon className="kf-contact-info-icon" aria-hidden="true" />
+                  <div>
+                    <h3>{office.emailsLabel}</h3>
+                    <p>
+                      {office.generalLabel}: <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                      {contact.businessEmail ? (
+                        <>
+                          <br />
+                          {office.businessLabel}: <a href={`mailto:${contact.businessEmail}`}>{contact.businessEmail}</a>
+                        </>
+                      ) : null}
+                      {contact.pressEmail ? (
+                        <>
+                          <br />
+                          {office.pressLabel}: <a href={`mailto:${contact.pressEmail}`}>{contact.pressEmail}</a>
+                        </>
+                      ) : null}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              {socialLinks.length > 0 ? (
+                <div className="kf-contact-socials">
+                  {socialLinks.map(({ href, label, Icon }) => (
+                    <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="kf-pill-btn kf-pill-btn--outline kf-pill-btn--sm">
+                      <Icon className="kf-pill-btn-icon" aria-hidden="true" />
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            {contact.mapEmbedUrl ? (
+              <div className="kf-contact-map-wrap">
+                <div className="kf-contact-map">
+                  <iframe
+                    src={contact.mapEmbedUrl}
+                    title={office.mapTitle}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <div className="kf-contact-map-badge" aria-hidden="true">
+                  <span className="kf-contact-map-pin">📍</span>
+                  <span>{office.mapBadge}</span>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </section>
+
+      {/* Still Have Questions? */}
+      <section className="kf-section kf-about-cta kf-contact-cta" aria-labelledby="cta-title">
+        <div className="kf-container kf-container--narrow">
+          <Heading level={2} id="cta-title" className="kf-about-h2 kf-about-h2--xl">
+            {cta.titleLead} <span className="kf-h-alt">{cta.titleAlt}</span>
+          </Heading>
+          <Text className="kf-about-cta-body">{cta.body}</Text>
+          {socials.instagram ? (
+            <div className="kf-about-cta-row">
+              <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="kf-pill-btn kf-pill-btn--primary">
+                <InstagramIcon className="kf-pill-btn-icon" aria-hidden="true" />
+                {cta.button}
+              </a>
+            </div>
+          ) : null}
+          <p className="kf-contact-response">{cta.responseTime}</p>
+        </div>
+      </section>
     </>
   );
 }

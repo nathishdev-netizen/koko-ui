@@ -1058,3 +1058,29 @@ URLs (`static.wixstatic.com`, allowed in `next.config.mjs`).
   `overflow: visible` and a 14px margin so the badge can hang past the edge.
 - Headless probes: `img.decode()` never settles for a lazy image that has not
   entered the viewport — race it against a timeout or the script hangs.
+
+## Contact page — legacy parity
+
+Six sections in the legacy order: hero ("Let's Talk Spices") → "Choose Your
+Vibe" (WhatsApp / Social / Email / Call cards) → "Drop Us a Line" form →
+"Quick Answers" FAQ (six open cards + FAQPage JSON-LD) → "Come Say Hi" office
+info with the Google Maps embed → "Still Have Questions?" CTA. Copy is in
+`content/pages/contact.json`; **every number, address, handle, hour and the map
+URL comes from `config/brand.json`** (`contact.businessEmail`, `pressEmail`,
+`hours[]`, `mapEmbedUrl`, `socials.twitter` were added for it). Social handles
+are derived from the profile URLs (`handleFromUrl`), never typed twice.
+
+- **The form is the legacy one field for field** (first/last name, email,
+  phone, topic, message, newsletter, "Send Message →"), but validated with zod
+  per field and posted through `lib/api/contact.ts` — the Wix field-key
+  mapping (`first_name_7a97`…) is gone. Phone is a plain `tel` input rather
+  than the legacy 40 KB country-picker dependency. Honeypot as on comments.
+- **Native `<select>` chevron rule must outrank `.kf-text-input`.** That
+  class sets the `background` SHORTHAND later in the file, which resets
+  `background-image` on any equal-specificity rule before it — the chevron
+  silently vanished. Hence `.kf-contact-form .kf-select`.
+- `.kf-pill-btn` (`--primary` / `--outline` / `--sm`, `-icon`) is the shared
+  rounded CTA used by About and Contact — it was `.kf-about-btn` and was
+  renamed the moment a second page needed it.
+- The map is a plain lazy `<iframe>`; `X-Frame-Options` in vercel.json only
+  governs who may frame US, so embedding Google is unaffected.
