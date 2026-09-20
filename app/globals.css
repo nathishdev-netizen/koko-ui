@@ -1543,6 +1543,99 @@
   }
   .kf-pick-body { padding: var(--spacing-3, 12px); }
 
+  /* ── Brand studio (dev/demo tool) ───────────────────────────────────── */
+  .kf-studio {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+    padding-block: var(--spacing-4, 16px);
+  }
+  @media (min-width: 1000px) {
+    .kf-studio { grid-template-columns: 380px minmax(0, 1fr); }
+    .kf-studio-controls { position: sticky; top: var(--spacing-6, 24px); }
+  }
+  .kf-preset-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .kf-preset {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-background-surface);
+    color: var(--color-text-primary);
+    font: inherit; font-size: 0.8125rem; cursor: pointer;
+  }
+  .kf-preset:hover { border-color: var(--color-border-emphasized); }
+  .kf-preset-dot { width: 14px; height: 14px; border-radius: 50%; }
+
+  .kf-swatch-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 10px; border-radius: 12px;
+    border: 1px solid var(--color-border);
+    background: var(--color-background-surface);
+    cursor: pointer;
+  }
+  .kf-swatch-input {
+    width: 40px; height: 40px; flex: 0 0 auto;
+    padding: 0; border: 0; border-radius: 8px;
+    background: none; cursor: pointer;
+  }
+  .kf-swatch-meta { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .kf-swatch-label { font-size: 0.875rem; font-weight: 600; }
+  .kf-swatch-hint { font-size: 0.75rem; color: var(--color-text-secondary); }
+  .kf-swatch-hex {
+    font-size: 0.75rem; font-variant-numeric: tabular-nums;
+    color: var(--color-text-secondary);
+  }
+
+  .kf-contrast {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 12px 14px; border-radius: 12px;
+    border: 1px solid var(--color-error);
+    background: color-mix(in srgb, var(--color-error) 8%, transparent);
+    font-size: 0.8125rem;
+  }
+  .kf-contrast[data-pass] {
+    border-color: var(--color-success);
+    background: color-mix(in srgb, var(--color-success) 10%, transparent);
+  }
+
+  .kf-config-out {
+    margin: 0; padding: 14px; border-radius: 12px; overflow-x: auto;
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+    font-size: 0.75rem; line-height: 1.6;
+  }
+
+  .kf-studio-preview { display: block; }
+  .kf-demo-card {
+    padding: var(--spacing-5, 20px);
+    border-radius: 20px;
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+  }
+  .kf-demo-ribbon {
+    display: inline-flex; align-items: center;
+    padding: 4px 11px; border-radius: 999px;
+    background: var(--kf-brand-ink); color: var(--kf-on-fill);
+    font-size: 0.6875rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .kf-demo-strip {
+    display: flex; flex-wrap: wrap; gap: var(--spacing-4, 16px);
+    align-items: center; justify-content: space-between;
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border-radius: 20px;
+    background: linear-gradient(
+      115deg,
+      var(--kf-brand-ink-soft) 0%,
+      var(--kf-brand-ink) 55%,
+      var(--kf-brand-ink-deep) 100%
+    );
+    --color-text-primary: var(--kf-on-ink);
+    --color-text-secondary: var(--kf-on-ink-secondary);
+    color: var(--kf-on-ink);
+  }
+  .kf-demo-strip .kf-eyebrow { color: var(--kf-on-ink-accent); }
+
   /* Dev-only typography comparison page. */
   .kf-typeset {
     padding-block: var(--spacing-6, 24px);

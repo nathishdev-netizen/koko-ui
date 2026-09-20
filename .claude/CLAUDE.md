@@ -219,6 +219,14 @@ palette. Same reasoning would apply to any future certification mark.
 Verified end to end: setting `brandInk` to `#12408A` turned every button, chip,
 ribbon and the bundle strip blue, while the veg marks stayed green.
 
+**`/brand` is the brand studio** — a live demo of the seam with colour pickers,
+four presets, a contrast readout and copyable JSON. It writes the same `--kf-*`
+properties the server injects, and previews the REAL components rather than
+mock-ups. It persists nothing; `config/theme.json` stays the source of truth.
+Always on in development; in production only when
+`NEXT_PUBLIC_ENABLE_BRAND_STUDIO=1`, so it can be shown to a client on a real
+deployment without leaving a config surface public by default.
+
 ## Dev server port
 
 `pnpm dev` and `pnpm start` are pinned to **port 3001** (`next dev -p 3001`).
