@@ -1,4 +1,4 @@
-import { LeafIcon, ShieldCheckIcon } from '@/components/icons';
+import { ChefHatIcon, ShieldCheckIcon, TruckIcon } from '@/components/icons';
 import { Card, Grid, Text, VStack } from '@/components/ui';
 import { commerce } from '@/config/commerce';
 
@@ -9,9 +9,9 @@ import { commerce } from '@/config/commerce';
  */
 export function ProductTrust() {
   const badges = [
-    { title: 'Free Delivery', body: commerce.shipping.note },
-    { title: 'Secure Payment', body: '100% safe checkout' },
-    { title: 'Authentic Recipe', body: 'Traditional taste' },
+    { title: 'Free Delivery', body: commerce.shipping.note, Icon: TruckIcon },
+    { title: 'Secure Payment', body: '100% safe checkout', Icon: ShieldCheckIcon },
+    { title: 'Authentic Recipe', body: 'Traditional taste', Icon: ChefHatIcon },
   ];
 
   return (
@@ -27,19 +27,15 @@ export function ProductTrust() {
       </Card>
 
       <Grid gap={2} columns={{ minWidth: 140, repeat: 'fit' }}>
-        {badges.map((badge, i) => (
-          <div key={badge.title} className="kf-trust-badge">
-            {i === 1 ? (
-              <ShieldCheckIcon aria-hidden="true" className="kf-trust-icon" />
-            ) : (
-              <LeafIcon aria-hidden="true" className="kf-trust-icon" />
-            )}
+        {badges.map(({ title, body, Icon }) => (
+          <div key={title} className="kf-trust-badge">
+            <Icon aria-hidden="true" className="kf-trust-icon" />
             <VStack gap={0}>
               <Text type="supporting" weight="medium">
-                {badge.title}
+                {title}
               </Text>
               <Text type="supporting" color="secondary">
-                {badge.body}
+                {body}
               </Text>
             </VStack>
           </div>

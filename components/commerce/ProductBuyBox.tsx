@@ -4,11 +4,11 @@ import { useState } from 'react';
 
 import { NotifyMeModal } from '@/components/commerce/NotifyMeModal';
 
+import { MinusIcon, PlusIcon } from '@/components/icons';
 import {
   Badge,
   Button,
   HStack,
-  NumberInput,
   SegmentedControl,
   SegmentedControlItem,
   Text,
@@ -29,7 +29,7 @@ import type { Product } from '@/lib/api/types';
 export function ProductBuyBox({ product }: { product: Product }) {
   const { add } = useCart();
   const [variantId, setVariantId] = useState(product.variants[0]?.id ?? '');
-  const [quantity, setQuantity] = useState<number | null>(1);
+  const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [notifyOpen, setNotifyOpen] = useState(false);
 
@@ -37,7 +37,7 @@ export function ProductBuyBox({ product }: { product: Product }) {
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   if (!variant) return null;
 
-  const qty = quantity ?? 1;
+  const qty = quantity;
   const onSale =
     variant.compareAtPrice !== null &&
     variant.compareAtPrice.amount > variant.price.amount;
@@ -87,14 +87,29 @@ export function ProductBuyBox({ product }: { product: Product }) {
       <VStack gap={1.5}>
         <Text type="label">Quantity</Text>
         <HStack gap={2} vAlign="center" className="kf-buy-row">
-          <NumberInput
-            value={quantity}
-            onChange={setQuantity}
-            min={1}
-            max={20}
-            label="Quantity"
-            isLabelHidden
-          />
+          {/* The legacy −/+ stepper. Astryx's NumberInput renders no visible
+              step buttons, so a customer had nothing to press. */}
+          <div className="kf-qty">
+            <button
+              type="button"
+              onClick={() => setQuantity((n) => Math.max(1, n - 1))}
+              aria-label="Decrease quantity"
+              disabled={qty <= 1}
+            >
+              <MinusIcon aria-hidden="true" />
+            </button>
+            <span className="kf-qty-value kf-numeric" aria-live="polite">
+              {qty}
+            </span>
+            <button
+              type="button"
+              onClick={() => setQuantity((n) => Math.min(20, n + 1))}
+              aria-label="Increase quantity"
+              disabled={qty >= 20}
+            >
+              <PlusIcon aria-hidden="true" />
+            </button>
+          </div>
           <Text type="supporting" color="secondary">
             {formatMoney({ amount: variant.price.amount * qty, currency: 'INR' })} total
           </Text>

@@ -1028,6 +1028,79 @@
     .kf-process-step[data-active] .kf-process-num { transform: none; }
   }
 
+  /* ── Product detail: quantity stepper + open sections ───────────────────
+   * The legacy PDP's −/+ stepper. Astryx's NumberInput renders no visible
+   * step buttons, so the customer had a bare text field and nothing to press.
+   */
+  .kf-qty {
+    display: inline-flex;
+    align-items: center;
+    height: var(--kf-control-h, 44px);
+    flex: 0 0 auto;
+    border-radius: var(--kf-radius-control);
+    border: 1px solid var(--color-border);
+    background: var(--color-background-surface);
+    overflow: hidden;
+  }
+  .kf-qty button {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background 160ms ease;
+  }
+  .kf-qty button:hover:not(:disabled) { background: var(--color-background-muted); }
+  .kf-qty button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .kf-qty button svg { width: 16px; height: 16px; }
+  .kf-qty-value {
+    min-width: 40px;
+    padding-inline: 4px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.0625rem;
+    border-inline: 1px solid var(--color-border);
+    line-height: var(--kf-control-h, 44px);
+  }
+
+  /* Story / ways to enjoy / nutrition / storage as OPEN cards. Behind an
+     accordion (or the legacy's tabs) most readers never open them, and they
+     are the merchandising — same call as the bundle FAQ. */
+  /* Stacked full-width cards, NOT a multi-column grid. These sections are
+     wildly uneven — "Our story" runs several screens while "Storage" is two
+     lines — so side by side left enormous empty tails beside the long one.
+     (The legacy PDP used tabs for the same reason; stacking shows the copy
+     without hiding it.) Same call as the bundle page's content panels. */
+  .kf-psections { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+  .kf-psection {
+    padding: var(--spacing-5, 20px);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+    transition: border-color 240ms ease, box-shadow 240ms ease;
+  }
+  .kf-psection:hover { border-color: var(--color-border-emphasized); box-shadow: 0 14px 32px rgba(59, 43, 19, 0.08); }
+  .kf-psection-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 12px;
+    font-family: var(--font-family-heading);
+    font-size: 1.375rem;
+    line-height: 1.2;
+  }
+  .kf-psection-icon { width: 0.8em; height: 0.8em; flex: 0 0 auto; color: var(--color-text-accent); }
+  .kf-psection-body { max-width: 68ch; color: var(--color-text-secondary); line-height: 1.7; }
+  .kf-psection-body > :first-child { margin-block-start: 0; }
+  .kf-psection-body > :last-child { margin-block-end: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-qty button, .kf-psection { transition: none; }
+  }
+
   /* ── Account / profile ──────────────────────────────────────────────────
    * Styled after the legacy /profile page: an identity card at the top, then
    * panels whose headings carry a small gradient mark. Our multi-page routes
@@ -2532,7 +2605,8 @@
       .kf-contact-map-wrap,
       .kf-profile-card,
       .kf-profile-panel,
-      .kf-login-card {
+      .kf-login-card,
+      .kf-psection {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the

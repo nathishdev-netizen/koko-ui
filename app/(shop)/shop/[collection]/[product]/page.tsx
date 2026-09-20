@@ -5,13 +5,12 @@ import { ProductBuyBox } from '@/components/commerce/ProductBuyBox';
 import { ProductGallery } from '@/components/commerce/ProductGallery';
 import { ProductTrust } from '@/components/commerce/ProductTrust';
 import { ProductGrid } from '@/components/commerce/ProductGrid';
+import { ProductSections } from '@/components/commerce/ProductSections';
 import { ChilliIcon } from '@/components/icons';
 import { ReviewList } from '@/components/reviews/ReviewList';
 import {
   BreadcrumbItem,
   Breadcrumbs,
-  Collapsible,
-  CollapsibleGroup,
   Divider,
   Grid,
   Heading,
@@ -159,23 +158,7 @@ export default async function ProductPage({
           {product.sections.length > 0 ? (
             <VStack gap={3}>
               <Heading level={2}>About this blend</Heading>
-              <CollapsibleGroup>
-                {product.sections.map((section) => (
-                  <Collapsible
-                    key={section.key}
-                    // `value` is required for group coordination.
-                    value={section.key}
-                    trigger={section.title}
-                    defaultIsOpen={false}
-                  >
-                    {/* Server-authored merchandising copy from the catalogue. */}
-                    <div
-                      className="kf-rich"
-                      dangerouslySetInnerHTML={{ __html: section.html }}
-                    />
-                  </Collapsible>
-                ))}
-              </CollapsibleGroup>
+              <ProductSections sections={product.sections} />
             </VStack>
           ) : null}
 

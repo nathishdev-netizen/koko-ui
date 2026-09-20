@@ -756,6 +756,26 @@ before capturing. next/image's first-time optimisation of a new width made the
 featured card look blank in a capture while the DOM showed it complete and
 correctly sized — a timing artefact, not a bug.
 
+## PDP — gaps closed against the legacy product page
+
+- **Quantity is a −/+ stepper (`.kf-qty`), not Astryx `NumberInput`.** That
+  component renders NO visible step buttons, so the customer had a bare text
+  field and nothing to press. The stepper is 44px (`--kf-control-h`), disables
+  at 1 and 20, and the running total recalculates beside it.
+- **Each trust badge carries its OWN icon** — Truck / ShieldCheck / ChefHat,
+  the legacy set. Two of the three were `LeafIcon`, so "Free Delivery" and
+  "Authentic Recipe" showed the same mark.
+- **Product sections are OPEN cards (`ProductSections.tsx`), stacked full
+  width.** They were a collapsed `CollapsibleGroup` — five clicks to learn
+  what the blend is. Icons key off the section key (story→Award, ways→ChefHat,
+  nutrition→Sparkles, storage→ShieldCheck, why-switch→TrendingDown) with an
+  Info fallback, so a section the backend invents later still renders.
+  **Do not put these in a multi-column grid**: they are wildly uneven ("Our
+  story" runs several screens, "Storage" is two lines) and side by side left
+  enormous empty tails. Body copy is capped at 68ch.
+- The "Handcrafted by women artisans…" note and the three trust badges already
+  existed in `ProductTrust`; only the icons were wrong.
+
 ## Size & icon consistency rules
 
 - **Heat = chillies, not dots.** `ChilliIcon` in `components/icons`, rendered
