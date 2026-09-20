@@ -781,6 +781,253 @@
   }
   .kf-trust-icon { width: 16px; height: 16px; color: var(--color-text-accent); flex: 0 0 auto; }
 
+  /* ── About page ─────────────────────────────────────────────────────────
+   * Legacy order: hero → story (pinned photo under brown) → ingredients →
+   * values → process → CTA. Copy is verbatim from content/pages/about.json.
+   */
+  .kf-about-hero {
+    padding-block: clamp(1.25rem, 3vw, 2rem) clamp(3rem, 7vw, 5rem);
+    background: linear-gradient(180deg, var(--color-background-surface) 0%, var(--color-background-card) 100%);
+  }
+  .kf-about-hero-inner { max-width: 52rem; margin: clamp(1.5rem, 4vw, 2.5rem) auto 0; text-align: center; }
+  .kf-about-hero-title { margin: 0 0 var(--spacing-4, 16px); font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem); line-height: 1.12; }
+  .kf-about-lead { margin: 0 auto; max-width: 42rem; font-size: 1.125rem; line-height: 1.65; color: var(--color-text-secondary); }
+  .kf-about-lead strong { color: var(--color-text-accent); font-weight: 600; }
+
+  .kf-about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-background-surface) 70%, transparent);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    align-self: flex-start;
+  }
+  .kf-about-pill-icon { width: 15px; height: 15px; color: var(--color-text-accent); flex: 0 0 auto; }
+  .kf-about-h2 { margin: 0; font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3rem); line-height: 1.15; }
+  .kf-about-h2--xl { font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.5rem); }
+  .kf-about-para { margin: 0; font-size: 1.0625rem; line-height: 1.7; }
+  .kf-about-para strong { font-weight: 600; }
+
+  /* Story — copy beside the stat card, both over the pinned photograph. */
+  .kf-about-story .kf-pinned-body { padding-block: clamp(1rem, 3vw, 2rem); }
+  .kf-about-story-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: end;
+  }
+  @media (min-width: 900px) { .kf-about-story-grid { grid-template-columns: minmax(0, 1fr) 260px; } }
+  .kf-about-story-copy { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); max-width: 62ch; }
+  .kf-about-story .kf-about-pill {
+    border-color: color-mix(in srgb, var(--kf-on-ink) 30%, transparent);
+    background: color-mix(in srgb, var(--kf-on-ink) 10%, transparent);
+    color: var(--kf-on-ink);
+  }
+  .kf-about-story .kf-about-pill-icon { color: var(--kf-on-ink-accent); }
+  .kf-about-story .kf-about-para { color: var(--kf-on-ink-secondary); }
+  .kf-about-story .kf-about-para strong,
+  .kf-about-story .kf-about-para em { color: var(--kf-on-ink); }
+
+  /* Stat cards: "100K+ Happy Kitchens Served". */
+  .kf-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--spacing-5, 20px) var(--spacing-6, 24px);
+    border-radius: var(--kf-radius-card);
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  }
+  .kf-stat-value { font-family: var(--font-family-heading); font-size: 2.25rem; line-height: 1; color: var(--kf-on-ink-accent); }
+  .kf-stat-label { font-size: 0.875rem; font-weight: 600; opacity: 0.85; }
+  /* On the ink ground the card inverts to cream so it still reads as a card. */
+  .kf-stat-card--on-ink { background: var(--kf-on-ink); color: var(--kf-brand-ink); }
+  .kf-stat-card--on-ink .kf-stat-value { color: var(--color-text-accent); }
+  /* Badge form overlapping the corner of a photograph, as legacy had. */
+  .kf-stat-card--badge {
+    position: absolute;
+    right: -14px;
+    bottom: -14px;
+    margin: 0;
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+  }
+  .kf-stat-card--badge .kf-stat-value { font-size: 1.75rem; }
+
+  /* Two-column image/text split. */
+  .kf-about-split { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  @media (min-width: 900px) { .kf-about-split { grid-template-columns: 1fr 1fr; } }
+  .kf-about-split-copy { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+  .kf-about-media {
+    position: relative;
+    margin: 0 14px 14px 0;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--kf-radius-card);
+    overflow: visible;
+    box-shadow: 0 20px 48px rgba(59, 43, 19, 0.16);
+  }
+  .kf-about-media-img { object-fit: cover; border-radius: var(--kf-radius-card); }
+  .kf-about-promise { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+
+  /* Values. */
+  .kf-about-values-head { text-align: center; max-width: 46rem; margin: 0 auto clamp(2rem, 5vw, 3.5rem); display: flex; flex-direction: column; gap: var(--spacing-3, 12px); }
+  .kf-about-values-sub { font-size: 1.0625rem; }
+  .kf-values-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spacing-5, 20px); }
+  @media (max-width: 860px) { .kf-values-grid { grid-template-columns: 1fr; } }
+  .kf-value-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+    text-align: center;
+    transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  }
+  .kf-value-card:hover { transform: translateY(-4px); border-color: var(--color-border-emphasized); box-shadow: 0 16px 36px rgba(59, 43, 19, 0.1); }
+  .kf-value-icon { width: 48px; height: 48px; color: var(--color-text-accent); transition: transform 300ms ease; }
+  .kf-value-card:hover .kf-value-icon { transform: scale(1.1); }
+  .kf-value-title { margin: 0; font-family: var(--font-family-heading); font-size: 1.5rem; }
+  .kf-value-body { margin: 0; color: var(--color-text-secondary); line-height: 1.6; }
+  .kf-value-stat {
+    margin-block-start: 4px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-background-card);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* ── Process — "The KoKoFresh Way" ── */
+  .kf-process {
+    position: relative;
+    isolation: isolate;
+    padding: clamp(2rem, 5vw, 4rem) clamp(16px, 4vw, 40px) clamp(3rem, 6vw, 5rem);
+    background: linear-gradient(
+      135deg,
+      var(--color-background-card) 0%,
+      color-mix(in srgb, var(--color-accent) 12%, var(--color-background-card)) 100%
+    );
+  }
+  .kf-process::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(59, 43, 19, 0.06) 1px, transparent 1px),
+      radial-gradient(rgba(59, 43, 19, 0.035) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 2px 3px;
+  }
+  .kf-process-head { text-align: center; max-width: 40rem; margin: 0 auto clamp(2rem, 5vw, 3.5rem); }
+  .kf-process-title { margin: 0 0 8px; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); }
+  .kf-process-sub { font-size: 1.125rem; color: var(--color-text-secondary); }
+  .kf-process-sub strong { color: var(--color-text-primary); font-weight: 600; }
+
+  .kf-process-layout { max-width: 80rem; margin-inline: auto; display: grid; gap: clamp(2rem, 5vw, 5rem); }
+  @media (min-width: 1024px) { .kf-process-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+
+  /* Sticky figure: all six photos stacked, the active one visible. */
+  .kf-process-figure { position: sticky; top: var(--spacing-6, 24px); align-self: start; height: calc(100dvh - 48px); display: grid; place-items: center; }
+  .kf-process-frame {
+    position: relative;
+    width: min(100%, 520px);
+    aspect-ratio: 1;
+    border-radius: var(--kf-radius-card);
+    overflow: hidden;
+    border: 4px solid color-mix(in srgb, var(--kf-on-ink-gold) 60%, transparent);
+    box-shadow: 0 24px 56px rgba(59, 43, 19, 0.22);
+    background: var(--color-background-muted);
+  }
+  .kf-process-img { object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 600ms ease, transform 600ms ease; }
+  .kf-process-img[data-active] { opacity: 1; transform: scale(1); }
+
+  .kf-process-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(2.5rem, 6vw, 5rem); }
+  .kf-process-step { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding-block-end: var(--spacing-8, 32px); border-block-end: 1px solid color-mix(in srgb, var(--kf-brand-ink) 25%, transparent); }
+  @media (min-width: 1024px) { .kf-process-step { min-height: 72vh; } }
+  .kf-process-step-head { display: flex; align-items: center; gap: 14px; }
+  .kf-process-num {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--kf-on-ink-gold) 55%, var(--color-background-surface));
+    color: var(--kf-brand-ink);
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(59, 43, 19, 0.15);
+    transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), background 300ms ease, color 300ms ease;
+  }
+  .kf-process-step[data-active] .kf-process-num { transform: scale(1.2); background: var(--kf-brand-ink); color: var(--kf-on-ink-accent); }
+  .kf-process-step-title { margin: 0; font-family: var(--font-family-heading); font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); line-height: 1.15; }
+  .kf-process-desc {
+    margin: 0;
+    max-width: 36rem;
+    padding: 6px 0 6px 20px;
+    border-inline-start: 4px solid color-mix(in srgb, var(--kf-brand-ink) 40%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+  .kf-process-step[data-active] .kf-process-desc { color: var(--color-text-primary); }
+
+  /* Mobile: inline photo per step + a sticky stepper under the header. */
+  .kf-process-mobile-media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--kf-radius-control); overflow: hidden; border: 1px solid var(--color-border); box-shadow: 0 8px 24px rgba(59, 43, 19, 0.12); }
+  .kf-process-stepper {
+    position: sticky;
+    top: 72px;
+    z-index: 5;
+    margin-block-end: var(--spacing-4, 16px);
+    padding: 10px;
+    border-radius: var(--kf-radius-card);
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-background-surface) 85%, transparent);
+    backdrop-filter: blur(6px);
+  }
+  .kf-process-stepper-row { display: flex; justify-content: space-between; gap: 6px; }
+  .kf-process-stepper-btn {
+    width: 36px; height: 36px; border: 0; border-radius: 50%;
+    background: var(--color-background-card); color: var(--color-text-primary);
+    font: inherit; font-weight: 700; cursor: pointer; transition: background 200ms ease, color 200ms ease;
+  }
+  .kf-process-stepper-btn[data-active] { background: var(--kf-brand-ink); color: var(--kf-on-fill); }
+  .kf-process-progress { position: relative; height: 5px; margin-block-start: 8px; border-radius: 999px; background: var(--color-border); overflow: hidden; }
+  .kf-process-progress span { position: absolute; inset: 0 auto 0 0; background: var(--color-accent); transition: width 300ms ease; }
+
+  /* CTA. */
+  .kf-about-cta { text-align: center; }
+  .kf-about-cta .kf-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-5, 20px); }
+  .kf-about-cta-body { font-size: 1.125rem; max-width: 40rem; }
+  .kf-about-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-4, 16px); }
+  .kf-about-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 54px; padding: 0 28px; border-radius: 999px;
+    font-weight: 700; font-size: 1.0625rem; text-decoration: none;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+  }
+  .kf-about-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(59, 43, 19, 0.2); }
+  .kf-about-btn--primary { background: var(--kf-brand-ink); color: var(--kf-on-fill); }
+  .kf-about-btn--outline { border: 2px solid var(--kf-brand-ink); color: var(--kf-brand-ink); background: transparent; }
+  .kf-about-btn--outline:hover { background: var(--kf-brand-ink); color: var(--kf-on-fill); }
+  .kf-about-btn-icon { width: 18px; height: 18px; flex: 0 0 auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-value-card, .kf-value-icon, .kf-process-img, .kf-process-num, .kf-about-btn { transition: none; }
+    .kf-value-card:hover, .kf-about-btn:hover { transform: none; }
+    .kf-value-card:hover .kf-value-icon { transform: none; }
+    .kf-process-step[data-active] .kf-process-num { transform: none; }
+  }
+
   /* Filter chips: hairline pills, filled only when active. */
   .kf-chip {
     border: 1px solid var(--color-border);
@@ -1840,7 +2087,11 @@
       .kf-blog-card,
       .kf-related-card,
       .kf-widget,
-      .kf-comment {
+      .kf-comment,
+      .kf-value-card,
+      .kf-about-media,
+      .kf-about-promise,
+      .kf-process-head {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the

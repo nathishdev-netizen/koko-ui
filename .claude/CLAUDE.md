@@ -1032,3 +1032,29 @@ pink — a discount is not an error, and red is foreign to this palette.
 The live site's story section has **no heading and no eyebrow** — just the two
 paragraphs and the signature. Do not add one; an earlier pass invented "From our
 home to yours" and it was wrong.
+
+## About page — legacy parity
+
+Sections in the legacy order: hero → story → ingredients → values → process →
+CTA. Copy is verbatim in `content/pages/about.json` (Team/Awards were
+commented out on the legacy site — not ported). Photos are the legacy Wix
+URLs (`static.wixstatic.com`, allowed in `next.config.mjs`).
+
+- **Story = the page's one dark moment.** `kf-section--brown kf-pinned` with
+  the legacy photograph as `.kf-pinned-media`; copy scrolls over a stationary
+  image, brown scrim + grain on top. Mobile hides the fixed media and falls
+  back to flat brown (the `:has()` rule in globals.css).
+- **`components/about/ProcessSection.tsx`** is the legacy "KoKoFresh Way"
+  rebuilt without framer-motion. Desktop: sticky `.kf-process-figure` holds all
+  six photos stacked; an IntersectionObserver with `rootMargin: 0 0 -50% 0`
+  marks a step active as it crosses mid-viewport and the matching photo fades
+  in (`data-active`). Mobile (<1024px): inline photo per step + a sticky 1–6
+  stepper with a progress bar. All six images stay mounted — a swap is an
+  opacity transition, never a remount.
+- `.kf-about-pill` carries `align-self: flex-start` — inside a flex column a
+  pill stretches to full width otherwise (seen on Ingredients).
+- Stat cards: `.kf-stat-card` (ink), `--on-ink` (cream, for the brown story),
+  `--badge` (absolute, overlapping a photo's corner). `.kf-about-media` keeps
+  `overflow: visible` and a 14px margin so the badge can hang past the edge.
+- Headless probes: `img.decode()` never settles for a lazy image that has not
+  entered the viewport — race it against a timeout or the script hangs.
