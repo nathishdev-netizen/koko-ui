@@ -1,4 +1,4 @@
-import { Collapsible, CollapsibleGroup, Heading, Text, VStack } from '@/components/ui';
+import { Heading, Text, VStack } from '@/components/ui';
 
 /**
  * Bundle FAQ — the legacy site's six questions, copy unchanged.
@@ -33,20 +33,35 @@ export const BUNDLE_FAQS: readonly { q: string; a: string }[] = [
   },
 ];
 
+/**
+ * Six questions as OPEN cards in two columns, matching the legacy layout.
+ *
+ * Not an accordion: with only six short answers there is nothing to collapse
+ * for, and hiding them behind clicks means most readers never see them. The
+ * answers are the point.
+ */
 export function BundleFaq() {
   return (
     <section aria-labelledby="bundle-faq">
-      <VStack gap={4}>
+      <VStack gap={5}>
         <Heading level={2} id="bundle-faq" className="kf-center-text">
           Frequently Asked Questions
         </Heading>
-        <CollapsibleGroup>
+        <div className="kf-faq-grid">
           {BUNDLE_FAQS.map((faq) => (
-            <Collapsible key={faq.q} trigger={faq.q} value={faq.q}>
-              <Text color="secondary">{faq.a}</Text>
-            </Collapsible>
+            <article key={faq.q} className="kf-faq-card">
+              <h3 className="kf-faq-q">
+                <span className="kf-faq-mark" aria-hidden="true">
+                  Q
+                </span>
+                {faq.q}
+              </h3>
+              <Text type="supporting" color="secondary">
+                {faq.a}
+              </Text>
+            </article>
           ))}
-        </CollapsibleGroup>
+        </div>
       </VStack>
     </section>
   );

@@ -104,7 +104,7 @@ export default async function BundlePage({
         ]}
       />
 
-      <div className="kf-container kf-shop">
+      <div className="kf-container kf-container--wide kf-shop">
         <VStack gap={5}>
           <Breadcrumbs label="Breadcrumb" variant="supporting">
             {trail.map((crumb, i) => (
@@ -133,17 +133,20 @@ export default async function BundlePage({
             bundle={bundle}
             catalogue={catalogue}
             included={included}
-          >
-            <div className="kf-bundle-lower">
-              <VStack gap={10}>
-                <BundleTrust />
-                <BundleAbout bundle={bundle} />
-                <BundleCompare bundles={allBundles} currentSlug={bundle.slug} />
-                <BundleFaq />
-              </VStack>
-            </div>
-          </BundleConfigurator>
+          />
         </VStack>
+
+        {/* Outside the configurator on purpose: the sticky rail should hold
+            only while there are picks to make. Past that, this content gets
+            the container's full width rather than the picker column's. */}
+        <div className="kf-bundle-lower">
+          <VStack gap={10}>
+            <BundleTrust />
+            <BundleAbout bundle={bundle} />
+            <BundleCompare bundles={allBundles} currentSlug={bundle.slug} />
+            <BundleFaq />
+          </VStack>
+        </div>
       </div>
     </>
   );

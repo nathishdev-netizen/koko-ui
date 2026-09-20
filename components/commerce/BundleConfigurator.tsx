@@ -36,11 +36,8 @@ export function BundleConfigurator({
   bundle,
   catalogue,
   included,
-  children,
 }: {
   bundle: Bundle;
-  /** Page content that scrolls alongside the sticky rail. */
-  children?: React.ReactNode;
   /** Products eligible for each rule, keyed by collection slug. */
   catalogue: Readonly<Record<string, readonly ProductSummary[]>>;
   /** Auto-added items the customer does not choose. */
@@ -137,21 +134,6 @@ export function BundleConfigurator({
             );
           })}
 
-          {included.length > 0 ? (
-            <VStack gap={2}>
-              <Heading level={2}>Also included</Heading>
-              <Text type="supporting" color="secondary">
-                Added to every {bundle.name} — no need to choose.
-              </Text>
-              <HStack gap={2} wrap="wrap">
-                {included.map((product) => (
-                  <Badge key={product.slug} variant="green" label={product.name} />
-                ))}
-              </HStack>
-            </VStack>
-          ) : null}
-
-          {children}
         </VStack>
       </div>
 

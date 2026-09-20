@@ -659,7 +659,45 @@
   }
 
   .kf-bundles-foot { padding-block: clamp(2.5rem, 6vw, 4rem); }
-  .kf-bundle-lower { padding-block: clamp(2.5rem, 6vw, 4rem); }
+  /* FAQ — open cards in two columns, as the legacy page had. */
+  .kf-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4, 16px);
+  }
+  @media (max-width: 760px) {
+    .kf-faq-grid { grid-template-columns: 1fr; }
+  }
+  .kf-faq-card {
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+    border-radius: var(--kf-radius-card);
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+  }
+  .kf-faq-q {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 8px;
+    font-family: var(--font-family-body);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+  }
+  .kf-faq-mark {
+    flex: 0 0 auto;
+    color: var(--color-text-accent);
+    font-weight: 800;
+  }
+
+  .kf-bundle-lower {
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+    /* Capped independently of the wide container: long-form copy and a FAQ
+       are a reading column, and full width would push the measure past
+       comfortable. */
+    max-width: 72rem;
+    margin-inline: auto;
+  }
   .kf-steps { padding-block-start: var(--spacing-4, 16px); }
 
   /* Bundle trust row. */
@@ -1259,7 +1297,7 @@
   @media (min-width: 960px) {
     /* Card on the LEFT, picker on the right — the legacy layout. The rail is
        narrow and fixed; the picker takes the rest. */
-    .kf-bundle-grid { grid-template-columns: 340px minmax(0, 1fr); }
+    .kf-bundle-grid { grid-template-columns: 380px minmax(0, 1fr); }
     .kf-bundle-summary { grid-column: 1; grid-row: 1; }
     .kf-bundle-picker { grid-column: 2; grid-row: 1; }
   }
@@ -1294,10 +1332,28 @@
    * layout: a labelled card per slot reads as a box being filled, where a flat
    * grid of every product reads as a catalogue.
    */
+  /*
+   * Slots size to the step's own count, capped so a tile never gets absurdly
+   * wide. A fixed 3-column rule left an empty column on a 2-pick step; auto-fit
+   * with a max lets 2 picks fill the row and 4 picks wrap sensibly.
+   */
   .kf-slot-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--spacing-4, 16px) var(--spacing-4, 16px);
+    /*
+     * Slots share the row evenly rather than sitting at a fixed width with
+     * dead space beside them. Capped at 4 per row so a 4-pick bundle stays on
+     * one line and no tile grows absurdly wide.
+     */
+    /*
+     * Three tracks: a 2-pick step fills two of them and leaves one gap rather
+     * than stretching two tiles across the whole column. Keeps every slot the
+     * same size across bundles while using the width sensibly.
+     */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-4, 16px);
+  }
+  @media (max-width: 1100px) {
+    .kf-slot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 560px) {
     .kf-slot-grid { grid-template-columns: 1fr; }
@@ -1726,6 +1782,10 @@
     padding-inline: clamp(16px, 4vw, 40px);
   }
   .kf-container--narrow { max-width: 46rem; }
+  /* The configurator carries a fixed rail plus a grid of slots, so it earns
+     more width than an article column. At 1440 the 80rem cap left ~80px dead
+     on each side while squeezing the slots. */
+  .kf-container--wide { max-width: 86rem; }
 
   /*
    * Luxury signals value by spending space. Sections run generously tall and

@@ -251,6 +251,23 @@ ignored — the same trap as the button colour.
 and silently restyled the whole site; the regression suite caught it. When
 tokenising a value, the default must reproduce the existing design exactly.
 
+**The bundle detail page uses `.kf-container--wide` (86rem).** At 80rem it left
+~80px dead on each side of a 1440 viewport while squeezing the slots.
+
+**The sticky rail holds ONLY while picking.** The lower content (trust, About,
+compare, FAQ) is rendered OUTSIDE `BundleConfigurator`, so the rail scrolls away
+once there are no picks left to make. Rendering it inside made the rail follow
+the reader down a long article, which is not what a summary rail is for.
+
+**Slots use three fixed tracks**, not `auto-fit`. With `auto-fit` a 2-pick step
+stretched its tiles to ~500px; with a fixed max they sat at 260px and left a
+dead column. Three tracks keep every slot ~276px across all bundles, and a
+2-pick step simply leaves one track empty.
+
+**The bundle FAQ is open cards in two columns**, matching legacy — not an
+accordion. Six short answers have nothing worth collapsing, and hiding them
+behind clicks means most readers never see them.
+
 **The framed preview updates live.** CSS variables do not cross a document
 boundary, so the parent writes them into the iframe directly (same-origin).
 Fonts are next/font classes on `<html>`, so the class list is swapped — every
