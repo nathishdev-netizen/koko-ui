@@ -219,6 +219,21 @@ palette. Same reasoning would apply to any future certification mark.
 Verified end to end: setting `brandInk` to `#12408A` turned every button, chip,
 ribbon and the bundle strip blue, while the veg marks stayed green.
 
+**Saving is real.** The studio's Save writes `.data/theme.json` (gitignored)
+via a Server Action and calls `revalidatePath('/', 'layout')` — every page
+renders the theme from the root layout, so the whole site must be revalidated,
+not just the studio route. Resolution order is: backend `/site-config` theme ->
+`.data/theme.json` -> `config/theme.json`.
+
+**Save is local-only by design.** Serverless filesystems are read-only, so
+`canPersist()` returns false on Vercel and the UI says so plainly rather than
+silently dropping the write. In production the durable store is the backend,
+not a file — which is the correct multi-tenant answer anyway.
+
+The Server Action re-checks the env flag itself: an action is a public
+endpoint, so guarding only the page would leave the mutation reachable in
+production while the UI was hidden.
+
 **`/brand` is the brand studio** — a live demo of the seam with colour pickers,
 four presets, a contrast readout and copyable JSON. It writes the same `--kf-*`
 properties the server injects, and previews the REAL components rather than

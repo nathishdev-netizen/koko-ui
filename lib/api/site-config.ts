@@ -8,7 +8,8 @@
  */
 import { brand, type Brand } from '@/config/brand';
 import { footerNav, primaryNav, type NavItem } from '@/config/nav';
-import { brandTheme, brandThemeSchema, type BrandTheme } from '@/config/theme';
+import { brandThemeSchema, type BrandTheme } from '@/config/theme';
+import { getLocalTheme } from '@/lib/theme/store';
 import { isLive, request } from './client';
 
 const RESOURCE = 'siteConfig' as const;
@@ -32,7 +33,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     // careless backend from breaking out of the stylesheet. A malformed theme
     // falls back to the local default instead of failing the page.
     const parsed = brandThemeSchema.safeParse(live.theme ?? {});
-    return { ...live, theme: parsed.success ? parsed.data : brandTheme };
+    return { ...live, theme: parsed.success ? parsed.data : await getLocalTheme() };
   }
-  return { brand, primaryNav, footerNav, theme: brandTheme };
+  return { brand, primaryNav, footerNav, theme: await getLocalTheme() };
 }

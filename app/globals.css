@@ -1605,6 +1605,17 @@
     font-size: 0.75rem; line-height: 1.6;
   }
 
+  .kf-save-status {
+    margin: 0; padding: 10px 12px; border-radius: 10px;
+    font-size: 0.8125rem;
+    border: 1px solid var(--color-error);
+    background: color-mix(in srgb, var(--color-error) 8%, transparent);
+  }
+  .kf-save-status[data-ok] {
+    border-color: var(--color-success);
+    background: color-mix(in srgb, var(--color-success) 10%, transparent);
+  }
+
   .kf-studio-preview { display: block; }
   .kf-demo-card {
     padding: var(--spacing-5, 20px);

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { getLocalTheme } from '@/lib/theme/store';
+import { canPersist } from '@/lib/theme/store';
+
 import { BrandStudio } from './BrandStudio';
 
 export const metadata: Metadata = {
@@ -20,15 +23,22 @@ export const dynamic = 'force-dynamic';
  * NEXT_PUBLIC_ENABLE_BRAND_STUDIO=1. That makes it showable to a client on the
  * real deployment without leaving a configuration surface exposed by default.
  */
-export default function BrandPage() {
+export default async function BrandPage() {
   const enabled =
     process.env.NODE_ENV !== 'production' ||
     process.env.NEXT_PUBLIC_ENABLE_BRAND_STUDIO === '1';
   if (!enabled) notFound();
 
+  // Opens on the colours actually in effect, not the committed default, so the
+  // studio never disagrees with the site it is editing.
+  const theme = await getLocalTheme();
+
   return (
     <div className="kf-container kf-shop">
-      <BrandStudio />
+      <BrandStudio
+        initial={theme as Record<string, string>}
+        canPersist={canPersist()}
+      />
     </div>
   );
 }

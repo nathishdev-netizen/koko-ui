@@ -4,6 +4,9 @@ out/
 build/
 .env
 .env*.local
+# Runtime state written by the brand studio — not source.
+.data/
+
 .DS_Store
 
 # Screenshots pasted into the project root while reviewing UI

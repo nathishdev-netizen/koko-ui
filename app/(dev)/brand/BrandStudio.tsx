@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import { Button, Heading, Text, VStack } from '@/components/ui';
+import { resetTheme, saveTheme } from './actions';
 
 /**
  * Brand studio — a live demonstration of the white-label seam.
@@ -81,8 +82,17 @@ function contrast(a: string, b: string): number {
   return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
 }
 
-export function BrandStudio() {
-  const [values, setValues] = useState<Record<string, string>>(PRESETS[0]!.values);
+export function BrandStudio({
+  initial,
+  canPersist,
+}: {
+  /** The theme currently in effect, so the studio opens on the live colours. */
+  initial: Record<string, string>;
+  canPersist: boolean;
+}) {
+  const [values, setValues] = useState<Record<string, string>>(initial);
+  const [pending, startTransition] = useTransition();
+  const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null);
 
   // Writes straight to :root, exactly as the server-injected <style> does.
   useEffect(() => {
@@ -171,12 +181,55 @@ export function BrandStudio() {
           <VStack gap={2}>
             <span className="kf-filter-label">config/theme.json</span>
             <pre className="kf-config-out">{json}</pre>
-            <Button
-              label="Copy config"
-              variant="secondary"
-              size="sm"
-              onClick={() => navigator.clipboard?.writeText(json)}
-            />
+            <div className="kf-preset-row">
+              <Button
+                label={pending ? 'Saving…' : 'Save to site'}
+                variant="primary"
+                size="sm"
+                isDisabled={pending || !canPersist}
+                onClick={() =>
+                  startTransition(async () => {
+                    const r = await saveTheme(
+                      Object.fromEntries(SWATCHES.map((sw) => [sw.key, values[sw.key]])),
+                    );
+                    setStatus(r);
+                  })
+                }
+              />
+              <Button
+                label="Reset"
+                variant="secondary"
+                size="sm"
+                isDisabled={pending || !canPersist}
+                onClick={() =>
+                  startTransition(async () => {
+                    const r = await resetTheme();
+                    setStatus(r);
+                    if (r.ok) setValues(PRESETS[0]!.values);
+                  })
+                }
+              />
+              <Button
+                label="Copy config"
+                variant="ghost"
+                size="sm"
+                onClick={() => navigator.clipboard?.writeText(json)}
+              />
+            </div>
+
+            {status ? (
+              <p className="kf-save-status" data-ok={status.ok || undefined}>
+                {status.message}
+              </p>
+            ) : null}
+
+            {!canPersist ? (
+              <Text type="supporting" color="secondary">
+                This deployment has a read-only filesystem, so Save is
+                unavailable. Copy the config into config/theme.json, or return it
+                from the backend on /site-config.
+              </Text>
+            ) : null}
           </VStack>
         </VStack>
       </div>
