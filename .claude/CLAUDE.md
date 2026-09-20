@@ -645,6 +645,12 @@ Heritage Chutney Powders, Everyday Superfoods, Single Origin Spices, then
 and the list is `.slice(0, 4)` so a backend that adds a sixth collection
 cannot reintroduce a ragged last row.
 
+The card itself is **SPLIT on desktop — image left, copy right**, as the
+legacy `flex-col md:flex-row` card was. Stacked (image above text) a
+full-width card makes the photograph enormous: the cards measured ~520px tall
+and the section ran several screens. Split, they are 592x204 and all four fit
+one view. Below 720px it stacks, as legacy did.
+
 **`.kf-card-grid--centred` remains for variable-length grids.** Five
 collections in three columns rendered as 3 + 2, left-aligned, with a
 card-sized hole on the right.
