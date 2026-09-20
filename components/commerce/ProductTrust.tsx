@@ -1,3 +1,4 @@
+import { InfoPopover } from '@/components/commerce/InfoPopover';
 import { ChefHatIcon, ShieldCheckIcon, TruckIcon } from '@/components/icons';
 import { Card, Grid, Text, VStack } from '@/components/ui';
 import { commerce } from '@/config/commerce';
@@ -17,13 +18,28 @@ export function ProductTrust() {
   return (
     <VStack gap={3}>
       <Card padding={4}>
-        <VStack gap={1}>
-          <Text type="label">Made fresh for you</Text>
-          <Text type="supporting" color="secondary">
-            Handcrafted by women artisans within 48 hours of your order, delivered
-            in 3–5 days.
-          </Text>
-        </VStack>
+        <div className="kf-fresh">
+          <ChefHatIcon className="kf-fresh-icon" aria-hidden="true" />
+          <VStack gap={1}>
+            <Text type="label">Made fresh for you</Text>
+            <Text type="supporting" color="secondary">
+              Handcrafted by women artisans within 48 hours of your order, delivered
+              in 3–5 days.
+            </Text>
+          </VStack>
+          <InfoPopover
+            label="Why we grind after you order"
+            title="Made Fresh for You"
+            subtitle="Traditional quality, modern care"
+            icon={<ChefHatIcon aria-hidden="true" />}
+          >
+            <p className="kf-info-quote">
+              We grind your masalas fresh when you order — preserving flavor and
+              eliminating the need for preservatives. Just like your grandmother
+              would make it.
+            </p>
+          </InfoPopover>
+        </div>
       </Card>
 
       <Grid gap={2} columns={{ minWidth: 140, repeat: 'fit' }}>

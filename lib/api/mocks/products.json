@@ -101,6 +101,24 @@
         "alt": "Mysore Rasam Powder",
         "width": 1080,
         "height": 1080
+      },
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_d8535597e4344657b164f6cdd74d9ee3~mv2.png/v1/fit/w_3375,h_3375,q_90/file.png",
+        "alt": "Mysore Rasam Powder label and ingredient list",
+        "width": 3375,
+        "height": 3375
+      },
+      {
+        "url": "https://static.wixstatic.com/media/0d9f8b_6a8556d1590541cda4daba49ab0ac2bc~mv2.png/v1/fit/w_3375,h_3375,q_90/file.png",
+        "alt": "Mysore Rasam Powder pack detail",
+        "width": 3375,
+        "height": 3375
+      },
+      {
+        "url": "https://static.wixstatic.com/media/51d20f_6ed71fa6c2ef44febcb00bbffa636b7f~mv2.png/v1/fit/w_3375,h_3375,q_90/file.png",
+        "alt": "Mysore Rasam Powder in use",
+        "width": 3375,
+        "height": 3375
       }
     ],
     "priceFrom": {

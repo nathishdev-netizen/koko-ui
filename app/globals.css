@@ -1069,6 +1069,172 @@
   /* Story / ways to enjoy / nutrition / storage as OPEN cards. Behind an
      accordion (or the legacy's tabs) most readers never open them, and they
      are the merchandising — same call as the bundle FAQ. */
+  /* ── Gallery lightbox + ⓘ popovers ──────────────────────────────────────
+   * Clicking the main image opens a full-screen view, as the legacy PDP did.
+   */
+  .kf-pdp-media { position: relative; }
+  .kf-zoom-btn,
+  .kf-info-trigger {
+    display: grid;
+    place-items: center;
+    border: 0;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    transition: background 160ms ease, transform 160ms ease;
+  }
+  .kf-zoom-btn {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-background-surface) 88%, transparent);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(59, 43, 19, 0.18);
+  }
+  .kf-zoom-btn:hover { background: var(--color-background-surface); transform: scale(1.06); }
+  .kf-zoom-btn svg { width: 18px; height: 18px; }
+  .kf-gallery-count {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--kf-brand-ink) 78%, transparent);
+    color: var(--kf-on-fill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+  }
+
+  .kf-lightbox { position: relative; background: var(--color-background-surface); }
+  .kf-lightbox-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    /* Leave room for the thumbnail strip inside the dialog. At 76dvh the
+       square stage pushed the strip past the dialog's bottom edge, so it
+       rendered outside the rounded container. */
+    max-height: min(62dvh, 620px);
+    background: var(--color-background-muted);
+  }
+  .kf-lightbox-img { object-fit: contain; }
+  .kf-lightbox-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-background-surface) 90%, transparent);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(59, 43, 19, 0.18);
+  }
+  .kf-lightbox-close:hover { background: var(--color-background-card); }
+  .kf-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-background-surface) 90%, transparent);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(59, 43, 19, 0.18);
+  }
+  .kf-lightbox-nav:hover { background: var(--color-background-card); }
+  .kf-lightbox-nav--prev { left: 12px; }
+  .kf-lightbox-nav--next { right: 12px; }
+  .kf-lightbox-strip {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: var(--spacing-4, 16px);
+    background: var(--color-background-card);
+  }
+  .kf-lightbox-thumb {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    flex: 0 0 auto;
+    padding: 0;
+    border-radius: var(--kf-radius-control);
+    border: 2px solid transparent;
+    background: var(--color-background-muted);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 160ms ease;
+  }
+  .kf-lightbox-thumb[data-active] { border-color: var(--kf-brand-ink); }
+  .kf-lightbox-thumb:hover { border-color: var(--color-border-emphasized); }
+
+  /* The ⓘ beside a claim, and the modal it opens. */
+  .kf-fresh { display: flex; align-items: flex-start; gap: 12px; }
+  .kf-fresh-icon { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 2px; color: var(--color-text-accent); }
+  .kf-info-trigger {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text-accent);
+  }
+  .kf-info-trigger:hover { background: var(--color-background-muted); }
+  .kf-info-trigger svg { width: 18px; height: 18px; }
+
+  .kf-info-modal { display: flex; flex-direction: column; }
+  .kf-info-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: var(--spacing-5, 20px);
+    border-block-end: 1px solid var(--color-border);
+  }
+  .kf-info-head-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border-radius: var(--kf-radius-control);
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-fill);
+  }
+  .kf-info-head-icon svg { width: 24px; height: 24px; }
+  .kf-info-head-text { flex: 1 1 auto; min-width: 0; }
+  .kf-info-title { margin: 0; font-family: var(--font-family-heading); font-size: 1.375rem; line-height: 1.2; }
+  .kf-info-subtitle { margin: 2px 0 0; font-size: 0.875rem; color: var(--color-text-secondary); }
+  .kf-info-body { padding: var(--spacing-5, 20px); }
+  .kf-info-quote {
+    margin: 0;
+    padding: var(--spacing-4, 16px);
+    border-radius: var(--kf-radius-control);
+    border: 1px solid var(--color-border);
+    background: var(--color-background-card);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-zoom-btn, .kf-info-trigger, .kf-lightbox-thumb { transition: none; }
+    .kf-zoom-btn:hover { transform: none; }
+  }
+
   /* Story / ways / nutrition / storage / why switch / reviews as TABS in one
      bordered card — the legacy PDP's layout. Tabs suit this content because
      the sections are wildly uneven ("Our story" runs several screens,

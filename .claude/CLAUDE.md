@@ -784,6 +784,24 @@ correctly sized — a timing artefact, not a bug.
   fallback, so a section the backend invents later still renders. Panel copy
   is capped at 68ch. A product with only two sections renders three tabs
   cleanly — verified on mysore-sambar-powder.
+- **Gallery lightbox.** Clicking the main image (or its expand button) opens a
+  full-screen `Dialog`, as legacy did. Unlike legacy — whose lightbox froze on
+  one image, so you had to close it, pick another thumbnail and reopen — ours
+  carries prev/next buttons, a thumbnail strip and arrow-key paging.
+  `.kf-lightbox-stage` is capped at `min(62dvh, 620px)`: a full-height square
+  stage pushed the strip past the dialog's bottom edge and it rendered outside
+  the rounded container.
+- **`InfoPopover` is the legacy ⓘ affordance** — a small icon button beside a
+  claim that opens a modal explaining it. Currently on "Made fresh for you"
+  (the grandmother quote, verbatim). A real Dialog, not a CSS tooltip: the
+  content is a sentence or two, it must be keyboard- and screen-reader
+  reachable, and hover tooltips are unusable on touch. Reuse it wherever a
+  short promise needs the longer story.
+- **Products need MORE THAN ONE image for any of this to show.** Every mock
+  product shipped with exactly one, so the thumbnail strip and counter were
+  dead code. The real four-shot gallery for Mysore Rasam Powder came from the
+  legacy `product_dump.json` (pack front, label/ingredients, detail, in use);
+  other products still have one image each and correctly show no strip.
 - `ReviewList` takes `hasHeading` — off inside the tabs, where the tab label
   already says "Reviews".
 - The "Handcrafted by women artisans…" note and the three trust badges already
