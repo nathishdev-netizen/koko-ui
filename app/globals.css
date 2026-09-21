@@ -3116,6 +3116,19 @@ html,
       .kf-reveal,
       .kf-product-grid > *,
       .kf-card-grid > *,
+      /* Body copy too, not just headings and cards: 17 paragraphs on /about
+         sat static between animated blocks, which read as the page half
+         working. Paragraphs and list items inside a section rise with
+         everything else. */
+      .kf-section p,
+      .kf-about-para,
+      .kf-about-lead,
+      .kf-policy-lede,
+      /* The process steps are their own section element, outside
+         `.kf-section`, so the rule above does not reach them. */
+      .kf-process-desc,
+      .kf-product-grid > *,
+      .kf-card-grid > *,
       /* Section bodies at large: direct children of a container inside a
          section rise as they enter, covering paragraphs, grids and media
          without naming every component. Headings are excluded — they have

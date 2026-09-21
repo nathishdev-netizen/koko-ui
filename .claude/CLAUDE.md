@@ -900,6 +900,13 @@ design, below the probe's 0.85 threshold.
    visible at load then reads as finished. `.kf-no-reveal` opts an element out
    entirely.
 
+**Body copy rises too, not only headings and cards.** 17 paragraphs on
+/about sat static between animated blocks, which read as the page half
+working. `.kf-section p`, `.kf-about-para`, `.kf-about-lead`,
+`.kf-policy-lede` and `.kf-process-desc` are in the reveal list — the last
+because the process steps are their own section element, outside
+`.kf-section`. The footer tagline stays static by design.
+
 **Tab panels deal their content in.** After a switch the panel's blocks
 animate up in sequence (40/90/140/190ms), which is what makes a tab change
 feel like content arriving rather than swapping. Time-based, because it
