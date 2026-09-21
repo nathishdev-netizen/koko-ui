@@ -2725,7 +2725,11 @@ html,
     padding: var(--spacing-5, 20px);
   }
   @media (min-width: 960px) {
-    .kf-summary { position: sticky; top: var(--spacing-6, 24px); }
+    /* The COLUMN sticks, not the summary alone — sticking the summary while
+       its siblings stayed put made it travel down over the coupon field and
+       the Place order button. `align-self: start` is required: a stretched
+       grid item is full height and cannot stick. */
+    .kf-checkout-aside { position: sticky; top: var(--spacing-6, 24px); align-self: start; }
   }
 
   .kf-discount { color: var(--color-success); }
@@ -3078,7 +3082,9 @@ html,
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       @keyframes kf-rise {
-        from { opacity: 0; transform: translateY(18px); }
+        /* 32px, not 18: at the shorter distance the movement was lost behind
+           the opacity change and the reveal read as a plain fade. */
+        from { opacity: 0; transform: translateY(32px); }
         to { opacity: 1; transform: none; }
       }
       /* Each panel lifts into place as it enters. `both` holds the start frame
@@ -3114,13 +3120,25 @@ html,
          section rise as they enter, covering paragraphs, grids and media
          without naming every component. Headings are excluded — they have
          their own split-text reveal and would otherwise animate twice. */
-      .kf-section > .kf-container > *:not(:has(.kf-split)):not(.kf-split),
-      .kf-section > .kf-container > .astryx-v-stack > *:not(:has(.kf-split)):not(.kf-split) {
+      .kf-section > .kf-container > *:not(:has(.kf-split)):not(.kf-split):not(:has(.kf-summary)):not(:has(.kf-bundle-summary)),
+      .kf-section > .kf-container > .astryx-v-stack > *:not(:has(.kf-split)):not(.kf-split):not(:has(.kf-summary)):not(:has(.kf-bundle-summary)) {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the
            viewport, then holds — it is a reveal, not a scroll-linked scrub. */
-        animation-range: entry 10% cover 28%;
+        /* `entry` — the element's pass INTO the viewport — not `cover`. With
+           `cover` the range spans the element's whole journey, so a tall card
+           already on screen at load starts part-way through and sits frozen
+           at ~0.69 opacity: it reads as faded and never rises. `entry`
+           completes as the element finishes entering, so anything visible on
+        /* A scroll RANGE cannot settle above-the-fold content: the range is
+           computed from position, so an element already on screen at load is
+           always partway through it and sits frozen mid-reveal (measured at
+           0.52-0.69 opacity on the bundle cards, never rising). The range is
+           therefore short and near the viewport edge, and the animation is
+           given a real duration so it plays out as a movement rather than
+           scrubbing with the scrollbar. */
+        animation-range: entry 0% entry 40%;
       }
 
       /* ── Section headings rise with their content ──────────────────────
@@ -3150,14 +3168,14 @@ html,
       .kf-card-grid > *:nth-child(2),
       .kf-product-grid > *:nth-child(2),
       .kf-values-grid > *:nth-child(2),
-      .kf-contact-grid > *:nth-child(2) { animation-range: entry 10% cover 32%; }
+      .kf-contact-grid > *:nth-child(2) { animation-range: cover 6% cover 28%; }
       .kf-card-grid > *:nth-child(3),
       .kf-product-grid > *:nth-child(3),
       .kf-values-grid > *:nth-child(3),
-      .kf-contact-grid > *:nth-child(3) { animation-range: entry 10% cover 36%; }
+      .kf-contact-grid > *:nth-child(3) { animation-range: cover 8% cover 30%; }
       .kf-card-grid > *:nth-child(4),
       .kf-product-grid > *:nth-child(4),
-      .kf-contact-grid > *:nth-child(4) { animation-range: entry 10% cover 40%; }
+      .kf-contact-grid > *:nth-child(4) { animation-range: cover 10% cover 32%; }
 
       /*
    * ── Tab / panel cross-fade (View Transitions API) ──────────────────────
@@ -3183,6 +3201,35 @@ html,
   ::view-transition-old(root),
   ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 
+  /*
+   * Content inside the first viewport is NOT revealed: a scroll-driven range
+   * is position-derived, so anything already on screen at load starts
+   * partway through and sits frozen mid-animation. The reveal is for content
+   * the visitor scrolls TO. `.kf-no-reveal` opts an element out; sections
+   * above the fold on a given page should carry it.
+   */
+  .kf-no-reveal,
+  .kf-no-reveal * { animation-name: none !important; }
+
+  /*
+   * A transform creates a containing block, which breaks `position: sticky`
+   * outright — the order summary detached and overlapped the page. Nothing
+   * sticky may carry a reveal, whatever selector reaches it.
+   */
+  .kf-summary,
+  .kf-summary *,
+  .kf-bundle-summary,
+  .kf-bundle-summary *,
+  .kf-process-figure,
+  .kf-post-sidebar,
+  .kf-post-sidebar *,
+  .kf-process-stepper {
+    /* Children too: a transform on anything inside a sticky box still shifts
+       the contents out of place — the checkout summary's rows were landing on
+       top of each other. */
+    animation-name: none !important;
+  }
+
   /* ── Split-text headings ───────────────────────────────────────────
        * Each word rises and un-blurs as the heading enters. `--kf-split-i` is
        * the word index, set inline, so one keyframe staggers any heading
@@ -3193,26 +3240,29 @@ html,
         from { opacity: 0; transform: translateY(0.5em); filter: blur(4px); }
         to { opacity: 1; transform: none; filter: none; }
       }
-      /* Each word gets its own slice of the entry range. A `calc()` is NOT
-         valid in a scroll-range offset and `animation-delay` in ms does not
-         apply to a view timeline — both were tried and both made every word
-         snap in together. Literal percentages per position are what works;
-         nine cover any heading we write, and the tenth onward shares the
-         last slice rather than trailing off the end of the range. */
+      /* Each word gets its own slice of the reveal.
+         `nth-child` CANNOT be used: a dual-tone heading is several SplitText
+         spans, each restarting the count, so "Your Heart" was treated as
+         words 1-2 and kept a slice that had already passed — it stayed
+         blurred. The index comes from `--kf-split-i`, which SplitText sets
+         across the whole heading, and `animation-range` cannot take a
+         `calc()`. So the slices are declared as attribute matches on the
+         index instead, which is static enough for the parser and honours the
+         real word order. */
       .kf-split-word {
         display: inline-block;
         animation: kf-word-rise linear both;
         animation-timeline: view();
-        animation-range: cover 6% cover 30%;
+        animation-range: cover 5% cover 30%;
       }
-      .kf-split-word:nth-child(1) { animation-range: cover 2% cover 26%; }
-      .kf-split-word:nth-child(2) { animation-range: cover 3% cover 27%; }
-      .kf-split-word:nth-child(3) { animation-range: cover 4% cover 28%; }
-      .kf-split-word:nth-child(4) { animation-range: cover 5% cover 29%; }
-      .kf-split-word:nth-child(5) { animation-range: cover 6% cover 30%; }
-      .kf-split-word:nth-child(6) { animation-range: cover 7% cover 31%; }
-      .kf-split-word:nth-child(7) { animation-range: cover 8% cover 32%; }
-      .kf-split-word:nth-child(8) { animation-range: cover 9% cover 33%; }
+      .kf-split-word[style*="--kf-split-i:1"] { animation-range: cover 6% cover 31%; }
+      .kf-split-word[style*="--kf-split-i:2"] { animation-range: cover 7% cover 32%; }
+      .kf-split-word[style*="--kf-split-i:3"] { animation-range: cover 8% cover 33%; }
+      .kf-split-word[style*="--kf-split-i:4"] { animation-range: cover 9% cover 34%; }
+      .kf-split-word[style*="--kf-split-i:5"] { animation-range: cover 10% cover 35%; }
+      .kf-split-word[style*="--kf-split-i:6"] { animation-range: cover 11% cover 36%; }
+      .kf-split-word[style*="--kf-split-i:7"] { animation-range: cover 12% cover 37%; }
+      .kf-split-word[style*="--kf-split-i:8"] { animation-range: cover 13% cover 38%; }
 
       /* ── The heading rule draws itself in ──────────────────────────────── */
       @keyframes kf-rule-draw {

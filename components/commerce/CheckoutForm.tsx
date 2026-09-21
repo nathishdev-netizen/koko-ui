@@ -221,7 +221,10 @@ export function CheckoutForm() {
           ) : null}
         </VStack>
 
-        <VStack gap={3}>
+        {/* The whole column sticks, not the summary alone: `.kf-summary` was
+            sticky while its siblings were not, so it slid down over the coupon
+            field and the Place order button. */}
+        <VStack gap={3} className="kf-checkout-aside">
           <OrderSummary
             cart={cart}
             destination={destination}
