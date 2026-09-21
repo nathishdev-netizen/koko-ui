@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { flushSync } from 'react-dom';
+
+import { withViewTransition } from '@/lib/motion/viewTransition';
 
 import {
   AwardIcon,
@@ -55,11 +58,22 @@ export function ProductTabs({
   ];
   const [active, setActive] = useState(tabs[0]?.value ?? 'reviews');
 
+  /**
+   * Cross-fade the panel when the tab changes. `flushSync` is required: the
+   * View Transition needs the DOM already updated when its callback returns,
+   * and React would otherwise batch the state change.
+   */
+  function selectTab(value: string) {
+    withViewTransition(() => {
+      flushSync(() => setActive(value));
+    });
+  }
+
   return (
     <div className="kf-ptabs">
       <TabList
         value={active}
-        onChange={setActive}
+        onChange={selectTab}
         role="tablist"
         layout="fill"
         hasDivider
@@ -83,6 +97,7 @@ export function ProductTabs({
             id={`ptab-${section.key}`}
             role="tabpanel"
             className="kf-ptab-panel"
+            style={{ viewTransitionName: 'kf-tab-panel' }}
           >
             {/* Server-authored merchandising copy from the catalogue. */}
             <div
@@ -94,7 +109,12 @@ export function ProductTabs({
       )}
 
       {active === 'reviews' ? (
-        <div id="ptab-reviews" role="tabpanel" className="kf-ptab-panel">
+        <div
+          id="ptab-reviews"
+          role="tabpanel"
+          className="kf-ptab-panel"
+          style={{ viewTransitionName: 'kf-tab-panel' }}
+        >
           <ReviewList reviews={reviews} summary={reviewSummary} hasHeading={false} />
         </div>
       ) : null}

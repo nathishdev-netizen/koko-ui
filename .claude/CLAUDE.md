@@ -837,6 +837,49 @@ without them renders nothing. The compare table repeats here with
 
 CTA reads **"Add Customized Bundle to Cart"** when complete, as legacy did.
 
+## View transitions on tabs and filters
+
+**`lib/motion/viewTransition.ts`** wraps `document.startViewTransition`, with
+the reduced-motion and support checks in one place. The API is baseline across
+all browsers now, so this replaces what used to need a library.
+
+- **Product tabs cross-fade.** `flushSync` is REQUIRED around the state change:
+  the transition needs the DOM already updated when its callback returns, and
+  React would otherwise batch it and let the browser capture the old state
+  twice. The panel carries `view-transition-name: kf-tab-panel`, and the root
+  cross-fade is disabled so it does not double up.
+- **Do NOT wrap `router.push` in it.** A Next navigation resolves after the
+  callback returns, so the browser captures the old page as both frames and
+  animates nothing. The shop grid instead carries a `key` built from the
+  active filters, so React remounts it and the cards replay their entry
+  animation when results arrive.
+- Verified: a tab click starts exactly one transition and switches the panel;
+  under reduced motion it starts ZERO and the panel still switches —
+  functionality kept, motion dropped.
+
+## Scroll reveal — coverage
+
+The reveal list was 23 hand-maintained selectors and still missed pages. It
+now also covers, structurally:
+
+```
+.kf-section > .kf-container > *:not(:has(.kf-split)):not(.kf-split)
+.kf-section > .kf-container > .astryx-v-stack > *:not(:has(.kf-split))…
+.kf-product-grid > *, .kf-card-grid > *
+.kf-reveal            /* opt-in for anything else */
+```
+
+Headings are excluded by the `:has(.kf-split)` guard — they have their own
+split-text reveal and would otherwise animate twice.
+
+**`/shop` needed the grid selectors named explicitly**: its markup is a bare
+`.kf-container` with no `.kf-section` wrapper, so the structural rules missed
+it entirely (0 animated elements before, 22 after).
+
+Verified across 12 routes that nothing is left invisible after scrolling. One
+reported "stuck" element is a false positive: `.kf-rule` is `opacity: 0.55` by
+design, below the probe's 0.85 threshold.
+
 ## Split-text headings
 
 `SplitText` (in `components/ui/SplitText.tsx`) splits a heading into words that

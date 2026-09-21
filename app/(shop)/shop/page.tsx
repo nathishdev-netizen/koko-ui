@@ -105,7 +105,13 @@ export default async function ShopPage({
             total={result.total}
           />
 
-          <ProductGrid products={result.items} />
+          {/* Keyed on the active filters so React remounts the grid when they
+              change — the cards then replay their entry animation instead of
+              the new results appearing instantly in place. */}
+          <ProductGrid
+            key={`${collectionParam ?? 'all'}|${query}|${bandKey ?? 'any'}|${sort}|${page}`}
+            products={result.items}
+          />
 
           {/* Legacy showed this only when a filter is narrowing the grid, and
               it CLEARS the filters rather than navigating — the customer has

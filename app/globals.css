@@ -3105,7 +3105,17 @@ html,
       .kf-profile-card,
       .kf-profile-panel,
       .kf-login-card,
-      .kf-policy-item {
+      .kf-policy-item,
+      /* Opt-in for anything the list above does not already cover. */
+      .kf-reveal,
+      .kf-product-grid > *,
+      .kf-card-grid > *,
+      /* Section bodies at large: direct children of a container inside a
+         section rise as they enter, covering paragraphs, grids and media
+         without naming every component. Headings are excluded — they have
+         their own split-text reveal and would otherwise animate twice. */
+      .kf-section > .kf-container > *:not(:has(.kf-split)):not(.kf-split),
+      .kf-section > .kf-container > .astryx-v-stack > *:not(:has(.kf-split)):not(.kf-split) {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the
@@ -3149,7 +3159,31 @@ html,
       .kf-product-grid > *:nth-child(4),
       .kf-contact-grid > *:nth-child(4) { animation-range: entry 10% cover 40%; }
 
-      /* ── Split-text headings ───────────────────────────────────────────
+      /*
+   * ── Tab / panel cross-fade (View Transitions API) ──────────────────────
+   * The panel is captured as one named object, so switching tabs dissolves
+   * between the two rather than snapping. The API is baseline across
+   * browsers; `withViewTransition` skips it under reduced motion, and an
+   * unsupported browser simply gets the instant swap.
+   */
+  ::view-transition-old(kf-tab-panel),
+  ::view-transition-new(kf-tab-panel) {
+    animation-duration: 260ms;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  ::view-transition-old(kf-tab-panel) { animation-name: kf-vt-out; }
+  ::view-transition-new(kf-tab-panel) { animation-name: kf-vt-in; }
+  @keyframes kf-vt-out {
+    to { opacity: 0; transform: translateY(-6px); }
+  }
+  @keyframes kf-vt-in {
+    from { opacity: 0; transform: translateY(10px); }
+  }
+  /* The root cross-fade would double up with the panel's own animation. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+  /* ── Split-text headings ───────────────────────────────────────────
        * Each word rises and un-blurs as the heading enters. `--kf-split-i` is
        * the word index, set inline, so one keyframe staggers any heading
        * without JS. The blur is slight — enough to read as focus arriving,
