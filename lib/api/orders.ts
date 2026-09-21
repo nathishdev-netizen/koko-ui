@@ -60,7 +60,7 @@ const mockOrders: readonly Order[] = [
     discount: inr(0),
     total: inr(42000),
     shippingAddress: {
-      fullName: 'Priya Rao',
+      fullName: 'Nathish L',
       line1: '14, 5th Cross, Indiranagar',
       city: 'Bengaluru',
       state: 'Karnataka',
@@ -88,7 +88,7 @@ const mockOrders: readonly Order[] = [
     discount: inr(0),
     total: inr(23000),
     shippingAddress: {
-      fullName: 'Priya Rao',
+      fullName: 'Nathish L',
       line1: '14, 5th Cross, Indiranagar',
       city: 'Bengaluru',
       state: 'Karnataka',

@@ -27,8 +27,8 @@ export async function getSession(): Promise<Session> {
   return {
     customer: {
       id: 'cust-mock-1',
-      email: 'priya@example.com',
-      name: 'Priya Rao',
+      email: 'nathish@example.com',
+      name: 'Nathish L',
       phone: '+91 98450 00000',
     },
   };
