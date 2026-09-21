@@ -1,22 +1,39 @@
 {
+  "_note": "Shipping policy, carried over from the legacy site. Rates and the free-shipping threshold also live in config/commerce.json — keep them in step.",
   "title": "Shipping Policy",
-  "intro": "Every blend is ground after you order, so dispatch takes a little longer than a warehouse — and arrives far fresher.",
+  "intro": "We partner with reliable logistics providers to ensure timely and safe delivery of your KokoFresh orders. By placing an order, you agree to the shipping terms outlined here.",
   "sections": [
     {
-      "heading": "Shipping charges",
-      "body": "<p>Shipping is <strong>free on orders of ₹399 and above</strong>.</p><p>Below ₹399, shipping is <strong>₹50 within Karnataka</strong> and <strong>₹70 for the rest of India</strong>.</p>"
+      "heading": "Scope of the Policy",
+      "body": "<p>This Shipping Policy applies to all orders placed on the KokoFresh website. Our goal is to ensure a smooth and reliable delivery experience for our customers. By using our platform, you agree to the terms outlined in this policy.</p><p>From our kitchen to yours, we ensure every order is handled with care and precision.</p>"
     },
     {
-      "heading": "Dispatch and delivery",
-      "body": "<p>Your order is handcrafted and dispatched within <strong>48 hours</strong>. Delivery usually takes <strong>3–5 days</strong> after dispatch, depending on your location.</p>"
+      "heading": "Shipping Charges",
+      "body": "<ul><li><strong>Variable Pricing:</strong> Shipping fees vary based on the order value and delivery location (&#8377;50 in Karnataka, &#8377;70 rest of India).</li><li><strong>Free Shipping Available:</strong> Free shipping is automatically applied to all orders of &#8377;399 and above at checkout.</li><li><strong>Clear at Checkout:</strong> Any applicable shipping charges will be displayed clearly at checkout before payment.</li></ul>"
     },
     {
-      "heading": "Where we deliver",
-      "body": "<p>We ship across India. Delivery times to remote PIN codes may be slightly longer.</p>"
+      "heading": "Delivery Issues",
+      "body": "<p>We&rsquo;re here to help if anything goes wrong with your delivery. KokoFresh ensures the smooth delivery of your orders, but the following scenarios may arise.</p><ul><li>If you receive damaged, incorrect, or incomplete orders, report the issue within <strong>24 hours</strong> of delivery.</li><li>Refunds, replacements, or store credits will be processed as per our Refund Policy.</li></ul>"
     },
     {
-      "heading": "Tracking your order",
-      "body": "<p>You will receive tracking details on WhatsApp as soon as your order is dispatched.</p>"
+      "heading": "How We Resolve It",
+      "body": "<ul><li><strong>Quick Processing:</strong> We process returns and refunds quickly to get you back on track.</li><li><strong>Multiple Options:</strong> Choose between refunds, replacements, or store credits.</li><li><strong>Hassle-Free Process:</strong> No complicated procedures &mdash; just reach out to our support team.</li></ul>"
+    },
+    {
+      "heading": "Liability Disclaimer",
+      "body": "<p>KokoFresh is not liable for delays, losses, or damages caused by third-party logistics providers or events beyond our control.</p><p>We are not responsible for product spoilage due to improper handling or storage after delivery.</p>"
+    },
+    {
+      "heading": "Restricted Items",
+      "body": "<p>Products that do not comply with food safety regulations or legal standards are strictly prohibited on our platform. Sellers found in violation may face penalties or removal from KokoFresh.</p>"
+    },
+    {
+      "heading": "Changes to Shipping Policy",
+      "body": "<p>KokoFresh reserves the right to modify this Shipping Policy at any time.</p><p>Updates will be communicated via email or notifications on the platform. Continued use of our services after changes implies acceptance of the revised terms.</p>"
+    },
+    {
+      "heading": "Contact Us",
+      "body": "<p>Our support team is here to help. Reach out anytime with your questions or concerns regarding shipping.</p><ul><li>Email: help@kokofresh.in</li><li>Phone: +91 78927 76610</li></ul>"
     }
   ],
   "faq": [

@@ -1,26 +1,51 @@
 {
+  "_note": "Privacy policy, carried over from the legacy site. Cites the DPDP Act 2023 — legal copy, do not paraphrase. Escalation contacts are real addresses.",
   "title": "Privacy Policy",
-  "intro": "What we collect, why we collect it, and what we never do with it.",
+  "intro": "We are committed to protecting your personal data in compliance with the Digital Personal Data Protection Act, 2023 (DPDP Act). Last updated: 30 January 2025.",
   "sections": [
     {
-      "heading": "What we collect",
-      "body": "<p>Your name, email, phone number and delivery address when you place an order, and basic usage data that helps us keep the site working.</p>"
+      "heading": "Introduction",
+      "body": "<p>This Privacy Policy explains how CKG Flavorz Foodtech Pvt Ltd collects, uses, and protects your personal data when you use our services via our website and our Android and iOS applications.</p>"
     },
     {
-      "heading": "Why we collect it",
-      "body": "<p>To process and deliver your order, send order updates on WhatsApp, and answer support requests. Nothing more.</p>"
+      "heading": "Information We Collect",
+      "body": "<p>We collect only the information necessary to provide you with the best service possible.</p><ul><li><strong>Basic Information:</strong> Name, email address, phone number, and other contact details.</li><li><strong>Payment Information:</strong> Credit/debit card details, payment method, and billing address.</li><li><strong>Order Information:</strong> Details about your orders, including items purchased, delivery addresses, and payment information.</li><li><strong>Device Information:</strong> Information about the device you use to access our services, such as IP address, browser type, and operating system.</li></ul>"
     },
     {
-      "heading": "Payments",
-      "body": "<p>Card and UPI details are handled entirely by our payment gateway on their own secure page. <strong>We never see or store your payment details.</strong></p>"
+      "heading": "How We Use Your Data",
+      "body": "<ul><li><strong>To Provide Services:</strong> To process and fulfil your orders, including payment processing and delivery.</li><li><strong>Customer Support:</strong> To respond to your inquiries and provide customer support.</li><li><strong>Improving Services:</strong> To analyse and improve our services, including personalising your experience and improving app performance.</li><li><strong>Legal Compliance:</strong> To comply with legal obligations, including tax laws and regulations.</li><li><strong>Marketing &amp; Communication:</strong> To send you promotional offers, newsletters, and other communications, subject to your consent.</li></ul>"
     },
     {
-      "heading": "Sharing",
-      "body": "<p>We share your address with our delivery partner so your order can reach you. We do not sell your data to anyone.</p>"
+      "heading": "Data Sharing",
+      "body": "<ul><li><strong>Service Providers:</strong> We may share your data with third-party service providers who assist us in providing our services, such as payment processors and delivery partners.</li><li><strong>Delivery Partners:</strong> To complete the delivery of your orders, we share necessary information, such as your name, delivery address, and contact details, with our delivery partners.</li><li><strong>Legal Requirements:</strong> We may disclose your data if required by law or to protect our rights, property, or safety.</li></ul>"
     },
     {
-      "heading": "Your choices",
-      "body": "<p>You can ask us to correct or delete your data at any time by emailing us.</p>"
+      "heading": "Data Security",
+      "body": "<p>We take appropriate technical and organisational measures to protect your personal data from unauthorised access, disclosure, alteration, and destruction.</p>"
+    },
+    {
+      "heading": "Data Retention",
+      "body": "<p>We retain your personal data for as long as necessary to fulfil the purposes for which it was collected, or as required by applicable laws.</p>"
+    },
+    {
+      "heading": "Your Rights",
+      "body": "<p>Under the DPDP Act, you have the following rights regarding your personal data.</p><ul><li><strong>Right to Access:</strong> You have the right to access your personal data held by us.</li><li><strong>Right to Correction:</strong> You have the right to request the correction of inaccurate or incomplete personal data.</li><li><strong>Right to Erasure:</strong> You have the right to request the deletion of your personal data under certain conditions.</li><li><strong>Right to Data Portability:</strong> You have the right to receive your personal data in a structured, commonly used, and machine-readable format.</li><li><strong>Right to Restrict Processing:</strong> You have the right to request the restriction of processing your personal data under certain conditions.</li><li><strong>Right to Object:</strong> You have the right to object to the processing of your personal data for marketing purposes.</li></ul>"
+    },
+    {
+      "heading": "How to Exercise Your Rights",
+      "body": "<p>To exercise any of your rights, please contact us at help@kokofresh.in.</p><p>We are committed to providing prompt and effective support. Follow our escalation matrix for efficient resolution.</p><ul><li><strong>Level 1 &mdash; Customer Support Team:</strong> help@kokofresh.in, +91 78927 76610. Response within 24 hours, resolution up to 48 hours.</li><li><strong>Level 2 &mdash; Operations Head:</strong> hitesh@theflavorz.com, +91 78927 76610. Response within 48 hours from escalation, resolution up to 5 business days.</li><li><strong>Level 3 &mdash; Executive Team:</strong> ceo@theflavorz.com. Response within 72 hours from escalation, resolution up to 7 business days.</li></ul>"
+    },
+    {
+      "heading": "Changes to This Policy",
+      "body": "<p>We may update this Privacy Policy from time to time. The updated policy will be posted on our app and website.</p><p>Your continued use of our services after any changes to this policy constitutes your acceptance of the new policy.</p>"
+    },
+    {
+      "heading": "Contact Information",
+      "body": "<p>If you have any questions about this Privacy Policy, please contact us at:</p><ul><li>CKG Flavorz Foodtech Pvt Ltd</li><li>Email: help@kokofresh.in</li><li>Website: https://kokofresh.in/</li></ul>"
+    },
+    {
+      "heading": "Your Privacy Matters",
+      "body": "<p>We&rsquo;re committed to protecting your data and maintaining your trust. Shop with confidence knowing your information is secure.</p>"
     }
   ]
 }

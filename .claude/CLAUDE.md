@@ -68,6 +68,28 @@ backend team ships endpoints one at a time; opt each in without touching pages.
 If a page has to change because the real contract differs, the abstraction
 leaked — fix `lib/api/`, and flag it.
 
+## Policy pages — legacy copy
+
+`/privacy-policy`, `/shipping` and `/refund-policy` carry the legacy pages'
+full text, not summaries. They were ~5-section précis; the legacy pages were
+294-466 lines of real policy, and short paraphrases of legal copy are a
+liability. Now ~2,100-2,700 rendered words each.
+
+- **Privacy cites the DPDP Act 2023** and names CKG Flavorz Foodtech Pvt Ltd,
+  with the three-level escalation matrix (support → operations head →
+  executive team) and its real addresses. Legal copy: do not paraphrase.
+- **Refund keeps the legacy's 10 numbered sections** verbatim, including the
+  24-hour reporting window and 7-10 day refund timeline.
+- **Shipping keeps its FAQ block.** It feeds FAQPage JSON-LD on that route —
+  dropping it loses the rich result. Rewriting the JSON without it broke the
+  build (the page reads `content.faq`), which is how it was caught.
+
+**`.kf-prose` restores list markers.** The Astryx reset strips
+`list-style-type` site-wide, which is right for nav and card lists but left
+policy clauses reading as loose indented paragraphs. Discs and decimals are
+restored inside `.kf-prose` only — verified the footer/nav lists still
+compute `none`.
+
 ## Footer — legacy parity
 
 Four columns, as the legacy footer had: **Quick Links** (Home · Shop · Blog ·

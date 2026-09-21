@@ -2536,7 +2536,13 @@ html,
   }
   .kf-prose h2 { font-size: clamp(1.6rem, 3vw, 2rem); }
   .kf-prose h3 { font-size: clamp(1.3rem, 2.2vw, 1.5rem); }
+  /* The reset strips list markers site-wide, which is right for nav and card
+     lists but wrong inside prose: policy clauses and recipe steps read as
+     loose indented paragraphs without them. Restored only here. */
   .kf-prose :is(ul, ol) { padding-inline-start: 1.4rem; margin: 0; }
+  .kf-prose ul { list-style-type: disc; }
+  .kf-prose ol { list-style-type: decimal; }
+  .kf-prose li::marker { color: var(--color-text-secondary); }
   .kf-prose li + li { margin-block-start: var(--spacing-2, 8px); }
   .kf-prose a { color: var(--color-text-accent, var(--color-accent)); }
   .kf-prose blockquote {

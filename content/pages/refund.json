@@ -1,22 +1,51 @@
 {
+  "_note": "Refund policy, carried over verbatim from the legacy site. Legal copy — do not paraphrase.",
   "title": "Refund Policy",
-  "intro": "Our spices are ground fresh for each order, so we cannot restock returns. We will always make it right if something arrives wrong.",
+  "intro": "At KokoFresh, customer satisfaction is our priority. This Refund Policy outlines the conditions and processes for requesting refunds, ensuring fairness and transparency.",
   "sections": [
     {
-      "heading": "When we replace or refund",
-      "body": "<p>We replace or refund an order if it arrives <strong>damaged</strong>, if you receive the <strong>wrong item</strong>, or if there is a genuine quality issue with the blend.</p>"
+      "heading": "1. Eligibility for Refunds",
+      "body": "<p>Refunds will be considered under the following circumstances:</p><ul><li><strong>Damaged or Defective Products:</strong> If the product delivered is damaged, defective, or does not match the description provided on the platform.</li><li><strong>Missing Items:</strong> If an order is incomplete or items are missing.</li><li><strong>Delivery Delays:</strong> If the product is not delivered within the specified timeframe due to reasons within the seller&rsquo;s control.</li></ul>"
     },
     {
-      "heading": "How to raise it",
-      "body": "<p>Contact us <strong>within 24 hours</strong> of delivery with your order number and a photo of the issue. An unboxing video helps us resolve damage claims faster.</p>"
+      "heading": "2. Non-Refundable Situations",
+      "body": "<p>Refunds will not be issued under these conditions:</p><ul><li>Products that have been consumed, tampered with, or improperly stored after delivery.</li><li>Delays caused by factors beyond KokoFresh&rsquo;s or the seller&rsquo;s control (e.g. weather, strikes, or natural disasters).</li><li>Change of mind after the order has been delivered.</li></ul>"
     },
     {
-      "heading": "What we cannot accept",
-      "body": "<p>Because every pack is ground to order and food-grade, we cannot accept returns of opened or correctly delivered products.</p>"
+      "heading": "3. Timeframe for Requesting Refunds",
+      "body": "<p>Refund requests must be submitted within <strong>24 hours</strong> of receiving the order. Requests submitted beyond this timeframe will not be eligible for a refund.</p>"
     },
     {
-      "heading": "Refund timelines",
-      "body": "<p>Approved refunds are issued to the original payment method and typically reach you within <strong>5–7 working days</strong>.</p>"
+      "heading": "4. Process for Requesting Refunds",
+      "body": "<p>To request a refund, follow these steps:</p><ol><li><strong>Contact Us:</strong> Email help@kokofresh.in or call +91 78927 76610 within 24 hours of receiving the order.</li><li><strong>Provide Evidence:</strong> Submit clear photographs or videos of the product showing the damage, defect, or issue. Include order details (order ID, date, and item name).</li><li><strong>Review:</strong> Once your request is received, our team will review it in consultation with the seller and respond within 3&ndash;5 business days.</li></ol>"
+    },
+    {
+      "heading": "5. Refund Resolution Options",
+      "body": "<p>If your refund request is approved, you may choose one of the following:</p><ul><li><strong>Replacement:</strong> The seller will resend the product at no additional cost.</li><li><strong>Refund to Original Payment Method:</strong> The amount will be credited back to the payment method used at the time of purchase. This process may take 7&ndash;10 business days, depending on your bank.</li><li><strong>Store Credit:</strong> You may opt to receive the refund as store credit, which can be used for future purchases on KokoFresh.</li></ul>"
+    },
+    {
+      "heading": "6. Conditions for Refunds",
+      "body": "<ul><li>Refunds will only be processed after verifying the issue.</li><li>KokoFresh reserves the right to reject refund requests if sufficient proof is not provided or if the claim is found to be invalid.</li></ul>"
+    },
+    {
+      "heading": "7. Cancellations",
+      "body": "<ul><li>Orders can be canceled before they are shipped. Once shipped, the order is no longer eligible for cancellation.</li><li>Cancellations may be subject to a restocking fee, depending on the seller&rsquo;s policy.</li></ul>"
+    },
+    {
+      "heading": "8. Disputes",
+      "body": "<ul><li>In the event of disputes regarding refunds, KokoFresh will mediate between the buyer and seller to reach a resolution.</li><li>Final decisions will be made by KokoFresh based on the evidence provided.</li></ul>"
+    },
+    {
+      "heading": "9. Changes to the Refund Policy",
+      "body": "<p>KokoFresh reserves the right to modify this Refund Policy at any time. Changes will be communicated via email or platform notifications.</p><p>Continued use of the platform after changes implies acceptance of the updated Refund Policy.</p>"
+    },
+    {
+      "heading": "10. Contact Us",
+      "body": "<p>For any refund-related inquiries, please reach out to us:</p><ul><li>Email: help@kokofresh.in</li><li>Phone: +91 78927 76610</li></ul>"
+    },
+    {
+      "heading": "Your Satisfaction Matters",
+      "body": "<p>By using KokoFresh, you agree to this Refund Policy. We are committed to providing a delightful experience and addressing your concerns promptly and fairly.</p>"
     }
   ]
 }
