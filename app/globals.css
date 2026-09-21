@@ -3178,6 +3178,31 @@ html,
       .kf-contact-grid > *:nth-child(4) { animation-range: cover 10% cover 32%; }
 
       /*
+   * ── Panel content enters in sequence ───────────────────────────────────
+   * After a tab switch the panel's own blocks come up one after another
+   * rather than the whole panel appearing at once — the effect reads as the
+   * content being dealt out. Time-based, because this follows a click, not
+   * a scroll. Keyed off a data attribute the panel sets on change, so it
+   * replays every time rather than only on first mount.
+   */
+  @keyframes kf-deal-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  .kf-ptab-panel > * > * {
+    animation: kf-deal-in 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+  .kf-ptab-panel > * > *:nth-child(1) { animation-delay: 40ms; }
+  .kf-ptab-panel > * > *:nth-child(2) { animation-delay: 90ms; }
+  .kf-ptab-panel > * > *:nth-child(3) { animation-delay: 140ms; }
+  .kf-ptab-panel > * > *:nth-child(4) { animation-delay: 190ms; }
+  .kf-ptab-panel > * > *:nth-child(n+5) { animation-delay: 240ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-ptab-panel > * > * { animation: none; }
+  }
+
+  /*
    * ── Tab / panel cross-fade (View Transitions API) ──────────────────────
    * The panel is captured as one named object, so switching tabs dissolves
    * between the two rather than snapping. The API is baseline across

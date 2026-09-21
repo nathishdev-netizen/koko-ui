@@ -880,6 +880,31 @@ Verified across 12 routes that nothing is left invisible after scrolling. One
 reported "stuck" element is a false positive: `.kf-rule` is `opacity: 0.55` by
 design, below the probe's 0.85 threshold.
 
+## Reveal bugs found in review — do not reintroduce
+
+1. **Word slices must key on `--kf-split-i`, never `:nth-child`.** A dual-tone
+   heading is several SplitText spans and each restarts the child count, so
+   the second half was given slices that had already elapsed and stayed
+   blurred ("Your Heart" on the About story heading).
+2. **Nothing sticky, or inside anything sticky, may carry a reveal.** A
+   transform creates a containing block and breaks `position: sticky`. Also:
+   sticking one child while its siblings stay put makes it travel over them —
+   the checkout summary spanned −76→138 across the coupon field and the Place
+   order button. The whole column is sticky now (`.kf-checkout-aside`), not
+   the summary alone.
+3. **A scroll range is position-derived, so it cannot settle above-the-fold
+   content.** An element already on screen at load starts partway through its
+   range and sits frozen mid-animation — bundle cards held at 0.52-0.69
+   opacity with 6px of movement, which read as "faded, never rises". Keep the
+   range short and near the viewport edge (`entry 0% entry 40%`); anything
+   visible at load then reads as finished. `.kf-no-reveal` opts an element out
+   entirely.
+
+**Tab panels deal their content in.** After a switch the panel's blocks
+animate up in sequence (40/90/140/190ms), which is what makes a tab change
+feel like content arriving rather than swapping. Time-based, because it
+follows a click rather than a scroll.
+
 ## Split-text headings
 
 `SplitText` (in `components/ui/SplitText.tsx`) splits a heading into words that
