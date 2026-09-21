@@ -1496,6 +1496,63 @@ html,
     .kf-qty button { transition: none; }
   }
 
+  /* ── Policy pages ───────────────────────────────────────────────────────
+   * The legacy layout: a dark hero band, each clause in its own bordered card
+   * on a narrow measure, then a dark closing band back into the shop.
+   */
+  /* `.kf-container` sets its own 80rem max-width later in the file, so this
+     needs the compound selector to win — the legacy policy pages ran at a
+     narrow `max-w-4xl` measure, which is what makes long clauses readable. */
+  .kf-container.kf-policy-inner { max-width: 56rem; }
+  .kf-policy-hero { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .kf-policy-hero .kf-eyebrow { margin-block: var(--spacing-4, 16px) 0; color: var(--kf-on-ink-accent); }
+  .kf-policy-title { margin: 6px 0 0; font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem); line-height: 1.12; }
+  /* The legacy tinted its policy titles with a gradient; the dual-tone `kf-h-alt`
+     does that job across this site, so the title stays solid and the accent
+     lives in the eyebrow instead. */
+  .kf-policy-intro { margin: var(--spacing-3, 12px) 0 0; max-width: 46rem; font-size: 1.0625rem; line-height: 1.7; color: var(--kf-on-ink-secondary); }
+
+  /* The hero already ends in its own padding; `.kf-section`'s full pad on top
+     of it opened a ~96px dead band before the first clause. Needs the compound
+     selector to outrank `.kf-section`, which is declared later in the file. */
+  .kf-section.kf-policy-body { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem); }
+  .kf-policy-cards { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+  .kf-policy-card {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: var(--kf-radius-card);
+    border: 1px solid var(--color-border);
+    background: var(--color-background-card);
+    transition: border-color 240ms ease, box-shadow 240ms ease;
+  }
+  .kf-policy-card:hover {
+    border-color: var(--color-border-emphasized);
+    box-shadow: 0 12px 28px rgba(59, 43, 19, 0.07);
+  }
+  .kf-policy-heading {
+    margin: 0 0 var(--spacing-3, 12px);
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+    line-height: 1.2;
+  }
+  .kf-policy-faq { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+  .kf-policy-q { margin: 0 0 4px; font-family: var(--font-family-body); font-size: 1rem; font-weight: 700; }
+
+  .kf-policy-closing { padding-block: clamp(2.5rem, 6vw, 4rem); text-align: center; }
+  .kf-policy-closing .kf-policy-inner { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-3, 12px); }
+  .kf-policy-closing-title { margin: 0; font-size: clamp(1.8rem, 1.3rem + 2vw, 2.5rem); }
+  .kf-policy-closing .kf-policy-intro { margin: 0; }
+  /* A filled button on the ink ground: the brown primary would vanish. */
+  .kf-pill-btn--on-ink {
+    margin-block-start: var(--spacing-2, 8px);
+    background: var(--kf-on-ink);
+    color: var(--kf-brand-ink);
+  }
+  .kf-pill-btn--on-ink:hover { background: var(--kf-on-fill); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-policy-card { transition: none; }
+  }
+
   /* ── Account / profile ──────────────────────────────────────────────────
    * Styled after the legacy /profile page: an identity card at the top, then
    * panels whose headings carry a small gradient mark. Our multi-page routes
@@ -3006,7 +3063,8 @@ html,
       .kf-contact-map-wrap,
       .kf-profile-card,
       .kf-profile-panel,
-      .kf-login-card {
+      .kf-login-card,
+      .kf-policy-card {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the

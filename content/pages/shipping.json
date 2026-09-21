@@ -49,5 +49,13 @@
       "question": "What are KokoFresh delivery timelines?",
       "answer": "Orders are ground fresh and dispatched within 48 hours, then delivered in 3–5 days depending on your location."
     }
-  ]
+  ],
+  "closing": {
+    "heading": "Ready to Order?",
+    "body": "Browse our collection of authentic, handcrafted spices and get them delivered fresh to your door.",
+    "cta": {
+      "label": "Shop Now",
+      "href": "/shop"
+    }
+  }
 }

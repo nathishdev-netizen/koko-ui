@@ -42,10 +42,14 @@
     {
       "heading": "Contact Information",
       "body": "<p>If you have any questions about this Privacy Policy, please contact us at:</p><ul><li>CKG Flavorz Foodtech Pvt Ltd</li><li>Email: help@kokofresh.in</li><li>Website: https://kokofresh.in/</li></ul>"
-    },
-    {
-      "heading": "Your Privacy Matters",
-      "body": "<p>We&rsquo;re committed to protecting your data and maintaining your trust. Shop with confidence knowing your information is secure.</p>"
     }
-  ]
+  ],
+  "closing": {
+    "heading": "Your Privacy Matters",
+    "body": "We’re committed to protecting your data and maintaining your trust. Shop with confidence knowing your information is secure.",
+    "cta": {
+      "label": "Continue Shopping",
+      "href": "/shop"
+    }
+  }
 }

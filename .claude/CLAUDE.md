@@ -68,6 +68,26 @@ backend team ships endpoints one at a time; opt each in without touching pages.
 If a page has to change because the real contract differs, the abstraction
 leaked — fix `lib/api/`, and flag it.
 
+## Policy pages — legacy layout and copy
+
+**Layout follows the legacy's three-part shape:** a dark hero band, each
+clause in its OWN bordered card on a narrow measure, then a dark closing band
+with a route back into the shop. Ours was flat prose on one background.
+`PolicyPage` stays the single shared shell — the legacy had three separate
+294-466 line files that had drifted (only two carried a closing CTA, and each
+hero used a slightly different gradient).
+
+The hero uses the brand ink rather than the legacy's pure black, so it matches
+every other dark band on the site, and the closing CTA takes
+`.kf-pill-btn--on-ink` (cream on brown) because the usual brown primary would
+vanish against it. The closing block is content, in each JSON's `closing` key.
+
+**Two rules need compound selectors to win.** `.kf-container.kf-policy-inner`
+for the 56rem measure and `.kf-section.kf-policy-body` for the reduced top
+padding — `.kf-container` and `.kf-section` are both declared later in the
+file, so a single class loses and the change silently does nothing (the
+measure stayed 1280px and the hero gap stayed 96px until this was fixed).
+
 ## Policy pages — legacy copy
 
 `/privacy-policy`, `/shipping` and `/refund-policy` carry the legacy pages'

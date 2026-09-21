@@ -42,10 +42,14 @@
     {
       "heading": "10. Contact Us",
       "body": "<p>For any refund-related inquiries, please reach out to us:</p><ul><li>Email: help@kokofresh.in</li><li>Phone: +91 78927 76610</li></ul>"
-    },
-    {
-      "heading": "Your Satisfaction Matters",
-      "body": "<p>By using KokoFresh, you agree to this Refund Policy. We are committed to providing a delightful experience and addressing your concerns promptly and fairly.</p>"
     }
-  ]
+  ],
+  "closing": {
+    "heading": "Your Satisfaction Matters",
+    "body": "By using KokoFresh, you agree to this Refund Policy. We are committed to providing a delightful experience and addressing your concerns promptly and fairly.",
+    "cta": {
+      "label": "Continue Shopping",
+      "href": "/shop"
+    }
+  }
 }

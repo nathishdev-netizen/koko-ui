@@ -1,27 +1,39 @@
+import Link from 'next/link';
+
 import { JsonLd } from '@/components/ui/JsonLd';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
+import { BreadcrumbItem, Breadcrumbs, Heading, Text } from '@/components/ui';
 import { breadcrumbJsonLd } from '@/lib/seo';
 
 export type PolicySection = { heading: string; body: string };
 export type PolicyFaq = { question: string; answer: string };
+export type PolicyClosing = {
+  heading: string;
+  body: string;
+  cta?: { label: string; href: string };
+};
 
 /**
- * Shared shell for the policy pages.
+ * Shared shell for the policy pages, following the legacy layout: a dark hero
+ * band, each clause in its own bordered card on a narrow measure, then a dark
+ * closing band with a route back into the shop.
  *
- * One component so all four read identically — the legacy versions were four
- * separate 300–470 line files that had drifted apart.
+ * One component so all of them read identically — the legacy versions were
+ * separate 294-466 line files that had drifted apart (only two of the three
+ * carried a closing CTA, and each hero used a slightly different gradient).
  */
 export function PolicyPage({
   title,
   intro,
   sections,
   faq,
+  closing,
   path,
 }: {
   title: string;
   intro: string;
   sections: readonly PolicySection[];
   faq?: readonly PolicyFaq[];
+  closing?: PolicyClosing;
   path: string;
 }) {
   const trail = [
@@ -52,8 +64,10 @@ export function PolicyPage({
         ]}
       />
 
-      <div className="kf-container kf-article">
-        <VStack gap={5}>
+      {/* Hero — the brand's ink rather than the legacy's pure black, so the
+          band matches every other dark surface on the site. */}
+      <section className="kf-section kf-section--brown kf-policy-hero">
+        <div className="kf-container kf-policy-inner">
           <Breadcrumbs label="Breadcrumb" variant="supporting">
             {trail.map((crumb, i) => (
               <BreadcrumbItem
@@ -64,41 +78,62 @@ export function PolicyPage({
               </BreadcrumbItem>
             ))}
           </Breadcrumbs>
+          <p className="kf-eyebrow">Policies</p>
+          <Heading level={1} className="kf-policy-title">
+            {title}
+          </Heading>
+          <p className="kf-policy-intro">{intro}</p>
+        </div>
+      </section>
 
-          <VStack gap={2}>
-            <p className="kf-eyebrow">Policies</p>
-            <Heading level={1}>{title}</Heading>
-            <span className="kf-rule" aria-hidden="true" />
-            <Text color="secondary" className="kf-measure">
-              {intro}
-            </Text>
-          </VStack>
-
-          <VStack gap={5}>
+      <section className="kf-section kf-policy-body">
+        <div className="kf-container kf-policy-inner">
+          <div className="kf-policy-cards">
             {sections.map((section) => (
-              <VStack key={section.heading} gap={1.5}>
-                <Heading level={2}>{section.heading}</Heading>
+              <article key={section.heading} className="kf-policy-card">
+                <h2 className="kf-policy-heading">{section.heading}</h2>
                 <div
                   className="kf-prose"
                   dangerouslySetInnerHTML={{ __html: section.body }}
                 />
-              </VStack>
+              </article>
             ))}
-          </VStack>
 
-          {faq && faq.length > 0 ? (
-            <VStack gap={3}>
-              <Heading level={2}>Common questions</Heading>
-              {faq.map((item) => (
-                <VStack key={item.question} gap={1}>
-                  <Heading level={3}>{item.question}</Heading>
-                  <Text color="secondary">{item.answer}</Text>
-                </VStack>
-              ))}
-            </VStack>
-          ) : null}
-        </VStack>
-      </div>
+            {faq && faq.length > 0 ? (
+              <article className="kf-policy-card">
+                <h2 className="kf-policy-heading">Common questions</h2>
+                <div className="kf-policy-faq">
+                  {faq.map((item) => (
+                    <div key={item.question}>
+                      <h3 className="kf-policy-q">{item.question}</h3>
+                      <Text color="secondary">{item.answer}</Text>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ) : null}
+          </div>
+        </div>
+      </section>
+
+      {closing ? (
+        <section className="kf-section kf-section--brown kf-policy-closing">
+          <div className="kf-container kf-policy-inner">
+            <Heading level={2} className="kf-policy-closing-title">
+              {closing.heading}
+            </Heading>
+            <p className="kf-policy-intro">{closing.body}</p>
+            {closing.cta ? (
+              <Link
+                href={closing.cta.href}
+                className="kf-pill-btn kf-pill-btn--on-ink"
+              >
+                {closing.cta.label}
+              </Link>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
     </>
   );
 }

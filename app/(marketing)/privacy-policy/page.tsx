@@ -16,6 +16,7 @@ export default function Page() {
       title={content.title}
       intro={content.intro}
       sections={content.sections}
+      closing={content.closing}
       path="/privacy-policy"
     />
   );

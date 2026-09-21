@@ -17,6 +17,7 @@ export default function Page() {
       intro={content.intro}
       sections={content.sections}
       faq={content.faq}
+      closing={content.closing}
       path="/shipping"
     />
   );
