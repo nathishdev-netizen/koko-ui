@@ -3194,6 +3194,59 @@ html,
       .kf-contact-grid > *:nth-child(4) { animation-range: cover 10% cover 32%; }
 
       /*
+   * ── The four steps draw as one journey ─────────────────────────────────
+   * The dotted rule wipes in left to right and each numbered bead lands as
+   * the line reaches it, so the row reads as a path being travelled rather
+   * than four discs appearing at once.
+   *
+   * TIME-based, not scroll-driven: this section sits at ~390px on a 913px
+   * viewport, so it is on screen the moment the page loads and a scroll
+   * range would already have elapsed — exactly the trap the heading rule
+   * hit. It plays once, as the page paints.
+   */
+  @keyframes kf-line-draw {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes kf-bead-in {
+    from { opacity: 0; transform: scale(0.4); }
+    60%  { opacity: 1; transform: scale(1.12); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes kf-step-text-in {
+    from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+
+  .kf-steps-track::before {
+    animation: kf-line-draw 1400ms cubic-bezier(0.33, 0.1, 0.25, 1) both;
+  }
+  .kf-step-num {
+    animation: kf-bead-in 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 160ms;
+  }
+  .kf-step:nth-child(2) .kf-step-num { animation-delay: 480ms; }
+  .kf-step:nth-child(3) .kf-step-num { animation-delay: 800ms; }
+  .kf-step:nth-child(4) .kf-step-num { animation-delay: 1120ms; }
+
+  .kf-step > :not(.kf-step-num) {
+    animation: kf-step-text-in 460ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation-delay: 300ms;
+  }
+  .kf-step:nth-child(2) > :not(.kf-step-num) { animation-delay: 620ms; }
+  .kf-step:nth-child(3) > :not(.kf-step-num) { animation-delay: 940ms; }
+  .kf-step:nth-child(4) > :not(.kf-step-num) { animation-delay: 1260ms; }
+
+  /* The step's own scroll reveal would fight the bead/text sequence. */
+  .kf-steps .kf-step { animation: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-steps-track::before,
+    .kf-step-num,
+    .kf-step > :not(.kf-step-num) { animation: none; }
+  }
+
+  /*
    * ── Filtered results enter in sequence ─────────────────────────────────
    * The grid is keyed on the active filters, so React remounts it when they
    * change and this replays. Time-based, not scroll-driven: the cards are

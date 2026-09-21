@@ -921,6 +921,15 @@ run 0-300ms and positions past the ninth share the last one, so a 22-product
 grid does not take two seconds to arrive. A product card must not also carry
 the scroll-driven rule, or the two fight.
 
+**The four bundle steps draw as a journey.** The dotted rule wipes in left
+to right (`clip-path: inset(0 100% 0 0)` → `inset(0)`) and each numbered bead
+pops in with a spring as the line reaches it — 160/480/800/1120ms, with the
+step text 140ms behind its own bead. TIME-based, not scroll-driven: the
+section sits at ~390px on a 913px viewport, so it is on screen at load and a
+scroll range would already have elapsed — the same trap the heading rule hit.
+The step's own scroll reveal is suppressed (`.kf-steps .kf-step { animation:
+none }`) or the two fight.
+
 **Tab panels deal their content in.** After a switch the panel's blocks
 animate up in sequence (40/90/140/190ms), which is what makes a tab change
 feel like content arriving rather than swapping. Time-based, because it
