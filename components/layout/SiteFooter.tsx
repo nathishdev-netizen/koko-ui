@@ -1,7 +1,7 @@
 import { LeafIcon, ShieldCheckIcon } from '@/components/icons';
 import { Divider, Grid, Heading, HStack, Link, Text, VStack } from '@/components/ui';
 import type { Brand } from '@/config/brand';
-import type { FooterGroup } from '@/config/nav';
+import type { FooterGroup, NavItem } from '@/config/nav';
 
 /**
  * Site footer. Server component — no interactivity, so it ships no JS.
@@ -11,9 +11,12 @@ import type { FooterGroup } from '@/config/nav';
 export function SiteFooter({
   brand,
   groups,
+  legal = [],
 }: {
   brand: Brand;
   groups: readonly FooterGroup[];
+  /** Policy links shown as small print under the columns. */
+  legal?: readonly NavItem[];
 }) {
   const year = new Date().getFullYear();
 
@@ -84,7 +87,7 @@ export function SiteFooter({
             {/* Contact — every value from brand config */}
             <VStack gap={2}>
               <Heading level={3} weight="semibold">
-                Contact
+                Contact Info
               </Heading>
               <VStack gap={1.5}>
                 <Text type="supporting">{brand.legal.entityName}</Text>
@@ -119,10 +122,21 @@ export function SiteFooter({
 
           <Divider />
 
-          <Text type="supporting" color="secondary">
-            © {year} {brand.name}. A {brand.legalName} company. All rights reserved.
-            {' '}GSTIN {brand.legal.gstin}.
-          </Text>
+          <div className="kf-footer-foot">
+            {legal.length > 0 ? (
+              <ul className="kf-footer-legal">
+                {legal.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            <Text type="supporting" color="secondary">
+              © {year} {brand.name}. A {brand.legalName} company. All rights reserved.
+              {' '}GSTIN {brand.legal.gstin}.
+            </Text>
+          </div>
         </VStack>
       </div>
     </footer>

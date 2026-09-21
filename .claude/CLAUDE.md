@@ -68,6 +68,24 @@ backend team ships endpoints one at a time; opt each in without touching pages.
 If a page has to change because the real contract differs, the abstraction
 leaked — fix `lib/api/`, and flag it.
 
+## Footer — legacy parity
+
+Four columns, as the legacy footer had: **Quick Links** (Home · Shop · Blog ·
+About Us · Contact) · **Why Choose Us** (the four promise claims) ·
+**Contact Info** · **Follow Us**. Policy links sit as small print in the
+bottom row beside the copyright, in the legacy order: Privacy Policy ·
+Shipping Policy · Refund Policy.
+
+**There is no Terms link, because the legacy site had no terms page.** It
+shipped exactly three policy pages (`/privacypolicy`, `/refund`, `/shipping`).
+Our `/terms` route still exists and renders — it is unlinked rather than
+deleted, since removing a live URL that may be indexed is a separate,
+redirect-shaped decision. Do not add it back to the footer without being asked.
+
+`footerLegal` in `config/nav.json` holds those links, validated by
+`config/nav.ts` and exposed through `getSiteConfig()` like `footerNav`, so the
+white-label seam covers them too.
+
 ## Brand config — how it is edited
 
 Values live in **`config/brand.json`** and **`config/nav.json`** (plain JSON, no

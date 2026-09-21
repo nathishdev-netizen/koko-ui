@@ -4,43 +4,84 @@
       "label": "Shop",
       "href": "/shop",
       "children": [
-        { "label": "Best Sellers", "href": "/shop/best-sellers" },
-        { "label": "Signature Blends", "href": "/shop/signature-blends" },
-        { "label": "Heritage Chutney Powders", "href": "/shop/heritage-chutney-powders" },
-        { "label": "Everyday Superfoods", "href": "/shop/everyday-superfoods" },
-        { "label": "Single Origin Spices", "href": "/shop/single-origin-spices" }
+        {
+          "label": "Best Sellers",
+          "href": "/shop/best-sellers"
+        },
+        {
+          "label": "Signature Blends",
+          "href": "/shop/signature-blends"
+        },
+        {
+          "label": "Heritage Chutney Powders",
+          "href": "/shop/heritage-chutney-powders"
+        },
+        {
+          "label": "Everyday Superfoods",
+          "href": "/shop/everyday-superfoods"
+        },
+        {
+          "label": "Single Origin Spices",
+          "href": "/shop/single-origin-spices"
+        }
       ]
     },
-    { "label": "Bundles", "href": "/shop/bundles" },
-    { "label": "Blog", "href": "/blog" },
-    { "label": "About", "href": "/about" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Bundles",
+      "href": "/shop/bundles"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
   "footer": [
     {
-      "title": "Shop",
+      "title": "Quick Links",
       "items": [
-        { "label": "All Products", "href": "/shop" },
-        { "label": "Bundles", "href": "/shop/bundles" },
-        { "label": "Best Sellers", "href": "/shop/best-sellers" }
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Shop",
+          "href": "/shop"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "About Us",
+          "href": "/about"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
       ]
+    }
+  ],
+  "footerLegal": [
+    {
+      "label": "Privacy Policy",
+      "href": "/privacy-policy"
     },
     {
-      "title": "Company",
-      "items": [
-        { "label": "About", "href": "/about" },
-        { "label": "Blog", "href": "/blog" },
-        { "label": "Contact", "href": "/contact" }
-      ]
+      "label": "Shipping Policy",
+      "href": "/shipping"
     },
     {
-      "title": "Policies",
-      "items": [
-        { "label": "Privacy Policy", "href": "/privacy-policy" },
-        { "label": "Terms", "href": "/terms" },
-        { "label": "Refund Policy", "href": "/refund-policy" },
-        { "label": "Shipping", "href": "/shipping" }
-      ]
+      "label": "Refund Policy",
+      "href": "/refund-policy"
     }
   ]
 }

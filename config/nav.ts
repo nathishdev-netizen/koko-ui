@@ -24,6 +24,8 @@ const navSchema = z.object({
   footer: z
     .array(z.object({ title: z.string().min(1), items: z.array(navItemSchema).min(1) }))
     .min(1),
+  /** Small print under the footer columns — policies, as the legacy site had. */
+  footerLegal: z.array(navItemSchema).default([]),
 });
 
 export type NavItem = z.infer<typeof navItemSchema>;
@@ -37,3 +39,4 @@ if (!parsed.success) {
 
 export const primaryNav: readonly NavItem[] = parsed.data.primary;
 export const footerNav: readonly FooterGroup[] = parsed.data.footer;
+export const footerLegalNav: readonly NavItem[] = parsed.data.footerLegal;

@@ -7,7 +7,7 @@
  * config/brand.ts directly in static contexts), never from literals.
  */
 import { brand, type Brand } from '@/config/brand';
-import { footerNav, primaryNav, type NavItem } from '@/config/nav';
+import { footerLegalNav, footerNav, primaryNav, type NavItem } from '@/config/nav';
 import { brandThemeSchema, type BrandTheme } from '@/config/theme';
 import { getLocalTheme } from '@/lib/theme/store';
 import { isLive, request } from './client';
@@ -18,6 +18,7 @@ export type SiteConfig = {
   readonly brand: Brand;
   readonly primaryNav: readonly NavItem[];
   readonly footerNav: readonly { title: string; items: readonly NavItem[] }[];
+  readonly footerLegalNav: readonly NavItem[];
   /** Brand surface colours, rendered to CSS custom properties by the layout. */
   readonly theme: BrandTheme;
 };
@@ -42,6 +43,7 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     brand: applyIdentity(brand, theme),
     primaryNav,
     footerNav,
+    footerLegalNav,
     theme,
   };
 }

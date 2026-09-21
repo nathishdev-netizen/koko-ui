@@ -103,7 +103,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }
           >
             {children}
-            <SiteFooter brand={config.brand} groups={config.footerNav} />
+            <SiteFooter
+              brand={config.brand}
+              groups={config.footerNav}
+              legal={config.footerLegalNav}
+            />
             <Parallax />
             <ServiceWorker />
           </AppShell>

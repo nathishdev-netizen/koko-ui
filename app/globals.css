@@ -293,6 +293,30 @@ html,
     margin-block-start: var(--spacing-10, 40px);
   }
 
+  /* Policy links as small print under the columns, then the copyright —
+     the legacy footer's bottom section. */
+  .kf-footer-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-3, 12px) var(--spacing-5, 20px);
+  }
+  .kf-footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2, 8px) var(--spacing-4, 16px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .kf-footer-legal a {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+  .kf-footer-legal a:hover { color: var(--color-text-primary); text-decoration: underline; }
+
   .kf-footer::after {
     content: '';
     position: absolute;
