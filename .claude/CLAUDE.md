@@ -907,6 +907,20 @@ working. `.kf-section p`, `.kf-about-para`, `.kf-about-lead`,
 because the process steps are their own section element, outside
 `.kf-section`. The footer tagline stays static by design.
 
+**Every reveal blurs, not only the heading words.** `kf-rise`,
+`kf-rise-soft`, `kf-settle`, `kf-deal-in` and `kf-card-in` all animate
+`filter: blur(...)` to `none`, so content arrives coming into focus rather
+than simply fading. The `to` frame MUST clear the filter explicitly —
+omitting it leaves everything permanently soft.
+
+**Filtered results enter in sequence (`kf-card-in`).** The shop grid is keyed
+on the active filters, so React remounts it and the animation replays on every
+filter change. Time-based, NOT scroll-driven: the cards are already in view
+when new results land, so a scroll range would show nothing at all. Delays
+run 0-300ms and positions past the ninth share the last one, so a 22-product
+grid does not take two seconds to arrive. A product card must not also carry
+the scroll-driven rule, or the two fight.
+
 **Tab panels deal their content in.** After a switch the panel's blocks
 animate up in sequence (40/90/140/190ms), which is what makes a tab change
 feel like content arriving rather than swapping. Time-based, because it
