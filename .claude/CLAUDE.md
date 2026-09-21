@@ -635,8 +635,20 @@ A one-result filter rendered a single card filling the entire page.
 Use `.kf-product-grid` / `.kf-card-grid` instead — plain CSS grid with
 `repeat(auto-fill, minmax(<min>, <max>))` and `justify-content: start`.
 `auto-fill` keeps the empty tracks, so two results are two normal cards with
-space to their right. The `max` in `minmax` is what caps the card; without it
-`auto-fill` still stretches.
+space to their right.
+
+**`.kf-product-grid` caps the CARD, not the track.** A hard `max` in `minmax`
+left ~420px of dead space at the right of a 1200px row while the filter bar
+and divider above spanned it fully — the grid read as misaligned against
+everything else on the page. It is now
+`repeat(auto-fill, minmax(240px, 1fr))` with `max-width: 320px` on the card
+itself: tracks share the row (four 291px cards reach the container edge
+exactly), and the one-result guard still holds — verified a single search
+result renders at 291px, not 1200px.
+
+The regression suite asserts the INVARIANT (one width, between 200 and 400px)
+rather than a specific pixel value, so a deliberate sizing change does not
+read as a regression.
 
 **The home collections grid is a fixed 2x2 of FOUR categories**
 (`.kf-card-grid--quad`), matching the legacy home page: Signature Blends,

@@ -430,7 +430,10 @@ html,
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-4, 16px);
-    align-items: flex-end;
+    /* `flex-end` pinned the button to the bottom of a 162px-tall block, so it
+       floated in dead space beside the description. Centred, it sits against
+       the copy as one row. */
+    align-items: center;
     justify-content: space-between;
   }
   .kf-shop-bundles,
@@ -528,10 +531,18 @@ html,
    */
   .kf-product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 260px));
+    /* `auto-fill` + a MAX keeps a one-result filter from rendering one
+       page-wide card. But a hard 260px cap left ~420px of dead space at the
+       right of a 1200px row while the filter bar above spanned it fully, so
+       the grid read as misaligned. `minmax(240px, 1fr)` lets the tracks share
+       the row; the guard against a giant lone card moves to a max-width on
+       the card itself, which holds at any result count. */
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--spacing-3, 12px);
-    justify-content: start;
+    justify-content: stretch;
   }
+  /* The one-result guard: a card never exceeds this, however wide its track. */
+  .kf-product-grid > * { max-width: 320px; }
   /* Single column on a phone: a fixed 260px card there leaves dead space beside
      it, and with one column per row there is no inconsistency to guard against. */
   @media (max-width: 560px) {
