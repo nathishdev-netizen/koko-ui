@@ -1537,6 +1537,85 @@ html,
   .kf-policy-faq { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
   .kf-policy-q { margin: 0 0 4px; font-family: var(--font-family-body); font-size: 1rem; font-weight: 700; }
 
+  /* Structured sections — the legacy alternated grid shapes so a long policy
+     stays scannable rather than running as one column of prose. */
+  .kf-policy-group { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
+  .kf-policy-lede { margin: -4px 0 0; color: var(--color-text-secondary); font-size: 1.0625rem; }
+  .kf-policy-grid { display: grid; gap: var(--spacing-4, 16px); }
+  .kf-policy-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .kf-policy-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kf-policy-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 1000px) {
+    .kf-policy-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kf-policy-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .kf-policy-grid--4,
+    .kf-policy-grid--3,
+    .kf-policy-grid--2 { grid-template-columns: 1fr; }
+  }
+
+  .kf-policy-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+  }
+  .kf-policy-item:hover {
+    border-color: var(--color-border-emphasized);
+    box-shadow: 0 14px 30px rgba(59, 43, 19, 0.08);
+    transform: translateY(-2px);
+  }
+  .kf-policy-item-icon { width: 34px; height: 34px; color: var(--color-text-accent); }
+  .kf-policy-item-title { margin: 0; font-family: var(--font-family-heading); font-size: 1.125rem; line-height: 1.25; }
+  .kf-policy-item-body { margin: 0; color: var(--color-text-secondary); line-height: 1.65; font-size: 0.9375rem; }
+
+  /* The legacy marked these with a left accent bar rather than a full card. */
+  .kf-policy-accent {
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+    border-radius: var(--kf-radius-control);
+    border-inline-start: 4px solid var(--kf-on-ink-gold);
+    background: var(--color-background-surface);
+  }
+
+  /* Escalation matrix: a tinted header strip over the contact details. */
+  .kf-policy-level {
+    border-radius: var(--kf-radius-card);
+    border: 2px solid var(--color-border);
+    background: var(--color-background-surface);
+    overflow: hidden;
+  }
+  .kf-policy-level-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Levels the three headers when one title wraps to two lines. */
+    min-height: 106px;
+    padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+    background: var(--kf-brand-ink);
+    color: var(--kf-on-ink);
+  }
+  .kf-policy-level-tag { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--kf-on-ink-accent); }
+  /* The colour must be stated explicitly: a later heading rule sets the ink
+     brown, which is the header's own background — the title rendered
+     invisible against it. */
+  .kf-policy-level-title { margin: 2px 0 0; font-family: var(--font-family-heading); font-size: 1.25rem; line-height: 1.2; color: var(--kf-on-ink); }
+  .kf-policy-level-body { margin: 0; padding: var(--spacing-5, 20px); display: flex; flex-direction: column; gap: 10px; }
+  .kf-policy-level-body > div { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .kf-policy-level-body dt { flex: 0 0 auto; min-width: 84px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-secondary); }
+  .kf-policy-level-body dd { margin: 0; font-size: 0.9375rem; overflow-wrap: anywhere; }
+  .kf-policy-level-body a { color: var(--color-text-accent); text-decoration: none; }
+  .kf-policy-level-body a:hover { text-decoration: underline; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kf-policy-item { transition: none; }
+    .kf-policy-item:hover { transform: none; }
+  }
+
   .kf-policy-closing { padding-block: clamp(2.5rem, 6vw, 4rem); text-align: center; }
   .kf-policy-closing .kf-policy-inner { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-3, 12px); }
   .kf-policy-closing-title { margin: 0; font-size: clamp(1.8rem, 1.3rem + 2vw, 2.5rem); }
@@ -3064,7 +3143,8 @@ html,
       .kf-profile-card,
       .kf-profile-panel,
       .kf-login-card,
-      .kf-policy-card {
+      .kf-policy-card,
+      .kf-policy-item {
         animation: kf-rise linear both;
         animation-timeline: view();
         /* Plays over the first third of the element's pass through the

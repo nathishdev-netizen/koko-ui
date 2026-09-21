@@ -70,6 +70,28 @@ leaked — fix `lib/api/`, and flag it.
 
 ## Policy pages — legacy layout and copy
 
+**Sections may declare a `layout`, and the privacy and shipping pages use it.**
+The legacy did not run one flat column — it alternated grid shapes so a long
+policy stays scannable: a 4-up icon grid for data types and shipping features,
+2-up accent bars (gold left rule, no card) for usage and responsibilities, 3-up
+cards for rights and delivery issues, `pair` for security/retention, and
+`levels` for the escalation matrix (dark header strip over a contact list).
+A section with no `layout` keeps the plain prose card, which is what the refund
+page still uses throughout.
+
+Items carry `icon` as a STRING key, resolved through the `ICONS` map in
+PolicyPage, so content JSON stays free of components. An unknown key falls back
+to the document mark rather than rendering nothing.
+
+**`layout` is typed as `string`, not a union.** A JSON import widens string
+literals, so a union cannot be satisfied from the content file; the renderer
+narrows at the point of use and falls back to a grid.
+
+**`.kf-policy-level-title` must state its colour.** A later heading rule sets
+the ink brown — which is the level header's own background — so the title
+rendered invisible against it. The three headers also take a `min-height`,
+since one title wraps to two lines and left the others short.
+
 **Layout follows the legacy's three-part shape:** a dark hero band, each
 clause in its OWN bordered card on a narrow measure, then a dark closing band
 with a route back into the shop. Ours was flat prose on one background.

@@ -1,5 +1,5 @@
 {
-  "_note": "Shipping policy, carried over from the legacy site. Rates and the free-shipping threshold also live in config/commerce.json — keep them in step.",
+  "_note": "Shipping policy, carried over from the legacy site. Rates and the free-shipping threshold also live in config/commerce.json — keep them in step. Sections may declare a `layout`; see PolicyPage.",
   "title": "Shipping Policy",
   "intro": "We partner with reliable logistics providers to ensure timely and safe delivery of your KokoFresh orders. By placing an order, you agree to the shipping terms outlined here.",
   "sections": [
@@ -8,32 +8,145 @@
       "body": "<p>This Shipping Policy applies to all orders placed on the KokoFresh website. Our goal is to ensure a smooth and reliable delivery experience for our customers. By using our platform, you agree to the terms outlined in this policy.</p><p>From our kitchen to yours, we ensure every order is handled with care and precision.</p>"
     },
     {
+      "heading": "Key Shipping Features",
+      "lede": "How your order travels from our kitchen to your door.",
+      "layout": "grid-4",
+      "items": [
+        {
+          "icon": "mappin",
+          "title": "Serviceable Locations",
+          "description": "Orders are delivered within the locations listed on our service coverage page. Customers must confirm their delivery address falls within a serviceable area."
+        },
+        {
+          "icon": "clock",
+          "title": "Delivery Timelines",
+          "description": "Standard delivery: orders are typically delivered within 2–5 business days, depending on the location."
+        },
+        {
+          "icon": "package",
+          "title": "Packaging Standards",
+          "description": "All products are packaged to ensure they remain fresh, safe, and intact during transit."
+        },
+        {
+          "icon": "truck",
+          "title": "Order Tracking",
+          "description": "Once your order is shipped, you will receive a confirmation email or SMS with tracking details."
+        }
+      ]
+    },
+    {
       "heading": "Shipping Charges",
-      "body": "<ul><li><strong>Variable Pricing:</strong> Shipping fees vary based on the order value and delivery location (&#8377;50 in Karnataka, &#8377;70 rest of India).</li><li><strong>Free Shipping Available:</strong> Free shipping is automatically applied to all orders of &#8377;399 and above at checkout.</li><li><strong>Clear at Checkout:</strong> Any applicable shipping charges will be displayed clearly at checkout before payment.</li></ul>"
+      "layout": "grid-3",
+      "items": [
+        {
+          "icon": "truck",
+          "title": "Variable Pricing",
+          "description": "Shipping fees vary based on the order value and delivery location — ₹50 within Karnataka, ₹70 for the rest of India."
+        },
+        {
+          "icon": "check",
+          "title": "Free Shipping Available",
+          "description": "Free shipping is automatically applied to all orders of ₹399 and above at checkout."
+        },
+        {
+          "icon": "file",
+          "title": "Clear at Checkout",
+          "description": "Any applicable shipping charges are displayed clearly at checkout before payment."
+        }
+      ]
     },
     {
       "heading": "Delivery Issues",
-      "body": "<p>We&rsquo;re here to help if anything goes wrong with your delivery. KokoFresh ensures the smooth delivery of your orders, but the following scenarios may arise.</p><ul><li>If you receive damaged, incorrect, or incomplete orders, report the issue within <strong>24 hours</strong> of delivery.</li><li>Refunds, replacements, or store credits will be processed as per our Refund Policy.</li></ul>"
+      "lede": "We’re here to help if anything goes wrong with your delivery.",
+      "layout": "grid-3",
+      "items": [
+        {
+          "icon": "share",
+          "title": "Failed Delivery Attempts",
+          "description": "If the delivery is unsuccessful due to an incorrect address or customer unavailability, the logistics provider may attempt redelivery."
+        },
+        {
+          "icon": "clock",
+          "title": "Delayed Delivery",
+          "description": "Customers will be notified of delays. Refunds or credits will not be issued for delays caused by factors beyond our control."
+        },
+        {
+          "icon": "shield",
+          "title": "Lost or Stolen Orders",
+          "description": "If an order is marked as delivered but not received, report the issue within 24 hours. We will investigate and resolve the matter."
+        }
+      ]
     },
     {
-      "heading": "How We Resolve It",
-      "body": "<ul><li><strong>Quick Processing:</strong> We process returns and refunds quickly to get you back on track.</li><li><strong>Multiple Options:</strong> Choose between refunds, replacements, or store credits.</li><li><strong>Hassle-Free Process:</strong> No complicated procedures &mdash; just reach out to our support team.</li></ul>"
+      "heading": "Customer Responsibilities",
+      "layout": "accent-2",
+      "items": [
+        {
+          "title": "Accurate Details",
+          "description": "Ensure that the delivery address and contact details provided during checkout are accurate."
+        },
+        {
+          "title": "Be Available",
+          "description": "Be available to receive the delivery at the specified address within the estimated timeframe."
+        },
+        {
+          "title": "Inspect on Arrival",
+          "description": "Inspect the order upon receipt and report any issues (e.g. damaged packaging or incorrect items) immediately to our support team."
+        }
+      ]
     },
     {
-      "heading": "Liability Disclaimer",
-      "body": "<p>KokoFresh is not liable for delays, losses, or damages caused by third-party logistics providers or events beyond our control.</p><p>We are not responsible for product spoilage due to improper handling or storage after delivery.</p>"
+      "heading": "Returns & Refunds",
+      "layout": "grid-3",
+      "items": [
+        {
+          "icon": "check",
+          "title": "Quick Processing",
+          "description": "We process returns and refunds quickly to get you back on track."
+        },
+        {
+          "icon": "share",
+          "title": "Multiple Options",
+          "description": "Choose between refunds, replacements, or store credits."
+        },
+        {
+          "icon": "mail",
+          "title": "Hassle-Free Process",
+          "description": "No complicated procedures — just reach out to our support team."
+        }
+      ]
     },
     {
-      "heading": "Restricted Items",
-      "body": "<p>Products that do not comply with food safety regulations or legal standards are strictly prohibited on our platform. Sellers found in violation may face penalties or removal from KokoFresh.</p>"
+      "heading": "Liability & Restricted Items",
+      "layout": "pair",
+      "items": [
+        {
+          "icon": "shield",
+          "title": "Liability Disclaimer",
+          "description": "KokoFresh is not liable for delays, losses, or damages caused by third-party logistics providers or events beyond our control. We are not responsible for product spoilage due to improper handling or storage after delivery."
+        },
+        {
+          "icon": "lock",
+          "title": "Restricted Items",
+          "description": "Products that do not comply with food safety regulations or legal standards are strictly prohibited on our platform. Sellers found in violation may face penalties or removal from KokoFresh."
+        }
+      ]
     },
     {
-      "heading": "Changes to Shipping Policy",
-      "body": "<p>KokoFresh reserves the right to modify this Shipping Policy at any time.</p><p>Updates will be communicated via email or notifications on the platform. Continued use of our services after changes implies acceptance of the revised terms.</p>"
-    },
-    {
-      "heading": "Contact Us",
-      "body": "<p>Our support team is here to help. Reach out anytime with your questions or concerns regarding shipping.</p><ul><li>Email: help@kokofresh.in</li><li>Phone: +91 78927 76610</li></ul>"
+      "heading": "Policy Updates & Contact",
+      "layout": "pair",
+      "items": [
+        {
+          "icon": "file",
+          "title": "Changes to Shipping Policy",
+          "description": "KokoFresh reserves the right to modify this Shipping Policy at any time. Updates will be communicated via email or notifications on the platform. Continued use of our services after changes implies acceptance of the revised terms."
+        },
+        {
+          "icon": "mail",
+          "title": "Contact Us",
+          "description": "Our support team is here to help. Reach out anytime at help@kokofresh.in or +91 78927 76610 with questions about shipping."
+        }
+      ]
     }
   ],
   "faq": [
