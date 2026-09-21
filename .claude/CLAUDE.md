@@ -92,6 +92,20 @@ the ink brown — which is the level header's own background — so the title
 rendered invisible against it. The three headers also take a `min-height`,
 since one title wraps to two lines and left the others short.
 
+**Two measures, not one.** The legacy alternated `max-w-4xl` (896px) for
+prose and `max-w-7xl` (1280px) for the grid sections. Locking everything to the
+narrow measure left the card grids cramped with dead space either side —
+`.kf-policy-narrow` and `.kf-policy-wide` now carry the two, and both need
+`width: 100%` because the sections sit in a `VStack` whose flex children
+shrink-to-fit rather than stretching (the wide containers were rendering at
+422-979px, their grids' natural width).
+
+**Built from Astryx, not hand-rolled markup.** `Card` supplies the card
+chrome, `Grid` the columns and gaps, `VStack`/`Text`/`Heading` the rest — an
+earlier pass hand-rolled 47 raw elements with bespoke CSS for all of it, which
+is exactly what the project rule forbids. The remaining CSS is visual
+treatment only (accent bar, level header strip, icon sizing).
+
 **Layout follows the legacy's three-part shape:** a dark hero band, each
 clause in its OWN bordered card on a narrow measure, then a dark closing band
 with a route back into the shop. Ours was flat prose on one background.

@@ -1500,10 +1500,16 @@ html,
    * The legacy layout: a dark hero band, each clause in its own bordered card
    * on a narrow measure, then a dark closing band back into the shop.
    */
-  /* `.kf-container` sets its own 80rem max-width later in the file, so this
-     needs the compound selector to win — the legacy policy pages ran at a
-     narrow `max-w-4xl` measure, which is what makes long clauses readable. */
-  .kf-container.kf-policy-inner { max-width: 56rem; }
+  /* Two measures, as the legacy used: prose at `max-w-4xl` (896px) so clauses
+     stay readable, grids at `max-w-7xl` (1280px) so the cards are not cramped.
+     Both need the compound selector to beat `.kf-container`, declared later. */
+  .kf-container.kf-policy-narrow { max-width: 56rem; }
+  .kf-container.kf-policy-wide { max-width: 80rem; }
+  /* The sections sit in a VStack (flex column), whose children shrink to fit
+     their content rather than stretching — the wide containers were rendering
+     at their grid's natural width (422-979px) instead of the full measure. */
+  .kf-policy-body .kf-policy-narrow,
+  .kf-policy-body .kf-policy-wide { width: 100%; }
   .kf-policy-hero { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
   .kf-policy-hero .kf-eyebrow { margin-block: var(--spacing-4, 16px) 0; color: var(--kf-on-ink-accent); }
   .kf-policy-title { margin: 6px 0 0; font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem); line-height: 1.12; }
@@ -1516,18 +1522,7 @@ html,
      of it opened a ~96px dead band before the first clause. Needs the compound
      selector to outrank `.kf-section`, which is declared later in the file. */
   .kf-section.kf-policy-body { padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 6vw, 4rem); }
-  .kf-policy-cards { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
-  .kf-policy-card {
-    padding: clamp(1.25rem, 3vw, 2rem);
-    border-radius: var(--kf-radius-card);
-    border: 1px solid var(--color-border);
-    background: var(--color-background-card);
-    transition: border-color 240ms ease, box-shadow 240ms ease;
-  }
-  .kf-policy-card:hover {
-    border-color: var(--color-border-emphasized);
-    box-shadow: 0 12px 28px rgba(59, 43, 19, 0.07);
-  }
+
   .kf-policy-heading {
     margin: 0 0 var(--spacing-3, 12px);
     font-family: var(--font-family-heading);
@@ -1537,45 +1532,25 @@ html,
   .kf-policy-faq { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
   .kf-policy-q { margin: 0 0 4px; font-family: var(--font-family-body); font-size: 1rem; font-weight: 700; }
 
-  /* Structured sections — the legacy alternated grid shapes so a long policy
-     stays scannable rather than running as one column of prose. */
-  .kf-policy-group { display: flex; flex-direction: column; gap: var(--spacing-4, 16px); }
-  .kf-policy-lede { margin: -4px 0 0; color: var(--color-text-secondary); font-size: 1.0625rem; }
-  .kf-policy-grid { display: grid; gap: var(--spacing-4, 16px); }
-  .kf-policy-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .kf-policy-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .kf-policy-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  @media (max-width: 1000px) {
-    .kf-policy-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .kf-policy-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Structured sections — Astryx `Grid` supplies the columns and gaps; these
+     rules are the visual treatment only. */
+  .kf-policy-lede { max-width: 56ch; }
+  .kf-policy-heading {
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+    line-height: 1.2;
   }
-  @media (max-width: 640px) {
-    .kf-policy-grid--4,
-    .kf-policy-grid--3,
-    .kf-policy-grid--2 { grid-template-columns: 1fr; }
-  }
-
-  .kf-policy-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: clamp(1rem, 2.5vw, 1.5rem);
-    border-radius: var(--kf-radius-card);
-    border: 2px solid var(--color-border);
-    background: var(--color-background-surface);
-    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
-  }
-  .kf-policy-item:hover {
-    border-color: var(--color-border-emphasized);
-    box-shadow: 0 14px 30px rgba(59, 43, 19, 0.08);
-    transform: translateY(-2px);
-  }
-  .kf-policy-item-icon { width: 34px; height: 34px; color: var(--color-text-accent); }
-  .kf-policy-item-title { margin: 0; font-family: var(--font-family-heading); font-size: 1.125rem; line-height: 1.25; }
-  .kf-policy-item-body { margin: 0; color: var(--color-text-secondary); line-height: 1.65; font-size: 0.9375rem; }
+  .kf-policy-item { height: 100%; }
+  .kf-policy-item:hover { border-color: var(--color-border-emphasized); }
+  .kf-policy-item-icon { width: 32px; height: 32px; color: var(--color-text-accent); }
+  .kf-policy-item-title { font-family: var(--font-family-heading); font-size: 1.125rem; line-height: 1.25; }
 
   /* The legacy marked these with a left accent bar rather than a full card. */
   .kf-policy-accent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
     padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
     border-radius: var(--kf-radius-control);
     border-inline-start: 4px solid var(--kf-on-ink-gold);
@@ -1583,12 +1558,7 @@ html,
   }
 
   /* Escalation matrix: a tinted header strip over the contact details. */
-  .kf-policy-level {
-    border-radius: var(--kf-radius-card);
-    border: 2px solid var(--color-border);
-    background: var(--color-background-surface);
-    overflow: hidden;
-  }
+  .kf-policy-level { height: 100%; overflow: hidden; }
   .kf-policy-level-head {
     display: flex;
     flex-direction: column;
@@ -1600,9 +1570,8 @@ html,
     color: var(--kf-on-ink);
   }
   .kf-policy-level-tag { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--kf-on-ink-accent); }
-  /* The colour must be stated explicitly: a later heading rule sets the ink
-     brown, which is the header's own background — the title rendered
-     invisible against it. */
+  /* The colour must be stated: a later heading rule sets the ink brown, which
+     is this header's own background — the title rendered invisible on it. */
   .kf-policy-level-title { margin: 2px 0 0; font-family: var(--font-family-heading); font-size: 1.25rem; line-height: 1.2; color: var(--kf-on-ink); }
   .kf-policy-level-body { margin: 0; padding: var(--spacing-5, 20px); display: flex; flex-direction: column; gap: 10px; }
   .kf-policy-level-body > div { display: flex; flex-wrap: wrap; gap: 4px 10px; }
@@ -1611,13 +1580,7 @@ html,
   .kf-policy-level-body a { color: var(--color-text-accent); text-decoration: none; }
   .kf-policy-level-body a:hover { text-decoration: underline; }
 
-  @media (prefers-reduced-motion: reduce) {
-    .kf-policy-item { transition: none; }
-    .kf-policy-item:hover { transform: none; }
-  }
-
   .kf-policy-closing { padding-block: clamp(2.5rem, 6vw, 4rem); text-align: center; }
-  .kf-policy-closing .kf-policy-inner { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-3, 12px); }
   .kf-policy-closing-title { margin: 0; font-size: clamp(1.8rem, 1.3rem + 2vw, 2.5rem); }
   .kf-policy-closing .kf-policy-intro { margin: 0; }
   /* A filled button on the ink ground: the brown primary would vanish. */
@@ -1629,7 +1592,6 @@ html,
   .kf-pill-btn--on-ink:hover { background: var(--kf-on-fill); }
 
   @media (prefers-reduced-motion: reduce) {
-    .kf-policy-card { transition: none; }
   }
 
   /* ── Account / profile ──────────────────────────────────────────────────
@@ -3143,7 +3105,6 @@ html,
       .kf-profile-card,
       .kf-profile-panel,
       .kf-login-card,
-      .kf-policy-card,
       .kf-policy-item {
         animation: kf-rise linear both;
         animation-timeline: view();

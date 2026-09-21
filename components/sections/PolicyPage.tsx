@@ -13,8 +13,16 @@ import {
   ShieldCheckIcon,
   TruckIcon,
 } from '@/components/icons';
+import {
+  BreadcrumbItem,
+  Breadcrumbs,
+  Card,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+} from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text } from '@/components/ui';
 import { breadcrumbJsonLd } from '@/lib/seo';
 
 export type PolicyItem = {
@@ -40,6 +48,13 @@ export type PolicySection = {
   items?: readonly PolicyItem[];
 };
 
+export type PolicyFaq = { question: string; answer: string };
+export type PolicyClosing = {
+  heading: string;
+  body: string;
+  cta?: { label: string; href: string };
+};
+
 /**
  * Icons are keyed by name in the JSON so content stays free of components.
  * An unknown key falls back to the document mark rather than rendering nothing.
@@ -57,21 +72,25 @@ const ICONS: Record<string, typeof FileTextIcon> = {
   mappin: MapPinIcon,
   package: PackageIcon,
 };
-export type PolicyFaq = { question: string; answer: string };
-export type PolicyClosing = {
-  heading: string;
-  body: string;
-  cta?: { label: string; href: string };
+
+/** Columns per layout, matching the legacy grids. */
+const COLUMNS: Record<string, number> = {
+  'grid-4': 4,
+  'grid-3': 3,
+  'accent-2': 2,
+  pair: 2,
+  levels: 3,
 };
 
 /**
  * Shared shell for the policy pages, following the legacy layout: a dark hero
- * band, each clause in its own bordered card on a narrow measure, then a dark
+ * band, alternating grid shapes so a long policy stays scannable, then a dark
  * closing band with a route back into the shop.
  *
- * One component so all of them read identically — the legacy versions were
- * separate 294-466 line files that had drifted apart (only two of the three
- * carried a closing CTA, and each hero used a slightly different gradient).
+ * Two measures, as the legacy had: prose runs at 896px (`max-w-4xl`) so
+ * clauses stay readable, while grid sections run the full 1280px
+ * (`max-w-7xl`) — locking everything to the narrow measure left the card
+ * grids cramped with dead space either side.
  */
 export function PolicyPage({
   title,
@@ -119,78 +138,102 @@ export function PolicyPage({
       {/* Hero — the brand's ink rather than the legacy's pure black, so the
           band matches every other dark surface on the site. */}
       <section className="kf-section kf-section--brown kf-policy-hero">
-        <div className="kf-container kf-policy-inner">
-          <Breadcrumbs label="Breadcrumb" variant="supporting">
-            {trail.map((crumb, i) => (
-              <BreadcrumbItem
-                key={crumb.path}
-                href={i === trail.length - 1 ? undefined : crumb.path}
-              >
-                {crumb.name}
-              </BreadcrumbItem>
-            ))}
-          </Breadcrumbs>
-          <p className="kf-eyebrow">Policies</p>
-          <Heading level={1} className="kf-policy-title">
-            {title}
-          </Heading>
-          <p className="kf-policy-intro">{intro}</p>
+        <div className="kf-container kf-policy-narrow">
+          <VStack gap={2}>
+            <Breadcrumbs label="Breadcrumb" variant="supporting">
+              {trail.map((crumb, i) => (
+                <BreadcrumbItem
+                  key={crumb.path}
+                  href={i === trail.length - 1 ? undefined : crumb.path}
+                >
+                  {crumb.name}
+                </BreadcrumbItem>
+              ))}
+            </Breadcrumbs>
+            <p className="kf-eyebrow">Policies</p>
+            <Heading level={1} className="kf-policy-title">
+              {title}
+            </Heading>
+            <p className="kf-policy-intro">{intro}</p>
+          </VStack>
         </div>
       </section>
 
       <section className="kf-section kf-policy-body">
-        <div className="kf-container kf-policy-inner">
-          <div className="kf-policy-cards">
-            {sections.map((section) =>
-              section.layout && section.items ? (
-                <section key={section.heading} className="kf-policy-group">
-                  <h2 className="kf-policy-heading">{section.heading}</h2>
-                  {section.lede ? <p className="kf-policy-lede">{section.lede}</p> : null}
+        <VStack gap={8}>
+          {sections.map((section) =>
+            section.layout && section.items ? (
+              // Grid sections take the wide measure, as the legacy did.
+              <div key={section.heading} className="kf-container kf-policy-wide">
+                <VStack gap={3}>
+                  <VStack gap={1}>
+                    <Heading level={2} className="kf-policy-heading">
+                      {section.heading}
+                    </Heading>
+                    {section.lede ? (
+                      <Text color="secondary" className="kf-policy-lede">
+                        {section.lede}
+                      </Text>
+                    ) : null}
+                  </VStack>
                   <PolicyItems layout={section.layout} items={section.items} />
-                </section>
-              ) : (
-                <article key={section.heading} className="kf-policy-card">
-                  <h2 className="kf-policy-heading">{section.heading}</h2>
-                  <div
-                    className="kf-prose"
-                    dangerouslySetInnerHTML={{ __html: section.body ?? '' }}
-                  />
-                </article>
-              ),
-            )}
+                </VStack>
+              </div>
+            ) : (
+              // Prose stays at the narrow measure so clauses read comfortably.
+              <div key={section.heading} className="kf-container kf-policy-narrow">
+                <Card padding={5}>
+                  <VStack gap={2}>
+                    <Heading level={2} className="kf-policy-heading">
+                      {section.heading}
+                    </Heading>
+                    <div
+                      className="kf-prose"
+                      dangerouslySetInnerHTML={{ __html: section.body ?? '' }}
+                    />
+                  </VStack>
+                </Card>
+              </div>
+            ),
+          )}
 
-            {faq && faq.length > 0 ? (
-              <article className="kf-policy-card">
-                <h2 className="kf-policy-heading">Common questions</h2>
-                <div className="kf-policy-faq">
+          {faq && faq.length > 0 ? (
+            <div className="kf-container kf-policy-narrow">
+              <Card padding={5}>
+                <VStack gap={3}>
+                  <Heading level={2} className="kf-policy-heading">
+                    Common questions
+                  </Heading>
                   {faq.map((item) => (
-                    <div key={item.question}>
-                      <h3 className="kf-policy-q">{item.question}</h3>
+                    <VStack key={item.question} gap={0.5}>
+                      <Text weight="medium">{item.question}</Text>
                       <Text color="secondary">{item.answer}</Text>
-                    </div>
+                    </VStack>
                   ))}
-                </div>
-              </article>
-            ) : null}
-          </div>
-        </div>
+                </VStack>
+              </Card>
+            </div>
+          ) : null}
+        </VStack>
       </section>
 
       {closing ? (
         <section className="kf-section kf-section--brown kf-policy-closing">
-          <div className="kf-container kf-policy-inner">
-            <Heading level={2} className="kf-policy-closing-title">
-              {closing.heading}
-            </Heading>
-            <p className="kf-policy-intro">{closing.body}</p>
-            {closing.cta ? (
-              <Link
-                href={closing.cta.href}
-                className="kf-pill-btn kf-pill-btn--on-ink"
-              >
-                {closing.cta.label}
-              </Link>
-            ) : null}
+          <div className="kf-container kf-policy-narrow">
+            <VStack gap={3} hAlign="center" className="kf-center-text">
+              <Heading level={2} className="kf-policy-closing-title">
+                {closing.heading}
+              </Heading>
+              <p className="kf-policy-intro">{closing.body}</p>
+              {closing.cta ? (
+                <Link
+                  href={closing.cta.href}
+                  className="kf-pill-btn kf-pill-btn--on-ink"
+                >
+                  {closing.cta.label}
+                </Link>
+              ) : null}
+            </VStack>
           </div>
         </section>
       ) : null}
@@ -200,9 +243,9 @@ export function PolicyPage({
 
 /**
  * Structured sections, rendered in the grid their content suits — the legacy
- * privacy page alternated a 4-up icon grid, a 2-up accent list, 3-up cards and
- * the escalation matrix rather than running one flat column, which is what
- * makes a long policy scannable.
+ * alternated a 4-up icon grid, 2-up accent bars, 3-up cards and the escalation
+ * matrix rather than running one flat column, which is what makes a long
+ * policy scannable.
  */
 function PolicyItems({
   layout,
@@ -211,15 +254,17 @@ function PolicyItems({
   layout: string;
   items: readonly PolicyItem[];
 }) {
+  const columns = COLUMNS[layout] ?? 3;
+
   if (layout === 'levels') {
     return (
-      <div className="kf-policy-grid kf-policy-grid--3">
+      <Grid columns={{ minWidth: 260, max: columns }} gap={4}>
         {items.map((item) => (
-          <article key={item.title} className="kf-policy-level">
-            <header className="kf-policy-level-head">
+          <Card key={item.title} padding={0} className="kf-policy-level">
+            <div className="kf-policy-level-head">
               <span className="kf-policy-level-tag">{item.level}</span>
               <h3 className="kf-policy-level-title">{item.title}</h3>
-            </header>
+            </div>
             <dl className="kf-policy-level-body">
               {item.email ? (
                 <div>
@@ -244,39 +289,47 @@ function PolicyItems({
                 <dd>{item.resolutionTime}</dd>
               </div>
             </dl>
-          </article>
+          </Card>
         ))}
-      </div>
+      </Grid>
     );
   }
 
   if (layout === 'accent-2') {
     return (
-      <div className="kf-policy-grid kf-policy-grid--2">
+      <Grid columns={{ minWidth: 300, max: columns }} gap={3}>
         {items.map((item) => (
-          <article key={item.title} className="kf-policy-accent">
-            <h3 className="kf-policy-item-title">{item.title}</h3>
-            <p className="kf-policy-item-body">{item.description}</p>
-          </article>
+          <div key={item.title} className="kf-policy-accent">
+            <Text weight="medium" className="kf-policy-item-title">
+              {item.title}
+            </Text>
+            <Text type="supporting" color="secondary">
+              {item.description}
+            </Text>
+          </div>
         ))}
-      </div>
+      </Grid>
     );
   }
 
-  const columns = layout === 'grid-4' ? '4' : layout === 'pair' ? '2' : '3';
-
   return (
-    <div className={`kf-policy-grid kf-policy-grid--${columns}`}>
+    <Grid columns={{ minWidth: 240, max: columns }} gap={3}>
       {items.map((item) => {
         const Icon = (item.icon && ICONS[item.icon]) || FileTextIcon;
         return (
-          <article key={item.title} className="kf-policy-item">
-            <Icon className="kf-policy-item-icon" aria-hidden="true" />
-            <h3 className="kf-policy-item-title">{item.title}</h3>
-            <p className="kf-policy-item-body">{item.description}</p>
-          </article>
+          <Card key={item.title} padding={4} className="kf-policy-item">
+            <VStack gap={1.5}>
+              <Icon className="kf-policy-item-icon" aria-hidden="true" />
+              <Text weight="medium" className="kf-policy-item-title">
+                {item.title}
+              </Text>
+              <Text type="supporting" color="secondary">
+                {item.description}
+              </Text>
+            </VStack>
+          </Card>
         );
       })}
-    </div>
+    </Grid>
   );
 }
