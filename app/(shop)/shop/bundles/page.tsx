@@ -4,7 +4,7 @@ import { BundleCompare } from '@/components/sections/BundleCompare';
 import { BundleGrid } from '@/components/sections/BundleGrid';
 import { BundleSteps } from '@/components/sections/BundleSteps';
 import { BundleWhy } from '@/components/sections/BundleWhy';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { getBundles } from '@/lib/api/bundles';
 import { breadcrumbJsonLd, buildMetadata } from '@/lib/seo';
@@ -47,7 +47,7 @@ export default async function BundlesPage() {
           <VStack gap={1.5}>
             <p className="kf-eyebrow">Mix &amp; match</p>
             <Heading level={1}>Mix &amp; Match Bundles</Heading>
-            <span className="kf-rule" aria-hidden="true" />
+            <AnimatedRule />
             <Text color="secondary" className="kf-measure">
               Pick your favorites, we&rsquo;ll pack them for less. Three simple
               bundles for every need &mdash; from first-timers to monthly

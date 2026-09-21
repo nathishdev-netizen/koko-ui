@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import { Heading, Text } from '@/components/ui';
+import { Heading, SplitText, Text } from '@/components/ui';
 
 export type ProcessStep = {
   id: string;
@@ -94,7 +94,7 @@ export function ProcessSection({
     <section className="kf-process" aria-labelledby="process-title">
       <div className="kf-process-head">
         <Heading level={2} id="process-title" className="kf-process-title">
-          {title}
+          <SplitText>{title}</SplitText>
         </Heading>
         <Text className="kf-process-sub">
           {subtitleLead} <strong>{subtitleBrand}</strong> {subtitleTail}

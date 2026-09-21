@@ -19,6 +19,7 @@ import {
   Card,
   Grid,
   Heading,
+  SplitText,
   Text,
   VStack,
 } from '@/components/ui';
@@ -152,7 +153,7 @@ export function PolicyPage({
             </Breadcrumbs>
             <p className="kf-eyebrow">Policies</p>
             <Heading level={1} className="kf-policy-title">
-              {title}
+              <SplitText>{title}</SplitText>
             </Heading>
             <p className="kf-policy-intro">{intro}</p>
           </VStack>
@@ -168,7 +169,7 @@ export function PolicyPage({
                 <VStack gap={3}>
                   <VStack gap={1}>
                     <Heading level={2} className="kf-policy-heading">
-                      {section.heading}
+                      <SplitText>{section.heading}</SplitText>
                     </Heading>
                     {section.lede ? (
                       <Text color="secondary" className="kf-policy-lede">
@@ -185,7 +186,7 @@ export function PolicyPage({
                 <Card padding={5}>
                   <VStack gap={2}>
                     <Heading level={2} className="kf-policy-heading">
-                      {section.heading}
+                      <SplitText>{section.heading}</SplitText>
                     </Heading>
                     <div
                       className="kf-prose"
@@ -202,7 +203,7 @@ export function PolicyPage({
               <Card padding={5}>
                 <VStack gap={3}>
                   <Heading level={2} className="kf-policy-heading">
-                    Common questions
+                    <SplitText>Common questions</SplitText>
                   </Heading>
                   {faq.map((item) => (
                     <VStack key={item.question} gap={0.5}>

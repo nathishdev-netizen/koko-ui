@@ -12,7 +12,14 @@ import {
   YoutubeIcon,
 } from '@/components/icons';
 import { ContactForm } from '@/components/sections/ContactForm';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text } from '@/components/ui';
+import {
+  BreadcrumbItem,
+  Breadcrumbs,
+  Heading,
+  SplitText,
+  Text,
+  wordCount,
+} from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { brand } from '@/config/brand';
 import content from '@/content/pages/contact.json';
@@ -109,7 +116,7 @@ export default function ContactPage() {
           </Breadcrumbs>
           <div className="kf-about-hero-inner">
             <Heading level={1} className="kf-about-hero-title">
-              {hero.title}
+              <SplitText>{hero.title}</SplitText>
             </Heading>
             <p className="kf-contact-sub">
               {hero.subtitleLead} <span className="kf-h-alt">{hero.subtitleAlt}</span>{' '}
@@ -129,7 +136,10 @@ export default function ContactPage() {
           <div className="kf-container">
             <div className="kf-about-values-head">
               <Heading level={2} id="methods-title" className="kf-about-h2 kf-about-h2--xl">
-                {methods.titleLead} <span className="kf-h-alt">{methods.titleAlt}</span>
+                <SplitText>{methods.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(methods.titleLead)}>{methods.titleAlt}</SplitText>
+              </span>
               </Heading>
               <Text color="secondary" className="kf-about-values-sub">
                 {methods.subtitle}
@@ -161,7 +171,10 @@ export default function ContactPage() {
           <div className="kf-container kf-container--narrow">
             <div className="kf-about-values-head">
               <Heading level={2} id="form-title" className="kf-about-h2 kf-about-h2--xl">
-                {form.titleLead} <span className="kf-h-alt">{form.titleAlt}</span>
+                <SplitText>{form.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(form.titleLead)}>{form.titleAlt}</SplitText>
+              </span>
               </Heading>
               <Text color="secondary" className="kf-about-values-sub">
                 {form.subtitle}
@@ -185,7 +198,10 @@ export default function ContactPage() {
         <div className="kf-container kf-pinned-body">
           <div className="kf-about-values-head">
             <Heading level={2} id="faq-title" className="kf-about-h2 kf-about-h2--xl">
-              {faq.titleLead} <span className="kf-h-alt">{faq.titleAlt}</span>
+              <SplitText>{faq.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(faq.titleLead)}>{faq.titleAlt}</SplitText>
+              </span>
             </Heading>
             <Text color="secondary" className="kf-about-values-sub">
               {faq.subtitle}
@@ -208,7 +224,10 @@ export default function ContactPage() {
           <div className="kf-contact-office-grid">
             <div className="kf-contact-office-copy">
               <Heading level={2} id="office-title" className="kf-about-h2 kf-about-h2--xl">
-                {office.titleLead} <span className="kf-h-alt">{office.titleAlt}</span>
+                <SplitText>{office.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(office.titleLead)}>{office.titleAlt}</SplitText>
+              </span>
               </Heading>
               <ul className="kf-contact-info">
                 <li>
@@ -299,7 +318,10 @@ export default function ContactPage() {
       <section className="kf-section kf-about-cta kf-contact-cta" aria-labelledby="cta-title">
         <div className="kf-container kf-container--narrow">
           <Heading level={2} id="cta-title" className="kf-about-h2 kf-about-h2--xl">
-            {cta.titleLead} <span className="kf-h-alt">{cta.titleAlt}</span>
+            <SplitText>{cta.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(cta.titleLead)}>{cta.titleAlt}</SplitText>
+              </span>
           </Heading>
           <Text className="kf-about-cta-body">{cta.body}</Text>
           {socials.instagram ? (

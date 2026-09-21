@@ -47,6 +47,8 @@ export { Skeleton } from '@astryxdesign/core/Skeleton';
 export { Section } from '@astryxdesign/core/Section';
 export { Stack } from '@astryxdesign/core/Stack';
 export { Text } from '@astryxdesign/core/Text';
+// Local primitives, not Astryx components.
+export { AnimatedRule, SplitText, wordCount } from '@/components/ui/SplitText';
 export { TopNav, TopNavHeading, TopNavItem } from '@astryxdesign/core/TopNav';
 export { VStack } from '@astryxdesign/core/VStack';
 export { VisuallyHidden } from '@astryxdesign/core/VisuallyHidden';

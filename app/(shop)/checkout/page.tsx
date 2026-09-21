@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { CheckoutForm } from '@/components/commerce/CheckoutForm';
-import { Heading, VStack } from '@/components/ui';
+import { AnimatedRule, Heading, VStack } from '@/components/ui';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function CheckoutPage() {
         <VStack gap={1.5}>
           <p className="kf-eyebrow">Almost there</p>
           <Heading level={1}>Checkout</Heading>
-          <span className="kf-rule" aria-hidden="true" />
+          <AnimatedRule />
         </VStack>
         <CheckoutForm />
       </VStack>

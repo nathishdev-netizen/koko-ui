@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { ProductGrid } from '@/components/commerce/ProductGrid';
-import { Breadcrumbs, BreadcrumbItem, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { getCollection, getCollections } from '@/lib/api/collections';
 import { getProducts } from '@/lib/api/products';
@@ -86,7 +86,7 @@ export default async function CollectionPage({
           <VStack gap={1.5}>
             <p className="kf-eyebrow">Collection</p>
             <Heading level={1}>{collection.name}</Heading>
-            <span className="kf-rule" aria-hidden="true" />
+            <AnimatedRule />
             <Text color="secondary" className="kf-measure">
               {collection.description}
             </Text>

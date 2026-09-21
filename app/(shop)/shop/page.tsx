@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { ProductGrid } from '@/components/commerce/ProductGrid';
 import { ShopFilters, type SortKey } from '@/components/commerce/ShopFilters';
-import { Heading, HStack, Text, VStack } from '@/components/ui';
+import { AnimatedRule, HStack, Heading, Text, VStack } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { getCollections } from '@/lib/api/collections';
 import { getProducts } from '@/lib/api/products';
@@ -83,7 +83,7 @@ export default async function ShopPage({
             <VStack gap={1.5}>
               <p className="kf-eyebrow">All products</p>
               <Heading level={1}>Shop</Heading>
-              <span className="kf-rule" aria-hidden="true" />
+              <AnimatedRule />
               <Text color="secondary" className="kf-measure">
                 Every blend is stone-ground in small batches and packed only after you
                 order, so it reaches you at its most fragrant.

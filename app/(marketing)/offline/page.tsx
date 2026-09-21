@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Button, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, Button, Heading, Text, VStack } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'You are offline',
@@ -20,7 +20,7 @@ export default function OfflinePage() {
       <VStack gap={4} hAlign="center" padding={10} className="kf-center-text">
         <p className="kf-eyebrow">No connection</p>
         <Heading level={1}>You&rsquo;re offline</Heading>
-        <span className="kf-rule" aria-hidden="true" />
+        <AnimatedRule />
         <Text color="secondary" className="kf-measure">
           Pages you&rsquo;ve already visited will still open. Anything with a
           price needs a connection, so we don&rsquo;t show you a figure that

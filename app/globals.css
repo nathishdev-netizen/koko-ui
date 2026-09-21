@@ -3149,6 +3149,50 @@ html,
       .kf-product-grid > *:nth-child(4),
       .kf-contact-grid > *:nth-child(4) { animation-range: entry 10% cover 40%; }
 
+      /* ── Split-text headings ───────────────────────────────────────────
+       * Each word rises and un-blurs as the heading enters. `--kf-split-i` is
+       * the word index, set inline, so one keyframe staggers any heading
+       * without JS. The blur is slight — enough to read as focus arriving,
+       * not as a defocused page.
+       */
+      @keyframes kf-word-rise {
+        from { opacity: 0; transform: translateY(0.5em); filter: blur(4px); }
+        to { opacity: 1; transform: none; filter: none; }
+      }
+      /* Each word gets its own slice of the entry range. A `calc()` is NOT
+         valid in a scroll-range offset and `animation-delay` in ms does not
+         apply to a view timeline — both were tried and both made every word
+         snap in together. Literal percentages per position are what works;
+         nine cover any heading we write, and the tenth onward shares the
+         last slice rather than trailing off the end of the range. */
+      .kf-split-word {
+        display: inline-block;
+        animation: kf-word-rise linear both;
+        animation-timeline: view();
+        animation-range: cover 6% cover 30%;
+      }
+      .kf-split-word:nth-child(1) { animation-range: cover 2% cover 26%; }
+      .kf-split-word:nth-child(2) { animation-range: cover 3% cover 27%; }
+      .kf-split-word:nth-child(3) { animation-range: cover 4% cover 28%; }
+      .kf-split-word:nth-child(4) { animation-range: cover 5% cover 29%; }
+      .kf-split-word:nth-child(5) { animation-range: cover 6% cover 30%; }
+      .kf-split-word:nth-child(6) { animation-range: cover 7% cover 31%; }
+      .kf-split-word:nth-child(7) { animation-range: cover 8% cover 32%; }
+      .kf-split-word:nth-child(8) { animation-range: cover 9% cover 33%; }
+
+      /* ── The heading rule draws itself in ──────────────────────────────── */
+      @keyframes kf-rule-draw {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      /* Every `.kf-rule` in the codebase sits within ~300px of its page top,
+         so it is already on screen at load and a scroll-driven draw can never
+         be seen. A short time-based draw on entry is the honest version: it
+         runs once, when the page paints. */
+      .kf-rule--draw {
+        animation: kf-rule-draw 620ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+      }
+
       /* ── Media settles ─────────────────────────────────────────────────
        * A photograph easing out of a slight scale as it enters gives the
        * image weight. Kept very small — a large scale reads as a zoom effect
@@ -3842,6 +3886,8 @@ html,
     height: 2px;
     background: var(--color-accent);
     opacity: 0.55;
+    /* The draw animation scales from the inline start; harmless when static. */
+    transform-origin: left center;
   }
 
   .kf-center { display: flex; justify-content: center; }

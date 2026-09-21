@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Button, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, Button, Heading, Text, VStack } from '@/components/ui';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default async function ConfirmedPage({
       <VStack gap={4} hAlign="center" className="kf-center-text" padding={8}>
         <p className="kf-eyebrow">Thank you</p>
         <Heading level={1}>Your order is confirmed</Heading>
-        <span className="kf-rule" aria-hidden="true" />
+        <AnimatedRule />
         {orderId ? (
           <Text color="secondary">
             Order <strong>{orderId}</strong> — we have emailed your receipt.

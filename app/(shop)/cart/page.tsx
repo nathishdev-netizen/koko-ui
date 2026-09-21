@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { CartView } from '@/components/commerce/CartView';
-import { Heading, VStack } from '@/components/ui';
+import { AnimatedRule, Heading, VStack } from '@/components/ui';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function CartPage() {
         <VStack gap={1.5}>
           <p className="kf-eyebrow">Your order</p>
           <Heading level={1}>Cart</Heading>
-          <span className="kf-rule" aria-hidden="true" />
+          <AnimatedRule />
         </VStack>
         <CartView />
       </VStack>

@@ -1,4 +1,4 @@
-import { Heading, Text } from '@/components/ui';
+import { Heading, SplitText, Text } from '@/components/ui';
 
 /**
  * The journal's masthead — a full-width cream band, as the legacy listing led
@@ -18,7 +18,7 @@ export function BlogListingHero({
       <div className="kf-blog-hero-inner">
         <p className="kf-eyebrow kf-blog-hero-eyebrow">{eyebrow}</p>
         <Heading level={1} className="kf-blog-hero-title">
-          {title} <span aria-hidden="true">🌶️</span>
+          <SplitText>{title}</SplitText> <span aria-hidden="true">🌶️</span>
         </Heading>
         <Text color="secondary" className="kf-blog-hero-sub">
           {subtitle}

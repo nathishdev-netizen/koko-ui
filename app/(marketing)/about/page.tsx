@@ -12,7 +12,14 @@ import {
   ShieldCheckIcon,
   SparklesIcon,
 } from '@/components/icons';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text } from '@/components/ui';
+import {
+  BreadcrumbItem,
+  Breadcrumbs,
+  Heading,
+  SplitText,
+  Text,
+  wordCount,
+} from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { brand } from '@/config/brand';
 import content from '@/content/pages/about.json';
@@ -62,7 +69,7 @@ export default function AboutPage() {
           </Breadcrumbs>
           <div className="kf-about-hero-inner">
             <Heading level={1} className="kf-about-hero-title">
-              {hero.title}
+              <SplitText>{hero.title}</SplitText>
             </Heading>
             <p className="kf-about-lead" dangerouslySetInnerHTML={{ __html: hero.lead }} />
           </div>
@@ -82,7 +89,17 @@ export default function AboutPage() {
                 {story.pill}
               </span>
               <Heading level={2} id="story-title" className="kf-about-h2">
-                {story.titleLead} <span className="kf-h-alt">{story.titleAlt}</span> {story.titleTail}
+                <SplitText>{story.titleLead}</SplitText>{' '}
+                <span className="kf-h-alt">
+                  <SplitText startIndex={wordCount(story.titleLead)}>
+                    {story.titleAlt}
+                  </SplitText>
+                </span>{' '}
+                <SplitText
+                  startIndex={wordCount(story.titleLead) + wordCount(story.titleAlt)}
+                >
+                  {story.titleTail}
+                </SplitText>
               </Heading>
               {story.paragraphs.map((p) => (
                 <p key={p.slice(0, 24)} className="kf-about-para" dangerouslySetInnerHTML={{ __html: p }} />
@@ -119,7 +136,12 @@ export default function AboutPage() {
                 {ingredients.pill}
               </span>
               <Heading level={2} id="ingredients-title" className="kf-about-h2">
-                {ingredients.titleLead} <span className="kf-h-alt">{ingredients.titleAlt}</span>
+                <SplitText>{ingredients.titleLead}</SplitText>{' '}
+                <span className="kf-h-alt">
+                  <SplitText startIndex={wordCount(ingredients.titleLead)}>
+                    {ingredients.titleAlt}
+                  </SplitText>
+                </span>
               </Heading>
               <div className="kf-panel kf-about-promise">
                 {ingredients.paragraphs.map((p) => (
@@ -136,7 +158,12 @@ export default function AboutPage() {
         <div className="kf-container">
           <div className="kf-about-values-head">
             <Heading level={2} id="values-title" className="kf-about-h2 kf-about-h2--xl">
-              {values.titleLead} <span className="kf-h-alt">{values.titleAlt}</span>
+              <SplitText>{values.titleLead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(values.titleLead)}>
+                  {values.titleAlt}
+                </SplitText>
+              </span>
             </Heading>
             <Text color="secondary" className="kf-about-values-sub">
               {values.subtitle}
@@ -171,7 +198,12 @@ export default function AboutPage() {
       <section className="kf-section kf-about-cta" aria-labelledby="cta-title">
         <div className="kf-container kf-container--narrow">
           <Heading level={2} id="cta-title" className="kf-about-h2 kf-about-h2--xl">
-            {cta.titleLead} <span className="kf-h-alt">{cta.titleAlt}</span>
+            <SplitText>{cta.titleLead}</SplitText>{' '}
+            <span className="kf-h-alt">
+              <SplitText startIndex={wordCount(cta.titleLead)}>
+                {cta.titleAlt}
+              </SplitText>
+            </span>
           </Heading>
           <Text className="kf-about-cta-body">{cta.body}</Text>
           <div className="kf-about-cta-row">

@@ -1,13 +1,6 @@
 import Image from 'next/image';
 
-import {
-  Button,
-  ClickableCard,
-  
-  Heading,
-  Text,
-  VStack,
-} from '@/components/ui';
+import { Button, ClickableCard, Heading, SplitText, Text, VStack, wordCount } from '@/components/ui';
 import type { Collection } from '@/lib/api/types';
 
 /** Category cards. Server component. */
@@ -33,8 +26,12 @@ export function CollectionGrid({
         <VStack gap={5}>
           <VStack gap={1.5} hAlign="center" className="kf-center-text">
             <Heading level={2} id="collections-heading">
-              {heading.split(' ').slice(0, -1).join(' ')}{' '}
-              <span className="kf-h-alt">{heading.split(' ').slice(-1)}</span>
+              <SplitText>{heading.split(' ').slice(0, -1).join(' ')}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(heading) - 1}>
+                  {heading.split(' ').slice(-1).join(' ')}
+                </SplitText>
+              </span>
             </Heading>
             <Text color="secondary">{subheading}</Text>
           </VStack>

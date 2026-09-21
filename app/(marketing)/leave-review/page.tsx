@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { ReviewForm } from '@/components/reviews/ReviewForm';
-import { Card, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, Card, Heading, Text, VStack } from '@/components/ui';
 import { getProducts } from '@/lib/api/products';
 import { buildMetadata } from '@/lib/seo';
 
@@ -39,7 +39,7 @@ export default async function LeaveReviewPage({
         <VStack gap={1.5}>
           <p className="kf-eyebrow">Your thoughts</p>
           <Heading level={1}>Leave a review</Heading>
-          <span className="kf-rule" aria-hidden="true" />
+          <AnimatedRule />
           <Text color="secondary" className="kf-measure">
             Reviews are read by a person before they go up, so it may take a day or
             two to appear.

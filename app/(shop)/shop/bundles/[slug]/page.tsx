@@ -6,7 +6,7 @@ import { BundleAbout } from '@/components/sections/BundleAbout';
 import { BundleCompare } from '@/components/sections/BundleCompare';
 import { BundleFaq, BUNDLE_FAQS } from '@/components/sections/BundleFaq';
 import { BundleTrust } from '@/components/sections/BundleTrust';
-import { BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
+import { AnimatedRule, BreadcrumbItem, Breadcrumbs, Heading, Text, VStack } from '@/components/ui';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { getBundle, getBundles } from '@/lib/api/bundles';
 import { getProducts } from '@/lib/api/products';
@@ -120,7 +120,7 @@ export default async function BundlePage({
           <VStack gap={1.5}>
             <p className="kf-eyebrow">Build your box</p>
             <Heading level={1}>{bundle.name}</Heading>
-            <span className="kf-rule" aria-hidden="true" />
+            <AnimatedRule />
             <Text color="secondary" className="kf-measure">
               {bundle.description}
             </Text>

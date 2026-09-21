@@ -837,6 +837,43 @@ without them renders nothing. The compare table repeats here with
 
 CTA reads **"Add Customized Bundle to Cart"** when complete, as legacy did.
 
+## Split-text headings
+
+`SplitText` (in `components/ui/SplitText.tsx`) splits a heading into words that
+rise and un-blur one after another as it scrolls in — the reactbits split-text
+reveal. It is plain markup with no hooks, so it works in Server and Client
+components alike, and the motion is native scroll-driven CSS: no JS ships.
+
+- **Words, not characters.** Per-character staggering on a display serif reads
+  as a ransom note at these sizes and explodes the DOM.
+- **Accessibility:** the whole string is rendered once in a `.kf-sr-only` span
+  and the split copy is `aria-hidden`. Verified through the AX tree — each
+  heading appears exactly once with its full text. `textContent` shows it
+  twice, which is a probe artefact, not a bug.
+- **Dual-tone headings** pass `startIndex={wordCount(lead)}` to the second
+  half so the stagger continues across the `.kf-h-alt` span rather than
+  restarting.
+
+**Three ways of staggering that do NOT work**, all tried:
+1. `animation-range: entry calc(6% + var(--i) * 2.5%) …` — a `calc()` is not
+   valid in a scroll-range offset, so the range is dropped and every word
+   snaps in together.
+2. `animation-delay: calc(var(--i) * 90ms)` — a time delay does not apply to a
+   view timeline.
+3. `entry` as the range — it spans only the element's own height, so a
+   one-line heading reveals across ~40px of scroll and the whole effect
+   flashes past.
+
+What works: literal per-position percentages on the **`cover`** timeline
+(`.kf-split-word:nth-child(n)`), which spans the element's full pass through
+the viewport. Measured: words progress 0 → 1 over ~250px of scroll, each
+trailing the last.
+
+**`.kf-rule--draw` animates on load, not on scroll.** Every `.kf-rule` in the
+codebase sits within ~300px of its page top, so it is already on screen when
+the page paints and a scroll-driven draw could never be seen. A 620ms
+time-based draw is the honest version.
+
 ## Motion — hover and reveal (added after the animation pass)
 
 **Never repeat a `:hover` selector with `transform: none` inside the

@@ -1,5 +1,5 @@
 import { LeafIcon, ShieldCheckIcon } from '@/components/icons';
-import { Grid, Heading, Text, VStack } from '@/components/ui';
+import { Grid, Heading, SplitText, Text, VStack, wordCount } from '@/components/ui';
 
 const ICONS = {
   'hand-heart': ShieldCheckIcon,
@@ -31,7 +31,10 @@ export function ValueProps({
         <VStack gap={6}>
           <VStack gap={2} hAlign="center" className="kf-center-text">
             <Heading level={2} id="usp-heading">
-              {lead} <span className="kf-h-alt">{tail}</span>
+              <SplitText>{lead}</SplitText>{' '}
+              <span className="kf-h-alt">
+                <SplitText startIndex={wordCount(lead)}>{tail}</SplitText>
+              </span>
             </Heading>
             <Text color="secondary" className="kf-measure">
               {subheading}

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Heading } from '@/components/ui';
+import { Heading, SplitText, wordCount } from '@/components/ui';
 import type { BlogPostSummary } from '@/lib/api/types';
 
 import { tagLabel } from './format';
@@ -34,8 +34,10 @@ export function RelatedPosts({
     >
       <div className="kf-container">
         <Heading level={2} id="related-posts" className="kf-related-title">
-          {lead}{lead ? ' ' : ''}
-          <span className="kf-h-alt">{tail}</span>
+          <SplitText>{lead}</SplitText>{lead ? ' ' : ''}
+          <span className="kf-h-alt">
+            <SplitText startIndex={wordCount(lead)}>{tail}</SplitText>
+          </span>
         </Heading>
         <div className="kf-related-grid">
           {posts.map((post) => (
